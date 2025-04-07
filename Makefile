@@ -1,7 +1,11 @@
 VERSION := v0.1.0
 BINARY_NAME := app
 
-run:
+build-css:
+	lessc ./site/styles/_styles.less > ./site/static/styles.css
+	lessc ./site/styles/_fonts.less > ./site/static/fonts.css
+
+run: build-css
 	@go run -ldflags "-X main.Version=$(VERSION)" main.go $(ARGS)
 
 test:

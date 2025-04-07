@@ -1,0 +1,103 @@
+@screen-wide: 70rem;
+@screen-content: 50rem;
+@screen-portrait: 40rem;
+@screen-min: 24rem;
+
+@spacing-half: 0.5rem;
+@spacing-1: 1rem;
+@spacing-2: 2rem;
+@spacing-4: 4rem;
+
+@radius-half: 0.5rem;
+@radius-1: 1rem;
+
+.width-content {
+    width: min(100vw - @spacing-4, @screen-content);
+}
+
+.width-wide {
+    width: min(100vw - @spacing-4, @screen-wide);
+}
+
+.font-text {
+    font-family: 'Lexend', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.font-title {
+    font-family: 'Rubik', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.font-mono {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.reset {
+    border: none;
+    font: inherit;
+    color: inherit;
+}
+
+.f-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.f-col-center {
+    .f-col();
+    align-items: center;
+}
+
+.f-col-stretch {
+    .f-col();
+    align-items: stretch;
+}
+
+.f-col-items {
+    .f-col();
+    align-items: center;
+    gap: @spacing-half;
+}
+
+.f-row {
+    display: flex;
+    flex-direction: row
+}
+
+.f-row-center {
+    .f-row();
+    align-items: center;
+}
+
+.f-row-middle {
+    .f-row();
+    align-items: center;
+    justify-content: center;
+}
+
+.f-row-block {
+    .f-row();
+    align-items: center;
+    padding: @spacing-half @spacing-1;
+    gap: @spacing-1;
+    border-radius: @radius-1;
+}
+
+.highlight {
+    text-decoration: underline;
+    text-decoration-color: var(--palette-accent-text);
+    text-decoration-thickness: 2px;
+}
+
+.focus {
+    outline: 2px solid var(--scheme-foreground);
+}
+
+.bordered {
+    border: 1px solid var(--scheme-border);
+}
+
+@import "reset.less";
+@import "theme.less";
+@import "widgets.less";
+@import "mods.less";
+@import "misc.less";

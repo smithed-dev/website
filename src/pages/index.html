@@ -1,3 +1,81 @@
 <mend:extend src="abstract/root.html" :title="Home">
-    Hi
+    <section class="l-heading width-content">
+        <h1>Welcome!</h1>
+        <p class="is-center">
+            Smithed is an open-source platform for exploring, sharing <br />
+            and supercharging minecraft data & resource packs.
+        </p>
+    </section>
+
+    <section class="l-grid-2 width-content">
+        <mend:include src="htmx/pack_card__placeholder.html" @hx-get="/htmx/landing_card/trending" @hx-trigger="load"
+            @hx-swap="outerHTML" />
+        <mend:include src="htmx/pack_card__placeholder.html" @hx-get="/htmx/landing_card/newest" @hx-trigger="load"
+            @hx-swap="outerHTML" />
+    </section>
+
+    <section class="l-separator width-content">
+        <hr class="type-soft" />
+        What is Smithed exactly?
+        <hr class="type-soft" />
+    </section>
+
+    <section class="l-grid-2 width-content">
+        <a class="o-landing-card" href="">
+            <header>
+                <mend:include src="components/icons/home.svg" @style="--size: 2rem;" />
+                <h1 class="is-flex">Discord</h1>
+                <span>
+                    Join
+                    <mend:include src="components/icons/popout.svg" />
+                </span>
+            </header>
+            <p>
+                Smithed is a community of people passionate about data & resource packs. We host various related events,
+                develop libraries and hang out!
+            </p>
+        </a>
+        <a class="o-landing-card" href="">
+            <header>
+                <mend:include src="components/icons/jigsaw.svg" @style="--size: 2rem;" />
+                <h1 class="is-flex">Packs</h1>
+                <span>
+                    Browse
+                    <mend:include src="components/icons/search.svg" />
+                </span>
+            </header>
+            <p>
+                Create, share and browse data & resource packs. There are many tools to make the process simple and
+                fast.
+            </p>
+        </a>
+        <a class="o-landing-card" href="">
+            <header>
+                <mend:include src="components/icons/scroll.svg" @style="--size: 2rem;" />
+                <h1 class="is-flex">Docs</h1>
+                <span>
+                    Explore
+                    <mend:include src="components/icons/search.svg" />
+                </span>
+            </header>
+            <p>
+                Your all-in-one guide to the Smithed ecosystem. Whether you're a seasoned pack developer or just
+                starting out, Smithed has something to offer.
+            </p>
+        </a>
+        <a class="o-landing-card" href="">
+            <header>
+                <mend:include src="components/icons/curly_braces.svg" @style="--size: 2rem;" />
+                <h1 class="is-flex">Weld</h1>
+                <span>
+                    Try it
+                    <mend:include src="components/icons/popout.svg" />
+                </span>
+            </header>
+            <p>
+                The fastest pack merger in the west. Merge all your data and resource packs into a single zip easily
+                droppable into any world or minecraft instance.
+            </p>
+        </a>
+    </section>
 </mend:extend>

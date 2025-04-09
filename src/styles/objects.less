@@ -1,0 +1,205 @@
+// Objects are pretty much widgets that are used mostly only on one page
+
+// The landing card after "What is smithed exactly" which is <a>
+.o-landing-card {
+    .reset();
+    .bordered();
+    .f-col-stretch();
+    .interactive();
+    gap: @spacing-half;
+    background-color: var(--scheme-card);
+    border-radius: @radius-1;
+    padding: @spacing-1;
+    text-decoration: none;
+
+    header {
+        .f-row-center();
+        gap: @spacing-1;
+
+        span {
+            .f-row-block();
+            background-color: var(--scheme-cavity);
+        }
+    }
+
+    &:hover,
+    &:focus {
+        h1 {
+            .highlight();
+        }
+    }
+}
+
+@keyframes pack-label {
+    from {
+        transform: rotate(-5deg);
+    }
+
+    to {
+        transform: rotate(5deg);
+    }
+}
+
+// A pack card which is an <a>
+.o-card {
+    .reset();
+    .bordered();
+    .f-col-stretch();
+    .interactive();
+    position: relative;
+    background-color: var(--scheme-card);
+    border-radius: @radius-1;
+    text-decoration: none;
+
+    &>header {
+        position: relative;
+        width: calc(100% - 0.5rem);
+        // > https://stackoverflow.com/questions/1495407/maintain-the-aspect-ratio-of-a-div-with-css
+        padding-bottom: calc(56.25% - 0.5rem);
+        background-color: var(--scheme-cavity);
+        border: 0.25rem solid var(--scheme-shade);
+        border-radius: @radius-1 @radius-1 0 0;
+        overflow: hidden;
+
+        &>svg,
+        &>div {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            color: var(--scheme-hover);
+        }
+
+        img {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &>section {
+        .f-col-stretch();
+        padding: @spacing-half @spacing-1 @spacing-1 @spacing-1;
+        gap: @spacing-half;
+        flex: 1;
+
+        &>div {
+            .f-col();
+            gap: 0.25rem;
+            flex: 1;
+
+            &>div {
+                .f-row-center();
+                gap: @spacing-half;
+                flex-wrap: wrap;
+            }
+        }
+    }
+
+    &>footer {
+        position: absolute;
+        right: -1 * @spacing-1;
+        top: -1 * @spacing-1;
+
+        .o-label {
+            animation: 500ms ease-in-out 200ms infinite alternate pack-label;
+            border: 0.25rem solid var(--scheme-background);
+        }
+    }
+
+    &:hover {
+        h3 {
+            .highlight();
+        }
+    }
+}
+
+.o-label {
+    .f-row-center();
+    gap: 0.5rem;
+    font-weight: 500;
+    padding: 0.375rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+
+    svg {
+        width: 0.75rem;
+        height: 0.75rem;
+    }
+
+    &.type-trending {
+        background-color: var(--palette-disturbing);
+    }
+
+    &.type-new {
+        background-color: var(--palette-accent);
+    }
+}
+
+@keyframes placeholder {
+    from {
+        opacity: 0.5;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.o-placeholder {
+    display: block;
+    background-color: var(--scheme-hover);
+    height: 1rem;
+    border-radius: @radius-1;
+    animation: 1s ease-in-out 200ms infinite alternate placeholder;
+
+    &.type-1 {
+        width: 80%;
+        margin-bottom: 0.25rem;
+    }
+
+    &.type-2,
+    &.type-3,
+    &.type-4 {
+        background-color: var(--scheme-card);
+        height: 0.5rem;
+    }
+
+    &.type-2 {
+        width: 60%;
+    }
+
+    &.type-3 {
+        width: 40%;
+    }
+
+    &.type-4 {
+        width: 20%;
+    }
+}
+
+.o-metadata {
+    .f-row-center();
+    gap: @spacing-half;
+    font-size: 0.75rem;
+    color: var(--scheme-inactive);
+    --color: var(--scheme-inactive);
+    font-weight: 500;
+    flex-wrap: wrap;
+}
+
+.o-rating {
+    &.type-positive {
+        color: var(--palette-success-text);
+        --color: var(--palette-success-text);
+    }
+
+    &.type-negative {
+        color: var(--palette-disturbing-text);
+        --color: var(--palette-disturbing-text);
+    }
+}

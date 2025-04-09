@@ -19,6 +19,10 @@
     width: min(100vw - @spacing-4, @screen-wide);
 }
 
+.width-full {
+    width: 100%;
+}
+
 .font-text {
     font-family: 'Lexend', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
@@ -113,6 +117,8 @@
 @import "reset.less";
 @import "theme.less";
 @import "widgets.less";
+@import "containers.less";
+@import "objects.less";
 // @import "mods.less";
 // @import "misc.less";
 
@@ -177,4 +183,18 @@ body>footer {
 
 .is-flex {
     flex: 1;
+}
+
+@keyframes spinner {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.is-spinner {
+    animation: 1s linear infinite spinner;
 }

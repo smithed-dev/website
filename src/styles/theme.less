@@ -72,6 +72,8 @@ b {
 p {
     // Make paragraphs more readable
     line-height: 1.25;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 em {
@@ -97,16 +99,31 @@ hr {
     max-height: var(--height);
     opacity: 0.33;
 
+    &.type-soft {
+        opacity: 0.15;
+    }
+
     &.type-bar {
         min-width: 2px;
         max-width: 2px;
         --height: 1rem;
     }
+
+    &.type-bullet {
+        --height: 0.25rem;
+        min-width: 0.25rem;
+        max-width: 0.25rem;
+        border-radius: 100%;
+        opacity: 1;
+    }
 }
 
-// A link is not yet implemented.
-// I use !important because these shouldn't exist in production.
-a[href=""] {
-    color: var(--palette-disturbing-text) !important;
-    text-decoration-color: var(--palette-disturbing-text) !important;
+body[data-debug="true"] {
+
+    // A link is not yet implemented.
+    // I use !important because these shouldn't exist in production.
+    a[href=""] {
+        color: var(--palette-disturbing-text) !important;
+        text-decoration-color: var(--palette-disturbing-text) !important;
+    }
 }

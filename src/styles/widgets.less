@@ -5,6 +5,7 @@
     display: inline-flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
     gap: @spacing-half;
     text-decoration: none;
 
@@ -28,6 +29,8 @@
 .w-button {
     .reset();
     .f-row-block();
+    text-wrap: nowrap;
+    justify-content: center;
 
     &.type-accent {
         background-color: var(--palette-accent);

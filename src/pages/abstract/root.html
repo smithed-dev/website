@@ -24,22 +24,22 @@
     <!-- debug mode is used by both CSS and JS. What it does: -->
     <!-- 1. All empty links are highlighted with red -->
     <header>
-        <a id="logotype" class="w-unmarked-link" href="/">
+        <a id="logotype" class="w-unmarked-link" href="/" style="grid-area: logotype;">
             <mend:include src="../components/smithed.svg" :size="32" />
-            <h2>Smithed</h2>
+            <h2 class="a-hide-wide">Smithed</h2>
         </a>
-        <a class="w-unmarked-link" href>
+        <a class="w-unmarked-link" href="/browse" style="grid-area: browse;">
             Browse
         </a>
-        <a class="w-unmarked-link" href>
+        <a class="w-unmarked-link" href style="grid-area: articles;">
             Articles
         </a>
-        <a class="w-unmarked-link" href>
+        <a class="w-unmarked-link" href style="grid-area: weld;">
             Weld
-            <mend:include src="../components/icons/popout.svg" />
+            <mend:include src="../components/icons/popout.svg" @class="a-hide-content a-show-portrait" />
         </a>
         <mend:if value="[[ .searchbar ]]">
-            <div class="w-input is-flex">
+            <div class="w-input is-flex" style="grid-area: searchbar;">
                 <mend:include src="../components/icons/search.svg" />
                 <input type="text" placeholder="Search..." />
                 <footer class="w-dropdown type-list">
@@ -65,11 +65,11 @@
         <mend:unless value="[[ .searchbar ]]">
             <div class="is-flex"></div>
         </mend:unless>
-        <a class="w-unmarked-link" href>
+        <a class="w-unmarked-link" href style="grid-area: inbox;">
             Inbox
-            <mend:include src="../components/icons/notification.svg" />
+            <mend:include src="../components/icons/notification.svg" @class="a-hide-content a-show-portrait" />
         </a>
-        <button class="w-button type-accent">
+        <button class="w-button type-accent" style="grid-area: profile;">
             <span>
                 Log in
             </span>

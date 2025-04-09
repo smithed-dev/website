@@ -13,3 +13,26 @@
     grid-template-columns: 1fr 1fr;
     gap: @spacing-1;
 }
+
+.l-with-sidebar {
+    .f-row();
+    gap: @spacing-2;
+
+    &>section {
+        .width-content();
+    }
+
+    aside {
+        .f-col-stretch();
+        .bordered();
+        background-color: var(--scheme-card);
+        border-radius: @radius-1;
+        flex: 1;
+
+        &>header {
+            .f-row-center();
+            gap: @spacing-1;
+            padding: @spacing-1;
+        }
+    }
+}

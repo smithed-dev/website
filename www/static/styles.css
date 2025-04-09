@@ -314,6 +314,7 @@ body[data-debug="true"] a[href=""] {
   display: inline-flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   text-decoration: none;
 }
@@ -340,6 +341,8 @@ body[data-debug="true"] a[href=""] {
   padding: 0.5rem 1rem;
   gap: 1rem;
   border-radius: 1rem;
+  text-wrap: nowrap;
+  justify-content: center;
   transition: background-color 0.2s;
   cursor: pointer;
   background-color: var(--scheme-card);
@@ -442,6 +445,30 @@ body[data-debug="true"] a[href=""] {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+}
+.l-with-sidebar {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+.l-with-sidebar > section {
+  width: min(96vw, 50rem);
+}
+.l-with-sidebar aside {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border: 1px solid var(--scheme-border);
+  background-color: var(--scheme-card);
+  border-radius: 1rem;
+  flex: 1;
+}
+.l-with-sidebar aside > header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
 }
 .o-landing-card {
   border: none;
@@ -669,6 +696,29 @@ body > header {
   gap: 2rem;
   padding: 0.5rem 0;
 }
+@media only screen and (max-width: 54rem) {
+  body > header {
+    gap: 1rem;
+  }
+}
+@media only screen and (max-width: 44rem) {
+  body > header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 1rem;
+    grid-template-areas: "logotype logotype logotype logotype" "browse articles weld inbox" "searchbar searchbar profile profile";
+  }
+}
+@media only screen and (max-width: 28rem) {
+  body > header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 1rem;
+    grid-template-areas: "logotype logotype" "browse articles" "weld inbox" "profile profile" "searchbar searchbar";
+  }
+}
 body > main {
   width: min(96vw, 70rem);
   display: flex;
@@ -703,7 +753,7 @@ body > footer > div {
 body > footer > div section {
   gap: 1rem;
 }
-@media only screen and (max-width: 40rem) {
+@media only screen and (max-width: 44rem) {
   body > footer > div {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr;
@@ -725,4 +775,39 @@ body > footer > div section {
 }
 .is-spinner {
   animation: 1s linear infinite spinner;
+}
+@media only screen and (max-width: 74rem) {
+  .a-hide-wide {
+    display: none !important;
+  }
+}
+@media only screen and (max-width: 54rem) {
+  .a-hide-content {
+    display: none !important;
+  }
+  .l-grid-2 {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .l-grid-2 > * {
+    width: calc(100% - 2rem);
+    max-width: 24.5rem;
+    margin: 0 auto;
+  }
+}
+@media only screen and (max-width: 44rem) {
+  .a-hide-portrait {
+    display: none !important;
+  }
+  .a-show-portrait {
+    display: block !important;
+  }
+  .a-show-portrait-flex {
+    display: flex !important;
+  }
+}
+@media only screen and (max-width: 28rem) {
+  .a-hide-min {
+    display: none !important;
+  }
 }

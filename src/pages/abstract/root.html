@@ -38,28 +38,33 @@
             Weld
             <mend:include src="../components/icons/popout.svg" />
         </a>
-        <div class="w-input is-flex">
-            <mend:include src="../components/icons/search.svg" />
-            <input type="text" placeholder="Search..." />
-            <footer class="w-dropdown type-list">
-                <div>
-                    Searches for
-                    <em>packs by default</em>
-                </div>
-                <div>
-                    <b>@</b>
-                    To search for
-                    <em>users</em>
-                    and
-                    <em>teams</em>
-                </div>
-                <div>
-                    <b>#</b>
-                    To search for
-                    <em>bundles</em>
-                </div>
-            </footer>
-        </div>
+        <mend:if value="[[ .searchbar ]]">
+            <div class="w-input is-flex">
+                <mend:include src="../components/icons/search.svg" />
+                <input type="text" placeholder="Search..." />
+                <footer class="w-dropdown type-list">
+                    <div>
+                        Searches for
+                        <em>packs by default</em>
+                    </div>
+                    <div>
+                        <b>@</b>
+                        To search for
+                        <em>users</em>
+                        and
+                        <em>teams</em>
+                    </div>
+                    <div>
+                        <b>#</b>
+                        To search for
+                        <em>bundles</em>
+                    </div>
+                </footer>
+            </div>
+        </mend:if>
+        <mend:unless value="[[ .searchbar ]]">
+            <div class="is-flex"></div>
+        </mend:unless>
         <a class="w-unmarked-link" href>
             Inbox
             <mend:include src="../components/icons/notification.svg" />

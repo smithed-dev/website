@@ -2,6 +2,13 @@
 
 This is an HTMX implementation of the smithed website.
 
+## Next to be implemented (TODO)
+
+- [ ] Adaptive UI for landing page
+- [ ] Browse page
+- [ ] Search bar
+- [ ] Login
+
 ## Building
 
 ### Requirements

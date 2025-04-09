@@ -1,4 +1,3 @@
-{{ define "root" }}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,35 +5,27 @@
     <meta charset="UTF-8" />
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
     <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, width=device-width" />
-
-    <title>{{ template "title" . }} — Smithed™</title>
-
+    <title>
+        Home — Smithed™
+    </title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href="/static/fonts.css" />
     <!-- [!] checksum gets updated by the ./build.sh script -->
     <link rel="stylesheet" href="/static/styles.css?checksum=7cdc8115d3c3fe149ee2b5f26974eedd" />
-
     <!-- [!] "While the CDN approach is extremely simple, you may want to consider not using CDNs in production" -->
-    <script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.js"
-        integrity="sha384-oeUn82QNXPuVkGCkcrInrS1twIxKhkZiFfr2TdiuObZ3n3yIeMiqcRzkIcguaof1" crossorigin="anonymous">
-        </script>
+    <script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.js" integrity="sha384-oeUn82QNXPuVkGCkcrInrS1twIxKhkZiFfr2TdiuObZ3n3yIeMiqcRzkIcguaof1" crossorigin="anonymous">
+    </script>
 </head>
 
 <body>
     <header>
         <a id="logotype" class="w-unmarked-link" href="/">
-            <svg width="32" height="32" style="min-width: 32px; min-height: 32px;" version="1.1" viewbox="0 0 4 4"
-                xmlns="http://www.w3.org/2000/svg">
+            <svg width="32" height="32" style="min-width: 32px; min-height: 32px;" version="1.1" viewbox="0 0 4 4" xmlns="http://www.w3.org/2000/svg">
                 <g fill="currentColor">
-                    <path transform="matrix(1.3713 0 0 1.3713 -.74255 -.78291)"
-                        d="m0.7368 0.88846 0.88662-0.28492a0.49739 0.49739 180 0 1 0.30432-9.22e-6l1.3355 0.42907-1.0396 0.33429z" />
-                    <path transform="matrix(1.3713 0 0 1.3713 -.74255 -.78291)"
-                        d="m0.5415 1.0766v0.48676a0.24264 0.24264 0 0 0 0.16842 0.23109l1.5137 0.48676 7.121e-4 -3.561e-4 1.0657-0.34184a0.24251 0.24251 0 0 0 0.16842-0.23109v-0.48676l-1.2338 0.39133h-3.561e-4l-1.6828-0.5359z" />
-                    <path
-                        d="m1.1792 2.3262v0.51953l1.1284 0.36279 0.56445-0.18115v-0.51953l-0.56445 0.17432-1.1284-0.35596z"
-                        opacity=".5" />
-                    <path transform="matrix(1.3713 0 0 1.3713 -.74255 -.78291)"
-                        d="m0.95242 2.7722v0.29839l1.2719 0.40842 0.82325-0.26421v-0.29946l-0.82325 0.25922-1.2719-0.40237z" />
+                    <path transform="matrix(1.3713 0 0 1.3713 -.74255 -.78291)" d="m0.7368 0.88846 0.88662-0.28492a0.49739 0.49739 180 0 1 0.30432-9.22e-6l1.3355 0.42907-1.0396 0.33429z" />
+                    <path transform="matrix(1.3713 0 0 1.3713 -.74255 -.78291)" d="m0.5415 1.0766v0.48676a0.24264 0.24264 0 0 0 0.16842 0.23109l1.5137 0.48676 7.121e-4 -3.561e-4 1.0657-0.34184a0.24251 0.24251 0 0 0 0.16842-0.23109v-0.48676l-1.2338 0.39133h-3.561e-4l-1.6828-0.5359z" />
+                    <path d="m1.1792 2.3262v0.51953l1.1284 0.36279 0.56445-0.18115v-0.51953l-0.56445 0.17432-1.1284-0.35596z" opacity=".5" />
+                    <path transform="matrix(1.3713 0 0 1.3713 -.74255 -.78291)" d="m0.95242 2.7722v0.29839l1.2719 0.40842 0.82325-0.26421v-0.29946l-0.82325 0.25922-1.2719-0.40237z" />
                 </g>
             </svg>
             <h2>
@@ -50,22 +41,12 @@
         <a class="w-unmarked-link" href>
             Weld
             <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
-                <path
-                    d="m6 2c-2.216 0-4 1.784-4 4v4c0 2.216 1.784 4 4 4h4c2.216 0 4-1.784 4-4h-2c0 1.108-0.892 2-2 2h-4c-1.108 0-2-0.892-2-2v-4c0-1.108 0.892-2 2-2v-2zm2 0v2h2c0.17886 0 0.35087 0.02667 0.51562 0.070312l-3.2227 3.2227a1 1 0 0 0 0 1.4141 1 1 0 0 0 1.4141 0l3.2227-3.2227c0.043642 0.16476 0.070312 0.33677 0.070312 0.51562v2h2v-2c0-2.216-1.784-4-4-4h-2z" />
+                <path d="m6 2c-2.216 0-4 1.784-4 4v4c0 2.216 1.784 4 4 4h4c2.216 0 4-1.784 4-4h-2c0 1.108-0.892 2-2 2h-4c-1.108 0-2-0.892-2-2v-4c0-1.108 0.892-2 2-2v-2zm2 0v2h2c0.17886 0 0.35087 0.02667 0.51562 0.070312l-3.2227 3.2227a1 1 0 0 0 0 1.4141 1 1 0 0 0 1.4141 0l3.2227-3.2227c0.043642 0.16476 0.070312 0.33677 0.070312 0.51562v2h2v-2c0-2.216-1.784-4-4-4h-2z" />
             </svg>
         </a>
-        <a class="w-unmarked-link" href>
-            Inbox
+        <div class="w-input is-flex">
             <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
-                <path
-                    d="m7 0.0019531v2.0996c-2.2746 0.46688-4 2.4912-4 4.8984v1 1.5293l-0.93164 1.0039a0.87297 0.87297 0 0 0 0.64062 1.4668h10.705a0.82843 0.82843 0 0 0 0.58594-1.4141l-1-1v-1.5859-1c0-2.4072-1.7254-4.4316-4-4.8984v-2.0996h-2zm1 3.998c1.6687 0 3 1.3313 3 3v1 2h-6v-2-1c0-1.6687 1.3313-3 3-3zm-2 10a2 2 0 0 0 1 1.7324 2 2 0 0 0 2 0 2 2 0 0 0 1-1.7324h-4z" />
-            </svg>
-        </a>
-        <div class="w-input flex">
-            <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
-                <path
-                    d="m10 7a3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3zm-3-5a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 2.7539-0.83203l2.5391 2.5391c0.39052 0.39052 1.0235 0.39052 1.4141 0 0.39052-0.39052 0.39052-1.0235 0-1.4141l-2.5391-2.5391a5 5 0 0 0 0.83203-2.7539 5 5 0 0 0-5-5z"
-                    fill-rule="evenodd" />
+                <path d="m10 7a3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3zm-3-5a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 2.7539-0.83203l2.5391 2.5391c0.39052 0.39052 1.0235 0.39052 1.4141 0 0.39052-0.39052 0.39052-1.0235 0-1.4141l-2.5391-2.5391a5 5 0 0 0 0.83203-2.7539 5 5 0 0 0-5-5z" fill-rule="evenodd" />
             </svg>
             <input type="text" placeholder="Search..." />
             <footer class="w-dropdown type-list">
@@ -99,24 +80,26 @@
                 </div>
             </footer>
         </div>
+        <a class="w-unmarked-link" href>
+            Inbox
+            <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
+                <path d="m7 0.0019531v2.0996c-2.2746 0.46688-4 2.4912-4 4.8984v1 1.5293l-0.93164 1.0039a0.87297 0.87297 0 0 0 0.64062 1.4668h10.705a0.82843 0.82843 0 0 0 0.58594-1.4141l-1-1v-1.5859-1c0-2.4072-1.7254-4.4316-4-4.8984v-2.0996h-2zm1 3.998c1.6687 0 3 1.3313 3 3v1 2h-6v-2-1c0-1.6687 1.3313-3 3-3zm-2 10a2 2 0 0 0 1 1.7324 2 2 0 0 0 2 0 2 2 0 0 0 1-1.7324h-4z" />
+            </svg>
+        </a>
         <button class="w-button type-accent">
             <span>
                 Log in
             </span>
-            <hr class="is-vertical" />
+            <hr class="type-bar" />
             <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
-                <path
-                    d="m14 15c0 0.55228-0.44772 1-1 1s-1-0.44772-1-1v-3c0-0.554-0.446-1-1-1h-6c-0.554 0-1 0.446-1 1v3c0 0.55228-0.44772 1-1 1s-1-0.44772-1-1v-3c0-1.662 1.338-3 3-3h6c1.662 0 3 1.338 3 3zm-4-11a2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2 2 2 0 0 1 2 2zm2 0a4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4 4 4 0 0 1 4 4z"
-                    fill-rule="evenodd" />
+                <path d="m14 15c0 0.55228-0.44772 1-1 1s-1-0.44772-1-1v-3c0-0.554-0.446-1-1-1h-6c-0.554 0-1 0.446-1 1v3c0 0.55228-0.44772 1-1 1s-1-0.44772-1-1v-3c0-1.662 1.338-3 3-3h6c1.662 0 3 1.338 3 3zm-4-11a2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2 2 2 0 0 1 2 2zm2 0a4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4 4 4 0 0 1 4 4z" fill-rule="evenodd" />
             </svg>
         </button>
     </header>
-
     <main>
-        {{ template "main" . }}
+        Hi
     </main>
-
-    <footer class="text-center">
+    <footer class="is-center">
         <div>
             <section>
                 <h2>
@@ -175,4 +158,3 @@
 </body>
 
 </html>
-{{ end }}

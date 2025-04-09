@@ -1,2 +1,5 @@
 tests/coverage.html
 dist/
+
+# icons/ is a symlink to eyecons dist/symbolic/web
+src/pages/components/icons/

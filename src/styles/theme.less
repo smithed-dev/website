@@ -1,3 +1,5 @@
+// Contains general HTML theme (no classes)
+
 :root {
     // Should be the darkest/brightest color
     --scheme-shade: rgb(0, 0, 0);
@@ -68,6 +70,7 @@ b {
 }
 
 p {
+    // Make paragraphs more readable
     line-height: 1.25;
 }
 
@@ -75,34 +78,35 @@ em {
     color: var(--scheme-inactive);
 }
 
-hr {
-    --height: 2px;
-    margin: 0;
-    border: none;
-    min-height: var(--height);
-    max-height: var(--height);
-    background-color: var(--color);
-    opacity: 0.33;
-    flex: 1;
-
-    &.is-vertical {
-        --height: 1rem;
-        min-width: 2px;
-        max-width: 2px;
-    }
-
-    &.is-bullet {
-        --height: 0.25rem;
-        min-width: 0.25rem;
-        max-width: 0.25rem;
-        border-radius: 100%;
-        opacity: 1;
-    }
-}
-
+// INFO: If we start using vector graphic for things other than icons this will be bad.
 svg {
     min-width: var(--size);
     min-height: var(--size);
     width: var(--size);
     height: var(--size);
+}
+
+// Used for both vertical and horizontal separators / bars
+hr {
+    --height: 2px;
+    margin: 0;
+    border: none;
+    background-color: var(--color);
+    flex: 1;
+    min-height: var(--height);
+    max-height: var(--height);
+    opacity: 0.33;
+
+    &.type-bar {
+        min-width: 2px;
+        max-width: 2px;
+        --height: 1rem;
+    }
+}
+
+// A link is not yet implemented.
+// I use !important because these shouldn't exist in production.
+a[href=""] {
+    color: var(--palette-disturbing-text) !important;
+    text-decoration-color: var(--palette-disturbing-text) !important;
 }

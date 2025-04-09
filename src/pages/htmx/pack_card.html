@@ -1,0 +1,45 @@
+<a class="o-card" href="https://smithed.net/packs/{{ .Id }}">
+    <header>
+        <mend:include src="../components/icons/picture-placeholder.svg" />
+        <img src="https://api.smithed.dev/v2/packs/{{ .Uid }}/gallery/0" height="216" alt="thumbnail"
+            onerror="this.remove()" onload="this.previousElementSibling.remove();" />
+    </header>
+    <section>
+        <section>
+            <span>{{ .Versions }}</span>
+            {{ range .Categories }}
+            <hr class="type-bullet" />
+            <span>{{ . }}</span>
+            {{ end }}
+        </section>
+        <div>
+            <h3>{{ .Name }}</h3>
+            <p>
+                {{ .Desc }}
+            </p>
+        </div>
+        <section class="o-metadata">
+            <mend:include src="../components/icons/heart-outline.svg" @class="rating-positive" />
+            <span class="o-rating-positive">Mostly positive (69)</span>
+            <hr class="type-bullet" />
+            <mend:include src="../components/icons/download.svg" />
+            <span>{{ .Downloads }}</span>
+            <hr class="type-bullet" />
+            <mend:include src="../components/icons/refresh.svg" />
+            <span>{{ .Updated }}</span>
+        </section>
+    </section>
+    <footer>
+        {{ if eq .Label "trending" }}
+        <span class="o-label type-trending">
+            <mend:include src="../components/icons/globe.svg" />
+            <span>TRENDING</span>
+        </span>
+        {{ else }}
+        <span class="o-label type-new">
+            <mend:include src="../components/icons/clock.svg" />
+            <span>NEW</span>
+        </span>
+        {{ end }}
+    </footer>
+</a>

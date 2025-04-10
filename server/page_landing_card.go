@@ -19,6 +19,7 @@ type htmxPackCard struct {
 	Updated    string
 	Categories []string
 	Label      string
+	HasGallery bool
 }
 
 func HTMXLandingCard(writer http.ResponseWriter, request *http.Request) {
@@ -72,6 +73,7 @@ func HTMXLandingCard(writer http.ResponseWriter, request *http.Request) {
 		),
 		Categories: categories,
 		Label:      sortBy,
+		HasGallery: len(gjson.GetBytes(responses["pack"], "display.gallery").Array()) > 0,
 	}
 
 	handler.ParseTemplate("www/htmx/pack_card.html").ServePage(pack)

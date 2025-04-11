@@ -33,12 +33,50 @@
             .f-row-center();
             gap: @spacing-1;
             padding: @spacing-1;
+
+            &>button {
+                margin: -0.25rem 0;
+            }
         }
 
         &>section {
             .f-col-stretch();
             gap: @spacing-half;
             padding: 0 @spacing-half @spacing-1 @spacing-half;
+
+            &>details {
+                background-color: transparent;
+                border-radius: 0.75rem;
+                cursor: pointer;
+                .interactive();
+
+                summary {
+                    .f-row-center();
+                    padding: 0.25rem @spacing-1;
+                    border-radius: 0.75rem;
+
+                    &:focus {
+                        .focus();
+                    }
+                }
+
+                footer {
+                    .f-col-stretch();
+                    padding: @spacing-half 0;
+                    gap: @spacing-half;
+
+                    span::before {
+                        content: "—";
+                        color: var(--scheme-inactive);
+                    }
+                }
+
+                &[open] {
+                    .is-indicator {
+                        transform: scaleY(-1);
+                    }
+                }
+            }
         }
     }
 }
@@ -48,7 +86,37 @@
     gap: @spacing-2;
 
     &>header {
-        .f-row-center();
+        .f-col-stretch();
         gap: @spacing-1;
+
+        &>section {
+            .f-row-center();
+            gap: @spacing-1;
+        }
+
+        &>div {
+            .f-row-center();
+            gap: @spacing-1;
+            flex-wrap: wrap;
+        }
+    }
+
+    &>nav {
+        .f-row-middle();
+        gap: @spacing-1;
+
+        &>a {
+            .interactive();
+            background-color: transparent;
+            padding: @spacing-half @spacing-1;
+            border-radius: @radius-1;
+            text-decoration: none;
+            font-weight: 400;
+
+            &.is-selected {
+                background-color: var(--scheme-foreground);
+                color: var(--scheme-shade);
+            }
+        }
     }
 }

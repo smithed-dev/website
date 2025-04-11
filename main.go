@@ -17,6 +17,8 @@ func main() {
 	)
 
 	http.HandleFunc("/", server.Index)
+	http.HandleFunc("/browse", server.Browse)
+
 	http.HandleFunc("/htmx/landing_card/{sort}", server.HTMXLandingCard)
 	// http.HandleFunc("/htmx/landing/get_newest_card", pages.HTMXCardPack("newest"))
 

@@ -9,11 +9,7 @@ mkdir -p ./www/htmx/
 
 function build {
     base=$(basename $1)
-    cat mend.json \
-        | jq -c . \
-        | xargs -0 -d "\n" -I {} mend -i {} $1 \
-        > $2$base \
-        && echo "--- Built $2$base"
+    mend $1 > $2$base && echo "--- Built $2$base"
 }
 
 for file in ./src/pages/*.html; do

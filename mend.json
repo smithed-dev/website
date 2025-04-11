@@ -1,0 +1,15 @@
+{
+    "browse":{
+        "categories":[
+            {"name":"Extensive"},
+            {"name":"Lightweight"},
+            {"name":"QoL"},
+            {"name":"Vanilla+"},
+            {"name":"Tech"},
+            {"name":"Magic"},
+            {"name":"Exploration"},
+            {"name":"World Overhaul"},
+            {"name":"Library"}
+        ]
+    }
+}

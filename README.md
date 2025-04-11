@@ -20,12 +20,11 @@ This is an HTMX implementation of the smithed website.
 ### Running the server
 
 ```bash
-# If you did changes to styles
-lessc ./site/styles/_styles.less > ./site/static/styles.css
-lessc ./site/styles/_fonts.less > ./site/static/fonts.css
+# If you did changes
+sh ./build.sh
 
 # Run the server at port :8080
-go run main.go
+DEBUG=1 go run main.go
 ```
 
 Navigate to [http://localhost:8080/](http://localhost:8080/) and enjoy the site.

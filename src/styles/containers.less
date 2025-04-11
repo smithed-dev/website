@@ -34,5 +34,21 @@
             gap: @spacing-1;
             padding: @spacing-1;
         }
+
+        &>section {
+            .f-col-stretch();
+            gap: @spacing-half;
+            padding: 0 @spacing-half @spacing-1 @spacing-half;
+        }
+    }
+}
+
+.l-sections {
+    .f-col-stretch();
+    gap: @spacing-2;
+
+    &>header {
+        .f-row-center();
+        gap: @spacing-1;
     }
 }

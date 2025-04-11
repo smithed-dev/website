@@ -343,12 +343,23 @@ body[data-debug="true"] a[href=""] {
   border-radius: 1rem;
   text-wrap: nowrap;
   justify-content: center;
+  text-align: left;
   transition: background-color 0.2s;
   cursor: pointer;
   background-color: var(--scheme-card);
 }
 .w-button.type-accent {
   background-color: var(--palette-accent);
+}
+.w-button.type-filter {
+  background-color: transparent;
+  padding: 0.25rem 1rem;
+}
+.w-button.type-filter svg {
+  visibility: hidden;
+}
+.w-button.type-filter:hover svg {
+  visibility: visible;
 }
 .w-button:hover,
 .w-button:focus {
@@ -411,6 +422,7 @@ body[data-debug="true"] a[href=""] {
   line-height: 1;
   min-width: 2rem;
   width: 100%;
+  font-weight: 400;
 }
 .w-input input::placeholder {
   opacity: 0.5;
@@ -428,6 +440,127 @@ body[data-debug="true"] a[href=""] {
 }
 .w-input:has(input:focus) .w-dropdown {
   visibility: visible;
+}
+.w-filter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 1rem;
+  gap: 0.5rem;
+}
+.w-filter.type-filtered {
+  background-color: var(--palette-disturbing-block);
+  outline: 1px solid var(--palette-disturbing);
+  color: var(--palette-disturbing-text);
+}
+.w-filter.type-filtered .w-button:last-of-type svg {
+  visibility: visible;
+  color: var(--palette-disturbing-text);
+}
+.w-filter.type-selected .w-button:first-of-type {
+  background-color: var(--palette-success-block);
+  outline: 1px solid var(--palette-success);
+  color: var(--palette-success-text);
+}
+.w-filter.type-selected .w-button:first-of-type svg {
+  visibility: visible;
+  color: var(--palette-success-text);
+}
+.w-filter.type-selected .w-button:first-of-type:hover {
+  background-color: var(--scheme-hover);
+}
+.w-filter.type-selected .w-button:first-of-type:focus {
+  outline: 2px solid var(--scheme-foreground);
+}
+.w-select {
+  position: relative;
+  min-width: 8rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+.w-select > button {
+  border: none;
+  font: inherit;
+  color: inherit;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+  border-radius: 1rem;
+  transition: background-color 0.2s;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  background-color: var(--scheme-card);
+  width: 100%;
+  text-align: left;
+  font-weight: 400;
+}
+.w-select > button:hover,
+.w-select > button:focus {
+  background-color: var(--scheme-hover);
+}
+.w-select > button:focus {
+  outline: 2px solid var(--scheme-foreground);
+}
+.w-select > footer {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  background-color: var(--scheme-shade);
+  border-left: 2px solid var(--scheme-foreground);
+  border-right: 2px solid var(--scheme-foreground);
+  border-bottom: 2px solid var(--scheme-foreground);
+  border-radius: 0 0 0.5rem 0.5rem;
+  padding: 0.25rem 0;
+  z-index: 42069;
+  overflow-y: auto;
+}
+.w-select > footer button {
+  border: none;
+  font: inherit;
+  color: inherit;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+  border-radius: 1rem;
+  border-radius: 0;
+  background-color: transparent;
+  text-align: left;
+  cursor: pointer;
+  font-weight: 400;
+}
+.w-select > footer button:hover {
+  background-color: var(--scheme-hover);
+}
+.w-select > footer button:focus {
+  color: var(--palette-accent-text);
+}
+.w-select.is-open {
+  outline: 2px solid var(--scheme-foreground);
+}
+.w-select.is-open .is-indicator {
+  transform: scaleY(-1);
+}
+.w-select.is-open > button {
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+.w-select.is-reversed footer {
+  bottom: 2rem;
+  border-bottom: none;
+  border-top: 2px solid var(--scheme-foreground);
+  border-radius: 0.5rem 0.5rem 0 0;
+  max-height: 10rem;
+}
+.w-select.is-reversed.is-open {
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+.w-select.is-reversed.is-open > button {
+  border-radius: 0 0 0.5rem 0.5rem;
 }
 .l-heading {
   display: flex;
@@ -469,6 +602,25 @@ body[data-debug="true"] a[href=""] {
   align-items: center;
   gap: 1rem;
   padding: 1rem;
+}
+.l-with-sidebar aside > section {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5rem;
+  padding: 0 0.5rem 1rem 0.5rem;
+}
+.l-sections {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 2rem;
+}
+.l-sections > header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
 }
 .o-landing-card {
   border: none;

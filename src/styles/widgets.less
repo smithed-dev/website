@@ -31,9 +31,25 @@
     .f-row-block();
     text-wrap: nowrap;
     justify-content: center;
+    text-align: left;
 
     &.type-accent {
         background-color: var(--palette-accent);
+    }
+
+    &.type-filter {
+        background-color: transparent;
+        padding: 0.25rem @spacing-1;
+
+        svg {
+            visibility: hidden;
+        }
+
+        &:hover {
+            svg {
+                visibility: visible;
+            }
+        }
     }
 
     .interactive();
@@ -99,6 +115,7 @@
         line-height: 1;
         min-width: 2rem;
         width: 100%;
+        font-weight: 400;
 
         &::placeholder {
             opacity: 0.5;
@@ -121,5 +138,122 @@
 
     &:has(input:focus) .w-dropdown {
         visibility: visible;
+    }
+}
+
+// A <div> used by the browse page to filter options in/out
+.w-filter {
+    .f-row-center();
+    border-radius: @radius-1;
+    gap: @spacing-half;
+
+    &.type-filtered {
+        background-color: var(--palette-disturbing-block);
+        outline: 1px solid var(--palette-disturbing);
+        color: var(--palette-disturbing-text);
+
+        .w-button:last-of-type svg {
+            visibility: visible;
+            color: var(--palette-disturbing-text);
+        }
+    }
+
+    &.type-selected .w-button:first-of-type {
+        background-color: var(--palette-success-block);
+        outline: 1px solid var(--palette-success);
+        color: var(--palette-success-text);
+
+        svg {
+            visibility: visible;
+            color: var(--palette-success-text);
+        }
+
+        &:hover {
+            background-color: var(--scheme-hover);
+        }
+
+        &:focus {
+            .focus();
+        }
+    }
+}
+
+.w-select {
+    position: relative;
+    min-width: 8rem;
+    border-radius: @radius-half @radius-half 0 0;
+
+    &>button {
+        .reset();
+        .f-row-block();
+        .interactive();
+        border-radius: @radius-half;
+        background-color: var(--scheme-card);
+        width: 100%;
+        text-align: left;
+        font-weight: 400;
+    }
+
+    &>footer {
+        .f-col-stretch();
+        position: absolute;
+        left: -2px;
+        right: -2px;
+        background-color: var(--scheme-shade);
+        border-left: 2px solid var(--scheme-foreground);
+        border-right: 2px solid var(--scheme-foreground);
+        border-bottom: 2px solid var(--scheme-foreground);
+        border-radius: 0 0 @radius-half @radius-half;
+        padding: 0.25rem 0;
+        z-index: 42069;
+        overflow-y: auto;
+
+        button {
+            .reset();
+            .f-row-block();
+            border-radius: 0;
+            background-color: transparent;
+            text-align: left;
+            cursor: pointer;
+            font-weight: 400;
+
+            &:hover {
+                background-color: var(--scheme-hover);
+            }
+
+            &:focus {
+                color: var(--palette-accent-text);
+            }
+        }
+    }
+
+    &.is-open {
+        .focus();
+
+        .is-indicator {
+            transform: scaleY(-1);
+        }
+
+        &>button {
+            border-radius: @radius-half @radius-half 0 0;
+        }
+    }
+
+    &.is-reversed {
+        footer {
+            bottom: @spacing-2;
+            border-bottom: none;
+            border-top: 2px solid var(--scheme-foreground);
+            border-radius: @radius-half @radius-half 0 0;
+            max-height: 10rem;
+        }
+
+        &.is-open {
+            border-radius: 0 0 @radius-half @radius-half;
+
+            &>button {
+                border-radius: 0 0 @radius-half @radius-half;
+            }
+        }
     }
 }

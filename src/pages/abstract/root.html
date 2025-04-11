@@ -13,6 +13,7 @@
     <!-- [!] checksum gets updated by the ./build.sh script -->
     <link rel="stylesheet" href="/static/styles.css?checksum=7cdc8115d3c3fe149ee2b5f26974eedd" />
 
+    <script src="/static/script.js"></script>
     <!-- [!] "While the CDN approach is extremely simple, you may want to consider not using CDNs in production" -->
     <script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.js"
         integrity="sha384-oeUn82QNXPuVkGCkcrInrS1twIxKhkZiFfr2TdiuObZ3n3yIeMiqcRzkIcguaof1" crossorigin="anonymous">
@@ -20,7 +21,7 @@
 </head>
 
 
-<body data-debug="false">
+<body data-debug="false" data-mobile="false" onload="documentLoaded()">
     <!-- debug mode is used by both CSS and JS. What it does: -->
     <!-- 1. All empty links are highlighted with red -->
     <header>

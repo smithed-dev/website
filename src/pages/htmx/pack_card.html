@@ -9,7 +9,11 @@
     </header>
     <section>
         <section class="o-metadata">
+            {{ if eq .VersionFrom .VersionTo }}
+            <span>{{ .VersionFrom }}</span>
+            {{ else }}
             <span>{{ .VersionFrom }} — {{ .VersionTo }}</span>
+            {{ end }}
             {{ range .Categories }}
             <hr class="type-bullet" />
             <span>{{ . }}</span>

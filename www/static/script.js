@@ -320,7 +320,7 @@ function documentLoaded() {
     //   "transform",
     //   `translateY(${-26.5 * currentScroll}rem)`,
     // );
-    node.style.setProperty("--offset", `${-26.5 * currentScroll}rem`);
+    node.style.setProperty("--offset", `${currentScroll}`);
   }
 
   if (carousellLeft != null && carousellRight != null) {

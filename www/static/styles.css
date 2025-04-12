@@ -959,7 +959,7 @@ body[data-debug="true"] a[href=""] {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 24.5rem;
-  transform: translateY(var(--offset));
+  transform: translateY(calc(var(--offset) * -26.5rem));
   transition: transform 1s ease-in-out;
   gap: 2rem;
 }
@@ -967,7 +967,7 @@ body[data-debug="true"] a[href=""] {
   .o-landing-carousell > div {
     grid-template-columns: 100% 100% 100%;
     grid-template-rows: 1fr;
-    transform: translateX(var(--offset));
+    transform: translateX(calc(var(--offset) * (-100% - 2rem)));
   }
 }
 body {

@@ -16,6 +16,9 @@ func main() {
 		http.StripPrefix("/static/", http.FileServer(http.Dir(DIR_STATIC))),
 	)
 
+	http.HandleFunc("/favicon.svg", func(writer http.ResponseWriter, request *http.Request) {
+		http.ServeFile(writer, request, "www/favicon.svg")
+	})
 	http.HandleFunc("/", server.Index)
 
 	server.SetupLogger(os.Getenv("DEBUG") == "1")

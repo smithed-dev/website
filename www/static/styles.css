@@ -963,6 +963,13 @@ body[data-debug="true"] a[href=""] {
   transition: transform 1s ease-in-out;
   gap: 2rem;
 }
+@media only screen and (max-width: 54rem) {
+  .o-landing-carousell > div {
+    grid-template-columns: 100% 100% 100%;
+    grid-template-rows: 1fr;
+    transform: translateX(var(--offset));
+  }
+}
 body {
   font-family: 'Lexend', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   display: flex;

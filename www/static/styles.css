@@ -959,7 +959,7 @@ body[data-debug="true"] a[href=""] {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 24.5rem;
-  transform: translateY(0);
+  transform: translateY(var(--offset));
   transition: transform 1s ease-in-out;
   gap: 2rem;
 }

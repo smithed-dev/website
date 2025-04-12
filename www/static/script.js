@@ -316,10 +316,11 @@ function documentLoaded() {
     const currentScroll = scrollArr[i];
 
     node.dataset.i = String(i + 1);
-    node.style.setProperty(
-      "transform",
-      `translateY(${-26.5 * currentScroll}rem)`,
-    );
+    // node.style.setProperty(
+    //   "transform",
+    //   `translateY(${-26.5 * currentScroll}rem)`,
+    // );
+    node.style.setProperty("--offset", `${-26.5 * currentScroll}rem`);
   }
 
   if (carousellLeft != null && carousellRight != null) {

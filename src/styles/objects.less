@@ -50,6 +50,7 @@
     background-color: var(--scheme-card);
     border-radius: @radius-1;
     text-decoration: none;
+    height: 24.5rem;
 
     &>header {
         position: relative;
@@ -201,5 +202,31 @@
     &.type-negative {
         color: var(--palette-disturbing-text);
         --color: var(--palette-disturbing-text);
+    }
+}
+
+// used in the pack card
+.o-description {
+    line-clamp: 3;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+.o-landing-carousell {
+    position: relative;
+    height: 24.5rem;
+    overflow: hidden;
+    padding: 1rem;
+    margin: -1rem;
+
+    &>div {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 24.5rem;
+        transform: translateY(0);
+        transition: transform 1s ease-in-out;
+        gap: 2rem;
     }
 }

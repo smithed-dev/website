@@ -798,6 +798,7 @@ body[data-debug="true"] a[href=""] {
   background-color: var(--scheme-card);
   border-radius: 1rem;
   text-decoration: none;
+  height: 24.5rem;
 }
 .o-card:hover,
 .o-card:focus {
@@ -939,6 +940,28 @@ body[data-debug="true"] a[href=""] {
 .o-rating.type-negative {
   color: var(--palette-disturbing-text);
   --color: var(--palette-disturbing-text);
+}
+.o-description {
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+.o-landing-carousell {
+  position: relative;
+  height: 24.5rem;
+  overflow: hidden;
+  padding: 1rem;
+  margin: -1rem;
+}
+.o-landing-carousell > div {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 24.5rem;
+  transform: translateY(0);
+  transition: transform 1s ease-in-out;
+  gap: 2rem;
 }
 body {
   font-family: 'Lexend', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;

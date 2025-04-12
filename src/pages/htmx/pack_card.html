@@ -1,3 +1,4 @@
+{{ define "pack_card" }}
 <a class="o-card" href="https://smithed.net/packs/{{ .Id }}">
     <header>
         <mend:include src="../components/icons/picture-placeholder.svg" @style="--size: 2rem;" />
@@ -8,7 +9,7 @@
     </header>
     <section>
         <section class="o-metadata">
-            <span>{{ .Versions }}</span>
+            <span>{{ .VersionFrom }} — {{ .VersionTo }}</span>
             {{ range .Categories }}
             <hr class="type-bullet" />
             <span>{{ . }}</span>
@@ -16,7 +17,7 @@
         </section>
         <div>
             <h3>{{ .Name }}</h3>
-            <p>
+            <p class="o-description">
                 {{ .Desc }}
             </p>
         </div>
@@ -46,3 +47,4 @@
         {{ end }}
     </footer>
 </a>
+{{ end }}

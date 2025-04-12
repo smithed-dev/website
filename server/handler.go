@@ -19,8 +19,8 @@ func NewHandler(writer http.ResponseWriter, request *http.Request) *Handler {
 	}
 }
 
-func (handler *Handler) ParseTemplate(path string) *Handler {
-	templ, err := template.ParseFiles(path)
+func (handler *Handler) ParseTemplate(path ...string) *Handler {
+	templ, err := template.ParseFiles(path...)
 	if err != nil {
 		handler.writeErrInternal(err)
 	}
@@ -32,7 +32,7 @@ func (handler *Handler) ParseTemplate(path string) *Handler {
 func (handler *Handler) ServePage(data any) {
 	logger.Infof("%s %s", handler.Request.Method, handler.Request.URL.String())
 
-	err := handler.Template.Execute(handler.Writer, data)
+	err := handler.Template.ExecuteTemplate(handler.Writer, "index", data)
 	if err != nil {
 		handler.writeErrInternal(err)
 	}

@@ -1,3 +1,4 @@
+{{ define "index" }}
 <mend:extend src="abstract/root.html" :title="Home" :searchbar="true">
     <section class="l-heading width-content">
         <h1>Welcome!</h1>
@@ -8,10 +9,21 @@
     </section>
 
     <section class="l-grid-2 width-content">
-        <mend:include src="htmx/pack_card__placeholder.html" @hx-get="/htmx/landing_card/trending" @hx-trigger="load"
-            @hx-swap="outerHTML" />
-        <mend:include src="htmx/pack_card__placeholder.html" @hx-get="/htmx/landing_card/newest" @hx-trigger="load"
-            @hx-swap="outerHTML" />
+        <section class="o-landing-carousell">
+            <div id="js-carousell-1" data-i="1">
+                {{ range .Cards }}
+                {{ template "pack_card" .Trending }}
+                {{ end }}
+            </div>
+        </section>
+
+        <section class="o-landing-carousell">
+            <div id="js-carousell-2" data-i="1">
+                {{ range .Cards }}
+                {{ template "pack_card" .Newest }}
+                {{ end }}
+            </div>
+        </section>
     </section>
 
     <section class="l-separator width-content">
@@ -79,3 +91,4 @@
         </a>
     </section>
 </mend:extend>
+{{ end }}

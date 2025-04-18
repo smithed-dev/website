@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="/static/styles.css?checksum=7cdc8115d3c3fe149ee2b5f26974eedd" />
 
     <script src="/static/script.js"></script>
+    <mend:if value="[[ ^.filename == browse.html]]">
+        <script src="/static/browse.js" defer></script>
+    </mend:if>
     <!-- [!] "While the CDN approach is extremely simple, you may want to consider not using CDNs in production" -->
     <script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.js"
         integrity="sha384-oeUn82QNXPuVkGCkcrInrS1twIxKhkZiFfr2TdiuObZ3n3yIeMiqcRzkIcguaof1" crossorigin="anonymous">

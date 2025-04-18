@@ -20,6 +20,7 @@ func main() {
 		http.ServeFile(writer, request, "www/favicon.svg")
 	})
 	http.HandleFunc("/", server.Index)
+	http.HandleFunc("/browse", server.Browse)
 
 	server.SetupLogger(os.Getenv("DEBUG") == "1")
 	err := http.ListenAndServe("127.0.0.1:8080", nil)

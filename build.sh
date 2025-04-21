@@ -3,6 +3,7 @@
 echo "=== Compiling less"
 lessc ./src/styles/_styles.less > ./www/static/styles.css
 lessc ./src/styles/_fonts.less > ./www/static/fonts.css
+python -m csscompressor -o www/static/styles.min.css www/static/styles.css
 
 echo "=== Building templates"
 mkdir -p ./www/htmx/

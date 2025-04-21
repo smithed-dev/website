@@ -9,7 +9,7 @@ mkdir -p ./www/htmx/
 
 function build {
     base=$(basename $1)
-    mend -i "{\"filename\":\"$base\"}" $1 > $2$base && echo "--- Built $2$base"
+    mend --input "{\"filename\":\"$base\"}" $1 > $2$base && echo "--- Built $2$base"
 }
 
 for file in ./src/pages/*.html; do

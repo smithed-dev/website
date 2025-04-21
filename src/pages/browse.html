@@ -1,5 +1,5 @@
 {{ define "index" }}
-<mend:extend src="abstract/root.html" :title="Browse" :searchbar="false">
+<pkg:root :title="Browse" :searchbar="false">
     <section class="l-heading width-content">
         <h1>Browse packs</h1>
     </section>
@@ -12,12 +12,12 @@
                         <mend:include src="components/icons/search.svg" />
                         <input type="text" placeholder="Search..." />
                     </div>
-                    <mend:extend src="components/widgets/select.html" :id="sorting">
+                    <pkg:select :id="sorting">
                         <option value="trending">Trending</option>
                         <option value="downloads">Downloads</option>
                         <option value="newest">Newest</option>
                         <option value="alphabetically">Alphabetically</option>
-                    </mend:extend>
+                    </pkg:select>
                 </section>
                 <div id="js-filters">
                     <template id="js-include-tag">
@@ -127,5 +127,5 @@
             </header>
         </aside>
     </section>
-</mend:extend>
+</pkg:root>
 {{ end }}

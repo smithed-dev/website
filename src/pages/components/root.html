@@ -34,7 +34,7 @@
             <mend:include src="../components/smithed.svg" :size="32" @class="is-icon" />
             <h2 class="a-hide-wide">Smithed</h2>
         </a>
-        <a class="w-unmarked-link on-highlight" href="" style="grid-area: browse;">
+        <a class="w-unmarked-link on-highlight" href="/browse" style="grid-area: browse;">
             Browse
         </a>
         <a class="w-unmarked-link on-highlight" href="" style="grid-area: articles;">
@@ -46,7 +46,7 @@
         </a>
         <mend:if value="[[ .searchbar ]]">
             <pkg:searchbar @style="grid-area: searchbar;">
-                <footer class="w-dropdown type-list">
+                <template id="js-searchbar-default">
                     <div>
                         Searches for
                         <em>packs by default</em>
@@ -63,6 +63,8 @@
                         To search for
                         <em>bundles</em>
                     </div>
+                </template>
+                <footer class="w-dropdown type-list">
                 </footer>
             </pkg:searchbar>
         </mend:if>

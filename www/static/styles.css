@@ -659,9 +659,13 @@ a[href=""]:focus {
   min-width: 2rem;
   width: 100%;
   font-weight: 400;
+  transition: background-color 0.2s;
 }
 .w-input input::placeholder {
   opacity: 0.5;
+}
+.w-input input:hover {
+  background-color: var(--block-hover);
 }
 .w-input input:focus {
   outline: 2px solid var(--text-foreground);
@@ -953,7 +957,7 @@ a[href=""]:focus {
 }
 @media only screen and (max-width: 54rem) {
   .o-landing-carousell > div {
-    grid-template-columns: 100% 100% 100%;
+    grid-template-columns: 100% 100% 100% 100% 100%;
     grid-template-rows: 1fr;
     transform: translateX(calc(var(--offset) * (-100% - 2rem)));
   }

@@ -1,13 +1,10 @@
-// Objects are pretty much widgets that are used mostly only on one page
-
-// The landing card after "What is smithed exactly" which is <a>
 .o-landing-card {
     .reset();
     .bordered();
     .f-col-stretch();
     .interactive();
     gap: @spacing-half;
-    background-color: var(--scheme-card);
+    background-color: var(--block-section);
     border-radius: @radius-1;
     padding: @spacing-1;
     text-decoration: none;
@@ -17,15 +14,11 @@
         gap: @spacing-1;
 
         span {
-            .f-row-block();
-            background-color: var(--scheme-cavity);
-        }
-    }
-
-    &:hover,
-    &:focus {
-        h2 {
-            .highlight();
+            .f-row-center();
+            padding: @spacing-half @spacing-1;
+            gap: @spacing-1;
+            border-radius: @radius-1;
+            background-color: var(--block-background);
         }
     }
 }
@@ -40,14 +33,13 @@
     }
 }
 
-// A pack card which is an <a>
 .o-card {
     .reset();
     .bordered();
     .f-col-stretch();
     .interactive();
     position: relative;
-    background-color: var(--scheme-card);
+    background-color: var(--block-section);
     border-radius: @radius-1;
     text-decoration: none;
     height: 24.5rem;
@@ -57,8 +49,8 @@
         width: calc(100% - 0.5rem);
         // > https://stackoverflow.com/questions/1495407/maintain-the-aspect-ratio-of-a-div-with-css
         padding-bottom: calc(56.25% - 0.5rem);
-        background-color: var(--scheme-cavity);
-        border: 0.25rem solid var(--scheme-shade);
+        background-color: var(--block-background);
+        border: 0.25rem solid var(--block-shaded);
         border-radius: @radius-1 @radius-1 0 0;
         overflow: hidden;
 
@@ -68,7 +60,7 @@
             left: 50%;
             top: 50%;
             transform: translateX(-50%) translateY(-50%);
-            color: var(--scheme-hover);
+            color: var(--block-hover);
         }
 
         img {
@@ -108,13 +100,7 @@
 
         .o-label {
             animation: 500ms ease-in-out 200ms infinite alternate pack-label;
-            border: 0.25rem solid var(--scheme-background);
-        }
-    }
-
-    &:hover {
-        h3 {
-            .highlight();
+            border: 0.25rem solid var(--block-background);
         }
     }
 }
@@ -133,11 +119,11 @@
     }
 
     &.type-trending {
-        background-color: var(--palette-disturbing);
+        background-color: var(--block-disturbing);
     }
 
     &.type-new {
-        background-color: var(--palette-accent);
+        background-color: var(--block-accent);
     }
 }
 
@@ -153,7 +139,7 @@
 
 .o-placeholder {
     display: block;
-    background-color: var(--scheme-hover);
+    background-color: var(--block-hover);
     height: 1rem;
     border-radius: @radius-1;
     animation: 1s ease-in-out 200ms infinite alternate placeholder;
@@ -166,7 +152,7 @@
     &.type-2,
     &.type-3,
     &.type-4 {
-        background-color: var(--scheme-card);
+        background-color: var(--block-section);
         height: 0.5rem;
     }
 
@@ -187,21 +173,21 @@
     .f-row-center();
     gap: @spacing-half;
     font-size: 0.75rem;
-    color: var(--scheme-inactive);
-    --color: var(--scheme-inactive);
+    color: var(--text-inactive);
+    --color: var(--text-inactive);
     font-weight: 500;
     flex-wrap: wrap;
 }
 
 .o-rating {
     &.type-positive {
-        color: var(--palette-success-text);
-        --color: var(--palette-success-text);
+        color: var(--text-success);
+        --color: var(--text-success);
     }
 
     &.type-negative {
-        color: var(--palette-disturbing-text);
-        --color: var(--palette-disturbing-text);
+        color: var(--text-disturbing);
+        --color: var(--text-disturbing);
     }
 }
 

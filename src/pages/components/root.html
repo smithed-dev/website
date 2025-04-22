@@ -8,12 +8,18 @@
 
     <title>[[ .title ]] — Smithed™</title>
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
+    <link rel="icon" sizes="48x48" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" sizes="all" href="/favicon.svg" />
+
     <link rel="stylesheet" href="/static/styles.min.css?checksum=[[ ^.checksum ]]" />
 
-    <script src="/static/script.js"></script>
+    <script src="/static/main.js"></script>
     <mend:if value="[[ ^.filename == browse.html]]">
-        <script src="/static/browse.js" defer></script>
+        <script src="/static/page_browse.js" defer></script>
+    </mend:if>
+    <mend:if value="[[ ^.filename == index.html]]">
+        <script src="/static/page_index.js" defer></script>
     </mend:if>
     <!-- [!] "While the CDN approach is extremely simple, you may want to consider not using CDNs in production" -->
     <script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.js"
@@ -22,28 +28,24 @@
 </head>
 
 
-<body data-debug="false" data-mobile="false" onload="documentLoaded()">
-    <!-- debug mode is used by both CSS and JS. What it does: -->
-    <!-- 1. All empty links are highlighted with red -->
+<body class="theme-default">
     <header>
-        <a id="logotype" class="w-unmarked-link" href="/" style="grid-area: logotype;">
-            <mend:include src="../components/smithed.svg" :size="32" />
+        <a class="w-unmarked-link on-highlight" href="/" style="grid-area: logotype;">
+            <mend:include src="../components/smithed.svg" :size="32" @class="is-icon" />
             <h2 class="a-hide-wide">Smithed</h2>
         </a>
-        <a class="w-unmarked-link" href="/browse" style="grid-area: browse;">
+        <a class="w-unmarked-link on-highlight" href="" style="grid-area: browse;">
             Browse
         </a>
-        <a class="w-unmarked-link" href style="grid-area: articles;">
+        <a class="w-unmarked-link on-highlight" href="" style="grid-area: articles;">
             Articles
         </a>
-        <a class="w-unmarked-link" href style="grid-area: weld;">
+        <a class="w-unmarked-link on-highlight" href="" style="grid-area: weld;">
             Weld
-            <mend:include src="../components/icons/popout.svg" @class="a-hide-content a-show-portrait" />
+            <mend:include src="../components/icons/popout.svg" @class="is-icon a-hide-content a-show-tablet" />
         </a>
         <mend:if value="[[ .searchbar ]]">
-            <div class="w-input is-flex" style="grid-area: searchbar;">
-                <mend:include src="../components/icons/search.svg" />
-                <input type="text" placeholder="Search..." />
+            <pkg:searchbar @style="grid-area: searchbar;">
                 <footer class="w-dropdown type-list">
                     <div>
                         Searches for
@@ -62,41 +64,38 @@
                         <em>bundles</em>
                     </div>
                 </footer>
-            </div>
+            </pkg:searchbar>
         </mend:if>
         <mend:unless value="[[ .searchbar ]]">
-            <div class="is-flex"></div>
+            <div class="is-flex" style="grid-area: searchbar;"></div>
         </mend:unless>
-        <a class="w-unmarked-link" href style="grid-area: inbox;">
+        <a class="w-unmarked-link on-highlight" href="" style="grid-area: inbox;">
             Inbox
-            <mend:include src="../components/icons/notification.svg" @class="a-hide-content a-show-portrait" />
+            <mend:include src="../components/icons/notification-unread.svg"
+                @class="is-icon a-hide-content a-show-tablet" />
         </a>
-        <button class="w-button type-accent" style="grid-area: profile;">
-            <span>
-                Log in
-            </span>
-            <hr class="type-bar" />
-            <mend:include src="../components/icons/user.svg" />
-        </button>
+        <pkg:accent-button :label="Log in" @style="grid-area: profile;">
+            <mend:include src="../components/icons/user.svg" @class="is-icon" />
+        </pkg:accent-button>
     </header>
-
+    <!-- ... -->
     <main>
         <mend:slot />
     </main>
-
+    <!-- ... -->
     <footer class="is-center">
         <div>
             <section>
                 <h2>
                     ABOUT
                 </h2>
-                <a class="w-unmarked-link" href>
+                <a class="w-unmarked-link on-highlight" href>
                     About Smithed
                 </a>
-                <a class="w-unmarked-link" href>
+                <a class="w-unmarked-link on-highlight" href>
                     How to Contribute
                 </a>
-                <a class="w-unmarked-link" href>
+                <a class="w-unmarked-link on-highlight" href>
                     Donate
                 </a>
             </section>
@@ -104,13 +103,13 @@
                 <h2>
                     COMMUNITY
                 </h2>
-                <a class="w-unmarked-link" href>
+                <a class="w-unmarked-link on-highlight" href>
                     Discord
                 </a>
-                <a class="w-unmarked-link" href>
+                <a class="w-unmarked-link on-highlight" href>
                     Guidelines
                 </a>
-                <a class="w-unmarked-link" href>
+                <a class="w-unmarked-link on-highlight" href>
                     Wiki
                 </a>
             </section>
@@ -118,19 +117,19 @@
                 <h2>
                     LEGAL
                 </h2>
-                <a class="w-unmarked-link" href>
+                <a class="w-unmarked-link on-highlight" href>
                     Terms of Use
                 </a>
-                <a class="w-unmarked-link" href>
+                <a class="w-unmarked-link on-highlight" href>
                     Privacy Policy
                 </a>
-                <a class="w-unmarked-link" href>
+                <a class="w-unmarked-link on-highlight" href>
                     Cookies
                 </a>
             </section>
         </div>
         <section>
-            <b>Copyright © 2025 Smithed</b>
+            <b>Copyright © 2018-2025 Smithed</b>
             <p>
                 <em>Not an official Minecraft product. Not approved by or associated with Mojang Studios</em>
             </p>

@@ -16,11 +16,15 @@ function build {
 }
 
 for file in ./src/pages/*.html; do
-    build $file ./www/ &
+    if [[ -f $file ]]; then
+        build $file ./www/ &
+    fi
 done
 
 for file in ./src/pages/htmx/*.html; do
-    build $file ./www/htmx/ &
+    if [[ -f $file ]]; then
+        build $file ./www/htmx/ &
+    fi
 done
 
 wait

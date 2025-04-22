@@ -1,6 +1,6 @@
 {{ define "index" }}
-<mend:extend src="abstract/root.html" :title="Home" :searchbar="true">
-    <section class="l-heading width-content">
+<pkg:root :title="Home" :searchbar="true">
+    <section class="w-heading is-center width-content">
         <h1>Welcome!</h1>
         <p class="is-center">
             Smithed is an open-source platform for exploring, sharing <br />
@@ -26,7 +26,7 @@
         </section>
     </section>
 
-    <section class="l-separator width-content">
+    <section class="w-separator width-content">
         <hr class="type-soft" />
         What is Smithed exactly?
         <hr class="type-soft" />
@@ -35,11 +35,11 @@
     <section class="l-grid-2 width-content">
         <a class="o-landing-card" href="">
             <header>
-                <mend:include src="components/icons/home.svg" @style="--size: 1.5rem;" />
-                <h2 class="is-flex">Discord</h2>
+                <mend:include src="components/icons/home.svg" @class="is-icon" @style="--size: 1.5rem;" />
+                <h2 class="on-highlight is-flex">Discord</h2>
                 <span class="a-hide-min">
                     Join
-                    <mend:include src="components/icons/popout.svg" />
+                    <mend:include src="components/icons/popout.svg" @class="is-icon" />
                 </span>
             </header>
             <p>
@@ -49,11 +49,11 @@
         </a>
         <a class="o-landing-card" href="">
             <header>
-                <mend:include src="components/icons/jigsaw.svg" @style="--size: 1.5rem;" />
-                <h2 class="is-flex">Packs</h2>
+                <mend:include src="components/icons/jigsaw.svg" @class="is-icon" @style="--size: 1.5rem;" />
+                <h2 class="on-highlight is-flex">Packs</h2>
                 <span class="a-hide-min">
                     Browse
-                    <mend:include src="components/icons/search.svg" />
+                    <mend:include src="components/icons/search.svg" @class="is-icon" />
                 </span>
             </header>
             <p>
@@ -63,11 +63,11 @@
         </a>
         <a class="o-landing-card" href="">
             <header>
-                <mend:include src="components/icons/scroll.svg" @style="--size: 1.5rem;" />
-                <h2 class="is-flex">Docs</h2>
+                <mend:include src="components/icons/scroll.svg" @class="is-icon" @style="--size: 1.5rem;" />
+                <h2 class="on-highlight is-flex">Docs</h2>
                 <span class="a-hide-min">
                     Explore
-                    <mend:include src="components/icons/search.svg" />
+                    <mend:include src="components/icons/search.svg" @class="is-icon" />
                 </span>
             </header>
             <p>
@@ -77,11 +77,11 @@
         </a>
         <a class="o-landing-card" href="">
             <header>
-                <mend:include src="components/icons/curly_braces.svg" @style="--size: 1.5rem;" />
-                <h2 class="is-flex">Weld</h2>
+                <mend:include src="components/icons/curly_braces.svg" @class="is-icon" @style="--size: 1.5rem;" />
+                <h2 class="on-highlight is-flex">Weld</h2>
                 <span class="a-hide-min">
                     Try it
-                    <mend:include src="components/icons/popout.svg" />
+                    <mend:include src="components/icons/popout.svg" @class="is-icon" />
                 </span>
             </header>
             <p>
@@ -90,5 +90,5 @@
             </p>
         </a>
     </section>
-</mend:extend>
+</pkg:root>
 {{ end }}

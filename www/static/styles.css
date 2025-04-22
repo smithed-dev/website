@@ -770,8 +770,8 @@ body[data-debug="true"] a[href=""] {
   border-radius: 1rem;
   background-color: var(--scheme-cavity);
 }
-.o-landing-card:hover h1,
-.o-landing-card:focus h1 {
+.o-landing-card:hover h2,
+.o-landing-card:focus h2 {
   text-decoration: underline;
   text-decoration-color: var(--palette-accent-text);
   text-decoration-thickness: 2px;

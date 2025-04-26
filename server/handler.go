@@ -40,6 +40,25 @@ func (handler *Handler) ServePage(data any) {
 
 func (handler *Handler) ServeIndexPage(data any) {
 	if handler.Request.URL.Path != "/" {
+		switch handler.Request.URL.Path {
+		case "/kaithhealthcheck",
+			"/.git/config",
+			"/info.php",
+			"/config.json",
+			"/.env",
+			"/@vite/env":
+			logger.Debug(
+				"Probably a bot",
+				"path",
+				handler.Request.URL.Path,
+				"addr",
+				handler.Request.RemoteAddr,
+				"agent",
+				handler.Request.UserAgent(),
+				"cookies",
+				handler.Request.Cookies(),
+			)
+		}
 		handler.writeErrNotFound()
 		return
 	}

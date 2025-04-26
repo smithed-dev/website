@@ -41,8 +41,7 @@ func (handler *Handler) ServePage(data any) {
 func (handler *Handler) ServeIndexPage(data any) {
 	if handler.Request.URL.Path != "/" {
 		switch handler.Request.URL.Path {
-		case "/kaithhealthcheck",
-			"/.git/config",
+		case "/.git/config",
 			"/info.php",
 			"/config.json",
 			"/.env",

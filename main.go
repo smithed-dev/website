@@ -25,6 +25,9 @@ func main() {
 	http.HandleFunc("/favicon.ico", func(writer http.ResponseWriter, request *http.Request) {
 		http.ServeFile(writer, request, "www/favicon.ico")
 	})
+	http.HandleFunc("/kaithheathcheck", func(writer http.ResponseWriter, request *http.Request) {
+		writer.WriteHeader(http.StatusOK)
+	})
 	http.HandleFunc("/", server.Index)
 	http.HandleFunc("/browse", server.Browse)
 

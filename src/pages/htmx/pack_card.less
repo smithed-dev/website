@@ -1,28 +1,3 @@
-.o-landing-card {
-    .reset();
-    .bordered();
-    .f-col-stretch();
-    .interactive();
-    gap: @spacing-half;
-    background-color: var(--block-section);
-    border-radius: @radius-1;
-    padding: @spacing-1;
-    text-decoration: none;
-
-    header {
-        .f-row-center();
-        gap: @spacing-1;
-
-        span {
-            .f-row-center();
-            padding: @spacing-half @spacing-1;
-            gap: @spacing-1;
-            border-radius: @radius-1;
-            background-color: var(--block-background);
-        }
-    }
-}
-
 @keyframes pack-label {
     from {
         transform: rotate(-5deg);
@@ -33,7 +8,7 @@
     }
 }
 
-.o-card {
+.w-card {
     .reset();
     .bordered();
     .f-col-stretch();
@@ -64,6 +39,7 @@
         }
 
         img {
+            object-fit: cover;
             position: absolute;
             left: 0;
             right: 0;
@@ -198,27 +174,4 @@
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-}
-
-.o-landing-carousell {
-    position: relative;
-    height: 24.5rem;
-    overflow: hidden;
-    padding: 1rem;
-    margin: -1rem;
-
-    &>div {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 24.5rem;
-        transform: translateY(calc(var(--offset) * -26.5rem));
-        transition: transform 1s ease-in-out;
-        gap: 2rem;
-
-        @media only screen and (max-width: (@screen-content + @spacing-4)) {
-            grid-template-columns: 100% 100% 100% 100% 100%;
-            grid-template-rows: 1fr;
-            transform: translateX(calc(var(--offset) * (-100% - 2rem)));
-        }
-    }
 }

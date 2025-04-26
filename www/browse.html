@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, width=device-width" />
     <title>
         Browse — Smithed™
@@ -12,7 +12,7 @@
     <link rel="apple-touch-icon" href="/favicon.png" sizes="180x180" />
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="all" />
-    <link rel="stylesheet" href="/static/styles.min.css?checksum=3069a429e37dff8e70c38344417e49ed" />
+    <link rel="stylesheet" href="/static/styles.min.css?checksum=39c3776f064a2a4b4e051310b089eea8" />
     <script src="/static/main.js">
     </script>
     <script src="/static/page_browse.js" defer>
@@ -25,13 +25,11 @@
 <body class="theme-default">
     <header>
         <a class="w-unmarked-link on-highlight" href="/" style="grid-area: logotype;">
-            <svg width="32" height="32" style="min-width: 32px; min-height: 32px;" version="1.1" viewbox="0 0 4 4" xmlns="http://www.w3.org/2000/svg" class="is-icon">
-                <g fill="currentColor">
-                    <path transform="matrix(1.3713 0 0 1.3713 -.74255 -.78291)" d="m0.7368 0.88846 0.88662-0.28492a0.49739 0.49739 180 0 1 0.30432-9.22e-6l1.3355 0.42907-1.0396 0.33429z" />
-                    <path transform="matrix(1.3713 0 0 1.3713 -.74255 -.78291)" d="m0.5415 1.0766v0.48676a0.24264 0.24264 0 0 0 0.16842 0.23109l1.5137 0.48676 7.121e-4 -3.561e-4 1.0657-0.34184a0.24251 0.24251 0 0 0 0.16842-0.23109v-0.48676l-1.2338 0.39133h-3.561e-4l-1.6828-0.5359z" />
-                    <path d="m1.1792 2.3262v0.51953l1.1284 0.36279 0.56445-0.18115v-0.51953l-0.56445 0.17432-1.1284-0.35596z" opacity=".5" />
-                    <path transform="matrix(1.3713 0 0 1.3713 -.74255 -.78291)" d="m0.95242 2.7722v0.29839l1.2719 0.40842 0.82325-0.26421v-0.29946l-0.82325 0.25922-1.2719-0.40237z" />
-                </g>
+            <svg class="w-icon" width="16" height="16" style="--size: 2rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 4 4" fill="currentColor">
+                <path transform="matrix(1.3713 0 0 1.3713 -.74255 -.78291)" d="m0.7368 0.88846 0.88662-0.28492a0.49739 0.49739 180 0 1 0.30432-9.22e-6l1.3355 0.42907-1.0396 0.33429z" />
+                <path transform="matrix(1.3713 0 0 1.3713 -.74255 -.78291)" d="m0.5415 1.0766v0.48676a0.24264 0.24264 0 0 0 0.16842 0.23109l1.5137 0.48676 7.121e-4 -3.561e-4 1.0657-0.34184a0.24251 0.24251 0 0 0 0.16842-0.23109v-0.48676l-1.2338 0.39133h-3.561e-4l-1.6828-0.5359z" />
+                <path d="m1.1792 2.3262v0.51953l1.1284 0.36279 0.56445-0.18115v-0.51953l-0.56445 0.17432-1.1284-0.35596z" opacity=".5" />
+                <path transform="matrix(1.3713 0 0 1.3713 -.74255 -.78291)" d="m0.95242 2.7722v0.29839l1.2719 0.40842 0.82325-0.26421v-0.29946l-0.82325 0.25922-1.2719-0.40237z" />
             </svg>
             <h2 class="a-hide-wide">
                 Smithed
@@ -45,34 +43,56 @@
         </a>
         <a class="w-unmarked-link on-highlight" href style="grid-area: weld;">
             Weld
-            <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor" class="is-icon a-hide-content a-show-tablet">
+            <svg class="w-icon" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
                 <path d="m6 2c-2.216 0-4 1.784-4 4v4c0 2.216 1.784 4 4 4h4c2.216 0 4-1.784 4-4h-2c0 1.108-0.892 2-2 2h-4c-1.108 0-2-0.892-2-2v-4c0-1.108 0.892-2 2-2v-2zm2 0v2h2c0.17886 0 0.35087 0.02667 0.51562 0.070312l-3.2227 3.2227a1 1 0 0 0 0 1.4141 1 1 0 0 0 1.4141 0l3.2227-3.2227c0.043642 0.16476 0.070312 0.33677 0.070312 0.51562v2h2v-2c0-2.216-1.784-4-4-4h-2z" />
             </svg>
         </a>
-        <div class="is-flex" style="grid-area: searchbar;">
+        <div class="--flex" style="grid-area: searchbar;">
         </div>
-        <a class="w-unmarked-link on-highlight" href style="grid-area: inbox;">
+        <a class="w-unmarked-link on-highlight" href style="grid-area: weld;">
             Inbox
-            <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor" class="is-icon a-hide-content a-show-tablet">
+            <svg class="w-icon a-hide-content a-show-tablet" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
                 <path d="m7 0.0019531v2.0996c-2.2746 0.46688-4 2.4912-4 4.8984v1 1.5293l-0.93164 1.0039a0.87297 0.87297 0 0 0 0.64062 1.4668h10.705a0.82843 0.82843 0 0 0 0.58594-1.4141l-1-1v-1.5859-0.11914c-0.32021 0.08441-0.65574 0.12891-1 0.12891s-0.67979-0.044496-1-0.12891v0.11914 2h-6v-2-1c0-1.6687 1.3313-3 3-3 0.0024798-0.99489 0.38196-1.9115 1-2.6152v-1.3828h-2zm5 2.0078a2 2 0 0 0-2 2 2 2 0 0 0 2 2 2 2 0 0 0 2-2 2 2 0 0 0-2-2zm-6 11.99a2 2 0 0 0 1 1.7324 2 2 0 0 0 2 0 2 2 0 0 0 1-1.7324h-4z" />
             </svg>
         </a>
-        <button class="w-button type-accent" style="grid-area: profile;">
-            <span>
-                Log in
-            </span>
-            <hr class="type-bar" />
-            <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor" class="is-icon">
+        <a class="w-button type-accent" style="grid-area: profile;">
+            <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
                 <path d="m14 15c0 0.55228-0.44772 1-1 1s-1-0.44772-1-1v-3c0-0.554-0.446-1-1-1h-6c-0.554 0-1 0.446-1 1v3c0 0.55228-0.44772 1-1 1s-1-0.44772-1-1v-3c0-1.662 1.338-3 3-3h6c1.662 0 3 1.338 3 3zm-4-11a2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2 2 2 0 0 1 2 2zm2 0a4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4 4 4 0 0 1 4 4z" fill-rule="evenodd" />
             </svg>
-        </button>
+            Log in
+        </a>
     </header>
     <!-- ... -->
     <main>
-
+        <section class="l-heading --centered width-content">
+            <h1>
+                Browse packs
+            </h1>
+        </section>
+        <section class="l-with-sidebar width-wide">
+            <section class="l-sections">
+                <header>
+                    <section>
+                    </section>
+                </header>
+                <nav>
+                    <a class="is-selected" href>
+                        1
+                    </a>
+                    <a href>
+                        2
+                    </a>
+                    <a href>
+                        3
+                    </a>
+                </nav>
+            </section>
+            <aside>
+            </aside>
+        </section>
     </main>
     <!-- ... -->
-    <footer class="is-center">
+    <footer class="--centered">
         <div>
             <section>
                 <h2>

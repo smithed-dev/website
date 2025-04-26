@@ -1,4 +1,23 @@
 {{ define "index" }}
 <pkg:root :title="Browse" :searchbar="false">
+    <pkg:l-heading class="%s --centered width-content">
+        <h1>Browse packs</h1>
+    </pkg:l-heading>
+
+    <pkg:l-with-sidebar class="%s width-wide">
+        <section class="l-sections">
+            <header>
+                <section>
+                </section>
+            </header>
+            <nav>
+                <a class="is-selected" href="">1</a>
+                <a href="">2</a>
+                <a href="">3</a>
+            </nav>
+        </section>
+
+        <aside></aside>
+    </pkg:l-with-sidebar>
 </pkg:root>
 {{ end }}

@@ -1,5 +1,5 @@
-<div class="w-input is-flex">
-    <mend:include src="./icons/search.svg" @class="is-icon" />
-    <input id="searchbar" type="text" placeholder="Search..." />
+<div class="w-input" style="grid-area: searchbar;">
+    <pkg:icon :icon="eyecons/search" />
+    <input type="text" placeholder="Search..." />
     <mend:slot />
 </div>

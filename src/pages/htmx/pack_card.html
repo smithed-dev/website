@@ -1,7 +1,8 @@
 {{ define "pack_card" }}
-<a class="o-card" href="https://smithed.net/packs/{{ .Id }}">
+<a class="w-card" href="https://smithed.net/packs/{{ .Id }}">
     <header>
-        <mend:include src="../components/icons/picture-placeholder.svg" @class="is-icon" @style="--size: 2rem;" />
+        <mend:include :src="../components/icons/eyecons/picture-placeholder.svg" @class="is-icon"
+            @style="--size: 2rem;" />
         {{ if .HasGallery }}
         <img src="https://api.smithed.dev/v2/packs/{{ .Uid }}/gallery/0" alt="" onerror="this.remove()"
             onload="this.previousElementSibling.remove();" />
@@ -26,26 +27,26 @@
             </p>
         </div>
         <section class="o-metadata">
-            <mend:include src="../components/icons/heart-outline.svg" @class="is-icon" @class="o-rating type-positive"
-                @style="--size: 0.75rem;" />
+            <mend:include :src="../components/icons/eyecons/heart-outline.svg" @class="is-icon"
+                @class="o-rating type-positive" @style="--size: 0.75rem;" />
             <span class="o-rating type-positive">Mostly positive (69)</span>
             <hr class="type-bullet" />
-            <mend:include src="../components/icons/download.svg" @class="is-icon" @style="--size: 0.75rem;" />
+            <mend:include :src="../components/icons/eyecons/download.svg" @class="is-icon" @style="--size: 0.75rem;" />
             <span>{{ .Downloads }}</span>
             <hr class="type-bullet" />
-            <mend:include src="../components/icons/refresh.svg" @class="is-icon" @style="--size: 0.75rem;" />
+            <mend:include :src="../components/icons/eyecons/refresh.svg" @class="is-icon" @style="--size: 0.75rem;" />
             <span>{{ .Updated }}</span>
         </section>
     </section>
     <footer>
         {{ if eq .Label "trending" }}
         <span class="o-label type-trending">
-            <mend:include src="../components/icons/globe.svg" @class="is-icon" @style="--size: 0.75rem" />
+            <mend:include :src="../components/icons/eyecons/globe.svg" @class="is-icon" @style="--size: 0.75rem" />
             <span>TRENDING</span>
         </span>
         {{ else }}
         <span class="o-label type-new">
-            <mend:include src="../components/icons/clock.svg" @class="is-icon" @style="--size: 0.75rem" />
+            <mend:include :src="../components/icons/eyecons/clock.svg" @class="is-icon" @style="--size: 0.75rem" />
             <span>NEW</span>
         </span>
         {{ end }}

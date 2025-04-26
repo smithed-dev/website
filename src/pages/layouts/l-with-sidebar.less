@@ -1,0 +1,18 @@
+.l-with-sidebar {
+    .f-row();
+    gap: @spacing-1;
+
+    &>section {
+        .width-content();
+    }
+
+    &>aside {
+        .f-col-stretch();
+        .bordered();
+        background-color: var(--block-section);
+        padding: @spacing-1;
+        border-radius: @radius-1;
+        flex: 1;
+        height: fit-content;
+    }
+}

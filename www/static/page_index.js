@@ -17,8 +17,3 @@ this.setInterval(() => {
     scrollCarousell(carousells[1]);
   }, 200);
 }, TIMER * 1000);
-
-/** @type {this.Searchbar[]} */
-const WIDGETS = {
-  Searchbars: [new WidgetSearchbar(document.getElementById("searchbar"))],
-};

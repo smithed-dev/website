@@ -6,21 +6,16 @@
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
     <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, width=device-width" />
 
-    <title>[[ .title ]] — Smithed™</title>
+    <title>[[ this.title ]] — Smithed™</title>
 
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
     <link rel="icon" sizes="48x48" href="/favicon.ico" />
     <link rel="icon" type="image/svg+xml" sizes="all" href="/favicon.svg" />
 
-    <link rel="stylesheet" href="/static/styles.min.css?checksum=[[ ^.checksum ]]" />
+    <link rel="stylesheet" href="/static/styles.min.css?checksum=[[ root.checksum ]]" />
 
     <script src="/static/main.js"></script>
-    <mend:if value="[[ ^.filename == browse.html]]">
-        <script src="/static/page_browse.js" defer></script>
-    </mend:if>
-    <mend:if value="[[ ^.filename == index.html]]">
-        <script src="/static/page_index.js" defer></script>
-    </mend:if>
+    <script src="/static/page_[[ root.@file.filename().trim_extension() ]].js" defer></script>
     <!-- [!] "While the CDN approach is extremely simple, you may want to consider not using CDNs in production" -->
     <script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.js"
         integrity="sha384-oeUn82QNXPuVkGCkcrInrS1twIxKhkZiFfr2TdiuObZ3n3yIeMiqcRzkIcguaof1" crossorigin="anonymous">
@@ -30,23 +25,23 @@
 
 <body class="theme-default">
     <header>
-        <a class="w-unmarked-link on-highlight" href="/" style="grid-area: logotype;">
-            <mend:include src="../components/smithed.svg" :size="32" @class="is-icon" />
+        <pkg:unmarked-link href="/" style="grid-area: logotype;">
+            <pkg:icon :icon="smithed" :size="2" />
             <h2 class="a-hide-wide">Smithed</h2>
-        </a>
-        <a class="w-unmarked-link on-highlight" href="/browse" style="grid-area: browse;">
-            Browse
-        </a>
-        <a class="w-unmarked-link on-highlight" href="" style="grid-area: articles;">
-            Articles
-        </a>
-        <a class="w-unmarked-link on-highlight" href="" style="grid-area: weld;">
+        </pkg:unmarked-link>
+
+        <pkg:unmarked-link :label="Browse" href="/browse" style="grid-area: browse;" />
+
+        <pkg:unmarked-link :label="Articles" href="" style="grid-area: articles;" />
+
+        <pkg:unmarked-link href="" style="grid-area: weld;">
             Weld
-            <mend:include src="../components/icons/popout.svg" @class="is-icon a-hide-content a-show-tablet" />
-        </a>
-        <mend:if value="[[ .searchbar ]]">
-            <pkg:searchbar @style="grid-area: searchbar;">
-                <template id="js-searchbar-default">
+            <pkg:icon :icon="eyecons/popout" />
+        </pkg:unmarked-link>
+
+        <mend:if :true="[[ this.searchbar ]]">
+            <pkg:searchbar class="%s --flex">
+                <pkg:dropdown :type="list">
                     <div>
                         Searches for
                         <em>packs by default</em>
@@ -63,71 +58,50 @@
                         To search for
                         <em>bundles</em>
                     </div>
-                </template>
-                <footer class="w-dropdown type-list">
-                </footer>
+                </pkg:dropdown>
             </pkg:searchbar>
         </mend:if>
-        <mend:unless value="[[ .searchbar ]]">
-            <div class="is-flex" style="grid-area: searchbar;"></div>
-        </mend:unless>
-        <a class="w-unmarked-link on-highlight" href="" style="grid-area: inbox;">
+        <mend:if :false="[[ this.searchbar ]]">
+            <div class="--flex" style="grid-area: searchbar;"></div>
+        </mend:if>
+
+        <pkg:unmarked-link href="" style="grid-area: weld;">
             Inbox
-            <mend:include src="../components/icons/notification-unread.svg"
-                @class="is-icon a-hide-content a-show-tablet" />
-        </a>
-        <pkg:accent-button :label="Log in" @style="grid-area: profile;">
-            <mend:include src="../components/icons/user.svg" @class="is-icon" />
-        </pkg:accent-button>
+            <pkg:icon :icon="eyecons/notification-unread" class="%s a-hide-content a-show-tablet" />
+        </pkg:unmarked-link>
+
+        <pkg:button :type="accent" :label="Log in" :icon="eyecons/user" style="grid-area: profile;" />
     </header>
     <!-- ... -->
     <main>
         <mend:slot />
     </main>
     <!-- ... -->
-    <footer class="is-center">
+    <footer class="--centered">
         <div>
             <section>
                 <h2>
                     ABOUT
                 </h2>
-                <a class="w-unmarked-link on-highlight" href>
-                    About Smithed
-                </a>
-                <a class="w-unmarked-link on-highlight" href>
-                    How to Contribute
-                </a>
-                <a class="w-unmarked-link on-highlight" href>
-                    Donate
-                </a>
+                <pkg:unmarked-link :label="About Smithed" href="" />
+                <pkg:unmarked-link :label="How to Contribute" href="" />
+                <pkg:unmarked-link :label="Donate" href="" />
             </section>
             <section>
                 <h2>
                     COMMUNITY
                 </h2>
-                <a class="w-unmarked-link on-highlight" href>
-                    Discord
-                </a>
-                <a class="w-unmarked-link on-highlight" href>
-                    Guidelines
-                </a>
-                <a class="w-unmarked-link on-highlight" href>
-                    Wiki
-                </a>
+                <pkg:unmarked-link :label="Discord" href="" />
+                <pkg:unmarked-link :label="Guidelines" href="" />
+                <pkg:unmarked-link :label="Wiki" href="" />
             </section>
             <section>
                 <h2>
                     LEGAL
                 </h2>
-                <a class="w-unmarked-link on-highlight" href>
-                    Terms of Use
-                </a>
-                <a class="w-unmarked-link on-highlight" href>
-                    Privacy Policy
-                </a>
-                <a class="w-unmarked-link on-highlight" href>
-                    Cookies
-                </a>
+                <pkg:unmarked-link :label="Terms of Use" href="" />
+                <pkg:unmarked-link :label="Privacy Policy" href="" />
+                <pkg:unmarked-link :label="Cookies" href="" />
             </section>
         </div>
         <section>

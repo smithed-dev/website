@@ -1,94 +1,48 @@
 {{ define "index" }}
 <pkg:root :title="Home" :searchbar="true">
-    <section class="w-heading is-center width-content">
+    <pkg:l-heading class="%s --centered width-content">
         <h1>Welcome!</h1>
-        <p class="is-center">
+        <p>
             Smithed is an open-source platform for exploring, sharing <br />
             and supercharging minecraft data & resource packs.
         </p>
-    </section>
+    </pkg:l-heading>
 
-    <section class="l-grid-2 width-content">
-        <section class="o-landing-carousell">
-            <div id="js-carousell-1" data-i="1">
-                {{ range .Cards }}
-                {{ template "pack_card" .Trending }}
-                {{ end }}
-            </div>
-        </section>
+    <pkg:l-grid :cols="2" class="%s width-content">
+        <pkg:landing-carousell :index="1">
+            {{ range .Cards }}
+            {{ template "pack_card" .Trending }}
+            {{ end }}
+        </pkg:landing-carousell>
+        <pkg:landing-carousell :index="2">
+            {{ range .Cards }}
+            {{ template "pack_card" .Newest }}
+            {{ end }}
+        </pkg:landing-carousell>
+    </pkg:l-grid>
 
-        <section class="o-landing-carousell">
-            <div id="js-carousell-2" data-i="1">
-                {{ range .Cards }}
-                {{ template "pack_card" .Newest }}
-                {{ end }}
-            </div>
-        </section>
-    </section>
+    <pkg:l-separator :label="What is Smithed exactly?" />
 
-    <section class="w-separator width-content">
-        <hr class="type-soft" />
-        What is Smithed exactly?
-        <hr class="type-soft" />
-    </section>
-
-    <section class="l-grid-2 width-content">
-        <a class="o-landing-card" href="https://smithed.net/discord">
-            <header>
-                <mend:include src="components/icons/home.svg" @class="is-icon" @style="--size: 1.5rem;" />
-                <h2 class="on-highlight is-flex">Discord</h2>
-                <span class="a-hide-min">
-                    Join
-                    <mend:include src="components/icons/popout.svg" @class="is-icon" />
-                </span>
-            </header>
-            <p>
-                Smithed is a community of people passionate about data & resource packs. We host various related events,
-                develop libraries and hang out!
-            </p>
-        </a>
-        <a class="o-landing-card" href="/browse">
-            <header>
-                <mend:include src="components/icons/jigsaw.svg" @class="is-icon" @style="--size: 1.5rem;" />
-                <h2 class="on-highlight is-flex">Packs</h2>
-                <span class="a-hide-min">
-                    Browse
-                    <mend:include src="components/icons/search.svg" @class="is-icon" />
-                </span>
-            </header>
-            <p>
-                Create, share and browse data & resource packs. There are many tools to make the process simple and
-                fast.
-            </p>
-        </a>
-        <a class="o-landing-card" href="https://docs.smithed.dev/">
-            <header>
-                <mend:include src="components/icons/scroll.svg" @class="is-icon" @style="--size: 1.5rem;" />
-                <h2 class="on-highlight is-flex">Docs</h2>
-                <span class="a-hide-min">
-                    Explore
-                    <mend:include src="components/icons/search.svg" @class="is-icon" />
-                </span>
-            </header>
-            <p>
-                Your all-in-one guide to the Smithed ecosystem. Whether you're a seasoned pack developer or just
-                starting out, Smithed has something to offer.
-            </p>
-        </a>
-        <a class="o-landing-card" href="https://weld.smithed.dev/">
-            <header>
-                <mend:include src="components/icons/curly_braces.svg" @class="is-icon" @style="--size: 1.5rem;" />
-                <h2 class="on-highlight is-flex">Weld</h2>
-                <span class="a-hide-min">
-                    Try it
-                    <mend:include src="components/icons/popout.svg" @class="is-icon" />
-                </span>
-            </header>
-            <p>
-                The fastest pack merger in the west. Merge all your data and resource packs into a single zip easily
-                droppable into any world or minecraft instance.
-            </p>
-        </a>
-    </section>
+    <pkg:l-grid :cols="2" class="%s width-content">
+        <pkg:landing-card :icon="eyecons/home" :title="Discord" :label="Join" :action="eyecons/popout"
+            href="https://smithed.net/discord">
+            Smithed is a community of people passionate about data & resource packs. We host various related events,
+            develop libraries and hang out!
+        </pkg:landing-card>
+        <pkg:landing-card :icon="eyecons/jigsaw" :title="Packs" :label="Browse" :action="eyecons/search" href="/browse">
+            Create, share and browse data & resource packs. There are many tools to make the process simple and
+            fast.
+        </pkg:landing-card>
+        <pkg:landing-card :icon="eyecons/scroll" :title="Docs" :label="Explore" :action="eyecons/search"
+            href="https://docs.smithed.dev/">
+            Your all-in-one guide to the Smithed ecosystem. Whether you're a seasoned pack developer or just
+            starting out, Smithed has something to offer.
+        </pkg:landing-card>
+        <pkg:landing-card :icon="eyecons/curly_braces" :title="Weld" :label="Try it" :action="eyecons/popout"
+            href="https://weld.smithed.dev/">
+            The fastest pack merger in the west. Merge all your data and resource packs into a single zip easily
+            droppable into any world or minecraft instance.
+        </pkg:landing-card>
+    </pkg:l-grid>
 </pkg:root>
 {{ end }}

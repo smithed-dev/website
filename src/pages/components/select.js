@@ -3,6 +3,8 @@ class SelectWidget {
   node;
   /** @type {Object.<string, HTMLElement>} */
   tree;
+  /** @type {boolean} */
+  toggled;
 
   constructor(node) {
     this.node = node;
@@ -81,7 +83,11 @@ class SelectWidget {
 
     this.node.style.setProperty("min-width", `${widestOption + 16 * 3}px`);
     this.tree["<button>"].addEventListener("click", () => {
-      this.open();
+      if (this.toggled) {
+        this.close();
+      } else {
+        this.open();
+      }
     });
 
     self.WIDGETS = [...(self.WIDGETS || []), this];
@@ -91,9 +97,11 @@ class SelectWidget {
     this.node.classList.add("--open");
     this.node.blur();
     this.tree["<footer>"].children[Number(this.node.dataset.index)].focus();
+    this.toggled = true;
   }
 
   close() {
     this.node.classList.remove("--open");
+    this.toggled = false;
   }
 }

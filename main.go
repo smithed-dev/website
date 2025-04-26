@@ -25,7 +25,7 @@ func main() {
 	http.HandleFunc("/favicon.ico", func(writer http.ResponseWriter, request *http.Request) {
 		http.ServeFile(writer, request, "www/favicon.ico")
 	})
-	http.HandleFunc("/kaithhealthcheck", func(writer http.ResponseWriter, request *http.Request) {
+	http.HandleFunc("/kaithheathcheck", func(writer http.ResponseWriter, request *http.Request) {
 		writer.WriteHeader(http.StatusOK)
 	})
 	http.HandleFunc("/", server.Index)

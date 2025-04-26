@@ -5,13 +5,18 @@
     </pkg:l-heading>
 
     <pkg:l-with-sidebar class="%s width-wide">
-        <section class="l-sections">
-            <header>
-                <section>
-                </section>
+        <section class="l-col">
+            <header class="l-row">
+                <pkg:searchbar class="%s --flex" />
+                <pkg:select :id="sort" :icon="eyecons/sort">
+                    <option value="trending">Trending</option>
+                    <option value="downloads">Downloads</option>
+                    <option value="alphabetically">Alphabetically</option>
+                    <option value="newest">Newest</option>
+                </pkg:select>
             </header>
-            <nav>
-                <a class="is-selected" href="">1</a>
+            <nav class="l-row">
+                <a class="--selected" href="">1</a>
                 <a href="">2</a>
                 <a href="">3</a>
             </nav>

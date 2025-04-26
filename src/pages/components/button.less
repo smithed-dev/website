@@ -5,12 +5,24 @@
     gap: @spacing-1;
     border-radius: @radius-1;
     text-wrap: nowrap;
-    justify-content: center;
     text-align: left;
     text-decoration: none;
 
+    span {
+        line-height: 1;
+    }
+
     &.type-accent {
         background-color: var(--block-accent);
+    }
+
+    &.type-transparent {
+        background-color: transparent;
+
+        &:focus {
+            outline: none;
+            color: var(--text-accent);
+        }
     }
 
     &.type-filter {

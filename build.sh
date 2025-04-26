@@ -10,14 +10,21 @@ lessc $TMP > ./www/static/styles.css
 rm $TMP
 python -m csscompressor -o www/static/styles.min.css www/static/styles.css
 
-checksum=$(md5sum ./www/static/styles.min.css | cut -d ' ' -f1)
+css_checksum=$(md5sum ./www/static/styles.min.css | cut -d ' ' -f1)
+
+echo "=== Compiling javascript together"
+echo "" > ./www/static/main.js
+find ./src/pages -name "*.js" -exec cat {} >> ./www/static/main.js \;
+cat ./src/main.js >> ./www/static/main.js
+
+js_checksum=$(md5sum ./www/static/main.js | cut -d ' ' -f1)
 
 echo "=== Building templates"
 mkdir -p ./www/htmx/
 
 function build {
     base=$(basename $1)
-    mend --input checksum=$checksum --output $2/. $1 && echo "--- Built $2/$base"
+    mend --input css_checksum=$css_checksum,js_checksum=$js_checksum --output $2/. $1 && echo "--- Built $2/$base"
 }
 
 for file in ./src/pages/*.html; do

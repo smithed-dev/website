@@ -12,9 +12,9 @@
     <link rel="icon" sizes="48x48" href="/favicon.ico" />
     <link rel="icon" type="image/svg+xml" sizes="all" href="/favicon.svg" />
 
-    <link rel="stylesheet" href="/static/styles.min.css?checksum=[[ root.checksum ]]" />
+    <link rel="stylesheet" href="/static/styles.min.css?checksum=[[ root.css_checksum ]]" />
 
-    <script src="/static/main.js"></script>
+    <script src="/static/main.js?checksum=[[ root.js_checksum ]]"></script>
     <script src="/static/page_[[ root.@file.filename().trim_extension() ]].js" defer></script>
     <!-- [!] "While the CDN approach is extremely simple, you may want to consider not using CDNs in production" -->
     <script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.js"

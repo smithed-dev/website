@@ -1,0 +1,26 @@
+<div id="js-id-select-[[ this.id ]]" class="w-select">
+    <template>
+        <button class="w-button type-transparent">
+            <span class="js-item --flex">
+                —
+            </span>
+            <pkg:icon :icon="eyecons/radio-unchecked" class="%s js-indicator-unchecked" />
+            <pkg:icon :icon="eyecons/radio-checked" class="%s js-indicator-checked" />
+        </button>
+    </template>
+    <select hidden>
+        <mend:slot />
+    </select>
+    <button class="w-button js-button">
+        <pkg:icon :icon="[[ this.icon ]]" />
+        <span class="js-selected --flex">
+            —
+        </span>
+        <pkg:icon :icon="eyecons/angle_down" class="%s type-indicator" />
+    </button>
+    <footer>
+    </footer>
+</div>
+<script>
+    new SelectWidget(document.getElementById("js-id-select-[[ this.id ]]")).load()
+</script>

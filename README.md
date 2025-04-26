@@ -15,12 +15,20 @@ This is an HTMX implementation of the smithed website.
 
 - I made this for UNIX-like systems (MacOS/Linux)
 - You'll need [Go](https://go.dev/) installed.
-- (Optional) You'll need [Less CSS](https://lesscss.org/) for CSS compiling.
+
+#### If you are going to be doing modifications to ./src/
+
+To build the project:
+
+- You'll need [Less CSS](https://lesscss.org/) for CSS compiling:
+    - `npm install -g less`
+- You will need my templating language [Mend v1.0.0-alpha.2](https://github.com/bbfh-dev/mend) to be installed:
+    - `go install github.com/bbfh-dev/mend@v1.0.0-alpha.2`
 
 ### Running the server
 
 ```bash
-# If you did changes
+# If you did changes, assuming you have both mend and lessc installed
 sh ./build.sh
 
 # Run the server at port :8080

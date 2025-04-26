@@ -19,6 +19,12 @@ func main() {
 	http.HandleFunc("/favicon.svg", func(writer http.ResponseWriter, request *http.Request) {
 		http.ServeFile(writer, request, "www/favicon.svg")
 	})
+	http.HandleFunc("/favicon.png", func(writer http.ResponseWriter, request *http.Request) {
+		http.ServeFile(writer, request, "www/favicon.png")
+	})
+	http.HandleFunc("/favicon.ico", func(writer http.ResponseWriter, request *http.Request) {
+		http.ServeFile(writer, request, "www/favicon.ico")
+	})
 	http.HandleFunc("/", server.Index)
 	http.HandleFunc("/browse", server.Browse)
 

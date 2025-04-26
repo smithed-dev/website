@@ -1,0 +1,24 @@
+.w-landing-card {
+    .reset();
+    .bordered();
+    .f-col-stretch();
+    .interactive();
+    gap: @spacing-half;
+    background-color: var(--block-section);
+    border-radius: @radius-1;
+    padding: @spacing-1;
+    text-decoration: none;
+
+    header {
+        .f-row-center();
+        gap: @spacing-1;
+
+        span {
+            .f-row-center();
+            padding: @spacing-half @spacing-1;
+            gap: @spacing-1;
+            border-radius: @radius-1;
+            background-color: var(--block-background);
+        }
+    }
+}

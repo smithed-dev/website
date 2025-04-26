@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
 
+TMP=./src/styles/__build.less
+
 echo "=== Compiling less"
-lessc ./src/styles/_fonts.less > ./www/static/styles.css
-lessc ./src/styles/_styles.less >> ./www/static/styles.css
+cat ./src/styles/_fonts.less ./src/styles/_styles.less > $TMP
+find ./src/pages -name "*.less" -exec cat {} >> $TMP \;
+cat ./src/styles/_adaptive.less >> $TMP
+lessc $TMP > ./www/static/styles.css
+rm $TMP
 python -m csscompressor -o www/static/styles.min.css www/static/styles.css
 
 checksum=$(md5sum ./www/static/styles.min.css | cut -d ' ' -f1)
@@ -12,15 +17,19 @@ mkdir -p ./www/htmx/
 
 function build {
     base=$(basename $1)
-    mend --input "{\"filename\":\"$base\",\"checksum\":\"$checksum\"}" $1 > $2$base && echo "--- Built $2$base"
+    mend --input checksum=$checksum --output $2/. $1 && echo "--- Built $2/$base"
 }
 
 for file in ./src/pages/*.html; do
-    build $file ./www/ &
+    if [[ -f $file ]]; then
+        build $file ./www &
+    fi
 done
 
 for file in ./src/pages/htmx/*.html; do
-    build $file ./www/htmx/ &
+    if [[ -f $file ]]; then
+        build $file ./www/htmx &
+    fi
 done
 
 wait

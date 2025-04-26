@@ -1,51 +1,15 @@
 {{ define "index" }}
 <pkg:root :title="Browse" :searchbar="false">
-    <section class="l-heading width-content">
+    <pkg:l-heading class="%s --centered width-content">
         <h1>Browse packs</h1>
-    </section>
+    </pkg:l-heading>
 
-    <section class="l-with-sidebar width-wide">
+    <pkg:l-with-sidebar class="%s width-wide">
         <section class="l-sections">
             <header>
                 <section>
-                    <div class="w-input is-flex">
-                        <mend:include src="components/icons/search.svg" />
-                        <input type="text" placeholder="Search..." />
-                    </div>
-                    <pkg:select :id="sorting">
-                        <option value="trending">Trending</option>
-                        <option value="downloads">Downloads</option>
-                        <option value="newest">Newest</option>
-                        <option value="alphabetically">Alphabetically</option>
-                    </pkg:select>
                 </section>
-                <div id="js-filters">
-                    <template id="js-include-tag">
-                        <button class="w-button type-tag type-include" onclick="removeFilter(this)">
-                            <span></span>
-                            <mend:include src="components/icons/check.svg" />
-                        </button>
-                    </template>
-                    <template id="js-exclude-tag">
-                        <button class="w-button type-tag type-exclude" onclick="removeFilter(this)">
-                            <span></span>
-                            <mend:include src="components/icons/circle-crossed.svg" />
-                        </button>
-                    </template>
-                </div>
             </header>
-
-            <nav>
-                <a class="is-selected" href="">1</a>
-                <a href="">2</a>
-                <a href="">3</a>
-            </nav>
-
-            <section class="l-grid-2 width-content">
-                <mend:include src="htmx/pack_card__placeholder.html" />
-                <mend:include src="htmx/pack_card__placeholder.html" />
-            </section>
-
             <nav>
                 <a class="is-selected" href="">1</a>
                 <a href="">2</a>
@@ -53,79 +17,7 @@
             </nav>
         </section>
 
-        <aside>
-            <header>
-                <mend:include src="components/icons/sort.svg" @id="icon-category" />
-                <b>Categories</b>
-            </header>
-            <section>
-                {{ range .PackCategory }}
-                <div class="w-filter" data-param="category" data-item="{{ . }}">
-                    <button class="w-button type-filter is-flex" onclick="toggleFilterInclude(this)">
-                        <span class="is-flex">{{ . }}</span>
-                        <mend:include src="components/icons/check.svg" />
-                    </button>
-                    <button class="w-button type-filter" onclick="toggleFilterExclude(this)">
-                        <mend:include src="components/icons/circle-crossed.svg" />
-                    </button>
-                </div>
-                {{ end }}
-            </section>
-
-            <hr class="type-soft" />
-
-            <header>
-                <mend:include src="components/icons/file.svg" @id="icon-version" />
-                <b class="is-flex">Versions</b>
-                <button class="w-button type-tag type-include" onclick="toggleVersionsFilter(this)">
-                    Stable only
-                    <mend:include src="components/icons/check.svg" />
-                </button>
-            </header>
-            <section>
-                {{ range .MinecraftVersion }}
-                <details>
-                    <summary>
-                        <span class="is-flex">{{ .Group }}</span>
-                        <mend:include src="components/icons/angle_down.svg" @class="is-indicator" />
-                    </summary>
-                    <footer>
-                        {{ range .Versions }}
-                        {{ if .Stable }}
-                        <div class="w-filter" data-param="version" data-item="{{ .Name }}">
-                            <button class="w-button type-filter is-flex" onclick="toggleFilterInclude(this)">
-                                <span class="is-flex">{{ .Name }}</span>
-                                <mend:include src="components/icons/check.svg" />
-                            </button>
-                            <button class="w-button type-filter" onclick="toggleFilterExclude(this)">
-                                <mend:include src="components/icons/circle-crossed.svg" />
-                            </button>
-                        </div>
-                        {{ else }}
-                        <div class="w-filter js-not-stable" data-param="version" data-item="{{ .Name }}"
-                            style="display: none;">
-                            <button class="w-button type-filter is-flex" onclick="toggleFilterInclude(this)">
-                                <span class="is-flex">{{ .Name }}</span>
-                                <mend:include src="components/icons/check.svg" />
-                            </button>
-                            <button class="w-button type-filter" onclick="toggleFilterExclude(this)">
-                                <mend:include src="components/icons/circle-crossed.svg" />
-                            </button>
-                        </div>
-                        {{ end }}
-                        {{ end }}
-                    </footer>
-                </details>
-                {{ end }}
-            </section>
-
-            <hr class="type-soft" />
-
-            <header>
-                <mend:include src="components/icons/apps.svg" @id="icon-badges" />
-                <b>Badges</b>
-            </header>
-        </aside>
-    </section>
+        <aside></aside>
+    </pkg:l-with-sidebar>
 </pkg:root>
 {{ end }}

@@ -1,0 +1,31 @@
+@media only screen and (max-width: (@screen-wide + @spacing-4)) {
+    .a-hide-wide {
+        display: none !important;
+    }
+}
+
+@media only screen and (max-width: (@screen-content + @spacing-4)) {
+    .a-hide-content {
+        display: none !important;
+    }
+}
+
+@media only screen and (max-width: (@screen-tablet + @spacing-4)) {
+    .a-hide-portrait {
+        display: none !important;
+    }
+
+    .a-show-tablet {
+        display: block !important;
+    }
+
+    .a-show-tablet-flex {
+        display: flex !important;
+    }
+}
+
+@media only screen and (max-width: (@screen-min + @spacing-4)) {
+    .a-hide-min {
+        display: none !important;
+    }
+}

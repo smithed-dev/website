@@ -9,7 +9,7 @@ import (
 	"github.com/tidwall/gjson"
 )
 
-const landingCardsCount = 3
+const landingCardsCount = 5
 
 type packGroup struct {
 	Trending PackCardData

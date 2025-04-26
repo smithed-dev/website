@@ -614,10 +614,16 @@ a[href=""]:focus {
   align-items: stretch;
   gap: 1rem;
 }
+.l-col.type-center {
+  justify-content: center;
+}
 .l-row {
   display: flex;
   flex-direction: row;
   gap: 1rem;
+}
+.l-row.type-center {
+  justify-content: center;
 }
 html,
 body {
@@ -1048,6 +1054,45 @@ body > footer > div section {
 .w-unmarked-link h2 {
   margin-left: 0.5rem;
 }
+.w-select {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  position: relative;
+  font-weight: 400;
+}
+.w-select > button {
+  border-radius: 0.5rem;
+  border: 1px solid transparent;
+}
+.w-select > footer {
+  flex-direction: column;
+  align-items: stretch;
+  border: 1px solid var(--block-border);
+  background-color: var(--block-shaded);
+  border-radius: 0 0 0.5rem 0.5rem;
+  display: flex;
+  visibility: hidden;
+  padding: 0.25rem 0;
+  z-index: 42069;
+  position: absolute;
+  top: 2rem;
+  left: 0;
+  right: 0;
+}
+.w-select > footer button {
+  border-radius: 0;
+}
+.w-select.--open .type-indicator {
+  transform: scaleY(-1);
+}
+.w-select.--open > button {
+  border-radius: 0.5rem 0.5rem 0 0;
+  border: 1px solid var(--block-border);
+}
+.w-select.--open footer {
+  visibility: visible;
+}
 .w-button {
   border: none;
   font: inherit;
@@ -1119,45 +1164,6 @@ body > footer > div section {
 }
 .w-button:focus {
   outline: 2px solid var(--text-foreground);
-}
-.w-select {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  position: relative;
-  font-weight: 400;
-}
-.w-select > button {
-  border-radius: 0.5rem;
-  border: 1px solid transparent;
-}
-.w-select > footer {
-  flex-direction: column;
-  align-items: stretch;
-  border: 1px solid var(--block-border);
-  background-color: var(--block-shaded);
-  border-radius: 0 0 0.5rem 0.5rem;
-  display: flex;
-  visibility: hidden;
-  padding: 0.25rem 0;
-  z-index: 42069;
-  position: absolute;
-  top: 2rem;
-  left: 0;
-  right: 0;
-}
-.w-select > footer button {
-  border-radius: 0;
-}
-.w-select.--open .type-indicator {
-  transform: scaleY(-1);
-}
-.w-select.--open > button {
-  border-radius: 0.5rem 0.5rem 0 0;
-  border: 1px solid var(--block-border);
-}
-.w-select.--open footer {
-  visibility: visible;
 }
 .l-grid {
   display: grid;

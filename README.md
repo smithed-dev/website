@@ -28,7 +28,7 @@ To build the project:
 ### Running the server
 
 ```bash
-# If you did changes, assuming you have both mend and lessc installed
+# If you made changes, assuming you have both mend and lessc installed
 sh ./build.sh
 
 # Run the server at port :8080

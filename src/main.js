@@ -10,7 +10,7 @@ function reloadParams() {
       self.THIS_URL.searchParams.toString(),
   );
   htmx.process(node);
-  htmx.trigger(node, "reload", {});
+  htmx.trigger(node, "manual-reload", {});
 }
 
 self.addEventListener(

@@ -24,8 +24,9 @@ var IndexScopes = strings.Join([]string{
 	"data.id",
 	"data.display.name",
 	"data.display.description",
-	"data.versions",
 	"data.display.gallery",
+	"data.versions",
+	"data.categories",
 	"meta.stats.downloads.total",
 	"meta.stats.updated",
 }, ",")

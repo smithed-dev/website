@@ -5,7 +5,7 @@
     </pkg:l-heading>
 
     <pkg:l-with-sidebar class="%s width-wide">
-        <section class="l-col">
+        <section class="l-col type-sections">
             <header class="l-row">
                 <pkg:searchbar class="%s --flex" />
                 <pkg:select :id="sort" :icon="eyecons/sort">
@@ -16,9 +16,35 @@
                 </pkg:select>
             </header>
             <nav class="l-row type-center">
-                <a class="on-highlight --selected" href="">1</a>
-                <a class="on-highlight" href="">2</a>
-                <a class="on-highlight" href="">3</a>
+                {{ range .Pages }}
+                {{ if .IsSelected }}
+                <a class="on-highlight --selected" href="{{ .Href }}">
+                    {{ .Label }}
+                </a>
+                {{ else }}
+                <a class="on-highlight" href="{{ .Href }}">
+                    {{ .Label }}
+                </a>
+                {{ end }}
+                {{ end }}
+            </nav>
+            <pkg:l-grid :cols="2">
+                {{ range .Cards }}
+                {{ template "pack_card" . }}
+                {{ end }}
+            </pkg:l-grid>
+            <nav class="l-row type-center">
+                {{ range .Pages }}
+                {{ if .IsSelected }}
+                <a class="on-highlight --selected" href="{{ .Href }}">
+                    {{ .Label }}
+                </a>
+                {{ else }}
+                <a class="on-highlight" href="{{ .Href }}">
+                    {{ .Label }}
+                </a>
+                {{ end }}
+                {{ end }}
             </nav>
         </section>
 

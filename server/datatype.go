@@ -1,6 +1,10 @@
 package server
 
-import "github.com/tidwall/gjson"
+import (
+	"fmt"
+
+	"github.com/tidwall/gjson"
+)
 
 type Datatype interface {
 	Load(data gjson.Result) Datatype
@@ -15,4 +19,16 @@ func ForEach[T Datatype](template T, data []byte) []T {
 	}
 
 	return result
+}
+
+func FormatAmount(amount int64) string {
+	if amount < 1_000 {
+		return fmt.Sprintf("%d", amount)
+	}
+
+	if amount < 1_000_000 {
+		return fmt.Sprintf("%.1fK", float64(amount)/1_000)
+	}
+
+	return fmt.Sprintf("%.1fK", float64(amount)/1_000_000)
 }

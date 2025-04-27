@@ -43,7 +43,8 @@
             <mend:include :src="../components/icon.html" :icon="eyecons/globe" :size="0.75" />
             <span>TRENDING</span>
         </span>
-        {{ else }}
+        {{ end }}
+        {{ if eq .Label "new" }}
         <span class="o-label type-new">
             <mend:include :src="../components/icon.html" :icon="eyecons/clock" :size="0.75" />
             <span>NEW</span>

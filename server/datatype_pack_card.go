@@ -20,11 +20,27 @@ type PackCardData struct {
 	VersionTo   string
 	Categories  []string
 
-	Downloads int64
+	Downloads string
 	Updated   string
 }
 
 func (datatype PackCardData) Load(data gjson.Result) Datatype {
+	categoriesArray := data.Get("data.categories").Array()
+	categories := make([]string, 0, len(categoriesArray))
+	i := 0
+loop:
+	for _, element := range categoriesArray {
+		element := element.String()
+		switch {
+		case i == 3:
+			break loop
+		case element == "No Resource Pack":
+		default:
+			categories = append(categories, element)
+		}
+		i++
+	}
+
 	return PackCardData{
 		Uid:         data.Get("id").String(),
 		Id:          data.Get("data.id").String(),
@@ -34,8 +50,8 @@ func (datatype PackCardData) Load(data gjson.Result) Datatype {
 		Desc:        data.Get("data.display.description").String(),
 		VersionFrom: data.Get("data.versions|@reverse|0.supports.0").String(),
 		VersionTo:   data.Get("data.versions|@reverse|0.supports|@reverse|0").String(),
-		Categories:  []string{},
-		Downloads:   data.Get("meta.stats.downloads.total").Int(),
+		Categories:  categories,
+		Downloads:   FormatAmount(data.Get("meta.stats.downloads.total").Int()),
 		Updated: timediff.TimeDiff(
 			time.Unix(data.Get("meta.stats.updated").Int()/1000, 1),
 		),

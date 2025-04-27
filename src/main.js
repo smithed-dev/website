@@ -9,3 +9,10 @@ self.addEventListener(
     }
   },
 );
+
+/** @param {HTMLInputElement} node  */
+function onSearchBarChanged(node) {
+  const searchParams = new URLSearchParams(self.location.search);
+  searchParams.set("search", encodeURIComponent(node.value));
+  self.location.search = searchParams.toString();
+}

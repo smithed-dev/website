@@ -16,14 +16,17 @@ class SelectWidget {
       "<button>": node.querySelector(".js-button"),
       selected: node.querySelector(".js-selected"),
     };
+
+    this.node.addEventListener("change", () => {
+      if ("URLSearchParams" in window) {
+        const searchParams = new URLSearchParams(self.location.search);
+        searchParams.set("sort", this.tree["<select>"].value);
+        self.location.search = searchParams.toString();
+      }
+    });
   }
 
   load() {
-    this.tree["<select>"].value = this.tree["<select>"].children[0].value;
-    this.node.dataset.index = "0";
-    this.tree["selected"].innerHTML =
-      this.tree["<select>"].children[0].innerText;
-
     /** @type {HTMLButtonElement} */
     const template = this.tree["<template>"].content.querySelector("button");
 
@@ -56,6 +59,7 @@ class SelectWidget {
         const index = item.dataset.index;
         this.tree["<select>"].value =
           this.tree["<select>"].children[Number(index)].value;
+        this.node.dispatchEvent(new Event("change"));
         this.node.dataset.index = index;
 
         item.parentElement.parentElement
@@ -82,7 +86,7 @@ class SelectWidget {
       i++;
     }
 
-    this.node.style.setProperty("min-width", `${widestOption + 16 * 3}px`);
+    this.node.style.setProperty("min-width", `${widestOption + 16 * 5}px`);
     this.tree["<button>"].addEventListener("click", () => {
       if (this.toggled) {
         this.close();
@@ -90,6 +94,22 @@ class SelectWidget {
         this.open();
       }
     });
+
+    const searchParams = new URLSearchParams(self.location.search);
+    const sort = searchParams.get("sort");
+    let index = 0;
+    if (sort != null) {
+      for (const option of this.tree["<select>"].children) {
+        if (option.value === sort) {
+          break;
+        }
+        index++;
+      }
+    }
+    this.tree["<select>"].value = this.tree["<select>"].children[index].value;
+    this.node.dataset.index = String(index);
+    this.tree["selected"].innerHTML =
+      this.tree["<select>"].children[index].innerText;
 
     self.WIDGETS = [...(self.WIDGETS || []), this];
   }
@@ -117,3 +137,10 @@ self.addEventListener(
     }
   },
 );
+
+/** @param {HTMLInputElement} node  */
+function onSearchBarChanged(node) {
+  const searchParams = new URLSearchParams(self.location.search);
+  searchParams.set("search", encodeURIComponent(node.value));
+  self.location.search = searchParams.toString();
+}

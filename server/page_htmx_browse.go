@@ -8,45 +8,14 @@ import (
 	"sync"
 )
 
-var browseLimitCount = 12
-
-type pageData struct {
-	Label      string
-	Href       string
-	IsSelected bool
-}
-
-type BrowsePageData struct {
-	Cards      []PackCardData
-	Pages      []pageData
-	Categories []string
-}
-
-type BrowsePageParams struct {
-	Search string
-	Page   int
-}
-
-func Browse(writer http.ResponseWriter, request *http.Request) {
+func HTMXBrowsePacks(writer http.ResponseWriter, request *http.Request) {
 	handler := NewHandler(writer, request).ParseTemplate(
-		"www/browse.html",
-		"www/htmx/pack_card.html",
 		"www/htmx/browse_packs.html",
+		"www/htmx/pack_card.html",
 	)
 	data := BrowsePageData{
 		Cards: []PackCardData{},
 		Pages: []pageData{},
-		Categories: []string{
-			"Extensive",
-			"Lightweight",
-			"QoL",
-			"Vanilla+",
-			"Tech",
-			"Magic",
-			"Exploration",
-			"World Overhaul",
-			"Library",
-		},
 	}
 
 	page, _ := strconv.Atoi(request.URL.Query().Get("page"))
@@ -135,5 +104,6 @@ func Browse(writer http.ResponseWriter, request *http.Request) {
 		}
 	}
 
+	handler.Name = "browse_packs"
 	handler.ServePage(data)
 }

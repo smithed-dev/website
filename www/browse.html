@@ -12,8 +12,8 @@
     <link rel="apple-touch-icon" href="/favicon.png" sizes="180x180" />
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="all" />
-    <link rel="stylesheet" href="/static/styles.min.css?checksum=a5e17d0ade85c72b520ea98eaedd7d39" />
-    <script src="/static/main.js?checksum=6b90455e03b6db05cd7948de28f3a354">
+    <link rel="stylesheet" href="/static/styles.min.css?checksum=8704c7858666b4067c692fcda8f56d5a" />
+    <script src="/static/main.js?checksum=075127c2c93abf7947e366f070041d9f">
     </script>
     <script src="/static/page_browse.js" defer>
     </script>
@@ -70,7 +70,7 @@
             </h1>
         </section>
         <section class="l-with-sidebar width-wide">
-            <section class="l-col type-sections">
+            <section id="browse_packs" class="l-col type-sections" hx-get="/htmx/browse_packs" hx-trigger="reload" hx-target="#packs" hx-swap="innerHTML">
                 <header class="l-row">
                     <div class="w-input --flex" style="grid-area: searchbar;">
                         <svg class="w-icon" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
@@ -79,7 +79,7 @@
                         <input id="search" type="text" placeholder="Search..." onchange="onSearchBarChanged(this)" />
                     </div>
                     <script>
-                        document.getElementById("search").value = decodeURIComponent(self.QueryParams.get("search") || "");
+                        document.getElementById("search").value = decodeURIComponent(self.THIS_URL.searchParams.get("search") || "");
                     </script>
                     <div id="js-id-select-sort" class="w-select">
                         <template>
@@ -127,33 +127,41 @@
                         new SelectWidget(document.getElementById("js-id-select-sort")).load()
                     </script>
                 </header>
-                <nav class="l-row type-center">
-                    {{ range .Pages }} {{ if .IsSelected }}
-                    <a class="on-highlight --selected" href="{{ .Href }}">
-                        {{ .Label }}
-                    </a>
-                    {{ else }}
-                    <a class="on-highlight" href="{{ .Href }}">
-                        {{ .Label }}
-                    </a>
-                    {{ end }} {{ end }}
-                </nav>
-                <section class="l-grid type-2">
-                    {{ range .Cards }} {{ template "pack_card" . }} {{ end }}
-                </section>
-                <nav class="l-row type-center">
-                    {{ range .Pages }} {{ if .IsSelected }}
-                    <a class="on-highlight --selected" href="{{ .Href }}">
-                        {{ .Label }}
-                    </a>
-                    {{ else }}
-                    <a class="on-highlight" href="{{ .Href }}">
-                        {{ .Label }}
-                    </a>
-                    {{ end }} {{ end }}
-                </nav>
+                <div id="packs" class="l-inherit on-loading">
+                    {{ template "browse_packs" . }}
+                </div>
             </section>
             <aside>
+                <div>
+                    <b>
+                        Categories
+                    </b>
+                </div>
+                <section class="l-graph">
+                    {{ range .Categories }}
+                    <div>
+                        <svg class="w-icon type-indicator" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
+                            <path d="m8 2a6 6 0 0 0-6 6 6 6 0 0 0 6 6 6 6 0 0 0 6-6 6 6 0 0 0-6-6zm0 2a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z" />
+                        </svg>
+                        <div class="w-filter --flex">
+                            <button class="w-button type-filter --flex" onclick="toggleFilterInclude(this)">
+                                <span class="--flex">
+                                    {{ . }}
+                                </span>
+                                <svg class="w-icon" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
+                                    <path d="m13 3.5a1 1 0 0 0-0.70703 0.29297l-6.293 6.293-2.293-2.293a1 1 0 0 0-1.4141 0 1 1 0 0 0 0 1.4141l3.707 3.707 7.707-7.707a1 1 0 0 0 0-1.4141 1 1 0 0 0-0.70703-0.29297z" />
+                                </svg>
+                            </button>
+                            <button class="w-button type-filter" onclick="toggleFilterExclude(this)">
+                                <svg class="w-icon" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
+                                    <path d="m8 0a8 8 0 0 0-8 8 8 8 0 0 0 0.64453 3.1113l1.5586-1.5586c-0.13224-0.49512-0.20312-1.0159-0.20312-1.5527 0-3.3137 2.6863-6 6-6 0.53681 0 1.0576 0.070891 1.5527 0.20312l1.5684-1.5684a8 8 0 0 0-3.1211-0.63477zm7.3652 4.8789-1.5684 1.5684c0.13224 0.49512 0.20312 1.0159 0.20312 1.5527 0 3.3137-2.6863 6-6 6-0.53681 0-1.0576-0.070895-1.5527-0.20312l-1.5586 1.5586a8 8 0 0 0 3.1113 0.64453 8 8 0 0 0 8-8 8 8 0 0 0-0.63477-3.1211z" opacity="0.4" />
+                                    <path d="m12.949 1.6367-11.313 11.313 1.4141 1.4141 11.312-11.312-1.4141-1.4141z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    {{ end }}
+                </section>
             </aside>
         </section>
     </main>

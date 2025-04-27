@@ -1,3 +1,11 @@
+.on-loading {
+    transition: opacity 0.2s;
+}
+
+.htmx-request .on-loading {
+    opacity: 0.2;
+}
+
 a {
     color: inherit;
     text-decoration: underline;
@@ -81,7 +89,8 @@ a {
     }
 }
 
-.l-col {
+.l-col,
+.l-col>.l-inherit {
     .f-col-stretch();
     gap: @spacing-1;
 
@@ -118,5 +127,42 @@ a {
 
     &.type-center {
         justify-content: center;
+    }
+}
+
+.l-graph {
+    .f-col-stretch();
+    padding: 0 @spacing-1;
+
+    &>div {
+        .f-row-center();
+        position: relative;
+        padding: @spacing-half 0;
+        @height: 0.875rem;
+        --color: var(--block-border);
+
+        .type-indicator {
+            color: var(--color);
+        }
+
+        &:not(:first-of-type)::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: calc(0.5rem - 1px);
+            width: 2px;
+            height: @height;
+            background-color: var(--color);
+        }
+
+        &:not(:last-of-type)::after {
+            content: "";
+            position: absolute;
+            top: 1.625rem;
+            left: calc(0.5rem - 1px);
+            width: 2px;
+            height: @height;
+            background-color: var(--color);
+        }
     }
 }

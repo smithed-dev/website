@@ -30,6 +30,7 @@ func main() {
 	})
 	http.HandleFunc("/", server.Index)
 	http.HandleFunc("/browse", server.Browse)
+	http.HandleFunc("/htmx/browse_packs", server.HTMXBrowsePacks)
 
 	server.SetupLogger(os.Getenv("DEBUG") == "1")
 	err := http.ListenAndServe("127.0.0.1:8080", nil)

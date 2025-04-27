@@ -9,6 +9,7 @@ type Handler struct {
 	Writer   http.ResponseWriter
 	Request  *http.Request
 	Template *template.Template
+	Name     string
 }
 
 func NewHandler(writer http.ResponseWriter, request *http.Request) *Handler {
@@ -16,6 +17,7 @@ func NewHandler(writer http.ResponseWriter, request *http.Request) *Handler {
 		Writer:   writer,
 		Request:  request,
 		Template: nil,
+		Name:     "index",
 	}
 }
 
@@ -32,7 +34,7 @@ func (handler *Handler) ParseTemplate(path ...string) *Handler {
 func (handler *Handler) ServePage(data any) {
 	logger.Infof("%s %s", handler.Request.Method, handler.Request.URL.String())
 
-	err := handler.Template.ExecuteTemplate(handler.Writer, "index", data)
+	err := handler.Template.ExecuteTemplate(handler.Writer, handler.Name, data)
 	if err != nil {
 		handler.writeErrInternal(err)
 	}

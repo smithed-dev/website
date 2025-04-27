@@ -10,10 +10,15 @@
         .f-col-stretch();
         .bordered();
         background-color: var(--block-section);
-        padding: @spacing-1;
+        padding: @spacing-half 0;
         border-radius: @radius-1;
         flex: 1;
         height: fit-content;
         min-width: 17rem;
+
+        &>div {
+            .f-row-center();
+            padding: @spacing-half @spacing-1;
+        }
     }
 }

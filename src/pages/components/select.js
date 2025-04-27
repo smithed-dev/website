@@ -17,10 +17,8 @@ class SelectWidget {
     };
 
     this.node.addEventListener("change", () => {
-      if ("URLSearchParams" in window) {
-        self.QueryParams.set("sort", this.tree["<select>"].value);
-        reloadParams();
-      }
+      self.THIS_URL.searchParams.set("sort", this.tree["<select>"].value);
+      reloadParams();
     });
   }
 
@@ -93,7 +91,7 @@ class SelectWidget {
       }
     });
 
-    const sort = self.QueryParams.get("sort");
+    const sort = self.THIS_URL.searchParams.get("sort");
     let index = 0;
     if (sort != null) {
       for (const option of this.tree["<select>"].children) {

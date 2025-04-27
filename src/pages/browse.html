@@ -5,7 +5,8 @@
     </pkg:l-heading>
 
     <pkg:l-with-sidebar class="%s width-wide">
-        <section class="l-col type-sections">
+        <section class="l-col type-sections" id="browse_packs" hx-get="/htmx/browse_packs" hx-trigger="reload"
+            hx-target="#packs" hx-swap="innerHTML">
             <header class="l-row">
                 <pkg:searchbar class="%s --flex" />
                 <pkg:select :id="sort" :icon="eyecons/sort">
@@ -15,40 +16,26 @@
                     <option value="newest">Newest</option>
                 </pkg:select>
             </header>
-            <nav class="l-row type-center">
-                {{ range .Pages }}
-                {{ if .IsSelected }}
-                <a class="on-highlight --selected" href="{{ .Href }}">
-                    {{ .Label }}
-                </a>
-                {{ else }}
-                <a class="on-highlight" href="{{ .Href }}">
-                    {{ .Label }}
-                </a>
-                {{ end }}
-                {{ end }}
-            </nav>
-            <pkg:l-grid :cols="2">
-                {{ range .Cards }}
-                {{ template "pack_card" . }}
-                {{ end }}
-            </pkg:l-grid>
-            <nav class="l-row type-center">
-                {{ range .Pages }}
-                {{ if .IsSelected }}
-                <a class="on-highlight --selected" href="{{ .Href }}">
-                    {{ .Label }}
-                </a>
-                {{ else }}
-                <a class="on-highlight" href="{{ .Href }}">
-                    {{ .Label }}
-                </a>
-                {{ end }}
-                {{ end }}
-            </nav>
+            <div id="packs" class="l-inherit on-loading">
+                {{ template "browse_packs" . }}
+            </div>
         </section>
 
-        <aside></aside>
+        <aside>
+            <div>
+                <b>Categories</b>
+            </div>
+            <section class="l-graph">
+                {{ range .Categories }}
+                <div>
+                    <pkg:icon :icon="eyecons/radio-unchecked" class="%s type-indicator" />
+                    <pkg:filter :label="{{ . }}" class="%s --flex">
+                        {{ . }}
+                    </pkg:filter>
+                </div>
+                {{ end }}
+            </section>
+        </aside>
     </pkg:l-with-sidebar>
 </pkg:root>
 {{ end }}

@@ -1,0 +1,83 @@
+{{ define "browse_cards" }}
+<header class="l-row">
+    <div class="w-input --flex" style="grid-area: searchbar;">
+        <svg class="w-icon" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
+            <path d="m10 7a3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3zm-3-5a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 2.7539-0.83203l2.5391 2.5391c0.39052 0.39052 1.0235 0.39052 1.4141 0 0.39052-0.39052 0.39052-1.0235 0-1.4141l-2.5391-2.5391a5 5 0 0 0 0.83203-2.7539 5 5 0 0 0-5-5z" fill-rule="evenodd" />
+        </svg>
+        <input id="search" type="text" placeholder="Search..." onchange="onSearchBarChanged(this)" />
+    </div>
+    <script>
+        document.getElementById("search").value = decodeURIComponent(self.QueryParams.get("search") || "");
+    </script>
+    <div id="js-id-select-sort" class="w-select">
+        <template>
+            <button class="w-button type-transparent">
+                <span class="js-item --flex">
+                    —
+                </span>
+                <svg class="w-icon js-indicator-unchecked" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
+                    <path d="m8 2a6 6 0 0 0-6 6 6 6 0 0 0 6 6 6 6 0 0 0 6-6 6 6 0 0 0-6-6zm0 2a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z" />
+                </svg>
+                <svg class="w-icon js-indicator-checked" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
+                    <path d="m8 2a6 6 0 0 0-6 6 6 6 0 0 0 6 6 6 6 0 0 0 6-6 6 6 0 0 0-6-6zm0 2a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4zm0 2a2 2 0 0 0-2 2 2 2 0 0 0 2 2 2 2 0 0 0 2-2 2 2 0 0 0-2-2z" />
+                </svg>
+            </button>
+        </template>
+        <select hidden>
+            <option value="trending">
+                Trending
+            </option>
+            <option value="downloads">
+                Downloads
+            </option>
+            <option value="alphabetically">
+                Alphabetically
+            </option>
+            <option value="newest">
+                Newest
+            </option>
+        </select>
+        <button class="w-button js-button">
+            <svg class="w-icon" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
+                <path d="m3 3c-0.554 0-1 0.446-1 1s0.446 1 1 1h10c0.554 0 1-0.446 1-1s-0.446-1-1-1h-10zm0 4c-0.554 0-1 0.446-1 1s0.446 1 1 1h7c0.554 0 1-0.446 1-1s-0.446-1-1-1h-7zm0 4c-0.554 0-1 0.446-1 1s0.446 1 1 1h4c0.554 0 1-0.446 1-1s-0.446-1-1-1h-4z" />
+            </svg>
+            <span class="js-selected --flex">
+                —
+            </span>
+            <svg class="w-icon type-indicator" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
+                <path d="m3.7082 5.292c-0.39173-0.39174-1.0243-0.39174-1.416 0-0.39174 0.39174-0.39174 1.0243 0 1.416l5.707 5.7051 5.707-5.7051c0.39174-0.39174 0.39174-1.0243 0-1.416-0.39173-0.39174-1.0243-0.39174-1.416 0l-4.291 4.293z" />
+            </svg>
+        </button>
+        <footer>
+        </footer>
+    </div>
+    <script>
+        new SelectWidget(document.getElementById("js-id-select-sort")).load()
+    </script>
+</header>
+<nav class="l-row type-center">
+    {{ range .Pages }} {{ if .IsSelected }}
+    <a class="on-highlight --selected" href="{{ .Href }}">
+        {{ .Label }}
+    </a>
+    {{ else }}
+    <a class="on-highlight" href="{{ .Href }}">
+        {{ .Label }}
+    </a>
+    {{ end }} {{ end }}
+</nav>
+<section class="l-grid type-2">
+    {{ range .Cards }} {{ template "pack_card" . }} {{ end }}
+</section>
+<nav class="l-row type-center">
+    {{ range .Pages }} {{ if .IsSelected }}
+    <a class="on-highlight --selected" href="{{ .Href }}">
+        {{ .Label }}
+    </a>
+    {{ else }}
+    <a class="on-highlight" href="{{ .Href }}">
+        {{ .Label }}
+    </a>
+    {{ end }} {{ end }}
+</nav>
+{{ end }}

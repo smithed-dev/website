@@ -1,0 +1,41 @@
+.w-filter {
+    .f-row-center();
+    border-radius: @radius-1;
+
+    &:has(button:hover),
+    &:has(button:focus) {
+        svg {
+            visibility: visible;
+        }
+    }
+
+    &.type-filtered {
+        background-color: var(--field-disturbing);
+        outline: 1px solid var(--text-disturbing);
+        color: var(--text-disturbing);
+
+        .w-button:last-of-type svg {
+            visibility: visible;
+            color: var(--text-disturbing);
+        }
+    }
+
+    &.type-selected .w-button:first-of-type {
+        background-color: var(--field-success);
+        outline: 1px solid var(--text-success);
+        color: var(--text-success);
+
+        svg {
+            visibility: visible;
+            color: var(--text-success);
+        }
+
+        &:hover {
+            background-color: var(--scheme-hover);
+        }
+
+        &:focus {
+            .focus();
+        }
+    }
+}

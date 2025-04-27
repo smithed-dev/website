@@ -20,6 +20,10 @@ self.addEventListener(
 /** @param {HTMLInputElement} node  */
 function onSearchBarChanged(node) {
   const value = encodeURIComponent(node.value);
+  if (value === "") {
+    self.QueryParams.delete("search");
+  } else {
     self.QueryParams.set("search", value);
+  }
   reloadParams();
 }

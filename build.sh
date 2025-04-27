@@ -24,7 +24,7 @@ mkdir -p ./www/htmx/
 
 function build {
     base=$(basename $1)
-    mend --input css_checksum=$css_checksum,js_checksum=$js_checksum --output $2/. $1 && echo "--- Built $2/$base"
+    mend --work-dir ./src/pages/ --input css_checksum=$css_checksum,js_checksum=$js_checksum --output $2/. $1 && echo "--- Built $2/$base"
 }
 
 for file in ./src/pages/*.html; do

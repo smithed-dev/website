@@ -18,9 +18,8 @@ class SelectWidget {
 
     this.node.addEventListener("change", () => {
       if ("URLSearchParams" in window) {
-        const searchParams = new URLSearchParams(self.location.search);
-        searchParams.set("sort", this.tree["<select>"].value);
-        self.location.search = searchParams.toString();
+        self.QueryParams.set("sort", this.tree["<select>"].value);
+        reloadParams();
       }
     });
   }
@@ -94,8 +93,7 @@ class SelectWidget {
       }
     });
 
-    const searchParams = new URLSearchParams(self.location.search);
-    const sort = searchParams.get("sort");
+    const sort = self.QueryParams.get("sort");
     let index = 0;
     if (sort != null) {
       for (const option of this.tree["<select>"].children) {

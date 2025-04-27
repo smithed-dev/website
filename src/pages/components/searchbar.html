@@ -4,6 +4,5 @@
     <mend:slot />
 </div>
 <script>
-    const searchParams = new URLSearchParams(self.location.search);
-    document.getElementById("search").value = decodeURIComponent(searchParams.get("search") || "");
+    document.getElementById("search").value = decodeURIComponent(self.QueryParams.get("search") || "");
 </script>

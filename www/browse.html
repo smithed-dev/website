@@ -13,7 +13,7 @@
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="all" />
     <link rel="stylesheet" href="/static/styles.min.css?checksum=a5e17d0ade85c72b520ea98eaedd7d39" />
-    <script src="/static/main.js?checksum=c52533dae198d846681505125844ec7f">
+    <script src="/static/main.js?checksum=6b90455e03b6db05cd7948de28f3a354">
     </script>
     <script src="/static/page_browse.js" defer>
     </script>
@@ -79,7 +79,7 @@
                         <input id="search" type="text" placeholder="Search..." onchange="onSearchBarChanged(this)" />
                     </div>
                     <script>
-                        const searchParams = new URLSearchParams(self.location.search); document.getElementById("search").value = decodeURIComponent(searchParams.get("search") || "");
+                        document.getElementById("search").value = decodeURIComponent(self.QueryParams.get("search") || "");
                     </script>
                     <div id="js-id-select-sort" class="w-select">
                         <template>

@@ -1,3 +1,10 @@
+/** @type {URLSearchParams} */
+self.QueryParams = new URLSearchParams(self.location.search);
+
+function reloadParams() {
+  self.location.search = self.QueryParams.toString();
+}
+
 self.addEventListener(
   "click",
   /** @param {MouseEvent} event */
@@ -12,7 +19,7 @@ self.addEventListener(
 
 /** @param {HTMLInputElement} node  */
 function onSearchBarChanged(node) {
-  const searchParams = new URLSearchParams(self.location.search);
-  searchParams.set("search", encodeURIComponent(node.value));
-  self.location.search = searchParams.toString();
+  const value = encodeURIComponent(node.value);
+    self.QueryParams.set("search", value);
+  reloadParams();
 }

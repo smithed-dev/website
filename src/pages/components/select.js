@@ -82,7 +82,7 @@ class SelectWidget {
       i++;
     }
 
-    this.node.style.setProperty("min-width", `${widestOption + 16 * 5}px`);
+    // this.node.style.setProperty("min-width", `${widestOption + 16 * 5}px`);
     this.tree["<button>"].addEventListener("click", () => {
       if (this.toggled) {
         this.close();

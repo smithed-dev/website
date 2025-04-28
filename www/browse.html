@@ -12,8 +12,8 @@
     <link rel="apple-touch-icon" href="/favicon.png" sizes="180x180" />
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="all" />
-    <link rel="stylesheet" href="/static/styles.min.css?checksum=3378a4529eff97f5aa2eefe6d16ea16f" />
-    <script src="/static/main.js?checksum=9117b996a61f70aef4192226ff648316">
+    <link rel="stylesheet" href="/static/styles.min.css?checksum=8b68ec7f94ab7386b5b6891cd9332522" />
+    <script src="/static/main.js?checksum=f20ca6dfd1fb2eff2218458b647ba85d">
     </script>
     <script src="/static/page_browse.js" defer>
     </script>
@@ -157,7 +157,7 @@
                         <svg class="w-icon type-indicator" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
                             <path d="m8 2a6 6 0 0 0-6 6 6 6 0 0 0 6 6 6 6 0 0 0 6-6 6 6 0 0 0-6-6zm0 2a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z" />
                         </svg>
-                        <div class="w-filter --flex" data-param="category" data-item="{{ . }}">
+                        <div class="w-filter --flex" data-item="{{ . }}" data-param="category">
                             <button class="w-button type-filter --flex" onclick="toggleFilterInclude(this)">
                                 <span class="--flex">
                                     {{ . }}

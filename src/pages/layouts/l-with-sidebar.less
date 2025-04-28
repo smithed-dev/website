@@ -21,4 +21,21 @@
             padding: @spacing-half @spacing-1;
         }
     }
+
+    @media only screen and (max-width: (@screen-sidebar-limit + @spacing-4)) {
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        overflow-x: scroll;
+        overflow-y: hidden;
+
+        &>* {
+            transition: min-width 200ms;
+            scroll-snap-align: start;
+            min-width: calc(100vw - @spacing-4) !important;
+        }
+
+        &>aside {
+            margin-right: @spacing-1;
+        }
+    }
 }

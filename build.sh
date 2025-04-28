@@ -3,7 +3,7 @@
 # ============
 echo "========"
 
-cp -fr ./web/public/ ./build/public/
+cp -fr ./web/public/ ./build/
 
 # ============
 echo "=== Compiling CSS"

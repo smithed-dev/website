@@ -8,6 +8,7 @@
         <img src="https://api.smithed.dev/v2/packs/{{ .Uid }}/gallery/0" alt onerror="this.remove()" onload="this.previousElementSibling.remove();" />
         {{ end }}
     </header>
+    {{ if .IsLanding }}
     <div>
         {{ if .First }}
         <div class="o-loading-bar is-playing">
@@ -17,6 +18,7 @@
         </div>
         {{ end }}
     </div>
+    {{ end }}
     <section>
         <section class="o-metadata">
             {{ if eq .VersionFrom .VersionTo }}

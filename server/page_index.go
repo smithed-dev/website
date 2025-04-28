@@ -68,8 +68,8 @@ func Index(writer http.ResponseWriter, request *http.Request) {
 		handler.writeErrInternal(errors.New("API returned an invalid JSON"))
 	}
 
-	trending := ForEach(PackCardData{Label: "trending"}, dataTrendingPacks)
-	newest := ForEach(PackCardData{Label: "new"}, dataNewestPacks)
+	trending := ForEach(PackCardData{Label: "trending", IsLanding: true}, dataTrendingPacks)
+	newest := ForEach(PackCardData{Label: "new", IsLanding: true}, dataNewestPacks)
 	cards := make([]packGroup, landingCardsCount)
 	for i := range landingCardsCount {
 		cards[i] = packGroup{

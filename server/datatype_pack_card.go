@@ -12,7 +12,9 @@ type PackCardData struct {
 	Id    string
 	Label string
 
-	First      bool
+	IsLanding bool
+	First     bool
+
 	HasGallery bool
 	Name       string
 	Desc       string
@@ -45,6 +47,7 @@ loop:
 	return PackCardData{
 		Uid:         data.Get("id").String(),
 		Id:          data.Get("data.id").String(),
+		IsLanding:   datatype.IsLanding,
 		Label:       datatype.Label,
 		First:       index == 0,
 		HasGallery:  data.Get("data.display.gallery").Exists(),

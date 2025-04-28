@@ -25,3 +25,5 @@ this.setInterval(() => {
     scrollCarousell(carousells[1]);
   }, 200);
 }, TIMER * 1000);
+
+carousells[0];

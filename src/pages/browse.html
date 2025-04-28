@@ -5,8 +5,8 @@
     </pkg:l-heading>
 
     <pkg:l-with-sidebar class="%s width-wide">
-        <section class="l-col type-sections" id="browse_packs" hx-get="/htmx/browse_packs" hx-trigger="manual-reload"
-            hx-target="#packs" hx-swap="innerHTML">
+        <section class="l-col type-sections" id="browse_packs" hx-trigger="manual-reload" hx-target="#htmx-packs"
+            hx-swap="innerHTML">
             <header class="l-row">
                 <pkg:searchbar class="%s --flex" />
                 <pkg:select :id="sort" :icon="eyecons/sort">
@@ -25,7 +25,7 @@
                     </button>
                 </template>
             </div>
-            <div id="packs" class="l-inherit on-loading">
+            <div id="htmx-packs" class="l-inherit on-loading">
                 {{ template "browse_packs" . }}
             </div>
         </section>

@@ -56,6 +56,7 @@ func Browse(writer http.ResponseWriter, request *http.Request) {
 		Versions: genVersions(),
 	}
 
+	queryPacks(handler, request, &data)
 	handler.ServePage(data)
 }
 

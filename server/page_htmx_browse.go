@@ -20,6 +20,13 @@ func HTMXBrowsePacks(writer http.ResponseWriter, request *http.Request) {
 		Pages: []pageData{},
 	}
 
+	queryPacks(handler, request, &data)
+
+	handler.Name = "browse_packs"
+	handler.ServePage(data)
+}
+
+func queryPacks(handler *Handler, request *http.Request, data *BrowsePageData) {
 	page, _ := strconv.Atoi(request.URL.Query().Get("page"))
 	sort := request.URL.Query().Get("sort")
 	category := request.URL.Query().Get("category")
@@ -118,7 +125,4 @@ func HTMXBrowsePacks(writer http.ResponseWriter, request *http.Request) {
 			})
 		}
 	}
-
-	handler.Name = "browse_packs"
-	handler.ServePage(data)
 }

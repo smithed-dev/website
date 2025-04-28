@@ -72,7 +72,7 @@
             </h1>
         </section>
         <section class="l-with-sidebar width-wide">
-            <section id="browse_packs" class="l-col type-sections" hx-get="/htmx/browse_packs" hx-trigger="manual-reload" hx-target="#packs" hx-swap="innerHTML">
+            <section id="browse_packs" class="l-col type-sections" hx-trigger="manual-reload" hx-target="#htmx-packs" hx-swap="innerHTML">
                 <header class="l-row">
                     <div class="w-input --flex" style="grid-area: searchbar;">
                         <svg class="w-icon" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
@@ -143,7 +143,7 @@
                         </button>
                     </template>
                 </div>
-                <div id="packs" class="l-inherit on-loading">
+                <div id="htmx-packs" class="l-inherit on-loading">
                     {{ template "browse_packs" . }}
                 </div>
             </section>

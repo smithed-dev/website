@@ -1,0 +1,95 @@
+@screen-max: 70rem;
+@screen-content: 50rem;
+@screen-tablet: 40rem;
+@screen-min: 24rem;
+
+.--font-text {
+    font-family: 'Lexend', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.--font-title {
+    font-family: 'Rubik', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.--font-mono {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.--width-content {
+    width: min(100vw - 4rem, @screen-content);
+}
+
+.--width-max {
+    width: min(100vw - 4rem, @screen-max);
+}
+
+.--width-fill(@padding) {
+    width: calc(100% - @padding);
+}
+
+.--flex-col(@gap) {
+    display: flex;
+    flex-direction: column;
+    gap: @gap * 1rem;
+}
+
+.--flex-col-center(@gap) {
+    .--flex-col(@gap);
+    align-items: center;
+}
+
+.--flex-col-stretch(@gap) {
+    .--flex-col(@gap);
+    align-items: stretch;
+}
+
+.--flex-row(@gap) {
+    display: flex;
+    flex-direction: row;
+    gap: @gap * 1rem;
+}
+
+.--flex-row-center(@gap) {
+    .--flex-row(@gap);
+    align-items: center;
+    gap: @gap;
+}
+
+.--flex-row-stretch(@gap) {
+    .--flex-row(@gap);
+    align-items: stretch;
+}
+
+.--bordered {
+    border: 1px solid var(--block-border);
+}
+
+.--focus {
+    outline: 2px solid var(--text-foreground);
+}
+
+.--interactive {
+    transition: background-color 0.2s;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+        background-color: var(--block-hover);
+    }
+
+    &:focus {
+        .--focus();
+    }
+}
+
+.--centered {
+    text-align: center;
+}
+
+.--flex {
+    flex: 1;
+}
+
+.--wrap {
+    flex-wrap: wrap;
+}

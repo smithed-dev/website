@@ -12,6 +12,9 @@ type PackCardData struct {
 	Id    string
 	Label string
 
+	IsLanding bool
+	First     bool
+
 	HasGallery bool
 	Name       string
 	Desc       string
@@ -24,7 +27,7 @@ type PackCardData struct {
 	Updated   string
 }
 
-func (datatype PackCardData) Load(data gjson.Result) Datatype {
+func (datatype PackCardData) Load(data gjson.Result, index int) Datatype {
 	categoriesArray := data.Get("data.categories").Array()
 	categories := make([]string, 0, len(categoriesArray))
 	i := 0
@@ -44,7 +47,9 @@ loop:
 	return PackCardData{
 		Uid:         data.Get("id").String(),
 		Id:          data.Get("data.id").String(),
+		IsLanding:   datatype.IsLanding,
 		Label:       datatype.Label,
+		First:       index == 0,
 		HasGallery:  data.Get("data.display.gallery").Exists(),
 		Name:        data.Get("displayName").String(),
 		Desc:        data.Get("data.display.description").String(),

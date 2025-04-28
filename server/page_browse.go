@@ -35,9 +35,9 @@ type BrowsePageParams struct {
 
 func Browse(writer http.ResponseWriter, request *http.Request) {
 	handler := NewHandler(writer, request).ParseTemplate(
-		"www/browse.html",
-		"www/htmx/pack_card.html",
-		"www/htmx/browse_packs.html",
+		"build/browse.html",
+		"build/htmx/pack_card.html",
+		"build/htmx/browse_packs.html",
 	)
 	data := BrowsePageData{
 		Cards: []PackCardData{},

@@ -1,0 +1,39 @@
+.l-graph {
+    .--flex-col-stretch(0);
+    padding: 0 1rem;
+
+    max-height: 20rem;
+    overflow-y: auto;
+
+    &>div {
+        .--flex-row-center(0);
+        position: relative;
+        padding: 0.5rem 0;
+        @height: 0.875rem;
+        --color: var(--block-border);
+
+        .type-indicator {
+            color: var(--color);
+        }
+
+        &:not(:first-of-type)::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: calc(0.5rem - 1px);
+            width: 2px;
+            height: @height;
+            background-color: var(--color);
+        }
+
+        &:not(:last-of-type)::after {
+            content: "";
+            position: absolute;
+            top: 1.625rem;
+            left: calc(0.5rem - 1px);
+            width: 2px;
+            height: @height;
+            background-color: var(--color);
+        }
+    }
+}

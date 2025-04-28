@@ -47,7 +47,10 @@ func HTMXBrowsePacks(writer http.ResponseWriter, request *http.Request) {
 	query.Set("scope", IndexScopes)
 	var suffix strings.Builder
 	for category := range strings.SplitSeq(params.Category, ",") {
-		suffix.WriteString("&category=" + url.QueryEscape(category))
+		value := url.QueryEscape(category)
+		if value != "" {
+			suffix.WriteString("&category=" + value)
+		}
 	}
 
 	api := NewAPI(handler)

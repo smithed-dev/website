@@ -20,6 +20,11 @@
             .f-row-center();
             padding: @spacing-half @spacing-1;
         }
+
+        &>hr {
+            --color: var(--text-inactive);
+            margin: @spacing-half 0;
+        }
     }
 
     @media only screen and (max-width: (@screen-sidebar-limit + @spacing-4)) {

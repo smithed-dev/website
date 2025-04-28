@@ -17,7 +17,7 @@ class SelectWidget {
     };
 
     this.node.addEventListener("change", () => {
-      self.THIS_URL.searchParams.set("sort", this.tree["<select>"].value);
+      // self.THIS_URL.searchParams.set("sort", this.tree["<select>"].value);
       reloadParams();
     });
   }
@@ -91,16 +91,16 @@ class SelectWidget {
       }
     });
 
-    const sort = self.THIS_URL.searchParams.get("sort");
+    // const sort = self.THIS_URL.searchParams.get("sort");
     let index = 0;
-    if (sort != null) {
-      for (const option of this.tree["<select>"].children) {
-        if (option.value === sort) {
-          break;
-        }
-        index++;
-      }
-    }
+    // if (sort != null) {
+    //   for (const option of this.tree["<select>"].children) {
+    //     if (option.value === sort) {
+    //       break;
+    //     }
+    //     index++;
+    //   }
+    // }
     this.tree["<select>"].value = this.tree["<select>"].children[index].value;
     this.node.dataset.index = String(index);
     this.tree["selected"].innerHTML =

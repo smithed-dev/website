@@ -16,6 +16,15 @@
                     <option value="newest">Newest</option>
                 </pkg:select>
             </header>
+            <div id="js-filters" class="l-row --wrap">
+                <template>
+                    <button class="w-button type-tag type-include">
+                        <pkg:icon :icon="eyecons/sort" :size="0.75" />
+                        <span class="js-label"></span>
+                        <pkg:icon :icon="eyecons/cross" :size="0.75" />
+                    </button>
+                </template>
+            </div>
             <div id="packs" class="l-inherit on-loading">
                 {{ template "browse_packs" . }}
             </div>
@@ -29,7 +38,7 @@
                 {{ range .Categories }}
                 <div>
                     <pkg:icon :icon="eyecons/radio-unchecked" class="%s type-indicator" />
-                    <pkg:filter :label="{{ . }}" class="%s --flex">
+                    <pkg:filter :label="{{ . }}" class="%s --flex" data-param="category" data-item="{{ . }}">
                         {{ . }}
                     </pkg:filter>
                 </div>

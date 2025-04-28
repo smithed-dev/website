@@ -764,6 +764,9 @@ hr.type-bullet {
 .--flex {
   flex: 1;
 }
+.--wrap {
+  flex-wrap: wrap;
+}
 @keyframes pack-label {
   from {
     transform: rotate(-5deg);

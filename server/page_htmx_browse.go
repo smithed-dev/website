@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"math"
 	"net/http"
+	"net/url"
 	"strconv"
+	"strings"
 	"sync"
 )
 
@@ -20,37 +22,47 @@ func HTMXBrowsePacks(writer http.ResponseWriter, request *http.Request) {
 
 	page, _ := strconv.Atoi(request.URL.Query().Get("page"))
 	sort := request.URL.Query().Get("sort")
+	category := request.URL.Query().Get("category")
 	if sort == "" {
 		sort = "trending"
 	}
 	params := BrowsePageParams{
-		Search: request.URL.Query().Get("search"),
-		Page:   page,
+		Search:   request.URL.Query().Get("search"),
+		Page:     page,
+		Category: category,
 	}
 
 	var packsData []byte
 	var countData []byte
 	var wg sync.WaitGroup
 
+	uri, _ := url.Parse("/packs")
+	query := uri.Query()
+	query.Set("sort", sort)
+	query.Set("limit", fmt.Sprint(browseLimitCount))
+	query.Set("start", fmt.Sprint(browseLimitCount*params.Page))
+	if params.Search != "" {
+		query.Set("search", params.Search)
+	}
+	query.Set("scope", IndexScopes)
+	var suffix strings.Builder
+	for category := range strings.SplitSeq(params.Category, ",") {
+		suffix.WriteString("&category=" + url.QueryEscape(category))
+	}
+
 	api := NewAPI(handler)
 	wg.Add(2)
 
 	go func(result *[]byte) {
-		*result = api.Get(
-			"/packs?sort=%s&limit=%d&start=%d&search=%s&scope=%s",
-			sort,
-			browseLimitCount,
-			browseLimitCount*params.Page,
-			params.Search,
-			IndexScopes,
-		)
+		*result = api.Get("/packs?%s%s", query.Encode(), suffix.String())
 		wg.Done()
 	}(&packsData)
 
 	go func(result *[]byte) {
 		*result = api.Get(
-			"/packs/count?search=%s",
+			"/packs/count?search=%s%s",
 			params.Search,
+			suffix.String(),
 		)
 		wg.Done()
 	}(&countData)

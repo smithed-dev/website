@@ -168,6 +168,7 @@ function onSearchBarChanged(node) {
  */
 function _toggleFilter(node, toggled, opposing, mode) {
   node.blur();
+  const tagsContainer = document.getElementById("js-filters");
   const container = node.parentElement;
   const id = `js-filter-${container.dataset.param}-${container.dataset.item}`;
 
@@ -183,6 +184,35 @@ function _toggleFilter(node, toggled, opposing, mode) {
   }
 
   container.classList.add(toggled);
+
+  if (mode === "exclude") {
+    return; // Not yet supported by the API
+  }
+
+  /** @type {HTMLButtonElement} */
+  const template = tagsContainer
+    .querySelector("template")
+    .content.querySelector("button")
+    .cloneNode(true);
+  template.querySelector(".js-label").innerHTML = node.innerText;
+  template.id = id;
+  template.dataset.name = container.dataset.item;
+  template.addEventListener("click", () => {
+    _toggleFilter(node, "type-selected", "type-filtered", "include");
+  });
+
+  tagsContainer.append(template);
+  let param = [self.THIS_URL.searchParams.get(container.dataset.param)];
+  if (param[0] == null) {
+    param = [];
+  } else {
+    param = [...decodeURIComponent(param).split(",")];
+  }
+  self.THIS_URL.searchParams.set(
+    container.dataset.param,
+    [...param, container.dataset.item].filter((a) => a).join(","),
+  );
+  reloadParams();
 }
 
 /** @param {HTMLButtonElement} node  */

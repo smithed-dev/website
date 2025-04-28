@@ -1,0 +1,30 @@
+.l-col,
+.l-col>.l-inherit {
+    .--flex-col-stretch(1);
+
+    &.type-center {
+        justify-content: center;
+    }
+
+    &.type-sections {
+        nav a {
+            background-color: var(--block-section);
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            text-decoration: none;
+            font-weight: 400;
+
+            &.--selected {
+                background-color: var(--text-foreground);
+                color: var(--block-shaded);
+            }
+
+            .--interactive();
+
+            &:hover,
+            &:focus {
+                color: var(--text-foreground);
+            }
+        }
+    }
+}

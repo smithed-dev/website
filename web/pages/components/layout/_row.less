@@ -1,0 +1,12 @@
+.l-row {
+    .--flex-row(1);
+
+    &.type-center {
+        justify-content: center;
+    }
+
+    @media only screen and (max-width: (@screen-min + 4rem)) {
+        align-items: stretch;
+        flex-direction: column;
+    }
+}

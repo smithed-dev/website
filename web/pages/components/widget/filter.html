@@ -1,0 +1,11 @@
+<div class="w-filter">
+    <button class="w-button type-filter --flex" onclick="toggleFilterInclude(this)">
+        <span class="--flex">
+            <mend:slot />
+        </span>
+        <pkg:icon :icon="eyecons/check" />
+    </button>
+    <button class="w-button type-filter" onclick="toggleFilterExclude(this)">
+        <pkg:icon :icon="eyecons/circle-crossed" />
+    </button>
+</div>

@@ -1,0 +1,16 @@
+<svg width="16" height="16" version="1.1" viewBox="0 0 4 4" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        @media (prefers-color-scheme: light) {
+            path {
+                fill: #000000;
+            }
+        }
+    </style>
+    <path d="m0.26782 0.43554 1.2158-0.39069a0.68205 0.68205 0 0 1 0.41729-1.265e-5l1.8313 0.58836-1.4256 0.45839z" fill="#fff" style="paint-order:stroke fill markers"/>
+    <path d="m2.3057 1.4273-2.3057-0.73388v0.66747a0.33272 0.33272 0 0 0 0.23096 0.31688l2.0732 0.66649c6.292e-4 -0.36883 9.98e-4 -0.69167 0.00146-0.91698z" fill="#fff" style="paint-order:stroke fill markers"/>
+    <path d="m2.3057 1.4273c-4.668e-4 0.22531-8.356e-4 0.54814-0.00146 0.91698l0.00243 9.764e-4 1.4624-0.46923a0.33254 0.33254 0 0 0 0.23097-0.31688v-0.66747l-1.6919 0.53661z" fill="#bfd1f1" style="paint-order:stroke fill markers"/>
+    <path d="m2.3037 2.6813c-2.658e-4 0.17067-7.472e-4 0.34745-9.765e-4 0.52587l0.00488 0.00146 0.56444-0.18115v-0.51952l-0.56444 0.17432z" fill="#4077d4" style="paint-order:stroke fill markers"/>
+    <path d="m2.3037 2.6808-1.1245-0.35448v0.51952l1.1235 0.36132c2.293e-4 -0.17842 7.107e-4 -0.3552 9.764e-4 -0.52587z" fill="#80a4e3" style="paint-order:stroke fill markers"/>
+    <path d="m2.3022 3.5689c-1.477e-4 0.14022-3.907e-4 0.28007-4.883e-4 0.41698l0.00586 0.00195 1.1289-0.3623v-0.41063l-1.1289 0.35546z" fill="#bfd1f1" style="paint-order:stroke fill markers"/>
+    <path d="m2.3022 3.5685-1.7388-0.54979v0.40917l1.7383 0.5581c9.74e-5 -0.13692 3.406e-4 -0.27677 4.883e-4 -0.41698z" fill="#fff" style="paint-order:stroke fill markers"/>
+</svg>

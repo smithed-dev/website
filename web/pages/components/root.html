@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, width=device-width" />
+
+    <title>[[ this.title ]] — Smithed™</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
+    <link rel="icon" sizes="48x48" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" sizes="all" href="/favicon.svg" />
+
+    <link rel="stylesheet" href="/static/styles.min.css?checksum=[[ root.checksum.css ]]" />
+
+    <script src="/static/main.js?checksum=[[ root.checksum.js ]]"></script>
+    <script src="/static/page_[[ root.@file.filename().trim_extension() ]].js" defer></script>
+
+    <!-- [!] "While the CDN approach is extremely simple, you may want to consider not using CDNs in production" -->
+    <script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.js"
+        integrity="sha384-oeUn82QNXPuVkGCkcrInrS1twIxKhkZiFfr2TdiuObZ3n3yIeMiqcRzkIcguaof1" crossorigin="anonymous">
+        </script>
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+        integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous">
+        </script>
+</head>
+
+
+<body class="theme-default">
+    <header>
+        <pkg:unmarked-link href="/" style="grid-area: logotype;">
+            <pkg:icon :icon="smithed" :size="2" />
+            <h2 class="adapt-hide-wide">Smithed</h2>
+        </pkg:unmarked-link>
+
+        <pkg:unmarked-link :label="Browse" href="/browse" style="grid-area: browse;" />
+
+        <pkg:unmarked-link :label="Articles" href="" style="grid-area: articles;" />
+
+        <pkg:unmarked-link href="" style="grid-area: weld;">
+            Weld
+            <pkg:icon :icon="eyecons/popout" />
+        </pkg:unmarked-link>
+
+        <mend:if :true="[[ this.searchbar ]]">
+            <pkg:searchbar class="%s --flex" style="grid-area: searchbar;">
+                <pkg:dropdown :type="list">
+                    <div>
+                        Searches for
+                        <em>packs by default</em>
+                    </div>
+                    <div>
+                        <b>@</b>
+                        To search for
+                        <em>users</em>
+                        and
+                        <em>teams</em>
+                    </div>
+                    <div>
+                        <b>#</b>
+                        To search for
+                        <em>bundles</em>
+                    </div>
+                </pkg:dropdown>
+            </pkg:searchbar>
+        </mend:if>
+        <mend:if :false="[[ this.searchbar ]]">
+            <div class="--flex" style="grid-area: searchbar;"></div>
+        </mend:if>
+
+        <pkg:unmarked-link href="" style="grid-area: inbox;">
+            Inbox
+            <pkg:icon :icon="eyecons/notification-unread" class="%s adapt-hide-content adapt-show-tablet" />
+        </pkg:unmarked-link>
+
+        <pkg:button :type="accent" :label="Log in" :icon="eyecons/user" href="" style="grid-area: profile;" />
+    </header>
+    <!-- ... -->
+    <main>
+        <mend:slot />
+    </main>
+    <!-- ... -->
+    <footer class="--centered">
+        <div>
+            <section>
+                <h2>
+                    ABOUT
+                </h2>
+                <pkg:unmarked-link :label="About Smithed" href="" />
+                <pkg:unmarked-link :label="How to Contribute" href="" />
+                <pkg:unmarked-link :label="Donate" href="" />
+            </section>
+            <section>
+                <h2>
+                    COMMUNITY
+                </h2>
+                <pkg:unmarked-link :label="Discord" href="" />
+                <pkg:unmarked-link :label="Guidelines" href="" />
+                <pkg:unmarked-link :label="Wiki" href="" />
+            </section>
+            <section>
+                <h2>
+                    LEGAL
+                </h2>
+                <pkg:unmarked-link :label="Terms of Use" href="" />
+                <pkg:unmarked-link :label="Privacy Policy" href="" />
+                <pkg:unmarked-link :label="Cookies" href="" />
+            </section>
+        </div>
+        <section>
+            <b>Copyright © 2018-2025 Smithed</b>
+            <p>
+                <em>Not an official Minecraft product. Not approved by or associated with Mojang Studios</em>
+            </p>
+        </section>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+.l-grid {
+    display: grid;
+    gap: 1rem;
+
+    &.type-2 {
+        grid-template-columns: 1fr 1fr;
+
+        @media only screen and (max-width: (@screen-content + 4rem)) {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+
+            &>* {
+                width: calc(100% - 2rem);
+                max-width: 24.5rem;
+                margin: 0 auto;
+            }
+        }
+    }
+}

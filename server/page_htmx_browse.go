@@ -12,8 +12,8 @@ import (
 
 func HTMXBrowsePacks(writer http.ResponseWriter, request *http.Request) {
 	handler := NewHandler(writer, request).ParseTemplate(
-		"www/htmx/browse_packs.html",
-		"www/htmx/pack_card.html",
+		"build/htmx/browse_packs.html",
+		"build/htmx/pack_card.html",
 	)
 	data := BrowsePageData{
 		Cards: []PackCardData{},

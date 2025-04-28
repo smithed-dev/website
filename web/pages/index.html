@@ -1,0 +1,48 @@
+{{ define "index" }}
+<pkg:root :title="Home" :searchbar="true">
+    <pkg:heading class="%s --centered --width-content">
+        <h1>Welcome!</h1>
+        <p>
+            Smithed is an open-source platform for exploring, sharing <br />
+            and supercharging minecraft data & resource packs.
+        </p>
+    </pkg:heading>
+
+    <pkg:grid :cols="2" class="%s --width-content">
+        <pkg:landing-carousell :index="1">
+            {{ range .Cards }}
+            {{ template "pack_card" .Trending }}
+            {{ end }}
+        </pkg:landing-carousell>
+        <pkg:landing-carousell :index="2">
+            {{ range .Cards }}
+            {{ template "pack_card" .Newest }}
+            {{ end }}
+        </pkg:landing-carousell>
+    </pkg:grid>
+
+    <pkg:separator :label="What is Smithed exactly?" class="%s --width-content" />
+
+    <pkg:grid :cols="2" class="%s --width-content">
+        <pkg:landing-card :icon="eyecons/home" :title="Discord" :label="Join" :action="eyecons/popout"
+            href="https://smithed.net/discord">
+            Smithed is a community of people passionate about data & resource packs. We host various related events,
+            develop libraries and hang out!
+        </pkg:landing-card>
+        <pkg:landing-card :icon="eyecons/jigsaw" :title="Packs" :label="Browse" :action="eyecons/search" href="/browse">
+            Create, share and browse data & resource packs. There are many tools to make the process simple and
+            fast.
+        </pkg:landing-card>
+        <pkg:landing-card :icon="eyecons/scroll" :title="Docs" :label="Explore" :action="eyecons/search"
+            href="https://docs.smithed.dev/">
+            Your all-in-one guide to the Smithed ecosystem. Whether you're a seasoned pack developer or just
+            starting out, Smithed has something to offer.
+        </pkg:landing-card>
+        <pkg:landing-card :icon="eyecons/curly_braces" :title="Weld" :label="Try it" :action="eyecons/popout"
+            href="https://weld.smithed.dev/">
+            The fastest pack merger in the west. Merge all your data and resource packs into a single zip easily
+            droppable into any world or minecraft instance.
+        </pkg:landing-card>
+    </pkg:grid>
+</pkg:root>
+{{ end }}

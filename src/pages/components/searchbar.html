@@ -1,8 +1,0 @@
-<div class="w-input" style="grid-area: searchbar;">
-    <pkg:icon :icon="eyecons/search" />
-    <input id="search" type="text" placeholder="Search..." onchange="onSearchBarChanged(this)" />
-    <mend:slot />
-</div>
-<script>
-    document.getElementById("search").value = decodeURIComponent(self.THIS_URL.searchParams.get("search") || "");
-</script>

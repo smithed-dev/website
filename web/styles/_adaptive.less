@@ -1,0 +1,31 @@
+@media only screen and (max-width: (@screen-max + 4rem)) {
+    .adapt-hide-wide {
+        display: none !important;
+    }
+}
+
+@media only screen and (max-width: (@screen-content + 4rem)) {
+    .adapt-hide-content {
+        display: none !important;
+    }
+}
+
+@media only screen and (max-width: (@screen-tablet + 4rem)) {
+    .adapt-hide-portrait {
+        display: none !important;
+    }
+
+    .adapt-show-tablet {
+        display: block !important;
+    }
+
+    .adapt-show-tablet-flex {
+        display: flex !important;
+    }
+}
+
+@media only screen and (max-width: (@screen-min + 4rem)) {
+    .adapt-hide-min {
+        display: none !important;
+    }
+}

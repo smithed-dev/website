@@ -78,7 +78,8 @@ func Index(writer http.ResponseWriter, request *http.Request) {
 		}
 	}
 
-	handler.ParseTemplate("www/index.html", "www/htmx/pack_card.html").ServeIndexPage(IndexPageData{
-		Cards: cards,
-	})
+	handler.ParseTemplate("build/index.html", "build/htmx/pack_card.html").
+		ServeIndexPage(IndexPageData{
+			Cards: cards,
+		})
 }

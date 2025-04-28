@@ -1,5 +1,2 @@
-tests/coverage.html
-dist/
-
 # it's a symlink to https://bbfh-dev/eyecons/ (make sure to build it) ~/dist/symbolic/web
 src/pages/components/icons/eyecons

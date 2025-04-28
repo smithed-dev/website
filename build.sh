@@ -1,43 +1,67 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash
 
-TMP=./src/styles/__build.less
+# ============
+echo "========"
 
-echo "=== Compiling less"
-cat ./src/styles/_fonts.less ./src/styles/_styles.less > $TMP
-find ./src/pages -name "*.less" -exec cat {} >> $TMP \;
-cat ./src/styles/_adaptive.less >> $TMP
-lessc $TMP > ./www/static/styles.css
-rm $TMP
-python -m csscompressor -o www/static/styles.min.css www/static/styles.css
+cp -fr ./web/public/ ./build/public/
 
-css_checksum=$(md5sum ./www/static/styles.min.css | cut -d ' ' -f1)
+# ============
+echo "=== Compiling CSS"
 
-echo "=== Compiling javascript together"
-echo "" > ./www/static/main.js
-find ./src/pages -name "*.js" -exec cat {} >> ./www/static/main.js \;
-cat ./src/main.js >> ./www/static/main.js
+cat \
+    ./web/styles/_units.less \
+    ./web/styles/fonts.less \
+    ./web/styles/normalize.less \
+    ./web/styles/themes.less \
+    ./web/styles/global.less \
+    > ./build/public/styles.css
+find ./web/pages/ -name "*.less" -exec cat {} >> ./build/public/styles.css \;
+cat ./web/styles/_adaptive.less >> ./build/public/styles.css
 
-js_checksum=$(md5sum ./www/static/main.js | cut -d ' ' -f1)
+lessc ./build/public/styles.css > /tmp/styles.css
+mv /tmp/styles.css ./build/public/styles.css
+python -m csscompressor -o ./build/public/styles.min.css ./build/public/styles.css
 
+CSS_CHECKSUM=$(md5sum ./build/public/styles.min.css | cut -d ' ' -f1)
+
+# ============
+echo "=== Compiling JS"
+
+cp ./web/main.js ./build/public/main.js
+find ./web/pages/ -name "*.js" -exec cat {} >> ./build/public/main.js \;
+
+JS_CHECKSUM=$(md5sum ./build/public/main.js | cut -d ' ' -f1)
+
+cp ./web/page_index.js ./build/public/page_index.js
+cp ./web/page_browse.js ./build/public/page_browse.js
+
+# ============
 echo "=== Building templates"
-mkdir -p ./www/htmx/
+mkdir -p ./build/htmx/
 
-function build {
-    base=$(basename $1)
-    mend --work-dir ./src/pages/ --input css_checksum=$css_checksum,js_checksum=$js_checksum --output $2/. $1 && echo "--- Built $2/$base"
+function mend_wrapper {
+    file=$1
+    dir=$2
+    base=$(basename $file)
+
+    mend --work-dir ./web/pages/ \
+         --input checksum.css=$CSS_CHECKSUM,checksum.js=$JS_CHECKSUM \
+         --output $dir/. $file \
+         2> >(sed $'s/^/\e[31m/; s/$/\e[0m/' >&2) \
+         && echo "--- Built $dir/$base"
 }
 
-for file in ./src/pages/*.html; do
+for file in ./web/pages/*.html; do
     if [[ -f $file ]]; then
-        build $file ./www &
+        mend_wrapper $file ./build &
     fi
 done
 
-for file in ./src/pages/htmx/*.html; do
+for file in ./web/pages/htmx/*.html; do
     if [[ -f $file ]]; then
-        build $file ./www/htmx &
+        mend_wrapper $file ./build/htmx &
     fi
 done
 
 wait
-echo "=== Finished building"
+echo "=== Done"

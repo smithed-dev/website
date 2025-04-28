@@ -1,0 +1,61 @@
+{{ define "pack_card" }}
+<a class="w-card" href="https://smithed.net/packs/{{ .Id }}">
+    <header>
+        <pkg:icon :icon="eyecons/picture-placeholder" :size="2" />
+        {{ if .HasGallery }}
+        <img src="https://api.smithed.dev/v2/packs/{{ .Uid }}/gallery/0" alt="" onerror="this.remove()"
+            onload="this.previousElementSibling.remove();" />
+        {{ end }}
+    </header>
+    <div>
+        {{ if .First }}
+        <div class="o-loading-bar is-playing"></div>
+        {{ else }}
+        <div class="o-loading-bar"></div>
+        {{ end }}
+    </div>
+    <section>
+        <section class="o-metadata">
+            {{ if eq .VersionFrom .VersionTo }}
+            <span>{{ .VersionFrom }}</span>
+            {{ else }}
+            <span>{{ .VersionFrom }} — {{ .VersionTo }}</span>
+            {{ end }}
+            {{ range .Categories }}
+            <hr class="type-bullet" />
+            <span>{{ . }}</span>
+            {{ end }}
+        </section>
+        <div>
+            <h3 class="on-highlight">{{ .Name }}</h3>
+            <p class="o-description">
+                {{ .Desc }}
+            </p>
+        </div>
+        <section class="o-metadata">
+            <pkg:icon :icon="eyecons/heart-outline" :size="0.75" class="%s o-rating type-positive" />
+            <span class="o-rating type-positive">Mostly positive (69)</span>
+            <hr class="type-bullet" />
+            <pkg:icon :icon="eyecons/download" :size="0.75" />
+            <span>{{ .Downloads }}</span>
+            <hr class="type-bullet" />
+            <pkg:icon :icon="eyecons/refresh" :size="0.75" />
+            <span>{{ .Updated }}</span>
+        </section>
+    </section>
+    <footer>
+        {{ if eq .Label "trending" }}
+        <span class="o-label type-trending">
+            <pkg:icon :icon="eyecons/globe" :size="0.75" />
+            <span>TRENDING</span>
+        </span>
+        {{ end }}
+        {{ if eq .Label "new" }}
+        <span class="o-label type-new">
+            <pkg:icon :icon="eyecons/clock" :size="0.75" />
+            <span>NEW</span>
+        </span>
+        {{ end }}
+    </footer>
+</a>
+{{ end }}

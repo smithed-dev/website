@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-unused-vars
 class FilterWidget {
   /** @type {HTMLDivElement} */
   node;
@@ -17,22 +18,45 @@ class FilterWidget {
 
   /** @param {HTMLButtonElement} button  */
   /** @param {HTMLButtonElement} conflicting  */
-  toggle(button, conflicting) {
+  /** @param {string} tag  */
+  toggle(button, conflicting, tag) {
+    const container = document.getElementById("js-filters");
+    const id = this.node.id.replace("filter", "tag");
+
     conflicting.classList.remove("is-selected");
+    container.querySelector(`#${id}`)?.remove();
 
     if (button.classList.contains("is-selected")) {
       button.classList.remove("is-selected");
     } else {
       button.classList.add("is-selected");
+
+      const clone = container
+        ?.querySelector("template")
+        ?.content?.children[0].cloneNode(true);
+      console.log(clone);
+
+      const copy = button.cloneNode(true);
+      copy.querySelector("em")?.remove();
+
+      clone.querySelector(".js-label").innerHTML = copy.innerText;
+      clone.classList.add(tag);
+      clone.id = id;
+      clone.addEventListener("click", () => {
+        this.toggle(button, conflicting, tag);
+      });
+
+      copy?.remove();
+      container.append(clone);
     }
   }
 
   toggleInclude() {
-    this.toggle(this.buttonInclude, this.node);
+    this.toggle(this.buttonInclude, this.node, "type-include");
   }
 
   toggleExclude() {
-    this.toggle(this.node, this.buttonInclude);
+    this.toggle(this.node, this.buttonInclude, "type-exclude");
   }
 
   reset() {

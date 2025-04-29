@@ -18,8 +18,7 @@
             </header>
             <div id="js-filters" class="l-row --wrap">
                 <template>
-                    <button class="w-button type-tag type-include">
-                        <pkg:icon :icon="eyecons/sort" :size="0.75" />
+                    <button class="w-button type-tag">
                         <span class="js-label"></span>
                         <pkg:icon :icon="eyecons/cross" :size="0.75" />
                     </button>
@@ -46,7 +45,7 @@
                     {{ else }}
                     <pkg:icon :icon="eyecons/node-up-down" :size="2" class="%s type-indicator" />
                     {{ end }}
-                    <pkg:filter :id="category-{{ $a }}" class="%s --flex" data-param="category" data-item="{{ $a }}">
+                    <pkg:filter :id="category-{{ $i }}" class="%s --flex" data-param="category" data-item="{{ $a }}">
                         {{ $a }}
                     </pkg:filter>
                 </div>
@@ -70,7 +69,7 @@
                     {{ else }}
                     <pkg:icon :icon="eyecons/node-up-down" :size="2" class="%s type-indicator" />
                     {{ end }}
-                    <pkg:filter :id="version-{{ $a }}" class="%s --flex" data-param="version" data-item="{{ $a }}">
+                    <pkg:filter :id="version-{{ $i }}" class="%s --flex" data-param="version" data-item="{{ $a }}">
                         {{ $a.Version }}
                     </pkg:filter>
                 </div>
@@ -85,7 +84,7 @@
                             {{ else }}
                             <pkg:icon :icon="eyecons/node-up-down" :size="2" class="%s type-indicator" />
                             {{ end }}
-                            <pkg:filter :id="version-{{ $a }}" class="%s --flex" data-param="version"
+                            <pkg:filter :id="version-{{ $i }}" class="%s --flex" data-param="version"
                                 data-item="{{ $a }}">
                                 {{ $a.Version }}
                                 <em>+{{ $len }}</em>
@@ -94,11 +93,12 @@
                         </summary>
                         <pkg:graph class="%s type-branch">
                             {{ $last := $a.SnapshotLast }}
+                            {{ $root := $i }}
                             {{ range $i, $b := $a.Snapshots }}
                             <div class="o-graph-node">
                                 <pkg:icon :icon="eyecons/node-up-down-right" :size="2" class="%s type-indicator" />
                                 <pkg:icon :icon="eyecons/node-left" :size="2" class="%s type-indicator" />
-                                <pkg:filter :id="version-{{ $b }}" class="%s --flex" data-param="version"
+                                <pkg:filter :id="version-{{ $root }}-{{ $i }}" class="%s --flex" data-param="version"
                                     data-item="{{ $b }}">
                                     {{ $b }}
                                 </pkg:filter>

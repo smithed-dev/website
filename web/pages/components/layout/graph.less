@@ -2,13 +2,47 @@
     .--flex-col-stretch(0);
     padding: 0 1rem;
 
-    max-height: 20rem;
-    overflow-y: auto;
+    &.type-limited {
+        max-height: 20rem;
+        overflow-y: auto;
+    }
 
-    &>div {
+    details {
+        border-radius: 0.5rem;
+
+        summary {
+            .--interactive();
+            border-radius: 0.5rem;
+
+            &:hover,
+            &:focus {
+                --color: var(--text-foreground);
+            }
+
+            &:focus {
+                outline: none;
+                color: var(--text-accent);
+                --color: var(--text-accent);
+            }
+        }
+
+        .l-graph {
+            padding: 0;
+        }
+
+        &[open] {
+            background-color: var(--block-section);
+            --color: var(--text-foreground);
+
+            .type-angle {
+                transform: scaleY(-1);
+            }
+        }
+    }
+
+    .o-graph-node {
         .--flex-row-center(0);
         position: relative;
-        padding: 0.5rem 0;
         @height: 0.875rem;
         --color: var(--block-border);
 
@@ -16,24 +50,8 @@
             color: var(--color);
         }
 
-        &:not(:first-of-type)::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: calc(0.5rem - 1px);
-            width: 2px;
-            height: @height;
-            background-color: var(--color);
-        }
-
-        &:not(:last-of-type)::after {
-            content: "";
-            position: absolute;
-            top: 1.625rem;
-            left: calc(0.5rem - 1px);
-            width: 2px;
-            height: @height;
-            background-color: var(--color);
+        .type-angle {
+            padding: 0 1rem;
         }
     }
 }

@@ -16,15 +16,18 @@ type pageData struct {
 }
 
 type versionData struct {
-	Version   string
-	Snapshots []string
+	Version      string
+	Snapshots    []string
+	SnapshotLast int
 }
 
 type BrowsePageData struct {
-	Cards      []PackCardData
-	Pages      []pageData
-	Categories []string
-	Versions   []versionData
+	Cards        []PackCardData
+	Pages        []pageData
+	Categories   []string
+	CategoryLast int
+	Versions     []versionData
+	VersionLast  int
 }
 
 type BrowsePageParams struct {
@@ -55,6 +58,8 @@ func Browse(writer http.ResponseWriter, request *http.Request) {
 		},
 		Versions: genVersions(),
 	}
+	data.CategoryLast = len(data.Categories) - 1
+	data.VersionLast = len(data.Versions) - 1
 
 	queryPacks(handler, request, &data)
 	handler.ServePage(data)
@@ -163,6 +168,10 @@ func genVersions() []versionData {
 			result[len(result)-1].Snapshots,
 			version,
 		)
+	}
+
+	for _, version := range result {
+		version.SnapshotLast = len(version.Snapshots) - 1
 	}
 
 	return result

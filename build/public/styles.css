@@ -1114,42 +1114,6 @@ body > footer > div section {
 .w-dropdown em {
   color: var(--text-success);
 }
-.w-filter {
-  display: flex;
-  flex-direction: row;
-  gap: 0rem;
-  align-items: center;
-  gap: 0;
-  border-radius: 1rem;
-}
-.w-filter:has(button:hover) svg,
-.w-filter:has(button:focus) svg {
-  visibility: visible;
-}
-.w-filter.type-filtered {
-  background-color: var(--field-disturbing);
-  outline: 1px solid var(--text-disturbing);
-  color: var(--text-disturbing);
-}
-.w-filter.type-filtered .w-button:last-of-type svg {
-  visibility: visible;
-  color: var(--text-disturbing);
-}
-.w-filter.type-selected .w-button:first-of-type {
-  background-color: var(--field-success);
-  outline: 1px solid var(--text-success);
-  color: var(--text-success);
-}
-.w-filter.type-selected .w-button:first-of-type svg {
-  visibility: visible;
-  color: var(--text-success);
-}
-.w-filter.type-selected .w-button:first-of-type:hover {
-  background-color: var(--scheme-hover);
-}
-.w-filter.type-selected .w-button:first-of-type:focus {
-  outline: 2px solid var(--text-foreground);
-}
 .w-select {
   display: flex;
   flex-direction: column;
@@ -1203,6 +1167,42 @@ body > footer > div section {
 }
 .w-unmarked-link h2 {
   margin-left: 0.5rem;
+}
+.w-filter {
+  display: flex;
+  flex-direction: row;
+  gap: 0rem;
+  align-items: center;
+  gap: 0;
+  border-radius: 1rem;
+}
+.w-filter:has(button:hover) svg,
+.w-filter:has(button:focus) svg {
+  visibility: visible;
+}
+.w-filter.is-selected {
+  background-color: var(--field-disturbing);
+  outline: 1px solid var(--text-disturbing);
+  color: var(--text-disturbing);
+}
+.w-filter.is-selected .w-button:last-of-type svg {
+  visibility: visible;
+  color: var(--text-disturbing);
+}
+.w-filter .type-include.is-selected {
+  background-color: var(--field-success);
+  outline: 1px solid var(--text-success);
+  color: var(--text-success);
+}
+.w-filter .type-include.is-selected svg {
+  visibility: visible;
+  color: var(--text-success);
+}
+.w-filter .type-include.is-selected:hover {
+  background-color: var(--scheme-hover);
+}
+.w-filter .type-include.is-selected:focus {
+  outline: 2px solid var(--text-foreground);
 }
 @keyframes pack-label {
   from {

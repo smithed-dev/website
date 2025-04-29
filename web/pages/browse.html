@@ -46,7 +46,7 @@
                     {{ else }}
                     <pkg:icon :icon="eyecons/node-up-down" :size="2" class="%s type-indicator" />
                     {{ end }}
-                    <pkg:filter class="%s --flex" data-param="category" data-item="{{ $a }}">
+                    <pkg:filter :id="category-{{ $a }}" class="%s --flex" data-param="category" data-item="{{ $a }}">
                         {{ $a }}
                     </pkg:filter>
                 </div>
@@ -70,7 +70,7 @@
                     {{ else }}
                     <pkg:icon :icon="eyecons/node-up-down" :size="2" class="%s type-indicator" />
                     {{ end }}
-                    <pkg:filter class="%s --flex" data-param="version" data-item="{{ $a }}">
+                    <pkg:filter :id="version-{{ $a }}" class="%s --flex" data-param="version" data-item="{{ $a }}">
                         {{ $a.Version }}
                     </pkg:filter>
                 </div>
@@ -85,7 +85,8 @@
                             {{ else }}
                             <pkg:icon :icon="eyecons/node-up-down" :size="2" class="%s type-indicator" />
                             {{ end }}
-                            <pkg:filter class="%s --flex" data-param="version" data-item="{{ $a }}">
+                            <pkg:filter :id="version-{{ $a }}" class="%s --flex" data-param="version"
+                                data-item="{{ $a }}">
                                 {{ $a.Version }}
                                 <em>+{{ $len }}</em>
                             </pkg:filter>
@@ -97,7 +98,8 @@
                             <div class="o-graph-node">
                                 <pkg:icon :icon="eyecons/node-up-down-right" :size="2" class="%s type-indicator" />
                                 <pkg:icon :icon="eyecons/node-left" :size="2" class="%s type-indicator" />
-                                <pkg:filter class="%s --flex" data-param="version" data-item="{{ $b }}">
+                                <pkg:filter :id="version-{{ $b }}" class="%s --flex" data-param="version"
+                                    data-item="{{ $b }}">
                                     {{ $b }}
                                 </pkg:filter>
                             </div>
@@ -116,19 +118,19 @@
             <pkg:graph>
                 <div class="o-graph-node">
                     <pkg:icon :icon="eyecons/node-down" :size="2" class="%s type-indicator" />
-                    <pkg:filter class="%s --flex" data-param="badge" data-item="smithed">
+                    <pkg:filter :id="badge-smithed" class="%s --flex" data-param="badge" data-item="smithed">
                         Made by Smithed
                     </pkg:filter>
                 </div>
                 <div class="o-graph-node">
                     <pkg:icon :icon="eyecons/node-up-down" :size="2" class="%s type-indicator" />
-                    <pkg:filter class="%s --flex" data-param="badge" data-item="lang">
+                    <pkg:filter :id="badge-lang" class="%s --flex" data-param="badge" data-item="lang">
                         Localization support
                     </pkg:filter>
                 </div>
                 <div class="o-graph-node">
                     <pkg:icon :icon="eyecons/node-up" :size="2" class="%s type-indicator" />
-                    <pkg:filter class="%s --flex" data-param="badge" data-item="resourcepack">
+                    <pkg:filter :id="badge-resourcepack" class="%s --flex" data-param="badge" data-item="resourcepack">
                         Resource pack
                     </pkg:filter>
                 </div>

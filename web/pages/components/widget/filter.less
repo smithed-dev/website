@@ -9,7 +9,7 @@
         }
     }
 
-    &.type-filtered {
+    &.is-selected {
         background-color: var(--field-disturbing);
         outline: 1px solid var(--text-disturbing);
         color: var(--text-disturbing);
@@ -20,22 +20,24 @@
         }
     }
 
-    &.type-selected .w-button:first-of-type {
-        background-color: var(--field-success);
-        outline: 1px solid var(--text-success);
-        color: var(--text-success);
-
-        svg {
-            visibility: visible;
+    .type-include {
+        &.is-selected {
+            background-color: var(--field-success);
+            outline: 1px solid var(--text-success);
             color: var(--text-success);
-        }
 
-        &:hover {
-            background-color: var(--scheme-hover);
-        }
+            svg {
+                visibility: visible;
+                color: var(--text-success);
+            }
 
-        &:focus {
-            .--focus();
+            &:hover {
+                background-color: var(--scheme-hover);
+            }
+
+            &:focus {
+                .--focus();
+            }
         }
     }
 }

@@ -12,6 +12,11 @@ self.addEventListener(
   },
 );
 
+/** @param {HTMLInputElement} node */
+function onSearchBarChanged(node) {
+  node.parentElement.dispatchEvent(new Event("change"));
+}
+
 /**
  * Simple URL manager for syncing history state and updating
  * elements that inherit the current search params.

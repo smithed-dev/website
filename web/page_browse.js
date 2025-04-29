@@ -19,6 +19,11 @@ function applySorting(node) {
   url.overwrite("sort", node.querySelector("select")?.value);
 }
 
+/** @param {HTMLDivElement} node */
+function applySearch(node) {
+  url.overwrite("search", node.querySelector("input")?.value || null);
+}
+
 self.onurlchanged = () => {
   const browser = document.getElementById("browser");
   htmx.process(browser);

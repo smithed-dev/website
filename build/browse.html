@@ -13,7 +13,7 @@
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="all" />
     <link rel="stylesheet" href="/static/styles.min.css?checksum=c5a922b70b8a4efbffb2232114e1d4c6" />
-    <script src="/static/main.js?checksum=9660abb060a91470a9c531aab77bf517">
+    <script src="/static/main.js?checksum=fb404280310b2ea37e04a610db43925f">
     </script>
     <script src="/static/page_browse.js" defer>
     </script>
@@ -72,7 +72,7 @@
         <section class="l-with-sidebar --width-max">
             <section id="browser" class="l-col type-sections" hx-trigger="url-changed" hx-target="#htmx-packs" hx-swap="innerHTML" data-inherit-url="hx-get">
                 <header class="l-row">
-                    <div class="w-input --flex">
+                    <div class="w-input --flex" onchange="applySearch(this)">
                         <svg class="w-icon" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
                             <path d="m10 7a3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3zm-3-5a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 2.7539-0.83203l2.5391 2.5391c0.39052 0.39052 1.0235 0.39052 1.4141 0 0.39052-0.39052 0.39052-1.0235 0-1.4141l-2.5391-2.5391a5 5 0 0 0 0.83203-2.7539 5 5 0 0 0-5-5z" fill-rule="evenodd" />
                         </svg>
@@ -164,7 +164,7 @@
                             <path d="m15 0v10.084a6 6 0 0 0-5 5.916 6 6 0 0 0 5 5.916v10.084h2v-10.084a6 6 0 0 0 5-5.916 6 6 0 0 0-5-5.916v-10.084h-2zm1 12a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z" />
                         </svg>
                         {{ end }}
-                        <div id="js-id-filter-category-{{ $i }}" class="w-filter --flex" data-param="category" data-item="{{ $a }}">
+                        <div id="js-id-filter-category-{{ $i }}" class="w-filter --flex" data-item="{{ $a }}" data-param="category">
                             <button class="w-button type-filter type-include --flex" onclick="toggleFilter(this, 'toggleInclude')">
                                 <span class="--flex">
                                     {{ $a }}

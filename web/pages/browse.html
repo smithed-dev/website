@@ -8,7 +8,7 @@
         <section class="l-col type-sections" id="browser" hx-trigger="url-changed" hx-target="#htmx-packs"
             hx-swap="innerHTML" data-inherit-url="hx-get">
             <header class="l-row">
-                <pkg:searchbar class="%s --flex" />
+                <pkg:searchbar class="%s --flex" onchange="applySearch(this)" />
                 <pkg:select :id="sort" :icon="eyecons/sort" onchange="applySorting(this)">
                     <option value="trending">Trending</option>
                     <option value="downloads">Downloads</option>

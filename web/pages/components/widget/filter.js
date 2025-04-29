@@ -34,8 +34,6 @@ class FilterWidget {
       const clone = container
         ?.querySelector("template")
         ?.content?.children[0].cloneNode(true);
-      console.log(clone);
-
       const copy = button.cloneNode(true);
       copy.querySelector("em")?.remove();
 

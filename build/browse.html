@@ -13,7 +13,7 @@
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="all" />
     <link rel="stylesheet" href="/static/styles.min.css?checksum=c5a922b70b8a4efbffb2232114e1d4c6" />
-    <script src="/static/main.js?checksum=43054bbcac1c6e07c3cdd0dad7cbb547">
+    <script src="/static/main.js?checksum=db2cd679bec1e36c124509241fa9f54e">
     </script>
     <script src="/static/page_browse.js" defer>
     </script>
@@ -70,7 +70,7 @@
             </h1>
         </section>
         <section class="l-with-sidebar --width-max">
-            <section id="browser" class="l-col type-sections" hx-trigger="manual-reload" hx-target="#htmx-packs" hx-swap="innerHTML">
+            <section id="browser" class="l-col type-sections" hx-trigger="url-changed" hx-target="#htmx-packs" hx-swap="innerHTML" data-inherit-url="hx-get">
                 <header class="l-row">
                     <div class="w-input --flex">
                         <svg class="w-icon" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
@@ -78,7 +78,7 @@
                         </svg>
                         <input id="search" type="text" placeholder="Search..." onchange="onSearchBarChanged(this)" />
                     </div>
-                    <div id="js-id-select-sort" class="w-select">
+                    <div id="js-id-select-sort" class="w-select" onchange="applySorting(this)">
                         <template>
                             <button class="w-button type-transparent">
                                 <span class="js-item --flex">
@@ -164,7 +164,7 @@
                             <path d="m15 0v10.084a6 6 0 0 0-5 5.916 6 6 0 0 0 5 5.916v10.084h2v-10.084a6 6 0 0 0 5-5.916 6 6 0 0 0-5-5.916v-10.084h-2zm1 12a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z" />
                         </svg>
                         {{ end }}
-                        <div id="js-id-filter-category-{{ $i }}" class="w-filter --flex" data-item="{{ $a }}" data-param="category">
+                        <div id="js-id-filter-category-{{ $i }}" class="w-filter --flex" data-param="category" data-item="{{ $a }}">
                             <button class="w-button type-filter type-include --flex" onclick="toggleFilter(this, 'toggleInclude')">
                                 <span class="--flex">
                                     {{ $a }}
@@ -211,7 +211,7 @@
                             <path d="m15 0v10.084a6 6 0 0 0-5 5.916 6 6 0 0 0 5 5.916v10.084h2v-10.084a6 6 0 0 0 5-5.916 6 6 0 0 0-5-5.916v-10.084h-2zm1 12a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z" />
                         </svg>
                         {{ end }}
-                        <div id="js-id-filter-version-{{ $i }}" class="w-filter --flex" data-item="{{ $a }}" data-param="version">
+                        <div id="js-id-filter-version-{{ $i }}" class="w-filter --flex" data-param="version" data-item="{{ $a }}">
                             <button class="w-button type-filter type-include --flex" onclick="toggleFilter(this, 'toggleInclude')">
                                 <span class="--flex">
                                     {{ $a.Version }}
@@ -323,10 +323,10 @@
                         <svg class="w-icon type-indicator" width="32" height="32" style="--size: 2rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32" fill="currentColor">
                             <path d="m16 10a6 6 0 0 0-6 6 6 6 0 0 0 5 5.916v10.084h2v-10.084a6 6 0 0 0 5-5.916 6 6 0 0 0-6-6zm0 2a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z" />
                         </svg>
-                        <div id="js-id-filter-badge-smithed" class="w-filter --flex" data-item="smithed" data-param="badge">
+                        <div id="js-id-filter-badge-smithed" class="w-filter --flex" data-param="badge" data-item="smithed">
                             <button class="w-button type-filter type-include --flex" onclick="toggleFilter(this, 'toggleInclude')">
                                 <span class="--flex">
-                                    Made by Smithed
+                                    Smithed made
                                 </span>
                                 <svg class="w-icon" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
                                     <path d="m13 3.5a1 1 0 0 0-0.70703 0.29297l-6.293 6.293-2.293-2.293a1 1 0 0 0-1.4141 0 1 1 0 0 0 0 1.4141l3.707 3.707 7.707-7.707a1 1 0 0 0 0-1.4141 1 1 0 0 0-0.70703-0.29297z" />
@@ -350,7 +350,7 @@
                         <div id="js-id-filter-badge-lang" class="w-filter --flex" data-param="badge" data-item="lang">
                             <button class="w-button type-filter type-include --flex" onclick="toggleFilter(this, 'toggleInclude')">
                                 <span class="--flex">
-                                    Localization support
+                                    Localization
                                 </span>
                                 <svg class="w-icon" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
                                     <path d="m13 3.5a1 1 0 0 0-0.70703 0.29297l-6.293 6.293-2.293-2.293a1 1 0 0 0-1.4141 0 1 1 0 0 0 0 1.4141l3.707 3.707 7.707-7.707a1 1 0 0 0 0-1.4141 1 1 0 0 0-0.70703-0.29297z" />
@@ -371,7 +371,7 @@
                         <svg class="w-icon type-indicator" width="32" height="32" style="--size: 2rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32" fill="currentColor">
                             <path d="m16 22a6 6 0 0 1-6-6 6 6 0 0 1 5-5.916v-10.084h2v10.084a6 6 0 0 1 5 5.916 6 6 0 0 1-6 6zm0-2a4 4 0 0 0 4-4 4 4 0 0 0-4-4 4 4 0 0 0-4 4 4 4 0 0 0 4 4z" />
                         </svg>
-                        <div id="js-id-filter-badge-resourcepack" class="w-filter --flex" data-item="resourcepack" data-param="badge">
+                        <div id="js-id-filter-badge-resourcepack" class="w-filter --flex" data-param="badge" data-item="resourcepack">
                             <button class="w-button type-filter type-include --flex" onclick="toggleFilter(this, 'toggleInclude')">
                                 <span class="--flex">
                                     Resource pack

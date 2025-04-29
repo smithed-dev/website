@@ -1,3 +1,5 @@
+self.onurlchanged = () => {};
+
 self.addEventListener(
   "click",
   /** @param {MouseEvent} event */
@@ -9,129 +11,40 @@ self.addEventListener(
     }
   },
 );
-class SelectWidget {
-  /** @type {HTMLDivElement} */
-  node;
-  /** @type {Object.<string, HTMLElement>} */
-  tree;
-  /** @type {boolean} */
-  toggled;
 
-  constructor(node) {
-    this.node = node;
-    this.tree = {
-      "<template>": node.querySelector("template"),
-      "<select>": node.querySelector("select"),
-      "<footer>": node.querySelector("footer"),
-      "<button>": node.querySelector(".js-button"),
-      selected: node.querySelector(".js-selected"),
-    };
+const url = {
+  instance: new URL(self.location),
 
-    this.node.addEventListener("change", () => {
-      // self.THIS_URL.searchParams.set("sort", this.tree["<select>"].value);
-      reloadParams();
+  update() {
+    history.pushState(null, "", this.instance);
+    document.querySelectorAll("[data-inherit-url]").forEach((node) => {
+      const attr = node.getAttribute("data-inherit-url");
+      const value = node.getAttribute(attr) || self.location;
+      if (value == null || attr == null) {
+        return;
+      }
+      node.setAttribute(
+        attr,
+        value.split("?")[0] + "?" + this.instance.searchParams.toString(),
+      );
     });
-  }
 
-  load() {
-    /** @type {HTMLButtonElement} */
-    const template = this.tree["<template>"].content.querySelector("button");
+    self.onurlchanged();
+  },
 
-    let widestOption = 0;
-    let i = 0;
-    for (const option of this.tree["<select>"].children) {
-      /** @type {HTMLButtonElement} */
-      const item = template.cloneNode(true);
+  get(key) {
+    return this.instance.searchParams.get(key);
+  },
 
-      if (this.tree["<select>"].value === option.value) {
-        item
-          .querySelector(".js-indicator-unchecked")
-          .style.setProperty("display", "none");
-      } else {
-        item
-          .querySelector(".js-indicator-checked")
-          .style.setProperty("display", "none");
-      }
-
-      item.querySelector(".js-item").innerHTML = option.innerText;
-      item.dataset.index = i;
-      item.dataset.value = option.value;
-
-      this.tree["<footer>"].append(item);
-      if (item.clientWidth > widestOption) {
-        widestOption = item.clientWidth;
-      }
-
-      item.addEventListener("click", () => {
-        const index = item.dataset.index;
-        this.tree["<select>"].value =
-          this.tree["<select>"].children[Number(index)].value;
-        this.node.dispatchEvent(new Event("change"));
-        this.node.dataset.index = index;
-
-        item.parentElement.parentElement
-          .querySelectorAll(".js-indicator-checked")
-          .forEach((indicator) =>
-            indicator.style.setProperty("display", "none"),
-          );
-        item.parentElement.parentElement
-          .querySelectorAll(".js-indicator-unchecked")
-          .forEach((indicator) => indicator.style.removeProperty("display"));
-
-        item
-          .querySelector(".js-indicator-unchecked")
-          .style.setProperty("display", "none");
-        item
-          .querySelector(".js-indicator-checked")
-          .style.removeProperty("display");
-
-        this.tree["selected"].innerHTML =
-          this.tree["<select>"].children[Number(index)].innerText;
-
-        this.close();
-      });
-      i++;
+  overwrite(key, value) {
+    if (value == null) {
+      this.instance.searchParams.delete(key);
+    } else {
+      this.instance.searchParams.set(key, value);
     }
-
-    // this.node.style.setProperty("min-width", `${widestOption + 16 * 5}px`);
-    this.tree["<button>"].addEventListener("click", () => {
-      if (this.toggled) {
-        this.close();
-      } else {
-        this.open();
-      }
-    });
-
-    // const sort = self.THIS_URL.searchParams.get("sort");
-    let index = 0;
-    // if (sort != null) {
-    //   for (const option of this.tree["<select>"].children) {
-    //     if (option.value === sort) {
-    //       break;
-    //     }
-    //     index++;
-    //   }
-    // }
-    this.tree["<select>"].value = this.tree["<select>"].children[index].value;
-    this.node.dataset.index = String(index);
-    this.tree["selected"].innerHTML =
-      this.tree["<select>"].children[index].innerText;
-
-    self.WIDGETS = [...(self.WIDGETS || []), this];
-  }
-
-  open() {
-    this.node.classList.add("--open");
-    this.node.blur();
-    this.tree["<footer>"].children[Number(this.node.dataset.index)].focus();
-    this.toggled = true;
-  }
-
-  close() {
-    this.node.classList.remove("--open");
-    this.toggled = false;
-  }
-}
+    return this.update();
+  },
+};
 // deno-lint-ignore-file no-unused-vars
 class FilterWidget {
   /** @type {HTMLDivElement} */
@@ -168,8 +81,6 @@ class FilterWidget {
       const clone = container
         ?.querySelector("template")
         ?.content?.children[0].cloneNode(true);
-      console.log(clone);
-
       const copy = button.cloneNode(true);
       copy.querySelector("em")?.remove();
 
@@ -207,4 +118,129 @@ function toggleFilter(button, fn) {
     }
   }
   button.blur();
+}
+class SelectWidget {
+  /** @type {HTMLDivElement} */
+  node;
+  /** @type {Object.<string, HTMLElement>} */
+  tree;
+  /** @type {boolean} */
+  toggled = false;
+
+  constructor(node) {
+    this.node = node;
+    this.tree = {
+      template: node.querySelector("template"),
+      select: node.querySelector("select"),
+      footer: node.querySelector("footer"),
+      button: node.querySelector(".js-button"),
+      selected: node.querySelector(".js-selected"),
+    };
+
+    // whenever the native <select> changes, mirror into our widget
+    this.tree.select.addEventListener("change", () => {
+      const idx = Array.prototype.indexOf.call(
+        this.tree.select.children,
+        this.tree.select.selectedOptions[0],
+      );
+      this.set(idx);
+    });
+  }
+
+  /**
+   * Build the list of buttons in the footer, attach click handlers
+   */
+  load() {
+    const btnTemplate = /** @type {HTMLButtonElement} */ (
+      this.tree.template.content.querySelector("button")
+    );
+
+    // clear any existing items
+    this.tree.footer.innerHTML = "";
+
+    Array.from(this.tree.select.children).forEach((option, idx) => {
+      const item = /** @type {HTMLButtonElement} */ (
+        btnTemplate.cloneNode(true)
+      );
+
+      item.querySelector(".js-item").innerHTML = option.innerText;
+      item.dataset.index = String(idx);
+      item.dataset.value = option.value;
+
+      item.addEventListener("click", () => {
+        this.set(idx);
+        // propagate events
+        this.tree.select.dispatchEvent(new Event("change"));
+        this.node.dispatchEvent(new Event("change"));
+        this.close();
+      });
+
+      this.tree.footer.append(item);
+    });
+
+    // wire up the toggle button
+    this.tree.button.addEventListener("click", () => {
+      this.toggled ? this.close() : this.open();
+    });
+
+    // pick initial (first) item
+    this.set(0);
+    // register globally if you still need it
+    self.WIDGETS = [...(self.WIDGETS || []), this];
+  }
+
+  /**
+   * Centralized selector: updates the <select>, the footer buttons,
+   * the visible label, and the data-index on the root node.
+   *
+   * @param {number} index
+   */
+  set(index) {
+    const options = this.tree.select.children;
+    if (index < 0 || index >= options.length) return;
+
+    // update the native select
+    this.tree.select.value = options[index].value;
+    this.node.dataset.index = String(index);
+
+    // update footer button indicators
+    this.tree.footer.querySelectorAll("button").forEach((btn, btnIdx) => {
+      const checked = btnIdx === index;
+      btn
+        .querySelector(".js-indicator-checked")
+        .style.setProperty("display", checked ? "" : "none");
+      btn
+        .querySelector(".js-indicator-unchecked")
+        .style.setProperty("display", checked ? "none" : "");
+    });
+
+    // update the label
+    this.tree.selected.innerHTML = options[index].innerText;
+  }
+
+  /**
+   * @param {string} name
+   * @returns {number}
+   * */
+  findIndexOfValue(value) {
+    for (let i = 0; i < this.tree.select.children.length; i++) {
+      if (this.tree.select.children[i].value == value) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
+  open() {
+    this.node.classList.add("--open");
+    // focus the currently selected item
+    const idx = Number(this.node.dataset.index);
+    this.tree.footer.children[idx]?.focus();
+    this.toggled = true;
+  }
+
+  close() {
+    this.node.classList.remove("--open");
+    this.toggled = false;
+  }
 }

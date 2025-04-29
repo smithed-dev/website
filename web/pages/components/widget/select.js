@@ -4,115 +4,117 @@ class SelectWidget {
   /** @type {Object.<string, HTMLElement>} */
   tree;
   /** @type {boolean} */
-  toggled;
+  toggled = false;
 
   constructor(node) {
     this.node = node;
     this.tree = {
-      "<template>": node.querySelector("template"),
-      "<select>": node.querySelector("select"),
-      "<footer>": node.querySelector("footer"),
-      "<button>": node.querySelector(".js-button"),
+      template: node.querySelector("template"),
+      select: node.querySelector("select"),
+      footer: node.querySelector("footer"),
+      button: node.querySelector(".js-button"),
       selected: node.querySelector(".js-selected"),
     };
 
-    this.node.addEventListener("change", () => {
-      // self.THIS_URL.searchParams.set("sort", this.tree["<select>"].value);
-      reloadParams();
+    // whenever the native <select> changes, mirror into our widget
+    this.tree.select.addEventListener("change", () => {
+      const idx = Array.prototype.indexOf.call(
+        this.tree.select.children,
+        this.tree.select.selectedOptions[0],
+      );
+      this.set(idx);
     });
   }
 
+  /**
+   * Build the list of buttons in the footer, attach click handlers
+   */
   load() {
-    /** @type {HTMLButtonElement} */
-    const template = this.tree["<template>"].content.querySelector("button");
+    const btnTemplate = /** @type {HTMLButtonElement} */ (
+      this.tree.template.content.querySelector("button")
+    );
 
-    let widestOption = 0;
-    let i = 0;
-    for (const option of this.tree["<select>"].children) {
-      /** @type {HTMLButtonElement} */
-      const item = template.cloneNode(true);
+    // clear any existing items
+    this.tree.footer.innerHTML = "";
 
-      if (this.tree["<select>"].value === option.value) {
-        item
-          .querySelector(".js-indicator-unchecked")
-          .style.setProperty("display", "none");
-      } else {
-        item
-          .querySelector(".js-indicator-checked")
-          .style.setProperty("display", "none");
-      }
+    Array.from(this.tree.select.children).forEach((option, idx) => {
+      const item = /** @type {HTMLButtonElement} */ (
+        btnTemplate.cloneNode(true)
+      );
 
       item.querySelector(".js-item").innerHTML = option.innerText;
-      item.dataset.index = i;
+      item.dataset.index = String(idx);
       item.dataset.value = option.value;
 
-      this.tree["<footer>"].append(item);
-      if (item.clientWidth > widestOption) {
-        widestOption = item.clientWidth;
-      }
-
       item.addEventListener("click", () => {
-        const index = item.dataset.index;
-        this.tree["<select>"].value =
-          this.tree["<select>"].children[Number(index)].value;
+        this.set(idx);
+        // propagate events
+        this.tree.select.dispatchEvent(new Event("change"));
         this.node.dispatchEvent(new Event("change"));
-        this.node.dataset.index = index;
-
-        item.parentElement.parentElement
-          .querySelectorAll(".js-indicator-checked")
-          .forEach((indicator) =>
-            indicator.style.setProperty("display", "none"),
-          );
-        item.parentElement.parentElement
-          .querySelectorAll(".js-indicator-unchecked")
-          .forEach((indicator) => indicator.style.removeProperty("display"));
-
-        item
-          .querySelector(".js-indicator-unchecked")
-          .style.setProperty("display", "none");
-        item
-          .querySelector(".js-indicator-checked")
-          .style.removeProperty("display");
-
-        this.tree["selected"].innerHTML =
-          this.tree["<select>"].children[Number(index)].innerText;
-
         this.close();
       });
-      i++;
-    }
 
-    // this.node.style.setProperty("min-width", `${widestOption + 16 * 5}px`);
-    this.tree["<button>"].addEventListener("click", () => {
-      if (this.toggled) {
-        this.close();
-      } else {
-        this.open();
-      }
+      this.tree.footer.append(item);
     });
 
-    // const sort = self.THIS_URL.searchParams.get("sort");
-    let index = 0;
-    // if (sort != null) {
-    //   for (const option of this.tree["<select>"].children) {
-    //     if (option.value === sort) {
-    //       break;
-    //     }
-    //     index++;
-    //   }
-    // }
-    this.tree["<select>"].value = this.tree["<select>"].children[index].value;
-    this.node.dataset.index = String(index);
-    this.tree["selected"].innerHTML =
-      this.tree["<select>"].children[index].innerText;
+    // wire up the toggle button
+    this.tree.button.addEventListener("click", () => {
+      this.toggled ? this.close() : this.open();
+    });
 
+    // pick initial (first) item
+    this.set(0);
+    // register globally if you still need it
     self.WIDGETS = [...(self.WIDGETS || []), this];
+  }
+
+  /**
+   * Centralized selector: updates the <select>, the footer buttons,
+   * the visible label, and the data-index on the root node.
+   *
+   * @param {number} index
+   */
+  set(index) {
+    const options = this.tree.select.children;
+    if (index < 0 || index >= options.length) return;
+
+    // update the native select
+    this.tree.select.value = options[index].value;
+    this.node.dataset.index = String(index);
+
+    // update footer button indicators
+    this.tree.footer.querySelectorAll("button").forEach((btn, btnIdx) => {
+      const checked = btnIdx === index;
+      btn
+        .querySelector(".js-indicator-checked")
+        .style.setProperty("display", checked ? "" : "none");
+      btn
+        .querySelector(".js-indicator-unchecked")
+        .style.setProperty("display", checked ? "none" : "");
+    });
+
+    // update the label
+    this.tree.selected.innerHTML = options[index].innerText;
+  }
+
+  /**
+   * @param {string} name
+   * @returns {number}
+   * */
+  findIndexOfValue(value) {
+    for (let i = 0; i < this.tree.select.children.length; i++) {
+      if (this.tree.select.children[i].value == value) {
+        return i;
+      }
+    }
+    return -1;
   }
 
   open() {
     this.node.classList.add("--open");
-    this.node.blur();
-    this.tree["<footer>"].children[Number(this.node.dataset.index)].focus();
+    // focus the currently selected item
+    const idx = Number(this.node.dataset.index);
+    this.tree.footer.children[idx]?.focus();
     this.toggled = true;
   }
 

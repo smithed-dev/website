@@ -5,11 +5,11 @@
     </pkg:heading>
 
     <pkg:with-sidebar class="%s --width-max">
-        <section class="l-col type-sections" id="browser" hx-trigger="manual-reload" hx-target="#htmx-packs"
-            hx-swap="innerHTML">
+        <section class="l-col type-sections" id="browser" hx-trigger="url-changed" hx-target="#htmx-packs"
+            hx-swap="innerHTML" data-inherit-url="hx-get">
             <header class="l-row">
                 <pkg:searchbar class="%s --flex" />
-                <pkg:select :id="sort" :icon="eyecons/sort">
+                <pkg:select :id="sort" :icon="eyecons/sort" onchange="applySorting(this)">
                     <option value="trending">Trending</option>
                     <option value="downloads">Downloads</option>
                     <option value="alphabetically">Alphabetically</option>
@@ -119,13 +119,13 @@
                 <div class="o-graph-node">
                     <pkg:icon :icon="eyecons/node-down" :size="2" class="%s type-indicator" />
                     <pkg:filter :id="badge-smithed" class="%s --flex" data-param="badge" data-item="smithed">
-                        Made by Smithed
+                        Smithed made
                     </pkg:filter>
                 </div>
                 <div class="o-graph-node">
                     <pkg:icon :icon="eyecons/node-up-down" :size="2" class="%s type-indicator" />
                     <pkg:filter :id="badge-lang" class="%s --flex" data-param="badge" data-item="lang">
-                        Localization support
+                        Localization
                     </pkg:filter>
                 </div>
                 <div class="o-graph-node">

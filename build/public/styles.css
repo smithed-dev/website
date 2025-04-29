@@ -800,7 +800,7 @@ a[href=""]:focus {
     min-width: calc(100vw - 4rem) !important;
   }
   .l-with-sidebar > aside {
-    min-width: 24rem;
+    min-width: min(96vw, 24rem);
   }
 }
 .m-landing-card {

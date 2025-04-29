@@ -785,6 +785,13 @@ a[href=""]:focus {
   --color: var(--text-inactive);
   margin: 0.5rem 0;
 }
+.l-with-sidebar .o-title {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  gap: 1;
+}
 @media only screen and (max-width: 64rem) {
   .l-with-sidebar {
     scroll-snap-type: x mandatory;

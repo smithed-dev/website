@@ -31,7 +31,8 @@
         </section>
 
         <aside>
-            <div>
+            <div class="o-title">
+                <pkg:icon :icon="eyecons/sort" />
                 <b>Categories</b>
             </div>
             <pkg:graph>
@@ -52,7 +53,8 @@
                 {{ end }}
             </pkg:graph>
             <hr />
-            <div>
+            <div class="o-title">
+                <pkg:icon :icon="eyecons/file" />
                 <b>Versions</b>
             </div>
             <pkg:graph class="%s type-limited">
@@ -107,7 +109,8 @@
                 {{ end }}
             </pkg:graph>
             <hr />
-            <div>
+            <div class="o-title">
+                <pkg:icon :icon="eyecons/star" />
                 <b>Badges</b>
             </div>
             <pkg:graph>

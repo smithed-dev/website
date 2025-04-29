@@ -1,5 +1,5 @@
 {{ define "pack_card" }}
-<a class="w-card" href="https://smithed.net/packs/{{ .Id }}">
+<a class="w-card" href="https://smithed.net/packs/{{ .RawId }}">
     <header>
         <pkg:icon :icon="eyecons/picture-placeholder" :size="2" />
         {{ if .HasGallery }}

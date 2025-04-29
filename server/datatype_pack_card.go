@@ -10,6 +10,7 @@ import (
 type PackCardData struct {
 	Uid   string
 	Id    string
+	RawId string
 	Label string
 
 	IsLanding bool
@@ -47,6 +48,7 @@ loop:
 	return PackCardData{
 		Uid:         data.Get("id").String(),
 		Id:          data.Get("data.id").String(),
+		RawId:       data.Get("meta.rawId").String(),
 		IsLanding:   datatype.IsLanding,
 		Label:       datatype.Label,
 		First:       index == 0,

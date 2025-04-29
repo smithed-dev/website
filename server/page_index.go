@@ -29,6 +29,7 @@ var IndexScopes = strings.Join([]string{
 	"data.categories",
 	"meta.stats.downloads.total",
 	"meta.stats.updated",
+	"meta.rawId",
 }, ",")
 
 var dataTrendingPacks []byte = nil

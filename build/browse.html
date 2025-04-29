@@ -66,12 +66,12 @@
     </header>
     <!-- ... -->
     <main>
-        <section class="l-heading --centered width-content">
+        <section class="l-heading --centered --width-content">
             <h1>
                 Browse packs
             </h1>
         </section>
-        <section class="l-with-sidebar width-wide">
+        <section class="l-with-sidebar --width-max">
             <section id="browse_packs" class="l-col type-sections" hx-trigger="manual-reload" hx-target="#htmx-packs" hx-swap="innerHTML">
                 <header class="l-row">
                     <div class="w-input --flex">
@@ -166,7 +166,7 @@
                             <path d="m15 0v10.084a6 6 0 0 0-5 5.916 6 6 0 0 0 5 5.916v10.084h2v-10.084a6 6 0 0 0 5-5.916 6 6 0 0 0-5-5.916v-10.084h-2zm1 12a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z" />
                         </svg>
                         {{ end }}
-                        <div class="w-filter --flex" data-item="{{ $a }}" data-param="category">
+                        <div class="w-filter --flex" data-param="category" data-item="{{ $a }}">
                             <button class="w-button type-filter --flex" onclick="toggleFilterInclude(this)">
                                 <span class="--flex">
                                     {{ $a }}
@@ -207,7 +207,7 @@
                             <path d="m15 0v10.084a6 6 0 0 0-5 5.916 6 6 0 0 0 5 5.916v10.084h2v-10.084a6 6 0 0 0 5-5.916 6 6 0 0 0-5-5.916v-10.084h-2zm1 12a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z" />
                         </svg>
                         {{ end }}
-                        <div class="w-filter --flex" data-item="{{ $a }}" data-param="version">
+                        <div class="w-filter --flex" data-param="version" data-item="{{ $a }}">
                             <button class="w-button type-filter --flex" onclick="toggleFilterInclude(this)">
                                 <span class="--flex">
                                     {{ $a.Version }}
@@ -241,7 +241,7 @@
                                     <path d="m15 0v10.084a6 6 0 0 0-5 5.916 6 6 0 0 0 5 5.916v10.084h2v-10.084a6 6 0 0 0 5-5.916 6 6 0 0 0-5-5.916v-10.084h-2zm1 12a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z" />
                                 </svg>
                                 {{ end }}
-                                <div class="w-filter --flex" data-param="version" data-item="{{ $a }}">
+                                <div class="w-filter --flex" data-item="{{ $a }}" data-param="version">
                                     <button class="w-button type-filter --flex" onclick="toggleFilterInclude(this)">
                                         <span class="--flex">
                                             {{ $a.Version }}

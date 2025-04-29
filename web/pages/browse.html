@@ -1,10 +1,10 @@
 {{ define "index" }}
 <pkg:root :title="Browse" :searchbar="false">
-    <pkg:heading class="%s --centered width-content">
+    <pkg:heading class="%s --centered --width-content">
         <h1>Browse packs</h1>
     </pkg:heading>
 
-    <pkg:with-sidebar class="%s width-wide">
+    <pkg:with-sidebar class="%s --width-max">
         <section class="l-col type-sections" id="browse_packs" hx-trigger="manual-reload" hx-target="#htmx-packs"
             hx-swap="innerHTML">
             <header class="l-row">

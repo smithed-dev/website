@@ -692,55 +692,6 @@ a[href=""]:focus {
   align-items: center;
   gap: 1;
 }
-.l-with-sidebar {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-}
-.l-with-sidebar > section {
-  width: min(96vw, 50rem);
-}
-.l-with-sidebar > aside {
-  display: flex;
-  flex-direction: column;
-  gap: 0rem;
-  align-items: stretch;
-  flex: 1;
-  border: 1px solid var(--block-border);
-  background-color: var(--block-section);
-  padding: 0.5rem 0;
-  border-radius: 1rem;
-  height: fit-content;
-  min-width: 17rem;
-}
-.l-with-sidebar > aside > div {
-  display: flex;
-  flex-direction: row;
-  gap: 0rem;
-  align-items: center;
-  gap: 0;
-  padding: 0.5rem 1rem;
-}
-.l-with-sidebar > aside > hr {
-  --color: var(--text-inactive);
-  margin: 0.5rem 0;
-}
-@media only screen and (max-width: 64rem) {
-  .l-with-sidebar {
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    overflow-x: scroll;
-    overflow-y: hidden;
-  }
-  .l-with-sidebar > * {
-    transition: min-width 200ms;
-    scroll-snap-align: start;
-    min-width: calc(100vw - 4rem) !important;
-  }
-  .l-with-sidebar > aside {
-    margin-right: 1rem;
-  }
-}
 .l-graph {
   display: flex;
   flex-direction: column;
@@ -800,6 +751,57 @@ a[href=""]:focus {
 }
 .l-graph .o-graph-node .type-angle {
   padding: 0 1rem;
+}
+.l-with-sidebar {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+.l-with-sidebar > section {
+  width: min(96vw, 50rem);
+}
+.l-with-sidebar > aside {
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
+  align-items: stretch;
+  flex: 1;
+  border: 1px solid var(--block-border);
+  background-color: var(--block-section);
+  padding: 0.5rem 0;
+  border-radius: 1rem;
+  height: fit-content;
+  min-width: 17rem;
+}
+.l-with-sidebar > aside > div {
+  display: flex;
+  flex-direction: row;
+  gap: 0rem;
+  align-items: center;
+  gap: 0;
+  padding: 0.5rem 1rem;
+}
+.l-with-sidebar > aside > hr {
+  --color: var(--text-inactive);
+  margin: 0.5rem 0;
+}
+@media only screen and (max-width: 64rem) {
+  .l-with-sidebar {
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: scroll;
+    overflow-y: hidden;
+  }
+  .l-with-sidebar > * {
+    transition: min-width 200ms;
+    scroll-snap-align: start;
+  }
+  .l-with-sidebar > section {
+    min-width: calc(100vw - 4rem) !important;
+  }
+  .l-with-sidebar > aside {
+    min-width: 24rem;
+  }
 }
 .m-landing-card {
   border: 1px solid var(--block-border);

@@ -35,11 +35,14 @@
         &>* {
             transition: min-width 200ms;
             scroll-snap-align: start;
+        }
+
+        &>section {
             min-width: calc(100vw - 4rem) !important;
         }
 
         &>aside {
-            margin-right: 1rem;
+            min-width: @screen-min;
         }
     }
 }

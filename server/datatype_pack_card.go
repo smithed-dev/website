@@ -35,7 +35,7 @@ loop:
 	for _, element := range categoriesArray {
 		element := element.String()
 		switch {
-		case i == 3:
+		case i == 2:
 			break loop
 		case element == "No Resource Pack":
 		default:

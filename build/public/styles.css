@@ -506,6 +506,18 @@ p {
   --color: var(--text-foreground);
   --size: 1rem;
 }
+*::-webkit-scrollbar {
+  width: 0.25rem;
+  height: 0.25rem;
+  background-color: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: var(--text-inactive);
+}
+* {
+  scrollbar-color: var(--text-inactive) transparent;
+  scrollbar-width: thin;
+}
 html,
 body {
   height: 100%;

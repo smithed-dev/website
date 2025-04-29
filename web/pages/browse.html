@@ -5,7 +5,7 @@
     </pkg:heading>
 
     <pkg:with-sidebar class="%s --width-max">
-        <section class="l-col type-sections" id="browse_packs" hx-trigger="manual-reload" hx-target="#htmx-packs"
+        <section class="l-col type-sections" id="browser" hx-trigger="manual-reload" hx-target="#htmx-packs"
             hx-swap="innerHTML">
             <header class="l-row">
                 <pkg:searchbar class="%s --flex" />
@@ -25,7 +25,7 @@
                     </button>
                 </template>
             </div>
-            <div id="htmx-packs" class="l-inherit on-loading">
+            <div id="htmx-packs" class="l-inherit is-loading">
                 {{ template "browse_packs" . }}
             </div>
         </section>

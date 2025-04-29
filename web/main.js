@@ -1,4 +1,5 @@
 self.onurlchanged = () => {};
+self.WIDGETS = [];
 
 self.addEventListener(
   "click",

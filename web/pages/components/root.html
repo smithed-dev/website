@@ -41,7 +41,7 @@
         </pkg:unmarked-link>
 
         <mend:if :true="[[ this.searchbar ]]">
-            <pkg:searchbar class="%s --flex" style="grid-area: searchbar;">
+            <pkg:searchbar class="%s --flex" style="grid-area: searchbar;" onchange="gotoSearchPage(this)">
                 <pkg:dropdown :type="list">
                     <div>
                         Searches for

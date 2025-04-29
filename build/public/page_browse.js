@@ -14,6 +14,11 @@
   });
 }
 
+{
+  const search = document.getElementById("search");
+  search.value = decodeURIComponent(url.get("search")[0] || "");
+}
+
 /** @param {HTMLDivElement} node */
 function applySorting(node) {
   url.overwrite("sort", node.querySelector("select")?.value);

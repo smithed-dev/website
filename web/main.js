@@ -51,10 +51,10 @@ const url = {
   /**
    * Get a single search parameter from the managed URL.
    * @param {string} key
-   * @returns {string|null}
+   * @returns {string[]}
    */
   get(key) {
-    return this.instance.searchParams.get(key);
+    return this.instance.searchParams.getAll(key);
   },
 
   /**

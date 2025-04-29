@@ -6,7 +6,7 @@
 {
   const select = document.getElementById("js-id-select-sort");
   WIDGETS.filter((item) => item.node.id === select.id).forEach((node) => {
-    const index = node.findIndexOfValue(url.get("sort"));
+    const index = node.findIndexOfValue(url.get("sort")[0]);
     if (index === -1) {
       return;
     }

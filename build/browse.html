@@ -248,7 +248,7 @@
                                     <path d="m15 0v10.084a6 6 0 0 0-5 5.916 6 6 0 0 0 5 5.916v10.084h2v-10.084a6 6 0 0 0 5-5.916 6 6 0 0 0-5-5.916v-10.084h-2zm1 12a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z" />
                                 </svg>
                                 {{ end }}
-                                <div id="js-id-filter-version-{{ $i }}" class="w-filter --flex" data-item="{{ $a }}" data-param="version">
+                                <div id="js-id-filter-version-{{ $i }}" class="w-filter --flex" data-param="version" data-item="{{ $a }}">
                                     <button class="w-button type-filter type-include --flex" onclick="toggleFilter(this, 'toggleInclude')">
                                         <span class="--flex">
                                             {{ $a.Version }}
@@ -278,12 +278,12 @@
                                 {{ $last := $a.SnapshotLast }} {{ $root := $i }} {{ range $i, $b := $a.Snapshots }}
                                 <div class="o-graph-node">
                                     <svg class="w-icon type-indicator" width="32" height="32" style="--size: 2rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32" fill="currentColor">
-                                        <path d="m15 0v10.084a6 6 0 0 0-5 5.916 6 6 0 0 0 5 5.916v10.084h2v-10.084a6 6 0 0 0 4.916-4.916h10.084v-2h-10.084a6 6 0 0 0-4.916-4.916v-10.084h-2zm1 12a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z" />
+                                        <path d="m15 0v8.5 23.5h2v-18.023a8.5 8.5 0 0 0 6.5 3.0234 8.5 8.5 0 0 0 0.5-0.015625v0.015625h8v-2h-8v-0.019531a6.5 6.5 0 0 1-0.5 0.019531 6.5 6.5 0 0 1-6.5-6.5 6.5 6.5 0 0 1 0.019531-0.5h-0.019531v-8h-2z" />
                                     </svg>
                                     <svg class="w-icon type-indicator" width="32" height="32" style="--size: 2rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32" fill="currentColor">
                                         <path transform="rotate(90)" d="m10-16a6 6 0 0 0 5 5.916v10.084h2v-10.084a6 6 0 0 0 5-5.916 6 6 0 0 0-6-6 6 6 0 0 0-6 6zm2 0a4 4 0 0 1 4-4 4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4z" />
                                     </svg>
-                                    <div id="js-id-filter-version-{{ $root }}-{{ $i }}" class="w-filter --flex" data-item="{{ $b }}" data-param="version">
+                                    <div id="js-id-filter-version-{{ $root }}-{{ $i }}" class="w-filter --flex" data-param="version" data-item="{{ $b }}">
                                         <button class="w-button type-filter type-include --flex" onclick="toggleFilter(this, 'toggleInclude')">
                                             <span class="--flex">
                                                 {{ $b }}

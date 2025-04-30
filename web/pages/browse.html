@@ -96,7 +96,7 @@
                             {{ $root := $i }}
                             {{ range $i, $b := $a.Snapshots }}
                             <div class="o-graph-node">
-                                <pkg:icon :icon="eyecons/node-up-down-right" :size="2" class="%s type-indicator" />
+                                <pkg:icon :icon="eyecons/node-branch" :size="2" class="%s type-indicator" />
                                 <pkg:icon :icon="eyecons/node-left" :size="2" class="%s type-indicator" />
                                 <pkg:filter :id="version-{{ $root }}-{{ $i }}" class="%s --flex" data-param="version"
                                     data-item="{{ $b }}">

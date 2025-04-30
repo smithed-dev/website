@@ -69,7 +69,8 @@ class FilterWidget {
           .getElementById("js-unsupported-icon")
           ?.content?.children[0]?.cloneNode(true);
         clone.prepend(icon);
-        clone.title = "This filter is currently NOT supported by the API";
+        clone.title =
+          "(IGNORED) This filter is currently NOT supported by the API";
       } else {
         url.append(param, this.node.dataset.item);
       }

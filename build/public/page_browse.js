@@ -15,6 +15,19 @@
 }
 
 {
+  const items = url.get("category");
+  for (const item of items) {
+    for (const container of document.querySelectorAll(
+      `[data-param="category"]`,
+    )) {
+      if (container.dataset.item === item) {
+        toggleFilter(container.querySelector("button"), "toggleInclude", false);
+      }
+    }
+  }
+}
+
+{
   const search = document.getElementById("search");
   search.value = decodeURIComponent(url.get("search")[0] || "");
 }

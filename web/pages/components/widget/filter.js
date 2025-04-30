@@ -28,7 +28,7 @@ class FilterWidget {
   /** @param {HTMLButtonElement} button  */
   /** @param {HTMLButtonElement} conflicting  */
   /** @param {string} tag  */
-  toggle(button, conflicting, tag) {
+  toggle(button, conflicting, tag, fromUser) {
     const container = document.getElementById("js-filters");
     const id = this.node.id.replace("filter", "tag");
 
@@ -40,7 +40,9 @@ class FilterWidget {
     conflicting.classList.remove("is-selected");
     const element = container.querySelector(`#${id}`);
     if (element != null) {
-      url.remove(param, this.node.dataset.item);
+      if (fromUser) {
+        url.remove(param, this.node.dataset.item);
+      }
       element.remove();
     }
 
@@ -71,7 +73,7 @@ class FilterWidget {
         clone.prepend(icon);
         clone.title =
           "(IGNORED) This filter is currently NOT supported by the API";
-      } else {
+      } else if (fromUser) {
         url.append(param, this.node.dataset.item);
       }
 
@@ -80,12 +82,12 @@ class FilterWidget {
     }
   }
 
-  toggleInclude() {
-    this.toggle(this.buttonInclude, this.node, "type-include");
+  toggleInclude(fromUser) {
+    this.toggle(this.buttonInclude, this.node, "type-include", fromUser);
   }
 
-  toggleExclude() {
-    this.toggle(this.node, this.buttonInclude, "type-exclude");
+  toggleExclude(fromUser) {
+    this.toggle(this.node, this.buttonInclude, "type-exclude", fromUser);
   }
 
   reset() {
@@ -95,10 +97,10 @@ class FilterWidget {
 }
 
 /** @param {HTMLButtonElement} node  */
-function toggleFilter(button, fn) {
+function toggleFilter(button, fn, fromUser) {
   for (const widget of self.WIDGETS) {
     if (widget.node.id === button.parentElement.id) {
-      widget[fn]();
+      widget[fn](fromUser);
     }
   }
   button.blur();

@@ -73,6 +73,7 @@ class FilterWidget {
         clone.title =
           "(IGNORED) This filter is currently NOT supported by the API";
       } else if (fromUser) {
+        url.overwrite("page", "1");
         url.append(param, this.node.dataset.item);
       }
 

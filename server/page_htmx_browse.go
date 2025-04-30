@@ -28,12 +28,13 @@ func HTMXBrowsePacks(writer http.ResponseWriter, request *http.Request) {
 
 func queryPacks(handler *Handler, request *http.Request, data *BrowsePageData) {
 	page, _ := strconv.Atoi(request.URL.Query().Get("page"))
+	page = max(page, 1)
 	sort := request.URL.Query().Get("sort")
-	categories := request.URL.Query()["category"]
-	versions := request.URL.Query()["version"]
 	if sort == "" {
 		sort = "trending"
 	}
+	categories := request.URL.Query()["category"]
+	versions := request.URL.Query()["version"]
 	params := BrowsePageParams{
 		Search:     request.URL.Query().Get("search"),
 		Page:       page,

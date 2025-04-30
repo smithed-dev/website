@@ -77,81 +77,29 @@ const url = {
     }
     this.update();
   },
+
+  /**
+   * Add a new parameter into array, then push the change.
+   * @param {string} key
+   * @param {string|null} value
+   * @returns {void}
+   */
+  append(key, value) {
+    this.instance.searchParams.append(key, value);
+    this.update();
+  },
+
+  /**
+   * Removes the parameter, then push the change.
+   * @param {string} key
+   * @param {string|null} value
+   * @returns {void}
+   */
+  remove(key, value) {
+    this.instance.searchParams.delete(key, value);
+    this.update();
+  },
 };
-// deno-lint-ignore-file no-unused-vars
-class FilterWidget {
-  /** @type {HTMLDivElement} */
-  node;
-  /** @type {HTMLButtonElement} */
-  buttonInclude;
-  /** @type {HTMLButtonElement} */
-  buttonExclude;
-
-  constructor(node) {
-    this.node = node;
-    this.buttonInclude = node.querySelector(".type-include");
-    this.buttonExclude = node.querySelector(".type-exclude");
-    self.WIDGETS = [...(self.WIDGETS || []), this];
-  }
-
-  close() {}
-
-  /** @param {HTMLButtonElement} button  */
-  /** @param {HTMLButtonElement} conflicting  */
-  /** @param {string} tag  */
-  toggle(button, conflicting, tag) {
-    const container = document.getElementById("js-filters");
-    const id = this.node.id.replace("filter", "tag");
-
-    conflicting.classList.remove("is-selected");
-    container.querySelector(`#${id}`)?.remove();
-
-    if (button.classList.contains("is-selected")) {
-      button.classList.remove("is-selected");
-    } else {
-      button.classList.add("is-selected");
-
-      const clone = container
-        ?.querySelector("template")
-        ?.content?.children[0].cloneNode(true);
-      const copy = button.cloneNode(true);
-      copy.querySelector("em")?.remove();
-
-      clone.querySelector(".js-label").innerHTML = copy.innerText;
-      clone.classList.add(tag);
-      clone.id = id;
-      clone.addEventListener("click", () => {
-        this.toggle(button, conflicting, tag);
-      });
-
-      copy?.remove();
-      container.append(clone);
-    }
-  }
-
-  toggleInclude() {
-    this.toggle(this.buttonInclude, this.node, "type-include");
-  }
-
-  toggleExclude() {
-    this.toggle(this.node, this.buttonInclude, "type-exclude");
-  }
-
-  reset() {
-    this.node.classList.remove("is-selected");
-    this.node.querySelector(".is-selected")?.classList.remove("is-selected");
-  }
-}
-
-/** @param {HTMLButtonElement} node  */
-function toggleFilter(button, fn) {
-  for (const widget of self.WIDGETS) {
-    if (widget.node.id === button.parentElement.id) {
-      widget[fn]();
-    }
-  }
-  button.blur();
-}
 class SelectWidget {
   /** @type {HTMLDivElement} */
   node;
@@ -276,6 +224,110 @@ class SelectWidget {
     this.node.classList.remove("--open");
     this.toggled = false;
   }
+}
+// deno-lint-ignore-file no-unused-vars
+
+const NOT_SUPPORTED_FILTERS = [
+  "no_category",
+  "version",
+  "no_version",
+  "no_badge",
+  "badge",
+];
+
+class FilterWidget {
+  /** @type {HTMLDivElement} */
+  node;
+  /** @type {HTMLButtonElement} */
+  buttonInclude;
+  /** @type {HTMLButtonElement} */
+  buttonExclude;
+
+  constructor(node) {
+    this.node = node;
+    this.buttonInclude = node.querySelector(".type-include");
+    this.buttonExclude = node.querySelector(".type-exclude");
+    self.WIDGETS = [...(self.WIDGETS || []), this];
+  }
+
+  close() {}
+
+  /** @param {HTMLButtonElement} button  */
+  /** @param {HTMLButtonElement} conflicting  */
+  /** @param {string} tag  */
+  toggle(button, conflicting, tag) {
+    const container = document.getElementById("js-filters");
+    const id = this.node.id.replace("filter", "tag");
+
+    let param = this.node.dataset.param;
+    if (tag === "type-exclude") {
+      param = "no_" + param;
+    }
+
+    conflicting.classList.remove("is-selected");
+    const element = container.querySelector(`#${id}`);
+    if (element != null) {
+      url.remove(param, this.node.dataset.item);
+      element.remove();
+    }
+
+    if (button.classList.contains("is-selected")) {
+      button.classList.remove("is-selected");
+    } else {
+      button.classList.add("is-selected");
+
+      /** @type {HTMLElement} */
+      const clone = container
+        ?.querySelector("template")
+        ?.content?.children[0].cloneNode(true);
+      const copy = button.cloneNode(true);
+      copy.querySelector("em")?.remove();
+
+      clone.querySelector(".js-label").innerHTML = copy.innerText;
+      clone.classList.add(tag);
+      clone.id = id;
+      clone.addEventListener("click", () => {
+        this.toggle(button, conflicting, tag);
+      });
+
+      if (NOT_SUPPORTED_FILTERS.includes(param)) {
+        clone.classList.add("type-unsupported");
+        const icon = document
+          .getElementById("js-unsupported-icon")
+          ?.content?.children[0]?.cloneNode(true);
+        clone.prepend(icon);
+        clone.title = "This filter is currently NOT supported by the API";
+      } else {
+        url.append(param, this.node.dataset.item);
+      }
+
+      copy?.remove();
+      container.append(clone);
+    }
+  }
+
+  toggleInclude() {
+    this.toggle(this.buttonInclude, this.node, "type-include");
+  }
+
+  toggleExclude() {
+    this.toggle(this.node, this.buttonInclude, "type-exclude");
+  }
+
+  reset() {
+    this.node.classList.remove("is-selected");
+    this.node.querySelector(".is-selected")?.classList.remove("is-selected");
+  }
+}
+
+/** @param {HTMLButtonElement} node  */
+function toggleFilter(button, fn) {
+  for (const widget of self.WIDGETS) {
+    if (widget.node.id === button.parentElement.id) {
+      widget[fn]();
+    }
+  }
+  button.blur();
 }
 /** @param {HTMLDivElement} node */
 function gotoSearchPage(node) {

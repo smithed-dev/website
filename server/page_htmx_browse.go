@@ -29,14 +29,14 @@ func HTMXBrowsePacks(writer http.ResponseWriter, request *http.Request) {
 func queryPacks(handler *Handler, request *http.Request, data *BrowsePageData) {
 	page, _ := strconv.Atoi(request.URL.Query().Get("page"))
 	sort := request.URL.Query().Get("sort")
-	category := request.URL.Query().Get("category")
+	categories := request.URL.Query()["category"]
 	if sort == "" {
 		sort = "trending"
 	}
 	params := BrowsePageParams{
-		Search:   request.URL.Query().Get("search"),
-		Page:     page,
-		Category: category,
+		Search:     request.URL.Query().Get("search"),
+		Page:       page,
+		Categories: categories,
 	}
 
 	var packsData []byte
@@ -53,7 +53,7 @@ func queryPacks(handler *Handler, request *http.Request, data *BrowsePageData) {
 	}
 	query.Set("scope", IndexScopes)
 	var suffix strings.Builder
-	for category := range strings.SplitSeq(params.Category, ",") {
+	for _, category := range params.Categories {
 		value := url.QueryEscape(category)
 		if value != "" {
 			suffix.WriteString("&category=" + value)

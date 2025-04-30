@@ -1186,6 +1186,9 @@ body > footer > div section {
 .w-button.type-tag.type-exclude {
   outline: 1px solid var(--text-disturbing);
 }
+.w-button.type-tag.type-unsupported .w-icon:first-of-type {
+  color: var(--text-warning);
+}
 .w-button.type-tag:hover,
 .w-button.type-tag:focus {
   color: var(--text-foreground);

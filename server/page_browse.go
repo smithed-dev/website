@@ -31,9 +31,9 @@ type BrowsePageData struct {
 }
 
 type BrowsePageParams struct {
-	Search   string
-	Page     int
-	Category string
+	Search     string
+	Page       int
+	Categories []string
 }
 
 func Browse(writer http.ResponseWriter, request *http.Request) {

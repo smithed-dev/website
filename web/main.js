@@ -77,4 +77,26 @@ const url = {
     }
     this.update();
   },
+
+  /**
+   * Add a new parameter into array, then push the change.
+   * @param {string} key
+   * @param {string|null} value
+   * @returns {void}
+   */
+  append(key, value) {
+    this.instance.searchParams.append(key, value);
+    this.update();
+  },
+
+  /**
+   * Removes the parameter, then push the change.
+   * @param {string} key
+   * @param {string|null} value
+   * @returns {void}
+   */
+  remove(key, value) {
+    this.instance.searchParams.delete(key, value);
+    this.update();
+  },
 };

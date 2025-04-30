@@ -1,4 +1,13 @@
 // deno-lint-ignore-file no-unused-vars
+
+const NOT_SUPPORTED_FILTERS = [
+  "no_category",
+  "version",
+  "no_version",
+  "no_badge",
+  "badge",
+];
+
 class FilterWidget {
   /** @type {HTMLDivElement} */
   node;
@@ -23,14 +32,24 @@ class FilterWidget {
     const container = document.getElementById("js-filters");
     const id = this.node.id.replace("filter", "tag");
 
+    let param = this.node.dataset.param;
+    if (tag === "type-exclude") {
+      param = "no_" + param;
+    }
+
     conflicting.classList.remove("is-selected");
-    container.querySelector(`#${id}`)?.remove();
+    const element = container.querySelector(`#${id}`);
+    if (element != null) {
+      url.remove(param, this.node.dataset.item);
+      element.remove();
+    }
 
     if (button.classList.contains("is-selected")) {
       button.classList.remove("is-selected");
     } else {
       button.classList.add("is-selected");
 
+      /** @type {HTMLElement} */
       const clone = container
         ?.querySelector("template")
         ?.content?.children[0].cloneNode(true);
@@ -43,6 +62,17 @@ class FilterWidget {
       clone.addEventListener("click", () => {
         this.toggle(button, conflicting, tag);
       });
+
+      if (NOT_SUPPORTED_FILTERS.includes(param)) {
+        clone.classList.add("type-unsupported");
+        const icon = document
+          .getElementById("js-unsupported-icon")
+          ?.content?.children[0]?.cloneNode(true);
+        clone.prepend(icon);
+        clone.title = "This filter is currently NOT supported by the API";
+      } else {
+        url.append(param, this.node.dataset.item);
+      }
 
       copy?.remove();
       container.append(clone);

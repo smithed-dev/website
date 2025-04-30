@@ -228,8 +228,9 @@ class SelectWidget {
 // deno-lint-ignore-file no-unused-vars
 
 const NOT_SUPPORTED_FILTERS = [
+  // "category", supported now
   "no_category",
-  "version",
+  // "version", supported now
   "no_version",
   "no_badge",
   "badge",

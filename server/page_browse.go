@@ -34,6 +34,7 @@ type BrowsePageParams struct {
 	Search     string
 	Page       int
 	Categories []string
+	Versions   []string
 }
 
 func Browse(writer http.ResponseWriter, request *http.Request) {

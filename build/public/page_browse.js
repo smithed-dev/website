@@ -15,13 +15,19 @@
 }
 
 {
-  const items = url.get("category");
-  for (const item of items) {
-    for (const container of document.querySelectorAll(
-      `[data-param="category"]`,
-    )) {
-      if (container.dataset.item === item) {
-        toggleFilter(container.querySelector("button"), "toggleInclude", false);
+  for (const param of ["category", "version"]) {
+    const items = url.get(param);
+    for (const item of items) {
+      for (const container of document.querySelectorAll(
+        `[data-param="${param}"]`,
+      )) {
+        if (container.dataset.item === item) {
+          toggleFilter(
+            container.querySelector("button"),
+            "toggleInclude",
+            false,
+          );
+        }
       }
     }
   }

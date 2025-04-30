@@ -30,6 +30,7 @@ func queryPacks(handler *Handler, request *http.Request, data *BrowsePageData) {
 	page, _ := strconv.Atoi(request.URL.Query().Get("page"))
 	sort := request.URL.Query().Get("sort")
 	categories := request.URL.Query()["category"]
+	versions := request.URL.Query()["version"]
 	if sort == "" {
 		sort = "trending"
 	}
@@ -37,6 +38,7 @@ func queryPacks(handler *Handler, request *http.Request, data *BrowsePageData) {
 		Search:     request.URL.Query().Get("search"),
 		Page:       page,
 		Categories: categories,
+		Versions:   versions,
 	}
 
 	var packsData []byte
@@ -47,7 +49,7 @@ func queryPacks(handler *Handler, request *http.Request, data *BrowsePageData) {
 	query := uri.Query()
 	query.Set("sort", sort)
 	query.Set("limit", fmt.Sprint(browseLimitCount))
-	query.Set("start", fmt.Sprint(browseLimitCount*params.Page))
+	query.Set("page", fmt.Sprint(params.Page))
 	if params.Search != "" {
 		query.Set("search", params.Search)
 	}
@@ -57,6 +59,12 @@ func queryPacks(handler *Handler, request *http.Request, data *BrowsePageData) {
 		value := url.QueryEscape(category)
 		if value != "" {
 			suffix.WriteString("&category=" + value)
+		}
+	}
+	for _, version := range params.Versions {
+		value := url.QueryEscape(version)
+		if value != "" {
+			suffix.WriteString("&version=" + value)
 		}
 	}
 

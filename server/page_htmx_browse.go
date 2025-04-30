@@ -89,48 +89,73 @@ func queryPacks(handler *Handler, request *http.Request, data *BrowsePageData) {
 
 	data.Cards = ForEach(PackCardData{Label: ""}, packsData)
 
-	count, _ := strconv.ParseFloat(string(countData), 64)
-	count = math.Ceil(count) / float64(browseLimitCount)
-	if count < 7 {
-		for i := range int(count) {
-			url := *request.URL
-			urlPtr := &url
-			values := urlPtr.Query()
-			values.Set("page", fmt.Sprintf("%d", i+1))
-			data.Pages = append(data.Pages, pageData{
-				Label:      fmt.Sprintf("%d", i+1),
-				Href:       "/browse?" + values.Encode(),
-				IsSelected: i == 0,
-			})
-		}
-	} else {
-		for i := range 4 {
-			url := *request.URL
-			urlPtr := &url
-			values := urlPtr.Query()
-			values.Set("page", fmt.Sprintf("%d", i+1))
-			data.Pages = append(data.Pages, pageData{
-				Label:      fmt.Sprintf("%d", i+1),
-				Href:       "/browse?" + values.Encode(),
-				IsSelected: i == 0,
-			})
-		}
-		data.Pages = append(data.Pages, pageData{
-			Label:      "—",
-			Href:       "",
-			IsSelected: false,
-		})
-		for i := range 3 {
-			page := (int(count) - 2) + i + 1
-			url := *request.URL
-			urlPtr := &url
-			values := urlPtr.Query()
-			values.Set("page", fmt.Sprintf("%d", page))
-			data.Pages = append(data.Pages, pageData{
-				Label:      fmt.Sprintf("%d", page),
-				Href:       "/browse?" + values.Encode(),
-				IsSelected: page == 1,
-			})
-		}
+	totalPages, _ := strconv.ParseFloat(string(countData), 64)
+	data.Pages = Paginate(
+		int(math.Ceil(totalPages/float64(browseLimitCount))),
+		params.Page,
+	)
+	values := request.URL.Query()
+	for i, page := range data.Pages {
+		values.Set("page", page.Label)
+		page.Href = "/browse?" + values.Encode()
+		data.Pages[i] = page
 	}
+}
+
+// Paginate returns up to 7 slots: first/last, ellipses, current ± neighbors.
+func Paginate(total, current int) []pageData {
+	if total < 1 {
+		return nil
+	}
+	// clamp current
+	if current < 1 {
+		current = 1
+	} else if current > total {
+		current = total
+	}
+
+	var out []pageData
+	add := func(num int) {
+		out = append(out, pageData{Label: fmt.Sprint(num), IsCurrent: num == current})
+	}
+	addEllipsis := func() {
+		out = append(out, pageData{IsEllipsis: true})
+	}
+
+	switch {
+	// small enough to show all pages
+	case total <= 7:
+		for i := 1; i <= total; i++ {
+			add(i)
+		}
+
+	// near the front: show 1–5, “…”, last
+	case current <= 4:
+		for i := 1; i <= 5; i++ {
+			add(i)
+		}
+		addEllipsis()
+		add(total)
+
+	// near the back: show 1, “…”, total−4…total
+	case current >= total-3:
+		add(1)
+		add(2)
+		addEllipsis()
+		for i := total - 3; i <= total; i++ {
+			add(i)
+		}
+
+	// middle: show 1, “…”, current−1, current, current+1, “…”, last
+	default:
+		add(1)
+		addEllipsis()
+		for i := current - 1; i <= current+1; i++ {
+			add(i)
+		}
+		addEllipsis()
+		add(total)
+	}
+
+	return out
 }

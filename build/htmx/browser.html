@@ -1,6 +1,10 @@
 {{ define "browser" }}
 <nav class="l-row type-center">
-    {{ range .Pages }} {{ if .IsSelected }}
+    {{ range .Pages }} {{ if .IsEllipsis }}
+    <a>
+        —
+    </a>
+    {{ else if .IsCurrent }}
     <a class="is-highlight --selected" href="{{ .Href }}">
         {{ .Label }}
     </a>
@@ -14,7 +18,11 @@
     {{ range .Cards }} {{ template "pack_card" . }} {{ end }}
 </section>
 <nav class="l-row type-center">
-    {{ range .Pages }} {{ if .IsSelected }}
+    {{ range .Pages }} {{ if .IsEllipsis }}
+    <a>
+        —
+    </a>
+    {{ else if .IsCurrent }}
     <a class="is-highlight --selected" href="{{ .Href }}">
         {{ .Label }}
     </a>

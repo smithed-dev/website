@@ -1,7 +1,9 @@
 {{ define "browser" }}
 <nav class="l-row type-center">
     {{ range .Pages }}
-    {{ if .IsSelected }}
+    {{ if .IsEllipsis }}
+    <a>—</a>
+    {{ else if .IsCurrent }}
     <a class="is-highlight --selected" href="{{ .Href }}">
         {{ .Label }}
     </a>
@@ -19,7 +21,9 @@
 </pkg:grid>
 <nav class="l-row type-center">
     {{ range .Pages }}
-    {{ if .IsSelected }}
+    {{ if .IsEllipsis }}
+    <a>—</a>
+    {{ else if .IsCurrent }}
     <a class="is-highlight --selected" href="{{ .Href }}">
         {{ .Label }}
     </a>

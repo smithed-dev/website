@@ -12,7 +12,8 @@ var GlobalVersions = genVersions()
 type pageData struct {
 	Label      string
 	Href       string
-	IsSelected bool
+	IsCurrent  bool
+	IsEllipsis bool
 }
 
 type versionData struct {

@@ -816,7 +816,7 @@ a[href=""]:focus {
     scroll-snap-align: start;
   }
   .l-with-sidebar > section {
-    min-width: calc(100vw - 4rem) !important;
+    min-width: calc(100vw - 6rem) !important;
   }
   .l-with-sidebar > aside {
     min-width: min(96vw, 24rem);

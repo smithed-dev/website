@@ -95,6 +95,9 @@ func queryPacks(handler *Handler, request *http.Request, data *BrowsePageData) {
 		int(math.Ceil(totalPages/float64(browseLimitCount))),
 		params.Page,
 	)
+	if len(data.Pages) == 1 {
+		data.Pages = []pageData{}
+	}
 	values := request.URL.Query()
 	for i, page := range data.Pages {
 		values.Set("page", page.Label)

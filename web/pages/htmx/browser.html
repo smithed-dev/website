@@ -1,0 +1,33 @@
+{{ define "browser" }}
+<nav class="l-row type-center">
+    {{ range .Pages }}
+    {{ if .IsSelected }}
+    <a class="is-highlight --selected" href="{{ .Href }}">
+        {{ .Label }}
+    </a>
+    {{ else }}
+    <a class="is-highlight" href="{{ .Href }}">
+        {{ .Label }}
+    </a>
+    {{ end }}
+    {{ end }}
+</nav>
+<pkg:grid :cols="2">
+    {{ range .Cards }}
+    {{ template "pack_card" . }}
+    {{ end }}
+</pkg:grid>
+<nav class="l-row type-center">
+    {{ range .Pages }}
+    {{ if .IsSelected }}
+    <a class="is-highlight --selected" href="{{ .Href }}">
+        {{ .Label }}
+    </a>
+    {{ else }}
+    <a class="is-highlight" href="{{ .Href }}">
+        {{ .Label }}
+    </a>
+    {{ end }}
+    {{ end }}
+</nav>
+{{ end }}

@@ -12,7 +12,7 @@ import (
 
 func HTMXBrowsePacks(writer http.ResponseWriter, request *http.Request) {
 	handler := NewHandler(writer, request).ParseTemplate(
-		"build/htmx/browse_packs.html",
+		"build/htmx/browser.html",
 		"build/htmx/pack_card.html",
 	)
 	data := BrowsePageData{
@@ -22,7 +22,7 @@ func HTMXBrowsePacks(writer http.ResponseWriter, request *http.Request) {
 
 	queryPacks(handler, request, &data)
 
-	handler.Name = "browse_packs"
+	handler.Name = "browser"
 	handler.ServePage(data)
 }
 

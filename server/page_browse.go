@@ -41,7 +41,7 @@ func Browse(writer http.ResponseWriter, request *http.Request) {
 	handler := NewHandler(writer, request).ParseTemplate(
 		"build/browse.html",
 		"build/htmx/pack_card.html",
-		"build/htmx/browse_packs.html",
+		"build/htmx/browser.html",
 	)
 	data := BrowsePageData{
 		Cards: []PackCardData{},

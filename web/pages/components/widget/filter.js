@@ -60,7 +60,7 @@ class FilterWidget {
       clone.classList.add(tag);
       clone.id = id;
       clone.addEventListener("click", () => {
-        this.toggle(button, conflicting, tag);
+        this.toggle(button, conflicting, tag, true);
       });
 
       if (NOT_SUPPORTED_FILTERS.includes(param)) {

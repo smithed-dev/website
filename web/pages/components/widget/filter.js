@@ -55,10 +55,8 @@ class FilterWidget {
       const clone = container
         ?.querySelector("template")
         ?.content?.children[0].cloneNode(true);
-      const copy = button.cloneNode(true);
-      copy.querySelector("em")?.remove();
 
-      clone.querySelector(".js-label").innerHTML = copy.innerText;
+      clone.querySelector(".js-label").innerHTML = this.node.dataset.item;
       clone.classList.add(tag);
       clone.id = id;
       clone.addEventListener("click", () => {
@@ -77,7 +75,6 @@ class FilterWidget {
         url.append(param, this.node.dataset.item);
       }
 
-      copy?.remove();
       container.append(clone);
     }
   }

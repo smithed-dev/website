@@ -69,7 +69,8 @@
                     {{ else }}
                     <pkg:icon :icon="eyecons/node-up-down" :size="2" class="%s type-indicator" />
                     {{ end }}
-                    <pkg:filter :id="version-{{ $i }}" class="%s --flex" data-param="version" data-item="{{ $a }}">
+                    <pkg:filter :id="version-{{ $i }}" class="%s --flex" data-param="version"
+                        data-item="{{ $a.Version }}">
                         {{ $a.Version }}
                     </pkg:filter>
                 </div>
@@ -85,7 +86,7 @@
                             <pkg:icon :icon="eyecons/node-up-down" :size="2" class="%s type-indicator" />
                             {{ end }}
                             <pkg:filter :id="version-{{ $i }}" class="%s --flex" data-param="version"
-                                data-item="{{ $a }}">
+                                data-item="{{ $a.Version }}">
                                 {{ $a.Version }}
                                 <em>+{{ $len }}</em>
                             </pkg:filter>

@@ -10,7 +10,7 @@
     {{ if .IsLanding }}
     <div>
         {{ if .First }}
-        <div class="o-loading-bar is-playing"></div>
+        <div class="o-loading-bar on-playing"></div>
         {{ else }}
         <div class="o-loading-bar"></div>
         {{ end }}
@@ -29,7 +29,7 @@
             {{ end }}
         </section>
         <div>
-            <h3 class="is-highlight">{{ .Name }}</h3>
+            <h3 class="on-highlight">{{ .Name }}</h3>
             <p class="o-description">
                 {{ .Desc }}
             </p>

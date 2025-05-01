@@ -585,10 +585,10 @@ a {
   text-decoration-color: var(--text-foreground);
   text-decoration-thickness: 2px;
 }
-a:hover.is-highlight,
-a:focus.is-highlight,
-a:hover .is-highlight,
-a:focus .is-highlight {
+a:hover.on-highlight,
+a:focus.on-highlight,
+a:hover .on-highlight,
+a:focus .on-highlight {
   text-decoration: underline;
   text-decoration-color: var(--text-accent);
   text-decoration-thickness: 2px;
@@ -597,19 +597,19 @@ a:focus {
   color: var(--text-accent);
   outline: none;
 }
-a[href=""]:hover.is-highlight,
-a[href=""]:focus.is-highlight,
-a[href=""]:hover .is-highlight,
-a[href=""]:focus .is-highlight {
+a[href=""]:hover.on-highlight,
+a[href=""]:focus.on-highlight,
+a[href=""]:hover .on-highlight,
+a[href=""]:focus .on-highlight {
   text-decoration-color: var(--text-disturbing);
 }
 a[href=""]:focus {
   color: var(--text-disturbing);
 }
-.is-loading {
+.on-loading {
   transition: opacity 0.2s;
 }
-.htmx-request .is-loading {
+.htmx-request .on-loading {
   opacity: 0.2;
 }
 .w-icon {
@@ -1111,28 +1111,28 @@ body > footer > div section {
 .w-filter:has(button:focus) svg {
   visibility: visible;
 }
-.w-filter.is-selected {
+.w-filter.on-selected {
   background-color: var(--field-disturbing);
   outline: 1px solid var(--text-disturbing);
   color: var(--text-disturbing);
 }
-.w-filter.is-selected .w-button:last-of-type svg {
+.w-filter.on-selected .w-button:last-of-type svg {
   visibility: visible;
   color: var(--text-disturbing);
 }
-.w-filter .type-include.is-selected {
+.w-filter .type-include.on-selected {
   background-color: var(--field-success);
   outline: 1px solid var(--text-success);
   color: var(--text-success);
 }
-.w-filter .type-include.is-selected svg {
+.w-filter .type-include.on-selected svg {
   visibility: visible;
   color: var(--text-success);
 }
-.w-filter .type-include.is-selected:hover {
+.w-filter .type-include.on-selected:hover {
   background-color: var(--scheme-hover);
 }
-.w-filter .type-include.is-selected:focus {
+.w-filter .type-include.on-selected:focus {
   outline: 2px solid var(--text-foreground);
 }
 .w-button {
@@ -1275,7 +1275,7 @@ body > footer > div section {
   width: 0%;
   height: 100%;
 }
-.w-card > div .o-loading-bar.is-playing {
+.w-card > div .o-loading-bar.on-playing {
   animation: 5s linear loading-bar;
 }
 .w-card > section {

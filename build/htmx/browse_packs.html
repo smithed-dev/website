@@ -1,11 +1,11 @@
 {{ define "browse_packs" }}
 <nav class="l-row type-center">
     {{ range .Pages }} {{ if .IsSelected }}
-    <a class="is-highlight --selected" href="{{ .Href }}">
+    <a class="on-highlight --selected" href="{{ .Href }}">
         {{ .Label }}
     </a>
     {{ else }}
-    <a class="is-highlight" href="{{ .Href }}">
+    <a class="on-highlight" href="{{ .Href }}">
         {{ .Label }}
     </a>
     {{ end }} {{ end }}
@@ -15,11 +15,11 @@
 </section>
 <nav class="l-row type-center">
     {{ range .Pages }} {{ if .IsSelected }}
-    <a class="is-highlight --selected" href="{{ .Href }}">
+    <a class="on-highlight --selected" href="{{ .Href }}">
         {{ .Label }}
     </a>
     {{ else }}
-    <a class="is-highlight" href="{{ .Href }}">
+    <a class="on-highlight" href="{{ .Href }}">
         {{ .Label }}
     </a>
     {{ end }} {{ end }}

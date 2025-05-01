@@ -265,7 +265,7 @@ class FilterWidget {
       param = "no_" + param;
     }
 
-    conflicting.classList.remove("is-selected");
+    conflicting.classList.remove("on-selected");
     const element = container.querySelector(`#${id}`);
     if (element != null) {
       if (fromUser) {
@@ -274,10 +274,10 @@ class FilterWidget {
       element.remove();
     }
 
-    if (button.classList.contains("is-selected")) {
-      button.classList.remove("is-selected");
+    if (button.classList.contains("on-selected")) {
+      button.classList.remove("on-selected");
     } else {
-      button.classList.add("is-selected");
+      button.classList.add("on-selected");
 
       /** @type {HTMLElement} */
       const clone = container
@@ -317,8 +317,8 @@ class FilterWidget {
   }
 
   reset() {
-    this.node.classList.remove("is-selected");
-    this.node.querySelector(".is-selected")?.classList.remove("is-selected");
+    this.node.classList.remove("on-selected");
+    this.node.querySelector(".on-selected")?.classList.remove("on-selected");
   }
 }
 

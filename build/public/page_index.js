@@ -10,13 +10,13 @@ function scrollCarousell(node) {
   node.dataset.i = String(i + 1);
   node.children[Number(node.dataset.offset)]
     .querySelector(".o-loading-bar")
-    .classList.remove("is-playing");
+    .classList.remove("on-playing");
   const offset = 4 - Math.abs((i % 8) - 4);
   node.style.setProperty("--offset", `${offset}`);
   node.dataset.offset = String(offset);
   node.children[Number(node.dataset.offset)]
     .querySelector(".o-loading-bar")
-    .classList.add("is-playing");
+    .classList.add("on-playing");
 }
 
 this.setInterval(() => {

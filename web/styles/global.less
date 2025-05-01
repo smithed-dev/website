@@ -97,8 +97,8 @@ a {
     &:hover,
     &:focus {
 
-        &.is-highlight,
-        .is-highlight {
+        &.on-highlight,
+        .on-highlight {
             text-decoration: underline;
             text-decoration-color: var(--text-accent);
             text-decoration-thickness: 2px;
@@ -115,8 +115,8 @@ a {
         &:hover,
         &:focus {
 
-            &.is-highlight,
-            .is-highlight {
+            &.on-highlight,
+            .on-highlight {
                 text-decoration-color: var(--text-disturbing);
             }
         }
@@ -129,10 +129,10 @@ a {
 
 // HTMX:
 
-.is-loading {
+.on-loading {
     transition: opacity 0.2s;
 }
 
-.htmx-request .is-loading {
+.htmx-request .on-loading {
     opacity: 0.2;
 }

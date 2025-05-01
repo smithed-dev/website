@@ -19,6 +19,7 @@ type PackCardData struct {
 	HasGallery bool
 	Name       string
 	Desc       string
+	Icon       string
 
 	Author      string
 	VersionFrom string
@@ -56,7 +57,8 @@ loop:
 		HasGallery:  data.Get("data.display.gallery").Exists(),
 		Name:        data.Get("displayName").String(),
 		Desc:        data.Get("data.display.description").String(),
-		Author:      data.Get("meta.owner").String(),
+		Icon:        data.Get("data.display.icon").String(),
+		Author:      data.Get("owner.displayName").String(),
 		VersionFrom: data.Get("data.versions|@reverse|0.supports.0").String(),
 		VersionTo:   data.Get("data.versions|@reverse|0.supports|@reverse|0").String(),
 		Categories:  categories,

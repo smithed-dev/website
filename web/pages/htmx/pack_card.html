@@ -3,8 +3,11 @@
     <header>
         <pkg:icon :icon="eyecons/picture-placeholder" :size="2" />
         {{ if .HasGallery }}
-        <img src="https://api.smithed.dev/v2/packs/{{ .Uid }}/gallery/0" alt="" onerror="this.remove()"
-            onload="this.previousElementSibling.remove();" />
+        <img src="https://api.smithed.dev/v2/packs/{{ .Uid }}/gallery/0" alt="" class="type-banner"
+            onerror="this.remove()" onload="this.previousElementSibling.remove()" />
+        <img src="{{ .Icon }}" alt="" class="type-icon" style="display: none;" />
+        {{ else }}
+        <img src="{{ .Icon }}" alt="" class="type-icon" />
         {{ end }}
     </header>
     {{ if .IsLanding }}
@@ -23,6 +26,10 @@
             {{ else }}
             <span>{{ .VersionFrom }} — {{ .VersionTo }}</span>
             {{ end }}
+
+            <hr class="type-bullet" />
+            <span>by {{ .Author }}</span>
+
             {{ range .Categories }}
             <hr class="type-bullet" />
             <span>{{ . }}</span>

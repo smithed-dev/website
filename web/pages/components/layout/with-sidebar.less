@@ -35,6 +35,7 @@
         -webkit-overflow-scrolling: touch;
         overflow-x: scroll;
         overflow-y: hidden;
+        padding: 1rem 0;
 
         &>* {
             transition: min-width 200ms;
@@ -47,6 +48,12 @@
 
         &>aside {
             min-width: min(100vw - 4rem, @screen-min);
+        }
+    }
+
+    @media only screen and (max-width: (@screen-min + 4rem)) {
+        &>section {
+            min-width: calc(100vw - 3rem) !important;
         }
     }
 }

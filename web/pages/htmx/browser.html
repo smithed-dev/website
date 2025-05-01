@@ -1,5 +1,5 @@
 {{ define "browser" }}
-<nav class="l-row type-center">
+<nav class="l-row type-center --centered --wrap">
     {{ range .Pages }}
     {{ if .IsEllipsis }}
     <a>—</a>
@@ -25,7 +25,7 @@
     {{ template "pack_card" . }}
     {{ end }}
 </pkg:grid>
-<nav class="l-row type-center">
+<nav class="l-row type-center --centered --wrap">
     {{ range .Pages }}
     {{ if .IsEllipsis }}
     <a>—</a>

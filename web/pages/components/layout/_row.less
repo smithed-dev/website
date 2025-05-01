@@ -1,12 +1,22 @@
-.l-row {
+.l-row,
+.l-row>.l-inherit {
     .--flex-row(1);
 
     &.type-center {
         justify-content: center;
     }
 
-    @media only screen and (max-width: (@screen-min + 4rem)) {
-        align-items: stretch;
-        flex-direction: column;
+    @media only screen and (max-width: (30rem + 4rem)) {
+        &.type-adaptive {
+            flex-direction: column;
+            justify-content: stretch;
+        }
+    }
+
+    @media only screen and (max-width: (16rem + 4rem)) {
+        & {
+            flex-direction: column;
+            justify-content: stretch;
+        }
     }
 }

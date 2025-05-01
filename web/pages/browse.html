@@ -7,19 +7,21 @@
     <pkg:with-sidebar class="%s --width-max">
         <section class="l-col type-sections" id="browser" hx-trigger="url-changed" hx-target="#htmx-packs"
             hx-swap="innerHTML" data-inherit-url="hx-get">
-            <header class="l-row">
+            <header class="l-row type-adaptive">
                 <pkg:searchbar class="%s --flex" onchange="applySearch(this)" />
-                <pkg:select :id="sort" :icon="eyecons/sort" onchange="applySorting(this)">
-                    <option value="trending">Trending</option>
-                    <option value="downloads">Downloads</option>
-                    <option value="alphabetically">Alphabetically</option>
-                    <option value="newest">Newest</option>
-                </pkg:select>
-                <pkg:switch :id="layout" onchange="applyLayout(this)">
-                    <pkg:icon :icon="eyecons/apps" data-name="grid" />
-                    <pkg:icon :icon="eyecons/menu_hamburger" data-name="list" />
-                    <pkg:icon :icon="eyecons/collapse" data-name="compact" />
-                </pkg:switch>
+                <section class="l-inherit">
+                    <pkg:select :id="sort" :icon="eyecons/sort" class="%s --flex" onchange="applySorting(this)">
+                        <option value="trending">Trending</option>
+                        <option value="downloads">Downloads</option>
+                        <option value="alphabetically">Alphabetically</option>
+                        <option value="newest">Newest</option>
+                    </pkg:select>
+                    <pkg:switch :id="layout" onchange="applyLayout(this)">
+                        <pkg:icon :icon="eyecons/apps" data-name="grid" />
+                        <pkg:icon :icon="eyecons/menu_hamburger" data-name="list" />
+                        <pkg:icon :icon="eyecons/collapse" data-name="compact" />
+                    </pkg:switch>
+                </section>
             </header>
             <div id="js-filters" class="l-row --wrap">
                 <template>

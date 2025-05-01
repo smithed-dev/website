@@ -13,6 +13,10 @@
         line-height: 1;
     }
 
+    &.on-reversed-true {
+        flex-direction: row-reverse;
+    }
+
     &.type-accent {
         background-color: var(--block-accent);
     }
@@ -66,6 +70,28 @@
         &:focus {
             .--focus();
         }
+    }
+
+    &.type-menu {
+        background-color: transparent;
+        border-radius: 0.5rem;
+        padding: 0 0.5rem;
+
+        img {
+            border-radius: 0.25rem;
+            width: 2rem;
+            height: 2rem;
+        }
+    }
+
+    &.type-item {
+        background-color: transparent;
+        border-radius: 0.5rem;
+    }
+
+    &.type-disturbing {
+        color: var(--text-disturbing);
+        --color: var(--text-disturbing);
     }
 
     .--interactive();

@@ -17,7 +17,8 @@ type packGroup struct {
 }
 
 type IndexPageData struct {
-	Cards []packGroup
+	LoggedIn bool
+	Cards    []packGroup
 }
 
 var IndexScopes = strings.Join([]string{
@@ -81,8 +82,15 @@ func Index(writer http.ResponseWriter, request *http.Request) {
 		}
 	}
 
+	var isLoggedIn bool
+	cookie, err := request.Cookie("logged_in")
+	if err == nil {
+		isLoggedIn = cookie.Value == "true"
+	}
+
 	handler.ParseTemplate("build/index.html", "build/htmx/pack_card.html").
 		ServeIndexPage(IndexPageData{
-			Cards: cards,
+			LoggedIn: isLoggedIn,
+			Cards:    cards,
 		})
 }

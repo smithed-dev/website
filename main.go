@@ -30,6 +30,8 @@ func main() {
 	})
 	http.HandleFunc("/", server.Index)
 	http.HandleFunc("/browse", server.Browse)
+	http.HandleFunc("/login", server.Login)
+
 	http.HandleFunc("/htmx/browse_packs", server.HTMXBrowsePacks)
 
 	server.SetupLogger(os.Getenv("DEBUG") == "1")

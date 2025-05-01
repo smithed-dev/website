@@ -23,6 +23,7 @@ type versionData struct {
 }
 
 type BrowsePageData struct {
+	LoggedIn     bool
 	Cards        []PackCardData
 	Pages        []pageData
 	Categories   []string
@@ -44,9 +45,16 @@ func Browse(writer http.ResponseWriter, request *http.Request) {
 		"build/htmx/pack_card.html",
 		"build/htmx/browser.html",
 	)
+	var isLoggedIn bool
+	cookie, err := request.Cookie("logged_in")
+	if err == nil {
+		isLoggedIn = cookie.Value == "true"
+	}
+
 	data := BrowsePageData{
-		Cards: []PackCardData{},
-		Pages: []pageData{},
+		LoggedIn: isLoggedIn,
+		Cards:    []PackCardData{},
+		Pages:    []pageData{},
 		Categories: []string{
 			"Extensive",
 			"Lightweight",
@@ -65,7 +73,7 @@ func Browse(writer http.ResponseWriter, request *http.Request) {
 
 	queryPacks(handler, request, &data)
 
-	cookie, err := request.Cookie("prefered-layout")
+	cookie, err = request.Cookie("prefered-layout")
 	if err == nil {
 		if cookie.Value != "grid" {
 			for i := range data.Cards {

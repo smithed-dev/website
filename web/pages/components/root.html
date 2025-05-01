@@ -74,7 +74,32 @@
             <pkg:icon :icon="eyecons/notification-unread" class="%s adapt-hide-content adapt-show-tablet" />
         </pkg:unmarked-link>
 
-        <pkg:button :type="accent" :label="Log in" :icon="eyecons/user" href="" style="grid-area: profile;" />
+        {{ if .LoggedIn }}
+        <div class="o-login" style="grid-area: profile;">
+            <button class="w-button type-menu --flex" onclick="toggleDropdown(this)">
+                <img src="/static/images/smithie.webp" />
+                <span class="--flex">Smithie</span>
+                <pkg:icon :icon="eyecons/angle_down" />
+            </button>
+            <pkg:dropdown :type="buttons" id="profile-dropdown">
+                <pkg:button :label="My profile" :icon="eyecons/user" :type="item" :reversed="true" class="%s --flex"
+                    href="" />
+                <pkg:button :label="New pack" :icon="eyecons/new_file" :type="item" :reversed="true" class="%s --flex"
+                    href="" />
+                <pkg:button :label="New bundle" :icon="eyecons/new_folder" :type="item" :reversed="true"
+                    class="%s --flex" href="" />
+                <pkg:button :label="Settings" :icon="eyecons/properties" :type="item" :reversed="true" class="%s --flex"
+                    href="" />
+                <pkg:button :label="Logout" :icon="eyecons/angle_right" :type="item type-disturbing" :reversed="true"
+                    class="%s --flex" href="" />
+            </pkg:dropdown>
+        </div>
+        <script>
+            new LoginWidget(document.querySelector(".o-login"));
+        </script>
+        {{ else }}
+        <pkg:button :type="accent" :label="Log in" :icon="eyecons/user" href="/login" style="grid-area: profile;" />
+        {{ end }}
     </header>
     <!-- ... -->
     <main>

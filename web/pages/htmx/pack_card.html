@@ -2,12 +2,14 @@
 <a class="w-card" href="https://smithed.net/packs/{{ .RawId }}">
     <header>
         <pkg:icon :icon="eyecons/picture-placeholder" :size="2" />
+        <!-- Basically, if there's a gallery image then we keep an icon in case user uses a list view. -->
+        <!-- If there's no gallery, then just use the icon -->
         {{ if .HasGallery }}
         <img src="https://api.smithed.dev/v2/packs/{{ .Uid }}/gallery/0" alt="" class="type-banner"
             onerror="this.remove()" onload="this.previousElementSibling.remove()" />
         <img src="{{ .Icon }}" alt="" class="type-icon" style="display: none;" />
         {{ else }}
-        <img src="{{ .Icon }}" alt="" class="type-icon" />
+        <img src="{{ .Icon }}" alt="" class="type-icon" onload="this.previousElementSibling.remove()" />
         {{ end }}
     </header>
     {{ if .IsLanding }}

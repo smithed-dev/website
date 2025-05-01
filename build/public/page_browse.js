@@ -45,6 +45,7 @@ function applySorting(node) {
 
 /** @param {HTMLDivElement} node */
 function applySearch(node) {
+  url.overwrite("page", "1");
   url.overwrite("search", node.querySelector("input")?.value || null);
 }
 

@@ -82,16 +82,32 @@
                 <pkg:icon :icon="eyecons/angle_down" />
             </button>
             <pkg:dropdown :type="buttons" id="profile-dropdown">
-                <pkg:button :label="My profile" :icon="eyecons/user" :type="item" :reversed="true" class="%s --flex"
-                    href="" />
-                <pkg:button :label="New pack" :icon="eyecons/new_file" :type="item" :reversed="true" class="%s --flex"
-                    href="" />
-                <pkg:button :label="New bundle" :icon="eyecons/new_folder" :type="item" :reversed="true"
-                    class="%s --flex" href="" />
-                <pkg:button :label="Settings" :icon="eyecons/properties" :type="item" :reversed="true" class="%s --flex"
-                    href="" />
-                <pkg:button :label="Logout" :icon="eyecons/angle_right" :type="item type-disturbing" :reversed="true"
-                    class="%s --flex" href="/api/logout" />
+                <pkg:button :icon="eyecons/user" :type="item" :reversed="true" class="%s --flex" href="">
+                    <span class="--flex">
+                        My profile
+                    </span>
+                </pkg:button>
+                <pkg:button :icon="eyecons/new_file" :type="item" :reversed="true" class="%s --flex" href="">
+                    <span class="--flex">
+                        New pack
+                    </span>
+                </pkg:button>
+                <pkg:button :icon="eyecons/new_folder" :type="item" :reversed="true" class="%s --flex" href="">
+                    <span class="--flex">
+                        New bundle
+                    </span>
+                </pkg:button>
+                <pkg:button :icon="eyecons/properties" :type="item" :reversed="true" class="%s --flex" href="">
+                    <span class="--flex">
+                        Settings
+                    </span>
+                </pkg:button>
+                <pkg:button :icon="eyecons/angle_right" :type="item type-disturbing" :reversed="true" class="%s --flex"
+                    href="/api/logout">
+                    <span class="--flex">
+                        Logout
+                    </span>
+                </pkg:button>
             </pkg:dropdown>
         </div>
         <script>

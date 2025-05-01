@@ -1,7 +1,7 @@
 <a class="w-button type-[[ this.type ]] on-reversed-[[ this.reversed || false ]]">
     <pkg:icon :icon="[[ this.icon ]]" />
     <hr class="type-bar" />
-    <span class="--flex">
-        [[ this.label ]]
-    </span>
+    <mend:slot>
+        [[ this.label? ]]
+    </mend:slot>
 </a>

@@ -8,7 +8,7 @@
         </p>
     </pkg:heading>
 
-    <pkg:grid :cols="2" class="%s --width-content">
+    <pkg:grid :cols="2" class="%s --width-content" data-layout="grid">
         <pkg:landing-carousell :index="1">
             {{ range .Cards }}
             {{ template "pack_card" .Trending }}

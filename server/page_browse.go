@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-var browseLimitCount = 12
+var browseLimitCount = 20
 
 var GlobalVersions = genVersions()
 
@@ -64,6 +64,15 @@ func Browse(writer http.ResponseWriter, request *http.Request) {
 	data.VersionLast = len(data.Versions) - 1
 
 	queryPacks(handler, request, &data)
+
+	cookie, err := request.Cookie("prefered-layout")
+	if err == nil {
+		if cookie.Value != "grid" {
+			for i := range data.Cards {
+				data.Cards[i].HasGallery = false
+			}
+		}
+	}
 	handler.ServePage(data)
 }
 

@@ -14,7 +14,10 @@
     </a>
     {{ end }} {{ end }}
 </nav>
-<section class="l-grid type-2">
+<section id="js-apply-layout" class="l-grid type-2" data-layout="grid">
+    <script>
+        layout = Cookies.get("prefered-layout"); if (layout != null) { document.getElementById("js-apply-layout").dataset.layout = layout; }
+    </script>
     {{ range .Cards }} {{ template "pack_card" . }} {{ end }}
 </section>
 <nav class="l-row type-center">

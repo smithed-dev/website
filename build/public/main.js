@@ -1,6 +1,8 @@
 self.onurlchanged = () => {};
 self.WIDGETS = [];
 
+let layout; // used in switch.html widget
+
 self.addEventListener(
   "click",
   /** @param {MouseEvent} event */
@@ -100,6 +102,50 @@ const url = {
     this.update();
   },
 };
+
+/**
+ * Simple utility for getting and setting cookies.
+ */
+class Cookies {
+  /**
+   * Get the value of a cookie by name.
+   * @param {string} name - The name of the cookie.
+   * @returns {string|null} The cookie value, or null if not found.
+   */
+  static get(name) {
+    const match = document.cookie.match(
+      new RegExp(
+        "(?:^|; )" + name.replace(/([.*+?^${}()|[\]\\])/g, "\\$1") + "=([^;]*)",
+      ),
+    );
+    return match ? decodeURIComponent(match[1]) : null;
+  }
+
+  /**
+   * Set a cookie.
+   * @param {string} name - The name of the cookie.
+   * @param {string} value - The value to set.
+   * @param {Object} [options] - Optional settings.
+   * @param {number} [options.days] - Days until expiration.
+   * @param {string} [options.path='/'] - Cookie path.
+   * @param {string} [options.domain] - Cookie domain.
+   * @param {boolean} [options.secure] - Secure flag.
+   * @param {string} [options.sameSite] - SameSite attribute.
+   */
+  static set(name, value, options = {}) {
+    let str = `${name}=${encodeURIComponent(value)}`;
+    if (options.days) {
+      const d = new Date();
+      d.setTime(d.getTime() + options.days * 864e5);
+      str += `; Expires=${d.toUTCString()}`;
+    }
+    str += `; Path=${options.path || "/"}`;
+    if (options.domain) str += `; Domain=${options.domain}`;
+    if (options.secure) str += "; Secure";
+    if (options.sameSite) str += `; SameSite=${options.sameSite}`;
+    document.cookie = str;
+  }
+}
 class SelectWidget {
   /** @type {HTMLDivElement} */
   node;
@@ -330,6 +376,50 @@ function toggleFilter(button, fn, fromUser) {
     }
   }
   button.blur();
+}
+class SwitchWidget {
+  /** @type {HTMLDivElement} */
+  node;
+  /** @type {number} */
+  length;
+
+  constructor(node) {
+    this.node = node;
+    this.length = node.firstElementChild.children.length;
+
+    self.WIDGETS = [...(self.WIDGETS || []), this];
+  }
+
+  load() {
+    this.node.addEventListener("click", () => {
+      let i = Number(this.node.dataset.selected) + 1;
+      if (i >= this.length) {
+        i = 0;
+      }
+      this.set(i);
+    });
+  }
+
+  findIndexOfValue(value) {
+    for (let i = 0; i < this.node.firstElementChild.children.length; i++) {
+      if (this.node.firstElementChild.children[i].dataset.name == value) {
+        return i;
+      }
+    }
+
+    return -1;
+  }
+
+  set(i) {
+    this.node.style.setProperty("--offset", `${i}`);
+    this.node.dataset.selected = `${i}`;
+    this.node.dataset.name =
+      this.node.firstElementChild.children[i].dataset.name;
+
+    this.node.dispatchEvent(new Event("change"));
+  }
+
+  close() {}
 }
 /** @param {HTMLDivElement} node */
 function gotoSearchPage(node) {

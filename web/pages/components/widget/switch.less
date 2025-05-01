@@ -1,0 +1,16 @@
+.w-switch {
+    position: relative;
+    border-radius: 0.5rem;
+    font-weight: 400;
+    height: 2rem;
+    overflow: hidden;
+    --offset: 0;
+
+    &>div {
+        transition: transform 0.2s;
+        .--flex-col-center(1);
+        justify-content: start;
+        transform: translateY(calc(var(--offset) * -2rem));
+        height: 100%;
+    }
+}

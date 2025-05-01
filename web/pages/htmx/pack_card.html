@@ -7,9 +7,10 @@
         {{ if .HasGallery }}
         <img src="https://api.smithed.dev/v2/packs/{{ .Uid }}/gallery/0" alt="" class="type-banner"
             onerror="this.remove()" onload="this.previousElementSibling.remove()" />
-        <img src="{{ .Icon }}" alt="" class="type-icon" style="display: none;" />
+        <img src="{{ .Icon }}" alt="" class="type-icon type-placeholder" onerror="this.remove()" />
         {{ else }}
-        <img src="{{ .Icon }}" alt="" class="type-icon" onload="this.previousElementSibling.remove()" />
+        <img src="{{ .Icon }}" alt="" class="type-icon" onload="this.previousElementSibling.remove()"
+            onerror="this.remove()" />
         {{ end }}
     </header>
     {{ if .IsLanding }}

@@ -15,6 +15,22 @@
 }
 
 {
+  const select = document.getElementById("js-id-switch-layout");
+  WIDGETS.filter((item) => item.node.id === select.id).forEach((node) => {
+    const cookie = Cookies.get("prefered-layout");
+    if (cookie == null) {
+      return;
+    }
+
+    const index = node.findIndexOfValue(cookie);
+    if (index === -1) {
+      return;
+    }
+    node.set(index);
+  });
+}
+
+{
   for (const param of ["category", "version"]) {
     const items = url.get(param);
     for (const item of items) {
@@ -47,6 +63,18 @@ function applySorting(node) {
 function applySearch(node) {
   url.overwrite("page", "1");
   url.overwrite("search", node.querySelector("input")?.value || null);
+}
+
+/** @param {HTMLDivElement} node */
+function applyLayout(node) {
+  const selected = node.dataset.name;
+  Cookies.set("prefered-layout", selected, { sameSite: "Strict" });
+  document.getElementById("js-apply-layout").dataset.layout = selected;
+
+  if (selected == "grid") {
+    const browser = document.getElementById("browser");
+    htmx.trigger(browser, "url-changed");
+  }
 }
 
 self.onurlchanged = () => {

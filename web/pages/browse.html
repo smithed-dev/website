@@ -15,6 +15,11 @@
                     <option value="alphabetically">Alphabetically</option>
                     <option value="newest">Newest</option>
                 </pkg:select>
+                <pkg:switch :id="layout" onchange="applyLayout(this)">
+                    <pkg:icon :icon="eyecons/apps" data-name="grid" />
+                    <pkg:icon :icon="eyecons/menu_hamburger" data-name="list" />
+                    <pkg:icon :icon="eyecons/collapse" data-name="compact" />
+                </pkg:switch>
             </header>
             <div id="js-filters" class="l-row --wrap">
                 <template>

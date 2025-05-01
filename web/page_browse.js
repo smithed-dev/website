@@ -68,7 +68,7 @@ function applySearch(node) {
 /** @param {HTMLDivElement} node */
 function applyLayout(node) {
   const selected = node.dataset.name;
-  Cookies.set("prefered-layout", selected, { sameSite: "Strict" });
+  Cookies.set("prefered-layout", selected, { path: "/" });
   document.getElementById("js-apply-layout").dataset.layout = selected;
 
   if (selected == "grid") {

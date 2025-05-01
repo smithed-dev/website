@@ -1,0 +1,13 @@
+{{ define "index" }}
+<pkg:root :title="Login" :searchbar="true">
+    <pkg:heading class="%s --centered --width-content">
+        <h1>Welcome back!</h1>
+        <p>
+            Login into your smithed account
+        </p>
+    </pkg:heading>
+
+    <pkg:button :label="Log in" :icon="eyecons/angle_right" :type="accent" :reversed="true" class="%s --flex"
+        href="/api/login" />
+</pkg:root>
+{{ end }}

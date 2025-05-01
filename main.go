@@ -31,7 +31,9 @@ func main() {
 	http.HandleFunc("/", server.Index)
 	http.HandleFunc("/browse", server.Browse)
 	http.HandleFunc("/login", server.Login)
-	http.HandleFunc("/logout", server.Logout)
+
+	http.HandleFunc("/api/login", server.ApiLogin)
+	http.HandleFunc("/api/logout", server.ApiLogout)
 
 	http.HandleFunc("/htmx/browse_packs", server.HTMXBrowsePacks)
 

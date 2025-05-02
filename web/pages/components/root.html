@@ -36,7 +36,7 @@
         <pkg:icon :icon="eyecons/warning" :size="0.75" />
     </template>
     <header>
-        <pkg:unmarked-link href="/" style="grid-area: logotype;">
+        <pkg:unmarked-link href="/" style="grid-area: logotype;" title="%sGo to the Home page">
             <pkg:icon :icon="smithed" :size="2" />
             <h2 class="adapt-hide-wide">Smithed</h2>
         </pkg:unmarked-link>
@@ -45,7 +45,7 @@
 
         <pkg:unmarked-link :label="Articles" href="" style="grid-area: articles;" />
 
-        <pkg:unmarked-link href="" style="grid-area: weld;">
+        <pkg:unmarked-link href="" style="grid-area: weld;" title="%sGo to Weld page">
             Weld
             <pkg:icon :icon="eyecons/popout" />
         </pkg:unmarked-link>
@@ -76,43 +76,47 @@
             <div class="--flex" style="grid-area: searchbar;"></div>
         </mend:if>
 
-        <pkg:unmarked-link href="" style="grid-area: inbox;">
+        <pkg:unmarked-link href="" style="grid-area: inbox;" title="%sGo to Inbox page">
             Inbox
             <pkg:icon :icon="eyecons/notification-unread" class="%s adapt-hide-content adapt-show-tablet" />
         </pkg:unmarked-link>
 
         {{ if .LoggedIn }}
         <div class="o-login" style="grid-area: profile;">
-            <button class="w-button type-menu --flex" onclick="toggleDropdown(this)">
+            <button class="w-button type-menu --flex" onclick="toggleDropdown(this)" title="Open profile">
                 <img src="/static/images/smithie.webp" />
                 <span class="--flex">Smithie</span>
                 <pkg:icon :icon="eyecons/angle_down" />
             </button>
             <pkg:dropdown :type="buttons" id="profile-dropdown">
-                <pkg:button :icon="eyecons/user" :type="item" :reversed="true" class="%s --flex" href="">
+                <pkg:button :icon="eyecons/user" :type="item" :reversed="true" class="%s --flex" href=""
+                    title="My profile">
                     <span class="--flex">
                         My profile
                     </span>
                 </pkg:button>
-                <pkg:button :icon="eyecons/new_file" :type="item" :reversed="true" class="%s --flex" href="">
+                <pkg:button :icon="eyecons/new_file" :type="item" :reversed="true" class="%s --flex" href=""
+                    title="New pack">
                     <span class="--flex">
                         New pack
                     </span>
                 </pkg:button>
-                <pkg:button :icon="eyecons/new_folder" :type="item" :reversed="true" class="%s --flex" href="">
+                <pkg:button :icon="eyecons/new_folder" :type="item" :reversed="true" class="%s --flex" href=""
+                    title="New bundle">
                     <span class="--flex">
                         New bundle
                     </span>
                 </pkg:button>
-                <pkg:button :icon="eyecons/properties" :type="item" :reversed="true" class="%s --flex" href="/settings">
+                <pkg:button :icon="eyecons/properties" :type="item" :reversed="true" class="%s --flex" href="/settings"
+                    title="Settings">
                     <span class="--flex">
                         Settings
                     </span>
                 </pkg:button>
                 <pkg:button :icon="eyecons/angle_right" :type="item type-disturbing" :reversed="true" class="%s --flex"
-                    href="/api/logout">
+                    href="/api/logout" title="Log out of the account">
                     <span class="--flex">
-                        Logout
+                        Log out
                     </span>
                 </pkg:button>
             </pkg:dropdown>

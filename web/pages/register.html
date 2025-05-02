@@ -1,0 +1,23 @@
+{{ define "index" }}
+<pkg:root :title="Register" :searchbar="true">
+    <pkg:heading class="%s --centered --width-content">
+        <h1>Welcome to Smithed</h1>
+        <p>
+            Create a new account
+        </p>
+    </pkg:heading>
+
+    <pkg:block :icon="eyecons/warning" :title="Warning" :color="--text-warning" class="%s --width-small">
+        <p>
+            This is <b>NOT</b> a real Smithed login page. You do <b>NOT</b> need to enter any credentials to continue,
+            just click the fake 'Log in' button to continue.
+        </p>
+        <footer>
+            <pkg:unmarked-link :label="» Go to smithed.net/account" href="https://smithed.net/account" />
+        </footer>
+    </pkg:block>
+
+    <section class="l-col --width-small">
+    </section>
+</pkg:root>
+{{ end }}

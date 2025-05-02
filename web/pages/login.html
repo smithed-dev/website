@@ -7,7 +7,29 @@
         </p>
     </pkg:heading>
 
-    <pkg:button :label="Log in" :icon="eyecons/angle_right" :type="accent" :reversed="true" class="%s --flex"
-        href="/api/login" />
+    <section class="l-col --width-small">
+        <pkg:field :label="Email" :help="The email you used to create the account">
+            <pkg:text-input :icon="eyecons/symbol_at" :placeholder="example@smithed.net" />
+        </pkg:field>
+        <pkg:field :label="Password"
+            :help="The password you used to create the account. Navigate to 'Need help?' if you have issues remembering your password">
+            <pkg:text-input :icon="eyecons/key" :placeholder="Password" />
+        </pkg:field>
+        <section class="l-row">
+            <span class="--flex"></span>
+            <input id="stay-signed-in" type="checkbox" checked />
+            <label for="stay-signed-in">Stay signed in?</label>
+            <pkg:button :label="Log in" :icon="eyecons/angle_right" :type="accent" :reversed="true" href="/api/login" />
+        </section>
+        <hr class="type-soft" />
+        <pkg:button :label="GitHub Auth" :icon="github" :type="regular" href="" />
+        <section class="l-row type-center --wrap">
+            <pkg:unmarked-link :label="Need help?" class="%s type-faded" href="" />
+            <hr class="type-bullet adapt-hide-shrink" />
+            <pkg:unmarked-link :label="Privacy Policy" class="%s type-faded" href="" />
+            <hr class="type-bullet adapt-hide-shrink" />
+            <pkg:unmarked-link :label="Create an account" href="/register" />
+        </section>
+    </section>
 </pkg:root>
 {{ end }}

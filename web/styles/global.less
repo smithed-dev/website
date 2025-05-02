@@ -69,10 +69,6 @@ hr {
     border: none;
     flex: 1;
 
-    &.type-soft {
-        opacity: 0.15;
-    }
-
     &.type-bar {
         --height: 1rem;
         min-width: 2px;
@@ -86,6 +82,10 @@ hr {
         border-radius: 100%;
         opacity: 1;
     }
+
+    &.type-soft {
+        opacity: 0.15;
+    }
 }
 
 a {
@@ -93,6 +93,11 @@ a {
     text-decoration: underline;
     text-decoration-color: var(--text-foreground);
     text-decoration-thickness: 2px;
+    cursor: pointer;
+
+    &.type-faded {
+        color: var(--text-inactive);
+    }
 
     &:hover,
     &:focus {
@@ -125,6 +130,10 @@ a {
             color: var(--text-disturbing);
         }
     }
+}
+
+label {
+    font-weight: 400;
 }
 
 // HTMX:

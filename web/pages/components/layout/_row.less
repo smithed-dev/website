@@ -1,6 +1,6 @@
 .l-row,
 .l-row>.l-inherit {
-    .--flex-row(1);
+    .--flex-row-center(1);
 
     &.type-center {
         justify-content: center;
@@ -10,13 +10,12 @@
         &.type-adaptive {
             flex-direction: column;
             justify-content: stretch;
+            align-items: stretch !important;
         }
     }
 
-    @media only screen and (max-width: (16rem + 4rem)) {
-        & {
-            flex-direction: column;
-            justify-content: stretch;
-        }
+    @media only screen and (max-width: (@screen-shrink + 4rem)) {
+        flex-direction: column !important;
+        align-items: stretch !important;
     }
 }

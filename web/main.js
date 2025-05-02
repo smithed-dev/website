@@ -146,3 +146,21 @@ class Cookies {
     document.cookie = str;
   }
 }
+
+function propagadeEvent(node, event) {
+  node.parentElement.dispatchEvent(new Event(event));
+}
+
+/** @param {HTMLButtonElement} node */
+function toggleField(node) {
+  /** @type {HTMLElement} */
+  const hint = node.nextElementSibling;
+
+  if (hint.dataset.visible == "true") {
+    hint.style.setProperty("display", "none");
+    hint.dataset.visible = "false";
+  } else {
+    hint.style.removeProperty("display");
+    hint.dataset.visible = "true";
+  }
+}

@@ -1,0 +1,8 @@
+<div class="w-field">
+    <button class="w-button type-help" onclick="toggleField(this)">
+        <h4>[[ this.label ]]</h4>
+        <pkg:icon :icon="eyecons/symbol_question_mark" :size="0.75" />
+    </button>
+    <header style="display: none;" data-visible="false">[[ this.help ]]</header>
+    <mend:slot />
+</div>

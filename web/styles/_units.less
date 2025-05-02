@@ -2,6 +2,7 @@
 @screen-content: 50rem;
 @screen-tablet: 40rem;
 @screen-min: 24rem;
+@screen-shrink: 16rem;
 
 .--font-text {
     font-family: 'Lexend', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
@@ -17,6 +18,10 @@
 
 .--width-content {
     width: min(100vw - 4rem, @screen-content);
+}
+
+.--width-small {
+    width: min(100vw - 4rem, 30rem);
 }
 
 .--width-max {

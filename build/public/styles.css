@@ -854,6 +854,26 @@ label {
     align-items: stretch !important;
   }
 }
+.l-block > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: stretch;
+  border-left: 0.25rem solid var(--color);
+  padding: 0.5rem 1rem;
+  background-color: var(--field-warning);
+  border-radius: 0.5rem;
+  outline: 1px solid var(--color);
+}
+.l-block > div > header {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+  gap: 0.5;
+  color: var(--color);
+  text-transform: uppercase;
+}
 .m-landing-card {
   border: 1px solid var(--block-border);
   display: flex;

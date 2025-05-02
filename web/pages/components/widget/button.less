@@ -89,6 +89,36 @@
         border-radius: 0.5rem;
     }
 
+    &.type-tab {
+        background-color: transparent;
+        border-radius: 0;
+        border-bottom: 1px solid var(--block-border);
+        border-right: 1px solid transparent;
+
+        &:first-child {
+            border-radius: 1rem 0 0 0;
+        }
+
+        &:last-child {
+            border-radius: 0 1rem 0 0;
+        }
+
+        &:focus {
+            outline: none;
+            color: var(--text-accent);
+            --color: var(--text-accent);
+        }
+    }
+
+    &.type-current {
+        background-color: var(--block-section);
+        border-bottom: 1px solid transparent;
+
+        &:first-child {
+            border-right: 1px solid var(--block-border);
+        }
+    }
+
     &.type-disturbing {
         color: var(--text-disturbing);
         --color: var(--text-disturbing);

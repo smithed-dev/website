@@ -35,6 +35,7 @@ JS_CHECKSUM=$(md5sum ./build/public/main.js | cut -d ' ' -f1)
 cp ./web/page_index.js ./build/public/page_index.js
 cp ./web/page_browse.js ./build/public/page_browse.js
 cp ./web/page_login.js ./build/public/page_login.js
+cp ./web/page_settings.js ./build/public/page_settings.js
 
 # ============
 echo "=== Building templates"

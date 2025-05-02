@@ -32,6 +32,7 @@ func main() {
 	http.HandleFunc("/browse", server.Browse)
 	http.HandleFunc("/login", server.Login)
 	http.HandleFunc("/register", server.Register)
+	http.HandleFunc("/settings", server.Settings)
 
 	http.HandleFunc("/api/login", server.ApiLogin)
 	http.HandleFunc("/api/logout", server.ApiLogout)

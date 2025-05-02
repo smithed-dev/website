@@ -24,7 +24,13 @@
 </head>
 
 
-<body class="theme-default">
+<body class="theme-dark-default">
+    <script>
+        const value = Cookies.get("prefered-theme");
+        if (value) {
+            applyGlobalTheme(value);
+        }
+    </script>
     <template id="js-unsupported-icon">
         <pkg:icon :icon="eyecons/warning" :size="0.75" />
     </template>
@@ -97,7 +103,7 @@
                         New bundle
                     </span>
                 </pkg:button>
-                <pkg:button :icon="eyecons/properties" :type="item" :reversed="true" class="%s --flex" href="">
+                <pkg:button :icon="eyecons/properties" :type="item" :reversed="true" class="%s --flex" href="/settings">
                     <span class="--flex">
                         Settings
                     </span>

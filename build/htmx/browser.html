@@ -1,9 +1,9 @@
 {{ define "browser" }}
 <nav class="l-row type-center --centered --wrap">
     {{ range .Pages }} {{ if .IsEllipsis }}
-    <a>
+    <span>
         —
-    </a>
+    </span>
     {{ else if .IsCurrent }}
     <a class="on-highlight --selected" href="{{ .Href }}">
         {{ .Label }}
@@ -22,9 +22,9 @@
 </section>
 <nav class="l-row type-center --centered --wrap">
     {{ range .Pages }} {{ if .IsEllipsis }}
-    <a>
+    <span>
         —
-    </a>
+    </span>
     {{ else if .IsCurrent }}
     <a class="on-highlight --selected" href="{{ .Href }}">
         {{ .Label }}

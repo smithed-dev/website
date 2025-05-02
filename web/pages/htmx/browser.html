@@ -2,7 +2,7 @@
 <nav class="l-row type-center --centered --wrap">
     {{ range .Pages }}
     {{ if .IsEllipsis }}
-    <a>—</a>
+    <span>—</span>
     {{ else if .IsCurrent }}
     <a class="on-highlight --selected" href="{{ .Href }}">
         {{ .Label }}
@@ -28,7 +28,7 @@
 <nav class="l-row type-center --centered --wrap">
     {{ range .Pages }}
     {{ if .IsEllipsis }}
-    <a>—</a>
+    <span>—</span>
     {{ else if .IsCurrent }}
     <a class="on-highlight --selected" href="{{ .Href }}">
         {{ .Label }}

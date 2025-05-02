@@ -7,10 +7,10 @@
         <!-- Basically, if there's a gallery image then we keep an icon in case user uses a list view. -->
         <!-- If there's no gallery, then just use the icon -->
         {{ if .HasGallery }}
-        <img class="type-banner" src="https://api.smithed.dev/v2/packs/{{ .Uid }}/gallery/0" alt onerror="this.remove()" onload="this.previousElementSibling.remove()" />
-        <img class="type-icon type-placeholder" src="{{ .Icon }}" alt onerror="this.remove()" />
+        <img class="type-banner" src="https://api.smithed.dev/v2/packs/{{ .Uid }}/gallery/0" alt onerror="this.remove()" onload="this.previousElementSibling.remove()" loading="lazy" />
+        <img class="type-icon type-placeholder" src="{{ .Icon }}" alt onerror="this.remove()" loading="lazy" />
         {{ else }}
-        <img class="type-icon" src="{{ .Icon }}" alt onerror="this.remove()" onload="this.previousElementSibling.remove()" />
+        <img class="type-icon" src="{{ .Icon }}" alt onerror="this.remove()" onload="this.previousElementSibling.remove()" loading="lazy" />
         {{ end }}
     </header>
     {{ if .IsLanding }}

@@ -874,6 +874,14 @@ label {
   color: var(--color);
   text-transform: uppercase;
 }
+.l-block > div > footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: start;
+  font-size: 0.75rem;
+  color: var(--color);
+}
 .m-landing-card {
   border: 1px solid var(--block-border);
   display: flex;

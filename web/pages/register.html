@@ -18,6 +18,29 @@
     </pkg:block>
 
     <section class="l-col --width-small">
+        <pkg:field :label="Username" :help="">
+            <pkg:text-input :icon="eyecons/user" :placeholder="Username" />
+        </pkg:field>
+        <pkg:field :label="Email" :help="The email you used to create the account">
+            <pkg:text-input :icon="eyecons/symbol_at" :placeholder="example@smithed.net" />
+        </pkg:field>
+        <pkg:field :label="Password"
+            :help="The password you used to create the account. Navigate to 'Need help?' if you have issues remembering your password">
+            <pkg:text-input :icon="eyecons/key" :placeholder="Password" />
+            <pkg:text-input :icon="eyecons/key" :placeholder="Confirm password" />
+        </pkg:field>
+        <section class="l-row">
+            <pkg:button :label="GitHub Auth" :icon="github" :type="regular" class="%s --flex" href="" />
+            <pkg:button :label="Sign up" :icon="eyecons/angle_right" :type="accent" :reversed="true" href="" />
+        </section>
+        <hr class="type-soft" />
+        <section class="l-row type-center --wrap">
+            <pkg:unmarked-link :label="Need help?" class="%s type-faded" href="" />
+            <hr class="type-bullet adapt-hide-shrink" />
+            <pkg:unmarked-link :label="Privacy Policy" class="%s type-faded" href="" />
+            <hr class="type-bullet adapt-hide-shrink" />
+            <pkg:unmarked-link :label="Already have an account" href="/login" />
+        </section>
     </section>
 </pkg:root>
 {{ end }}

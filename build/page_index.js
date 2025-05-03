@@ -6,11 +6,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, width=device-width" />
-    <meta name="description" content="Customize your Smithed experience & manage your account" />
+    <meta name="description" content="Smithed is an open-source platform for exploring, sharing and supercharging minecraft data & resource packs." />
     <!-- 30 days -->
     <meta http-equiv="Cache-Control" content="max-age=2592000, must-revalidate" />
     <title>
-        Settings — Smithed™
+        Home — Smithed™
     </title>
     <link rel="apple-touch-icon" href="/favicon.png" sizes="180x180" />
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="/static/styles.min.css?checksum=87fdaf6a6cf3af1899bf303459d48d80" />
     <script src="/static/main.js?checksum=a57ae0945fb9f0a86a560ab5126e4f71">
     </script>
-    <script src="/static/page_settings.js?version=a57ae0945fb9f0a86a560ab5126e4f71" defer>
+    <script src="/static/page_index.js?checksum=87e85b2158b2a4f1800a7f5489d059bd" defer>
     </script>
     <!-- [!] "While the CDN approach is extremely simple, you may want to consider not using CDNs in production" -->
     <script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.js" integrity="sha384-oeUn82QNXPuVkGCkcrInrS1twIxKhkZiFfr2TdiuObZ3n3yIeMiqcRzkIcguaof1" crossorigin="anonymous">
@@ -177,119 +177,108 @@
     <main>
         <section class="l-heading --centered --width-content">
             <h1>
-                Settings
+                Welcome!
             </h1>
             <p>
-                Customize your experience & manage your account
+                Smithed is an open-source platform for exploring, sharing
+                <br />
+                and supercharging minecraft data & resource packs.
             </p>
         </section>
-        <section class="w-tab-container --width-content">
-            <header>
-                <button class="w-button type-tab on-reversed-false type-current --flex" title="Site" data-tab="site">
-                    <svg class="w-icon" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
-                        <path d="m3 1c-1.6274 0-3 1.3726-3 3v8c0 1.6274 1.3726 3 3 3h10c1.6274 0 3-1.3726 3-3v-8c0-1.6274-1.3726-3-3-3zm0 4h10c0.554 0 1 0.446 1 1v6c0 0.554-0.446 1-1 1h-10c-0.554 0-1-0.446-1-1v-6c0-0.554 0.446-1 1-1z" />
-                    </svg>
-                    <hr class="type-bar" />
-                    Site
-                </button>
-                <button class="w-button type-tab on-reversed-false --flex" title="Account" data-tab="account">
-                    <svg class="w-icon" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
-                        <path d="m14 15c0 0.55228-0.44772 1-1 1s-1-0.44772-1-1v-3c0-0.554-0.446-1-1-1h-6c-0.554 0-1 0.446-1 1v3c0 0.55228-0.44772 1-1 1s-1-0.44772-1-1v-3c0-1.662 1.338-3 3-3h6c1.662 0 3 1.338 3 3zm-4-11a2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2 2 2 0 0 1 2 2zm2 0a4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4 4 4 0 0 1 4 4z" fill-rule="evenodd" />
-                    </svg>
-                    <hr class="type-bar" />
-                    Account
-                </button>
-            </header>
-            <section id="tab-site">
-                <h2>
-                    Appearance
-                </h2>
-                <section class="l-row --wrap">
-                    <div class="o-theme-preview theme-dark-default">
-                        <svg width="192" height="144" version="1.1" viewbox="0 0 192 144" xmlns="http://www.w3.org/2000/svg">
-                            <path d="m190 96h-188v30c0 8.864 7.136 16 16 16h156c8.864 0 16-7.136 16-16v-30z" fill="var(--block-shaded)" />
-                            <path d="m18 2c-8.864 0-16 7.136-16 16v78h188v-78c0-8.864-7.136-16-16-16h-156z" fill="var(--block-background)" />
-                            <path d="m20 16c-2.216 0-4 1.784-4 4s1.784 4 4 4h32c2.216 0 4-1.784 4-4s-1.784-4-4-4h-32zm48 0a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4zm80 0a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4zm-108 96c-4.432 0-8 3.568-8 8s3.568 8 8 8h16c4.432 0 8-3.568 8-8s-3.568-8-8-8h-16zm48 0c-4.432 0-8 3.568-8 8s3.568 8 8 8h16c4.432 0 8-3.568 8-8s-3.568-8-8-8h-16zm48 0c-4.432 0-8 3.568-8 8s3.568 8 8 8h16c4.432 0 8-3.568 8-8s-3.568-8-8-8h-16z" fill="var(--text-foreground)" />
-                            <path d="m84 16c-2.216 0-4 1.784-4 4s1.784 4 4 4h48c2.216 0 4-1.784 4-4s-1.784-4-4-4h-48zm-36 24c-4.432 0-8 3.568-8 8v24c0 4.432 3.568 8 8 8h96c4.432 0 8-3.568 8-8v-24c0-4.432-3.568-8-8-8h-96z" fill="var(--block-section)" />
-                            <path d="m164 16h8c2.216 0 4 1.784 4 4s-1.784 4-4 4h-8c-2.216 0-4-1.784-4-4s1.784-4 4-4z" fill="var(--block-accent)" />
-                            <path d="m18 0c-9.9374 0-18 8.0626-18 18v108c0 9.9374 8.0626 18 18 18h156c9.9374 0 18-8.0626 18-18v-108c0-9.9374-8.0626-18-18-18h-156zm0 2h156c8.864 0 16 7.136 16 16v108c0 8.864-7.136 16-16 16h-156c-8.864 0-16-7.136-16-16v-108c0-8.864 7.136-16 16-16zm30 36c-5.5054 0-10 4.4946-10 10v24c0 5.5054 4.4946 10 10 10h96c5.5054 0 10-4.4946 10-10v-24c0-5.5054-4.4946-10-10-10h-96zm0 2h96c4.432 0 8 3.568 8 8v24c0 4.432-3.568 8-8 8h-96c-4.432 0-8-3.568-8-8v-24c0-4.432 3.568-8 8-8z" fill="var(--block-border)" />
-                        </svg>
-                        <span>
-                            <input id="theme-dark-default" name="theme" type="radio" value="dark-default" onchange="applyTheme(this)" />
-                            <label for="theme-dark-default">
-                                Dark (Default)
-                            </label>
-                        </span>
-                    </div>
-                    <div class="o-theme-preview theme-dark-contrast">
-                        <svg width="192" height="144" version="1.1" viewbox="0 0 192 144" xmlns="http://www.w3.org/2000/svg">
-                            <path d="m190 96h-188v30c0 8.864 7.136 16 16 16h156c8.864 0 16-7.136 16-16v-30z" fill="var(--block-shaded)" />
-                            <path d="m18 2c-8.864 0-16 7.136-16 16v78h188v-78c0-8.864-7.136-16-16-16h-156z" fill="var(--block-background)" />
-                            <path d="m20 16c-2.216 0-4 1.784-4 4s1.784 4 4 4h32c2.216 0 4-1.784 4-4s-1.784-4-4-4h-32zm48 0a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4zm80 0a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4zm-108 96c-4.432 0-8 3.568-8 8s3.568 8 8 8h16c4.432 0 8-3.568 8-8s-3.568-8-8-8h-16zm48 0c-4.432 0-8 3.568-8 8s3.568 8 8 8h16c4.432 0 8-3.568 8-8s-3.568-8-8-8h-16zm48 0c-4.432 0-8 3.568-8 8s3.568 8 8 8h16c4.432 0 8-3.568 8-8s-3.568-8-8-8h-16z" fill="var(--text-foreground)" />
-                            <path d="m84 16c-2.216 0-4 1.784-4 4s1.784 4 4 4h48c2.216 0 4-1.784 4-4s-1.784-4-4-4h-48zm-36 24c-4.432 0-8 3.568-8 8v24c0 4.432 3.568 8 8 8h96c4.432 0 8-3.568 8-8v-24c0-4.432-3.568-8-8-8h-96z" fill="var(--block-section)" />
-                            <path d="m164 16h8c2.216 0 4 1.784 4 4s-1.784 4-4 4h-8c-2.216 0-4-1.784-4-4s1.784-4 4-4z" fill="var(--block-accent)" />
-                            <path d="m18 0c-9.9374 0-18 8.0626-18 18v108c0 9.9374 8.0626 18 18 18h156c9.9374 0 18-8.0626 18-18v-108c0-9.9374-8.0626-18-18-18h-156zm0 2h156c8.864 0 16 7.136 16 16v108c0 8.864-7.136 16-16 16h-156c-8.864 0-16-7.136-16-16v-108c0-8.864 7.136-16 16-16zm30 36c-5.5054 0-10 4.4946-10 10v24c0 5.5054 4.4946 10 10 10h96c5.5054 0 10-4.4946 10-10v-24c0-5.5054-4.4946-10-10-10h-96zm0 2h96c4.432 0 8 3.568 8 8v24c0 4.432-3.568 8-8 8h-96c-4.432 0-8-3.568-8-8v-24c0-4.432 3.568-8 8-8z" fill="var(--block-border)" />
-                        </svg>
-                        <span>
-                            <input id="theme-dark-contrast" name="theme" type="radio" value="dark-contrast" onchange="applyTheme(this)" />
-                            <label for="theme-dark-contrast">
-                                Dark (High-contrast)
-                            </label>
-                        </span>
-                    </div>
-                    <div class="o-theme-preview theme-dark-sand">
-                        <svg width="192" height="144" version="1.1" viewbox="0 0 192 144" xmlns="http://www.w3.org/2000/svg">
-                            <path d="m190 96h-188v30c0 8.864 7.136 16 16 16h156c8.864 0 16-7.136 16-16v-30z" fill="var(--block-shaded)" />
-                            <path d="m18 2c-8.864 0-16 7.136-16 16v78h188v-78c0-8.864-7.136-16-16-16h-156z" fill="var(--block-background)" />
-                            <path d="m20 16c-2.216 0-4 1.784-4 4s1.784 4 4 4h32c2.216 0 4-1.784 4-4s-1.784-4-4-4h-32zm48 0a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4zm80 0a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4zm-108 96c-4.432 0-8 3.568-8 8s3.568 8 8 8h16c4.432 0 8-3.568 8-8s-3.568-8-8-8h-16zm48 0c-4.432 0-8 3.568-8 8s3.568 8 8 8h16c4.432 0 8-3.568 8-8s-3.568-8-8-8h-16zm48 0c-4.432 0-8 3.568-8 8s3.568 8 8 8h16c4.432 0 8-3.568 8-8s-3.568-8-8-8h-16z" fill="var(--text-foreground)" />
-                            <path d="m84 16c-2.216 0-4 1.784-4 4s1.784 4 4 4h48c2.216 0 4-1.784 4-4s-1.784-4-4-4h-48zm-36 24c-4.432 0-8 3.568-8 8v24c0 4.432 3.568 8 8 8h96c4.432 0 8-3.568 8-8v-24c0-4.432-3.568-8-8-8h-96z" fill="var(--block-section)" />
-                            <path d="m164 16h8c2.216 0 4 1.784 4 4s-1.784 4-4 4h-8c-2.216 0-4-1.784-4-4s1.784-4 4-4z" fill="var(--block-accent)" />
-                            <path d="m18 0c-9.9374 0-18 8.0626-18 18v108c0 9.9374 8.0626 18 18 18h156c9.9374 0 18-8.0626 18-18v-108c0-9.9374-8.0626-18-18-18h-156zm0 2h156c8.864 0 16 7.136 16 16v108c0 8.864-7.136 16-16 16h-156c-8.864 0-16-7.136-16-16v-108c0-8.864 7.136-16 16-16zm30 36c-5.5054 0-10 4.4946-10 10v24c0 5.5054 4.4946 10 10 10h96c5.5054 0 10-4.4946 10-10v-24c0-5.5054-4.4946-10-10-10h-96zm0 2h96c4.432 0 8 3.568 8 8v24c0 4.432-3.568 8-8 8h-96c-4.432 0-8-3.568-8-8v-24c0-4.432 3.568-8 8-8z" fill="var(--block-border)" />
-                        </svg>
-                        <span>
-                            <input id="theme-dark-sand" name="theme" type="radio" value="dark-sand" onchange="applyTheme(this)" />
-                            <label for="theme-dark-sand">
-                                Dark (Gruvbox)
-                            </label>
-                        </span>
-                    </div>
-                    <div class="o-theme-preview theme-light-flashbang">
-                        <svg width="192" height="144" version="1.1" viewbox="0 0 192 144" xmlns="http://www.w3.org/2000/svg">
-                            <path d="m190 96h-188v30c0 8.864 7.136 16 16 16h156c8.864 0 16-7.136 16-16v-30z" fill="var(--block-shaded)" />
-                            <path d="m18 2c-8.864 0-16 7.136-16 16v78h188v-78c0-8.864-7.136-16-16-16h-156z" fill="var(--block-background)" />
-                            <path d="m20 16c-2.216 0-4 1.784-4 4s1.784 4 4 4h32c2.216 0 4-1.784 4-4s-1.784-4-4-4h-32zm48 0a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4zm80 0a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4zm-108 96c-4.432 0-8 3.568-8 8s3.568 8 8 8h16c4.432 0 8-3.568 8-8s-3.568-8-8-8h-16zm48 0c-4.432 0-8 3.568-8 8s3.568 8 8 8h16c4.432 0 8-3.568 8-8s-3.568-8-8-8h-16zm48 0c-4.432 0-8 3.568-8 8s3.568 8 8 8h16c4.432 0 8-3.568 8-8s-3.568-8-8-8h-16z" fill="var(--text-foreground)" />
-                            <path d="m84 16c-2.216 0-4 1.784-4 4s1.784 4 4 4h48c2.216 0 4-1.784 4-4s-1.784-4-4-4h-48zm-36 24c-4.432 0-8 3.568-8 8v24c0 4.432 3.568 8 8 8h96c4.432 0 8-3.568 8-8v-24c0-4.432-3.568-8-8-8h-96z" fill="var(--block-section)" />
-                            <path d="m164 16h8c2.216 0 4 1.784 4 4s-1.784 4-4 4h-8c-2.216 0-4-1.784-4-4s1.784-4 4-4z" fill="var(--block-accent)" />
-                            <path d="m18 0c-9.9374 0-18 8.0626-18 18v108c0 9.9374 8.0626 18 18 18h156c9.9374 0 18-8.0626 18-18v-108c0-9.9374-8.0626-18-18-18h-156zm0 2h156c8.864 0 16 7.136 16 16v108c0 8.864-7.136 16-16 16h-156c-8.864 0-16-7.136-16-16v-108c0-8.864 7.136-16 16-16zm30 36c-5.5054 0-10 4.4946-10 10v24c0 5.5054 4.4946 10 10 10h96c5.5054 0 10-4.4946 10-10v-24c0-5.5054-4.4946-10-10-10h-96zm0 2h96c4.432 0 8 3.568 8 8v24c0 4.432-3.568 8-8 8h-96c-4.432 0-8-3.568-8-8v-24c0-4.432 3.568-8 8-8z" fill="var(--block-border)" />
-                        </svg>
-                        <span>
-                            <input id="theme-light-flashbang" name="theme" type="radio" value="light-flashbang" onchange="applyTheme(this)" />
-                            <label for="theme-light-flashbang">
-                                Light (Flashbang)
-                            </label>
-                        </span>
-                    </div>
-                    <div class="o-theme-preview theme-light-sand">
-                        <svg width="192" height="144" version="1.1" viewbox="0 0 192 144" xmlns="http://www.w3.org/2000/svg">
-                            <path d="m190 96h-188v30c0 8.864 7.136 16 16 16h156c8.864 0 16-7.136 16-16v-30z" fill="var(--block-shaded)" />
-                            <path d="m18 2c-8.864 0-16 7.136-16 16v78h188v-78c0-8.864-7.136-16-16-16h-156z" fill="var(--block-background)" />
-                            <path d="m20 16c-2.216 0-4 1.784-4 4s1.784 4 4 4h32c2.216 0 4-1.784 4-4s-1.784-4-4-4h-32zm48 0a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4zm80 0a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4zm-108 96c-4.432 0-8 3.568-8 8s3.568 8 8 8h16c4.432 0 8-3.568 8-8s-3.568-8-8-8h-16zm48 0c-4.432 0-8 3.568-8 8s3.568 8 8 8h16c4.432 0 8-3.568 8-8s-3.568-8-8-8h-16zm48 0c-4.432 0-8 3.568-8 8s3.568 8 8 8h16c4.432 0 8-3.568 8-8s-3.568-8-8-8h-16z" fill="var(--text-foreground)" />
-                            <path d="m84 16c-2.216 0-4 1.784-4 4s1.784 4 4 4h48c2.216 0 4-1.784 4-4s-1.784-4-4-4h-48zm-36 24c-4.432 0-8 3.568-8 8v24c0 4.432 3.568 8 8 8h96c4.432 0 8-3.568 8-8v-24c0-4.432-3.568-8-8-8h-96z" fill="var(--block-section)" />
-                            <path d="m164 16h8c2.216 0 4 1.784 4 4s-1.784 4-4 4h-8c-2.216 0-4-1.784-4-4s1.784-4 4-4z" fill="var(--block-accent)" />
-                            <path d="m18 0c-9.9374 0-18 8.0626-18 18v108c0 9.9374 8.0626 18 18 18h156c9.9374 0 18-8.0626 18-18v-108c0-9.9374-8.0626-18-18-18h-156zm0 2h156c8.864 0 16 7.136 16 16v108c0 8.864-7.136 16-16 16h-156c-8.864 0-16-7.136-16-16v-108c0-8.864 7.136-16 16-16zm30 36c-5.5054 0-10 4.4946-10 10v24c0 5.5054 4.4946 10 10 10h96c5.5054 0 10-4.4946 10-10v-24c0-5.5054-4.4946-10-10-10h-96zm0 2h96c4.432 0 8 3.568 8 8v24c0 4.432-3.568 8-8 8h-96c-4.432 0-8-3.568-8-8v-24c0-4.432 3.568-8 8-8z" fill="var(--block-border)" />
-                        </svg>
-                        <span>
-                            <input id="theme-light-sand" name="theme" type="radio" value="light-sand" onchange="applyTheme(this)" />
-                            <label for="theme-light-sand">
-                                Light (Gruvbox)
-                            </label>
-                        </span>
-                    </div>
-                </section>
+        <section class="l-grid type-2 --width-content" data-layout="grid" onmouseenter="pauseCarousell(this)" onmouseleave="continueCarousell(this)">
+            <section class="m-landing-carousell">
+                <div id="js-carousell-1" data-i="1" data-offset="0">
+                    {{ range .Cards }} {{ template "pack_card" .Trending }} {{ end }}
+                </div>
             </section>
-            <section id="tab-account" style="display: none;">
-                Hello
+            <section class="m-landing-carousell">
+                <div id="js-carousell-2" data-i="1" data-offset="0">
+                    {{ range .Cards }} {{ template "pack_card" .Newest }} {{ end }}
+                </div>
             </section>
+        </section>
+        <section class="l-separator --width-content">
+            <hr class="type-soft" />
+            What is Smithed exactly?
+            <hr class="type-soft" />
+        </section>
+        <section class="l-grid type-2 --width-content">
+            <a class="m-landing-card" href="https://smithed.net/discord">
+                <header>
+                    <svg class="w-icon" width="16" height="16" style="--size: 1.5rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
+                        <path d="m8 0.58594-7.707 7.707c-0.39052 0.39052-0.39052 1.0235 0 1.4141 0.39052 0.39052 1.0235 0.39052 1.4141 0l0.29297-0.29297v3.5859c0 1.662 1.338 3 3 3h6c1.662 0 3-1.338 3-3v-3.5859l0.29297 0.29297c0.39052 0.39052 1.0235 0.39052 1.4141 0 0.39052-0.39052 0.39052-1.0235 0-1.4141l-7.707-7.707zm0 2.8281 4 4v5.5859c0 0.554-0.446 1-1 1h-6c-0.554 0-1-0.446-1-1v-5.5859l4-4z" fill-rule="evenodd" />
+                    </svg>
+                    <h2 class="on-highlight --flex">
+                        Discord
+                    </h2>
+                    <span class="adapt-hide-min">
+                        Join
+                        <svg class="w-icon" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
+                            <path d="m6 2c-2.216 0-4 1.784-4 4v4c0 2.216 1.784 4 4 4h4c2.216 0 4-1.784 4-4h-2c0 1.108-0.892 2-2 2h-4c-1.108 0-2-0.892-2-2v-4c0-1.108 0.892-2 2-2v-2zm2 0v2h2c0.17886 0 0.35087 0.02667 0.51562 0.070312l-3.2227 3.2227a1 1 0 0 0 0 1.4141 1 1 0 0 0 1.4141 0l3.2227-3.2227c0.043642 0.16476 0.070312 0.33677 0.070312 0.51562v2h2v-2c0-2.216-1.784-4-4-4h-2z" />
+                        </svg>
+                    </span>
+                </header>
+                <p>
+                    Smithed is a community of people passionate about data & resource packs. We host various related events, develop libraries and hang out!
+                </p>
+            </a>
+            <a class="m-landing-card" href="/browse">
+                <header>
+                    <svg class="w-icon" width="16" height="16" style="--size: 1.5rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
+                        <path d="m7 0a2 2 0 00-2 2h-2c-1.662 0-3 1.338-3 3v8c0 1.662 1.338 3 3 3h8c1.662 0 3-1.338 3-3v-2a2 2 0 002-2 2 2 0 00-2-2v-2c0-1.662-1.338-3-3-3h-2a2 2 0 00-2-2zm-4 4h8c.554 0 1 .446 1 1v8c0 .554-.446 1-1 1h-2a2 2 0 00-2-2 2 2 0 00-2 2h-2c-.554 0-1-.446-1-1v-2a2 2 0 002-2 2 2 0 00-2-2v-2c0-.554.446-1 1-1z" fill-rule="evenodd" />
+                    </svg>
+                    <h2 class="on-highlight --flex">
+                        Packs
+                    </h2>
+                    <span class="adapt-hide-min">
+                        Browse
+                        <svg class="w-icon" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
+                            <path d="m10 7a3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3zm-3-5a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 2.7539-0.83203l2.5391 2.5391c0.39052 0.39052 1.0235 0.39052 1.4141 0 0.39052-0.39052 0.39052-1.0235 0-1.4141l-2.5391-2.5391a5 5 0 0 0 0.83203-2.7539 5 5 0 0 0-5-5z" fill-rule="evenodd" />
+                        </svg>
+                    </span>
+                </header>
+                <p>
+                    Create, share and browse data & resource packs. There are many tools to make the process simple and fast.
+                </p>
+            </a>
+            <a class="m-landing-card" href="https://docs.smithed.dev/">
+                <header>
+                    <svg class="w-icon" width="16" height="16" style="--size: 1.5rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
+                        <path d="m5.5 3c-.27614 0-.5.22386-.5.5v5.5h5v3.5c0 .27614.22386.5.5.5s.5-.22386.5-.5v-9.5zm8.5 2h-1v-1.5c0-.27614.22386-.5.5-.5s.5.22386.5.5zm-11.5 8c-.27614 0-.5-.22386-.5-.5v-1.5h6v2h-5.5zm.5-9.5c0-1.3807 1.1193-2.5 2.5-2.5h8c1.3807 0 2.5 1.1193 2.5 2.5v3.5h-3v5.5c0 1.3807-1.1193 2.5-2.5 2.5h-8c-1.3807 0-2.5-1.1193-2.5-2.5v-3.5h3v-5.5z" fill-rule="evenodd" />
+                    </svg>
+                    <h2 class="on-highlight --flex">
+                        Docs
+                    </h2>
+                    <span class="adapt-hide-min">
+                        Explore
+                        <svg class="w-icon" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
+                            <path d="m10 7a3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3zm-3-5a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 2.7539-0.83203l2.5391 2.5391c0.39052 0.39052 1.0235 0.39052 1.4141 0 0.39052-0.39052 0.39052-1.0235 0-1.4141l-2.5391-2.5391a5 5 0 0 0 0.83203-2.7539 5 5 0 0 0-5-5z" fill-rule="evenodd" />
+                        </svg>
+                    </span>
+                </header>
+                <p>
+                    Your all-in-one guide to the Smithed ecosystem. Whether you're a seasoned pack developer or just starting out, Smithed has something to offer.
+                </p>
+            </a>
+            <a class="m-landing-card" href="https://weld.smithed.dev/">
+                <header>
+                    <svg class="w-icon" width="16" height="16" style="--size: 1.5rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
+                        <path d="m11 2c1.662 0 3 1.338 3 3v2h1c0.554 0 1 0.446 1 1s-0.446 1-1 1h-1v2c0 1.662-1.338 3-3 3-0.55228 0-1-0.44772-1-1s0.44772-1 1-1c0.554 0 1-0.446 1-1v-6c0-0.554-0.446-1-1-1-0.55228 0-1-0.44772-1-1s0.44772-1 1-1zm-6 0c-1.662 0-3 1.338-3 3v2h-1c-0.554 0-1 0.446-1 1s0.446 1 1 1h1v2c0 1.662 1.338 3 3 3 0.55228 0 1-0.44772 1-1s-0.44772-1-1-1c-0.554 0-1-0.446-1-1v-6c0-0.554 0.446-1 1-1 0.55228 0 1-0.44772 1-1s-0.44772-1-1-1z" />
+                    </svg>
+                    <h2 class="on-highlight --flex">
+                        Weld
+                    </h2>
+                    <span class="adapt-hide-min">
+                        Try it
+                        <svg class="w-icon" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
+                            <path d="m6 2c-2.216 0-4 1.784-4 4v4c0 2.216 1.784 4 4 4h4c2.216 0 4-1.784 4-4h-2c0 1.108-0.892 2-2 2h-4c-1.108 0-2-0.892-2-2v-4c0-1.108 0.892-2 2-2v-2zm2 0v2h2c0.17886 0 0.35087 0.02667 0.51562 0.070312l-3.2227 3.2227a1 1 0 0 0 0 1.4141 1 1 0 0 0 1.4141 0l3.2227-3.2227c0.043642 0.16476 0.070312 0.33677 0.070312 0.51562v2h2v-2c0-2.216-1.784-4-4-4h-2z" />
+                        </svg>
+                    </span>
+                </header>
+                <p>
+                    The fastest pack merger in the west. Merge all your data and resource packs into a single zip easily droppable into any world or minecraft instance.
+                </p>
+            </a>
         </section>
     </main>
     <!-- ... -->

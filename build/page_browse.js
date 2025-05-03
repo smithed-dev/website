@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="/static/styles.min.css?checksum=87fdaf6a6cf3af1899bf303459d48d80" />
     <script src="/static/main.js?checksum=a57ae0945fb9f0a86a560ab5126e4f71">
     </script>
-    <script src="/static/page_browse.js?version=a57ae0945fb9f0a86a560ab5126e4f71" defer>
+    <script src="/static/page_browse.js?checksum=ffc412492b5e9e698711a42a7bdb6445" defer>
     </script>
     <!-- [!] "While the CDN approach is extremely simple, you may want to consider not using CDNs in production" -->
     <script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.js" integrity="sha384-oeUn82QNXPuVkGCkcrInrS1twIxKhkZiFfr2TdiuObZ3n3yIeMiqcRzkIcguaof1" crossorigin="anonymous">
@@ -442,7 +442,7 @@
                         <svg class="w-icon type-indicator" width="32" height="32" style="--size: 2rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32" fill="currentColor">
                             <path d="m15 0v10.084a6 6 0 0 0-5 5.916 6 6 0 0 0 5 5.916v10.084h2v-10.084a6 6 0 0 0 5-5.916 6 6 0 0 0-5-5.916v-10.084h-2zm1 12a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z" />
                         </svg>
-                        <div id="js-id-filter-badge-lang" class="w-filter --flex" data-item="Localization" data-param="badge">
+                        <div id="js-id-filter-badge-lang" class="w-filter --flex" data-param="badge" data-item="Localization">
                             <button class="w-button type-filter type-include --flex" title="Toggle filter on" onclick="toggleFilter(this, 'toggleInclude', true)">
                                 <span class="--flex">
                                     Localization
@@ -466,7 +466,7 @@
                         <svg class="w-icon type-indicator" width="32" height="32" style="--size: 2rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32" fill="currentColor">
                             <path d="m16 22a6 6 0 0 1-6-6 6 6 0 0 1 5-5.916v-10.084h2v10.084a6 6 0 0 1 5 5.916 6 6 0 0 1-6 6zm0-2a4 4 0 0 0 4-4 4 4 0 0 0-4-4 4 4 0 0 0-4 4 4 4 0 0 0 4 4z" />
                         </svg>
-                        <div id="js-id-filter-badge-resourcepack" class="w-filter --flex" data-item="Resource pack" data-param="badge">
+                        <div id="js-id-filter-badge-resourcepack" class="w-filter --flex" data-param="badge" data-item="Resource pack">
                             <button class="w-button type-filter type-include --flex" title="Toggle filter on" onclick="toggleFilter(this, 'toggleInclude', true)">
                                 <span class="--flex">
                                     Resource pack

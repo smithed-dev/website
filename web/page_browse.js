@@ -77,6 +77,25 @@ function applyLayout(node) {
   }
 }
 
+/** @param {HTMLButtonElement} node */
+function showFilters(node) {
+  document.body.classList.add("block-scroll");
+  document
+    .querySelector(".l-with-sidebar")
+    ?.querySelector("aside")
+    ?.style?.setProperty("display", "flex");
+  scrollTo(0, 0);
+}
+
+/** @param {HTMLButtonElement} node */
+function hideFilters(node) {
+  document.body.classList.remove("block-scroll");
+  document
+    .querySelector(".l-with-sidebar")
+    ?.querySelector("aside")
+    ?.style?.removeProperty("display");
+}
+
 self.onurlchanged = () => {
   const browser = document.getElementById("browser");
   htmx.process(browser);

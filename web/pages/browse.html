@@ -22,6 +22,10 @@
                         <pkg:icon :icon="eyecons/menu_hamburger" data-name="list" />
                         <pkg:icon :icon="eyecons/collapse" data-name="compact" />
                     </pkg:switch>
+                    <button class="w-button type-symbol adapt-default-hide adapt-show-sidebar" title="Show filters"
+                        onclick="showFilters(this)">
+                        <pkg:icon :icon="eyecons/properties" />
+                    </button>
                 </section>
             </header>
             <div id="js-filters" class="l-row --wrap">
@@ -40,7 +44,10 @@
         <aside>
             <div class="o-title">
                 <pkg:icon :icon="eyecons/sort" />
-                <b>Categories</b>
+                <b class="--flex">Categories</b>
+                <button class="w-button adapt-default-hide adapt-show-sidebar" onclick="hideFilters(this)">
+                    <pkg:icon :icon="eyecons/cross" />
+                </button>
             </div>
             <pkg:graph>
                 {{ $last := .CategoryLast }}

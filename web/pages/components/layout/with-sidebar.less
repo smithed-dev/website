@@ -31,23 +31,25 @@
     }
 
     @media only screen and (max-width: (60rem + 4rem)) {
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        overflow-x: scroll;
-        overflow-y: hidden;
-        padding: 1rem 0;
-
-        &>* {
-            transition: min-width 200ms;
-            scroll-snap-align: start;
-        }
-
         &>section {
-            min-width: calc(100vw - 6rem) !important;
+            .--width-max();
+            // min-width: calc(100vw - 6rem) !important;
         }
 
         &>aside {
-            min-width: min(100vw - 4rem, @screen-min);
+            display: none;
+            position: absolute;
+            background-color: var(--block-background);
+            left: 0.5rem;
+            right: 0.5rem;
+            top: 0.5rem;
+            bottom: 0.5rem;
+            height: calc(100vh - 2rem);
+            overflow-y: scroll;
+
+            &>div:first-child {
+                padding: 0 1rem;
+            }
         }
     }
 

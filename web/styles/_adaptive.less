@@ -1,3 +1,7 @@
+.adapt-default-hide {
+    display: none;
+}
+
 @media only screen and (max-width: (@screen-max + 4rem)) {
     .adapt-hide-wide {
         display: none !important;
@@ -7,6 +11,20 @@
 @media only screen and (max-width: (@screen-content + 4rem)) {
     .adapt-hide-content {
         display: none !important;
+    }
+
+    .adapt-show-content {
+        display: block !important;
+    }
+
+    .adapt-show-content-flex {
+        display: flex !important;
+    }
+}
+
+@media only screen and (max-width: (60rem + 4rem)) {
+    .adapt-show-sidebar {
+        display: flex !important;
     }
 }
 

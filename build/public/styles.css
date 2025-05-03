@@ -763,66 +763,6 @@ label {
 .l-grid.type-2[data-layout="list"] {
   grid-template-columns: 1fr;
 }
-.l-graph {
-  display: flex;
-  flex-direction: column;
-  gap: 0rem;
-  align-items: stretch;
-  padding: 0 1rem;
-}
-.l-graph.type-limited {
-  max-height: 20rem;
-  overflow-y: auto;
-}
-.l-graph details {
-  border-radius: 0.5rem;
-}
-.l-graph details summary {
-  transition: background-color 0.2s;
-  cursor: pointer;
-  border-radius: 0.5rem;
-}
-.l-graph details summary:hover,
-.l-graph details summary:focus {
-  background-color: var(--block-hover);
-}
-.l-graph details summary:focus {
-  outline: 2px solid var(--text-foreground);
-}
-.l-graph details summary:hover,
-.l-graph details summary:focus {
-  --color: var(--text-foreground);
-}
-.l-graph details summary:focus {
-  outline: none;
-  color: var(--text-accent);
-  --color: var(--text-accent);
-}
-.l-graph details .l-graph {
-  padding: 0;
-}
-.l-graph details[open] {
-  background-color: var(--block-section);
-  --color: var(--text-foreground);
-}
-.l-graph details[open] .type-angle {
-  transform: scaleY(-1);
-}
-.l-graph .o-graph-node {
-  display: flex;
-  flex-direction: row;
-  gap: 0rem;
-  align-items: center;
-  gap: 0;
-  position: relative;
-  --color: var(--block-border);
-}
-.l-graph .o-graph-node .type-indicator {
-  color: var(--color);
-}
-.l-graph .o-graph-node .type-angle {
-  padding: 0 1rem;
-}
 .l-row,
 .l-row > .l-inherit {
   display: flex;
@@ -929,6 +869,67 @@ label {
 .l-col > .l-inherit.type-sections nav > span {
   cursor: default;
 }
+.l-graph {
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
+  align-items: stretch;
+  padding: 0 1rem;
+}
+.l-graph.type-limited {
+  min-height: 10rem;
+  max-height: 20rem;
+  overflow-y: auto;
+}
+.l-graph details {
+  border-radius: 0.5rem;
+}
+.l-graph details summary {
+  transition: background-color 0.2s;
+  cursor: pointer;
+  border-radius: 0.5rem;
+}
+.l-graph details summary:hover,
+.l-graph details summary:focus {
+  background-color: var(--block-hover);
+}
+.l-graph details summary:focus {
+  outline: 2px solid var(--text-foreground);
+}
+.l-graph details summary:hover,
+.l-graph details summary:focus {
+  --color: var(--text-foreground);
+}
+.l-graph details summary:focus {
+  outline: none;
+  color: var(--text-accent);
+  --color: var(--text-accent);
+}
+.l-graph details .l-graph {
+  padding: 0;
+}
+.l-graph details[open] {
+  background-color: var(--block-section);
+  --color: var(--text-foreground);
+}
+.l-graph details[open] .type-angle {
+  transform: scaleY(-1);
+}
+.l-graph .o-graph-node {
+  display: flex;
+  flex-direction: row;
+  gap: 0rem;
+  align-items: center;
+  gap: 0;
+  position: relative;
+  --color: var(--block-border);
+}
+.l-graph .o-graph-node .type-indicator {
+  color: var(--color);
+}
+.l-graph .o-graph-node .type-angle {
+  padding: 0 1rem;
+}
 .l-with-sidebar {
   display: flex;
   flex-direction: row;
@@ -970,22 +971,22 @@ label {
   gap: 1;
 }
 @media only screen and (max-width: 64rem) {
-  .l-with-sidebar {
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    padding: 1rem 0;
-  }
-  .l-with-sidebar > * {
-    transition: min-width 200ms;
-    scroll-snap-align: start;
-  }
   .l-with-sidebar > section {
-    min-width: calc(100vw - 6rem) !important;
+    width: min(96vw, 70rem);
   }
   .l-with-sidebar > aside {
-    min-width: min(96vw, 24rem);
+    display: none;
+    position: absolute;
+    background-color: var(--block-background);
+    left: 0.5rem;
+    right: 0.5rem;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    height: calc(100vh - 2rem);
+    overflow-y: scroll;
+  }
+  .l-with-sidebar > aside > div:first-child {
+    padding: 0 1rem;
   }
 }
 @media only screen and (max-width: 28rem) {
@@ -1237,6 +1238,45 @@ label {
   padding: 1rem;
   border-radius: 0 0 1rem 1rem;
 }
+.w-filter {
+  display: flex;
+  flex-direction: row;
+  gap: 0rem;
+  align-items: center;
+  gap: 0;
+  border-radius: 1rem;
+}
+.w-filter:has(button:hover) svg,
+.w-filter:has(button:focus) svg {
+  visibility: visible;
+}
+.w-filter:has(.type-exclude:hover) {
+  background-color: var(--block-section);
+}
+.w-filter.on-selected {
+  background-color: var(--field-disturbing);
+  outline: 1px solid var(--text-disturbing);
+  color: var(--text-disturbing);
+}
+.w-filter.on-selected .w-button:last-of-type svg {
+  visibility: visible;
+  color: var(--text-disturbing);
+}
+.w-filter .type-include.on-selected {
+  background-color: var(--field-success);
+  outline: 1px solid var(--text-success);
+  color: var(--text-success);
+}
+.w-filter .type-include.on-selected svg {
+  visibility: visible;
+  color: var(--text-success);
+}
+.w-filter .type-include.on-selected:hover {
+  background-color: var(--scheme-hover);
+}
+.w-filter .type-include.on-selected:focus {
+  outline: 2px solid var(--text-foreground);
+}
 .w-button {
   display: flex;
   flex-direction: row;
@@ -1339,6 +1379,9 @@ label {
 .w-button.type-current:first-child {
   border-right: 1px solid var(--block-border);
 }
+.w-button.type-symbol {
+  border-radius: 0.5rem;
+}
 .w-button.type-disturbing {
   color: var(--text-disturbing);
   --color: var(--text-disturbing);
@@ -1389,45 +1432,6 @@ label {
   outline: none;
   color: var(--text-accent);
 }
-.w-filter {
-  display: flex;
-  flex-direction: row;
-  gap: 0rem;
-  align-items: center;
-  gap: 0;
-  border-radius: 1rem;
-}
-.w-filter:has(button:hover) svg,
-.w-filter:has(button:focus) svg {
-  visibility: visible;
-}
-.w-filter:has(.type-exclude:hover) {
-  background-color: var(--block-section);
-}
-.w-filter.on-selected {
-  background-color: var(--field-disturbing);
-  outline: 1px solid var(--text-disturbing);
-  color: var(--text-disturbing);
-}
-.w-filter.on-selected .w-button:last-of-type svg {
-  visibility: visible;
-  color: var(--text-disturbing);
-}
-.w-filter .type-include.on-selected {
-  background-color: var(--field-success);
-  outline: 1px solid var(--text-success);
-  color: var(--text-success);
-}
-.w-filter .type-include.on-selected svg {
-  visibility: visible;
-  color: var(--text-success);
-}
-.w-filter .type-include.on-selected:hover {
-  background-color: var(--scheme-hover);
-}
-.w-filter .type-include.on-selected:focus {
-  outline: 2px solid var(--text-foreground);
-}
 body {
   font-family: 'Lexend', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   display: flex;
@@ -1437,6 +1441,9 @@ body {
   background-color: var(--block-background);
   color: var(--text-foreground);
   font-weight: 300;
+}
+body.block-scroll {
+  overflow: hidden;
 }
 body > header {
   width: min(96vw, 70rem);
@@ -1796,6 +1803,9 @@ img.type-icon {
   display: -webkit-box;
   -webkit-box-orient: vertical;
 }
+.adapt-default-hide {
+  display: none;
+}
 @media only screen and (max-width: 74rem) {
   .adapt-hide-wide {
     display: none !important;
@@ -1804,6 +1814,17 @@ img.type-icon {
 @media only screen and (max-width: 54rem) {
   .adapt-hide-content {
     display: none !important;
+  }
+  .adapt-show-content {
+    display: block !important;
+  }
+  .adapt-show-content-flex {
+    display: flex !important;
+  }
+}
+@media only screen and (max-width: 64rem) {
+  .adapt-show-sidebar {
+    display: flex !important;
   }
 }
 @media only screen and (max-width: 44rem) {

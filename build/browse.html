@@ -15,7 +15,7 @@
     <link rel="apple-touch-icon" href="/favicon.png" sizes="180x180" />
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="all" />
-    <link rel="stylesheet" href="/static/styles.min.css?checksum=32af41a2b3852c1292e877aa6ad0d614" />
+    <link rel="stylesheet" href="/static/styles.min.css?checksum=8a91ce75579cc9f50d425d073f0021eb" />
     <script src="/static/main.js?checksum=a57ae0945fb9f0a86a560ab5126e4f71">
     </script>
     <script src="/static/page_browse.js?version=a57ae0945fb9f0a86a560ab5126e4f71" defer>
@@ -217,6 +217,12 @@
                         <script>
                             new SwitchWidget(document.getElementById("js-id-switch-layout")).load()
                         </script>
+                        <button class="w-button type-symbol adapt-default-hide adapt-show-sidebar" title="Show filters" onclick="showFilters(this)">
+                            <svg class="w-icon" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
+                                <path d="m4.5 8c-1.9211482 0-3.5 1.5788518-3.5 3.5 0 1.921148 1.5788518 3.5 3.5 3.5 1.5742853 0 2.9174078-1.060034 3.3515625-2.5h6.1484375a1 1 0 0 0 1-1 1 1 0 0 0-1-1h-6.1484375c-0.4341547-1.4399663-1.7772772-2.5-3.3515625-2.5zm0 2c0.8402701 0 1.5 0.65973 1.5 1.5s-0.6597299 1.5-1.5 1.5-1.5-0.65973-1.5-1.5 0.6597299-1.5 1.5-1.5z" fill-rule="evenodd" />
+                                <path d="m11.5 1c-1.5742853 0-2.9174078 1.0600337-3.3515625 2.5h-6.1484375a1 1 0 0 0-1 1 1 1 0 0 0 1 1h6.1484375c0.4341547 1.4399663 1.7772772 2.5 3.3515625 2.5 1.921148 0 3.5-1.5788518 3.5-3.5s-1.578852-3.5-3.5-3.5zm0 2c0.84027 0 1.5 0.6597299 1.5 1.5s-0.65973 1.5-1.5 1.5-1.5-0.6597299-1.5-1.5 0.65973-1.5 1.5-1.5z" fill-rule="evenodd" />
+                            </svg>
+                        </button>
                     </section>
                 </header>
                 <div id="js-filters" class="l-row --wrap">
@@ -239,9 +245,14 @@
                     <svg class="w-icon" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
                         <path d="m3 3c-0.554 0-1 0.446-1 1s0.446 1 1 1h10c0.554 0 1-0.446 1-1s-0.446-1-1-1h-10zm0 4c-0.554 0-1 0.446-1 1s0.446 1 1 1h7c0.554 0 1-0.446 1-1s-0.446-1-1-1h-7zm0 4c-0.554 0-1 0.446-1 1s0.446 1 1 1h4c0.554 0 1-0.446 1-1s-0.446-1-1-1h-4z" />
                     </svg>
-                    <b>
+                    <b class="--flex">
                         Categories
                     </b>
+                    <button class="w-button adapt-default-hide adapt-show-sidebar" onclick="hideFilters(this)">
+                        <svg class="w-icon" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
+                            <path d="m12.293 13.707c0.39174 0.39174 1.0223 0.39174 1.4141 0s0.39174-1.0223 0-1.4141l-4.293-4.293 4.293-4.293c0.39174-0.39174 0.39174-1.0223 0-1.4141-0.39174-0.39174-1.0223-0.39174-1.4141 0l-4.293 4.293-4.293-4.293c-0.39174-0.39174-1.0223-0.39174-1.4141 0s-0.39174 1.0223 0 1.4141l4.293 4.293-4.293 4.293c-0.39174 0.39174-0.39174 1.0223 0 1.4141 0.39174 0.39174 1.0223 0.39174 1.4141 0l4.293-4.293z" />
+                        </svg>
+                    </button>
                 </div>
                 <section class="l-graph">
                     {{ $last := .CategoryLast }} {{ range $i, $a := .Categories }}
@@ -442,7 +453,7 @@
                         <svg class="w-icon type-indicator" width="32" height="32" style="--size: 2rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32" fill="currentColor">
                             <path d="m15 0v10.084a6 6 0 0 0-5 5.916 6 6 0 0 0 5 5.916v10.084h2v-10.084a6 6 0 0 0 5-5.916 6 6 0 0 0-5-5.916v-10.084h-2zm1 12a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z" />
                         </svg>
-                        <div id="js-id-filter-badge-lang" class="w-filter --flex" data-item="Localization" data-param="badge">
+                        <div id="js-id-filter-badge-lang" class="w-filter --flex" data-param="badge" data-item="Localization">
                             <button class="w-button type-filter type-include --flex" title="Toggle filter on" onclick="toggleFilter(this, 'toggleInclude', true)">
                                 <span class="--flex">
                                     Localization
@@ -466,7 +477,7 @@
                         <svg class="w-icon type-indicator" width="32" height="32" style="--size: 2rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32" fill="currentColor">
                             <path d="m16 22a6 6 0 0 1-6-6 6 6 0 0 1 5-5.916v-10.084h2v10.084a6 6 0 0 1 5 5.916 6 6 0 0 1-6 6zm0-2a4 4 0 0 0 4-4 4 4 0 0 0-4-4 4 4 0 0 0-4 4 4 4 0 0 0 4 4z" />
                         </svg>
-                        <div id="js-id-filter-badge-resourcepack" class="w-filter --flex" data-param="badge" data-item="Resource pack">
+                        <div id="js-id-filter-badge-resourcepack" class="w-filter --flex" data-item="Resource pack" data-param="badge">
                             <button class="w-button type-filter type-include --flex" title="Toggle filter on" onclick="toggleFilter(this, 'toggleInclude', true)">
                                 <span class="--flex">
                                     Resource pack

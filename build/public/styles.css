@@ -983,6 +983,7 @@ label {
     top: 0.5rem;
     bottom: 0.5rem;
     height: calc(100vh - 2rem);
+    height: calc(100svh - 2rem);
     overflow-y: scroll;
   }
   .l-with-sidebar > aside > div:first-child {

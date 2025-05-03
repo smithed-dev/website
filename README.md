@@ -7,7 +7,7 @@ This is an HTMX implementation of the smithed website.
 - [x] Adaptive UI for landing page
 - [x] Browse page
 - [x] Search bar
-- [ ] Login
+- [x] Login
 
 ## Building
 

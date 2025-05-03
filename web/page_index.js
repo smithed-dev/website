@@ -19,11 +19,30 @@ function scrollCarousell(node) {
     .classList.add("on-playing");
 }
 
-this.setInterval(() => {
-  scrollCarousell(carousells[0]);
-  this.setTimeout(() => {
-    scrollCarousell(carousells[1]);
-  }, 200);
-}, TIMER * 1000);
+let interval;
 
-carousells[0];
+/** @param {HTMLElement} node  */
+function pauseCarousell(node) {
+  clearInterval(interval);
+  node.querySelectorAll(".on-playing").forEach((element) => {
+    element.classList.remove("on-playing");
+  });
+}
+
+/** @param {HTMLElement} node  */
+function continueCarousell(node) {
+  interval = this.setInterval(() => {
+    scrollCarousell(carousells[0]);
+    this.setTimeout(() => {
+      scrollCarousell(carousells[1]);
+    }, 200);
+  }, TIMER * 1000);
+
+  carousells[0].children[Number(carousells[0].dataset.offset)]
+    .querySelector(".o-loading-bar")
+    .classList.add("on-playing");
+  carousells[1].children[Number(carousells[1].dataset.offset)]
+    .querySelector(".o-loading-bar")
+    .classList.add("on-playing");
+}
+continueCarousell(null);

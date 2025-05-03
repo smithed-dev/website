@@ -9,7 +9,8 @@
         </p>
     </pkg:heading>
 
-    <pkg:grid :cols="2" class="%s --width-content" data-layout="grid">
+    <pkg:grid :cols="2" class="%s --width-content" data-layout="grid" onmouseenter="pauseCarousell(this)"
+        onmouseleave="continueCarousell(this)">
         <pkg:landing-carousell :index="1">
             {{ range .Cards }}
             {{ template "pack_card" .Trending }}

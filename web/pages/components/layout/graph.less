@@ -13,8 +13,10 @@
     }
 
     details {
-        transition: max-height 0.2s ease-in-out, background-color 0.2s ease-in-out;
+        transition: height 0.2s linear, max-height 0.4s linear, background-color 0.2s linear;
+        interpolate-size: allow-keywords;
         border-radius: 0.5rem;
+        height: 2rem;
         max-height: 2rem;
         overflow: hidden;
 
@@ -50,7 +52,8 @@
     }
 
     input:checked+details {
-        max-height: 10rem;
+        height: auto;
+        max-height: 100rem;
         background-color: var(--block-section);
         --color: var(--text-foreground);
 

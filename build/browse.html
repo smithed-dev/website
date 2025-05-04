@@ -15,7 +15,7 @@
     <link rel="apple-touch-icon" href="/favicon.png" sizes="180x180" />
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="all" />
-    <link rel="stylesheet" href="/static/styles.min.css?checksum=fd6c6dd8a46e9de5fc1b29861ff6e4d3" />
+    <link rel="stylesheet" href="/static/styles.min.css?checksum=8bc76f9e2dd2540be15236c09395117d" />
     <script src="/static/main.js?checksum=a57ae0945fb9f0a86a560ab5126e4f71">
     </script>
     <script src="/static/page_browse.js?version=a57ae0945fb9f0a86a560ab5126e4f71" defer>
@@ -317,7 +317,7 @@
                             <path d="m15 0v10.084a6 6 0 0 0-5 5.916 6 6 0 0 0 5 5.916v10.084h2v-10.084a6 6 0 0 0 5-5.916 6 6 0 0 0-5-5.916v-10.084h-2zm1 12a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z" />
                         </svg>
                         {{ end }}
-                        <div id="js-id-filter-version-{{ $i }}" class="w-filter --flex" data-param="version" data-item="{{ $a.Version }}">
+                        <div id="js-id-filter-version-{{ $i }}" class="w-filter --flex" data-item="{{ $a.Version }}" data-param="version">
                             <button class="w-button type-filter type-include --flex" title="Toggle filter on" onclick="toggleFilter(this, 'toggleInclude', true)">
                                 <span class="--flex">
                                     {{ $a.Version }}
@@ -339,46 +339,49 @@
                     </div>
                     {{ else }}
                     <div>
-                        <details>
+                        <input id="details-{{ $a.Version }}" type="checkbox" style="display: none;" />
+                        <details open>
                             <summary class="o-graph-node">
-                                {{ if eq $i 0 }}
-                                <svg class="w-icon type-indicator" width="32" height="32" style="--size: 2rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32" fill="currentColor">
-                                    <path d="m16 10a6 6 0 0 0-6 6 6 6 0 0 0 5 5.916v10.084h2v-10.084a6 6 0 0 0 5-5.916 6 6 0 0 0-6-6zm0 2a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z" />
-                                </svg>
-                                {{ else if eq $i $last }}
-                                <svg class="w-icon type-indicator" width="32" height="32" style="--size: 2rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32" fill="currentColor">
-                                    <path d="m16 22a6 6 0 0 1-6-6 6 6 0 0 1 5-5.916v-10.084h2v10.084a6 6 0 0 1 5 5.916 6 6 0 0 1-6 6zm0-2a4 4 0 0 0 4-4 4 4 0 0 0-4-4 4 4 0 0 0-4 4 4 4 0 0 0 4 4z" />
-                                </svg>
-                                {{ else }}
-                                <svg class="w-icon type-indicator" width="32" height="32" style="--size: 2rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32" fill="currentColor">
-                                    <path d="m15 0v10.084a6 6 0 0 0-5 5.916 6 6 0 0 0 5 5.916v10.084h2v-10.084a6 6 0 0 0 5-5.916 6 6 0 0 0-5-5.916v-10.084h-2zm1 12a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z" />
-                                </svg>
-                                {{ end }}
-                                <div id="js-id-filter-version-{{ $i }}" class="w-filter --flex" data-param="version" data-item="{{ $a.Version }}">
-                                    <button class="w-button type-filter type-include --flex" title="Toggle filter on" onclick="toggleFilter(this, 'toggleInclude', true)">
-                                        <span class="--flex">
-                                            {{ $a.Version }}
-                                            <em>
-                                                +{{ $len }}
-                                            </em>
-                                        </span>
-                                        <svg class="w-icon" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
-                                            <path d="m13 3.5a1 1 0 0 0-0.70703 0.29297l-6.293 6.293-2.293-2.293a1 1 0 0 0-1.4141 0 1 1 0 0 0 0 1.4141l3.707 3.707 7.707-7.707a1 1 0 0 0 0-1.4141 1 1 0 0 0-0.70703-0.29297z" />
-                                        </svg>
-                                    </button>
-                                    <button class="w-button type-filter type-exclude" title="Toggle filter off" onclick="toggleFilter(this, 'toggleExclude', true)">
-                                        <svg class="w-icon" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
-                                            <path d="m8 0a8 8 0 0 0-8 8 8 8 0 0 0 0.64453 3.1113l1.5586-1.5586c-0.13224-0.49512-0.20312-1.0159-0.20312-1.5527 0-3.3137 2.6863-6 6-6 0.53681 0 1.0576 0.070891 1.5527 0.20312l1.5684-1.5684a8 8 0 0 0-3.1211-0.63477zm7.3652 4.8789-1.5684 1.5684c0.13224 0.49512 0.20312 1.0159 0.20312 1.5527 0 3.3137-2.6863 6-6 6-0.53681 0-1.0576-0.070895-1.5527-0.20312l-1.5586 1.5586a8 8 0 0 0 3.1113 0.64453 8 8 0 0 0 8-8 8 8 0 0 0-0.63477-3.1211z" opacity="0.4" />
-                                            <path d="m12.949 1.6367-11.313 11.313 1.4141 1.4141 11.312-11.312-1.4141-1.4141z" />
-                                        </svg>
-                                    </button>
-                                </div>
-                                <script>
-                                    new FilterWidget(document.getElementById("js-id-filter-version-{{ $i }}"))
-                                </script>
-                                <svg class="w-icon type-angle" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
-                                    <path d="m3.7082 5.292c-0.39173-0.39174-1.0243-0.39174-1.416 0-0.39174 0.39174-0.39174 1.0243 0 1.416l5.707 5.7051 5.707-5.7051c0.39174-0.39174 0.39174-1.0243 0-1.416-0.39173-0.39174-1.0243-0.39174-1.416 0l-4.291 4.293z" />
-                                </svg>
+                                <label for="details-{{ $a.Version }}">
+                                    {{ if eq $i 0 }}
+                                    <svg class="w-icon type-indicator" width="32" height="32" style="--size: 2rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32" fill="currentColor">
+                                        <path d="m16 10a6 6 0 0 0-6 6 6 6 0 0 0 5 5.916v10.084h2v-10.084a6 6 0 0 0 5-5.916 6 6 0 0 0-6-6zm0 2a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z" />
+                                    </svg>
+                                    {{ else if eq $i $last }}
+                                    <svg class="w-icon type-indicator" width="32" height="32" style="--size: 2rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32" fill="currentColor">
+                                        <path d="m16 22a6 6 0 0 1-6-6 6 6 0 0 1 5-5.916v-10.084h2v10.084a6 6 0 0 1 5 5.916 6 6 0 0 1-6 6zm0-2a4 4 0 0 0 4-4 4 4 0 0 0-4-4 4 4 0 0 0-4 4 4 4 0 0 0 4 4z" />
+                                    </svg>
+                                    {{ else }}
+                                    <svg class="w-icon type-indicator" width="32" height="32" style="--size: 2rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32" fill="currentColor">
+                                        <path d="m15 0v10.084a6 6 0 0 0-5 5.916 6 6 0 0 0 5 5.916v10.084h2v-10.084a6 6 0 0 0 5-5.916 6 6 0 0 0-5-5.916v-10.084h-2zm1 12a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z" />
+                                    </svg>
+                                    {{ end }}
+                                    <div id="js-id-filter-version-{{ $i }}" class="w-filter --flex" data-param="version" data-item="{{ $a.Version }}">
+                                        <button class="w-button type-filter type-include --flex" title="Toggle filter on" onclick="toggleFilter(this, 'toggleInclude', true)">
+                                            <span class="--flex">
+                                                {{ $a.Version }}
+                                                <em>
+                                                    +{{ $len }}
+                                                </em>
+                                            </span>
+                                            <svg class="w-icon" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
+                                                <path d="m13 3.5a1 1 0 0 0-0.70703 0.29297l-6.293 6.293-2.293-2.293a1 1 0 0 0-1.4141 0 1 1 0 0 0 0 1.4141l3.707 3.707 7.707-7.707a1 1 0 0 0 0-1.4141 1 1 0 0 0-0.70703-0.29297z" />
+                                            </svg>
+                                        </button>
+                                        <button class="w-button type-filter type-exclude" title="Toggle filter off" onclick="toggleFilter(this, 'toggleExclude', true)">
+                                            <svg class="w-icon" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
+                                                <path d="m8 0a8 8 0 0 0-8 8 8 8 0 0 0 0.64453 3.1113l1.5586-1.5586c-0.13224-0.49512-0.20312-1.0159-0.20312-1.5527 0-3.3137 2.6863-6 6-6 0.53681 0 1.0576 0.070891 1.5527 0.20312l1.5684-1.5684a8 8 0 0 0-3.1211-0.63477zm7.3652 4.8789-1.5684 1.5684c0.13224 0.49512 0.20312 1.0159 0.20312 1.5527 0 3.3137-2.6863 6-6 6-0.53681 0-1.0576-0.070895-1.5527-0.20312l-1.5586 1.5586a8 8 0 0 0 3.1113 0.64453 8 8 0 0 0 8-8 8 8 0 0 0-0.63477-3.1211z" opacity="0.4" />
+                                                <path d="m12.949 1.6367-11.313 11.313 1.4141 1.4141 11.312-11.312-1.4141-1.4141z" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <script>
+                                        new FilterWidget(document.getElementById("js-id-filter-version-{{ $i }}"))
+                                    </script>
+                                    <svg class="w-icon type-angle" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
+                                        <path d="m3.7082 5.292c-0.39173-0.39174-1.0243-0.39174-1.416 0-0.39174 0.39174-0.39174 1.0243 0 1.416l5.707 5.7051 5.707-5.7051c0.39174-0.39174 0.39174-1.0243 0-1.416-0.39173-0.39174-1.0243-0.39174-1.416 0l-4.291 4.293z" />
+                                    </svg>
+                                </label>
                             </summary>
                             <section class="l-graph type-branch">
                                 {{ $last := $a.SnapshotLast }} {{ $root := $i }} {{ range $i, $b := $a.Snapshots }}
@@ -477,7 +480,7 @@
                         <svg class="w-icon type-indicator" width="32" height="32" style="--size: 2rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32" fill="currentColor">
                             <path d="m16 22a6 6 0 0 1-6-6 6 6 0 0 1 5-5.916v-10.084h2v10.084a6 6 0 0 1 5 5.916 6 6 0 0 1-6 6zm0-2a4 4 0 0 0 4-4 4 4 0 0 0-4-4 4 4 0 0 0-4 4 4 4 0 0 0 4 4z" />
                         </svg>
-                        <div id="js-id-filter-badge-resourcepack" class="w-filter --flex" data-item="Resource pack" data-param="badge">
+                        <div id="js-id-filter-badge-resourcepack" class="w-filter --flex" data-param="badge" data-item="Resource pack">
                             <button class="w-button type-filter type-include --flex" title="Toggle filter on" onclick="toggleFilter(this, 'toggleInclude', true)">
                                 <span class="--flex">
                                     Resource pack

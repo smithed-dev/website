@@ -9,11 +9,20 @@
     }
 
     details {
+        transition: max-height 0.2s ease-in-out, background-color 0.2s ease-in-out;
         border-radius: 0.5rem;
+        max-height: 2rem;
+        overflow: hidden;
 
         summary {
             .--interactive();
             border-radius: 0.5rem;
+
+            label {
+                .--flex-row-center(0);
+                cursor: pointer;
+                flex: 1;
+            }
 
             &:hover,
             &:focus {
@@ -30,14 +39,15 @@
         .l-graph {
             padding: 0;
         }
+    }
 
-        &[open] {
-            background-color: var(--block-section);
-            --color: var(--text-foreground);
+    input:checked+details {
+        max-height: 10rem;
+        background-color: var(--block-section);
+        --color: var(--text-foreground);
 
-            .type-angle {
-                transform: scaleY(-1);
-            }
+        .type-angle {
+            transform: scaleY(-1);
         }
     }
 

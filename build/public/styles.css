@@ -869,67 +869,6 @@ label {
 .l-col > .l-inherit.type-sections nav > span {
   cursor: default;
 }
-.l-graph {
-  display: flex;
-  flex-direction: column;
-  gap: 0rem;
-  align-items: stretch;
-  padding: 0 1rem;
-}
-.l-graph.type-limited {
-  min-height: 10rem;
-  max-height: 20rem;
-  overflow-y: auto;
-}
-.l-graph details {
-  border-radius: 0.5rem;
-}
-.l-graph details summary {
-  transition: background-color 0.2s;
-  cursor: pointer;
-  border-radius: 0.5rem;
-}
-.l-graph details summary:hover,
-.l-graph details summary:focus {
-  background-color: var(--block-hover);
-}
-.l-graph details summary:focus {
-  outline: 2px solid var(--text-foreground);
-}
-.l-graph details summary:hover,
-.l-graph details summary:focus {
-  --color: var(--text-foreground);
-}
-.l-graph details summary:focus {
-  outline: none;
-  color: var(--text-accent);
-  --color: var(--text-accent);
-}
-.l-graph details .l-graph {
-  padding: 0;
-}
-.l-graph details[open] {
-  background-color: var(--block-section);
-  --color: var(--text-foreground);
-}
-.l-graph details[open] .type-angle {
-  transform: scaleY(-1);
-}
-.l-graph .o-graph-node {
-  display: flex;
-  flex-direction: row;
-  gap: 0rem;
-  align-items: center;
-  gap: 0;
-  position: relative;
-  --color: var(--block-border);
-}
-.l-graph .o-graph-node .type-indicator {
-  color: var(--color);
-}
-.l-graph .o-graph-node .type-angle {
-  padding: 0 1rem;
-}
 .l-with-sidebar {
   display: flex;
   flex-direction: row;
@@ -994,6 +933,80 @@ label {
   .l-with-sidebar > section {
     min-width: calc(100vw - 3rem) !important;
   }
+}
+.l-graph {
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
+  align-items: stretch;
+  padding: 0 1rem;
+}
+.l-graph.type-limited {
+  min-height: 10rem;
+  max-height: 20rem;
+  overflow-y: auto;
+}
+.l-graph details {
+  transition: max-height 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  border-radius: 0.5rem;
+  max-height: 2rem;
+  overflow: hidden;
+}
+.l-graph details summary {
+  transition: background-color 0.2s;
+  cursor: pointer;
+  border-radius: 0.5rem;
+}
+.l-graph details summary:hover,
+.l-graph details summary:focus {
+  background-color: var(--block-hover);
+}
+.l-graph details summary:focus {
+  outline: 2px solid var(--text-foreground);
+}
+.l-graph details summary label {
+  display: flex;
+  flex-direction: row;
+  gap: 0rem;
+  align-items: center;
+  gap: 0;
+  cursor: pointer;
+  flex: 1;
+}
+.l-graph details summary:hover,
+.l-graph details summary:focus {
+  --color: var(--text-foreground);
+}
+.l-graph details summary:focus {
+  outline: none;
+  color: var(--text-accent);
+  --color: var(--text-accent);
+}
+.l-graph details .l-graph {
+  padding: 0;
+}
+.l-graph input:checked + details {
+  max-height: 10rem;
+  background-color: var(--block-section);
+  --color: var(--text-foreground);
+}
+.l-graph input:checked + details .type-angle {
+  transform: scaleY(-1);
+}
+.l-graph .o-graph-node {
+  display: flex;
+  flex-direction: row;
+  gap: 0rem;
+  align-items: center;
+  gap: 0;
+  position: relative;
+  --color: var(--block-border);
+}
+.l-graph .o-graph-node .type-indicator {
+  color: var(--color);
+}
+.l-graph .o-graph-node .type-angle {
+  padding: 0 1rem;
 }
 .m-landing-card {
   border: 1px solid var(--block-border);

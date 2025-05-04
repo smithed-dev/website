@@ -91,21 +91,24 @@
                 </div>
                 {{ else }}
                 <div>
-                    <details>
+                    <input type="checkbox" id="details-{{ $a.Version }}" style="display: none;" />
+                    <details open>
                         <summary class="o-graph-node">
-                            {{ if eq $i 0 }}
-                            <pkg:icon :icon="eyecons/node-down" :size="2" class="%s type-indicator" />
-                            {{ else if eq $i $last }}
-                            <pkg:icon :icon="eyecons/node-up" :size="2" class="%s type-indicator" />
-                            {{ else }}
-                            <pkg:icon :icon="eyecons/node-up-down" :size="2" class="%s type-indicator" />
-                            {{ end }}
-                            <pkg:filter :id="version-{{ $i }}" class="%s --flex" data-param="version"
-                                data-item="{{ $a.Version }}">
-                                {{ $a.Version }}
-                                <em>+{{ $len }}</em>
-                            </pkg:filter>
-                            <pkg:icon :icon="eyecons/angle_down" :size="1" class="%s type-angle" />
+                            <label for="details-{{ $a.Version }}">
+                                {{ if eq $i 0 }}
+                                <pkg:icon :icon="eyecons/node-down" :size="2" class="%s type-indicator" />
+                                {{ else if eq $i $last }}
+                                <pkg:icon :icon="eyecons/node-up" :size="2" class="%s type-indicator" />
+                                {{ else }}
+                                <pkg:icon :icon="eyecons/node-up-down" :size="2" class="%s type-indicator" />
+                                {{ end }}
+                                <pkg:filter :id="version-{{ $i }}" class="%s --flex" data-param="version"
+                                    data-item="{{ $a.Version }}">
+                                    {{ $a.Version }}
+                                    <em>+{{ $len }}</em>
+                                </pkg:filter>
+                                <pkg:icon :icon="eyecons/angle_down" :size="1" class="%s type-angle" />
+                            </label>
                         </summary>
                         <pkg:graph class="%s type-branch">
                             {{ $last := $a.SnapshotLast }}

@@ -8,6 +8,10 @@
         overflow-y: auto;
     }
 
+    &:has(details) .w-filter {
+        margin-right: 3rem;
+    }
+
     details {
         transition: max-height 0.2s ease-in-out, background-color 0.2s ease-in-out;
         border-radius: 0.5rem;
@@ -38,6 +42,10 @@
 
         .l-graph {
             padding: 0;
+        }
+
+        .w-filter {
+            margin-right: 0;
         }
     }
 

@@ -881,6 +881,9 @@ label {
   max-height: 20rem;
   overflow-y: auto;
 }
+.l-graph:has(details) .w-filter {
+  margin-right: 3rem;
+}
 .l-graph details {
   transition: max-height 0.2s ease-in-out, background-color 0.2s ease-in-out;
   border-radius: 0.5rem;
@@ -919,6 +922,9 @@ label {
 }
 .l-graph details .l-graph {
   padding: 0;
+}
+.l-graph details .w-filter {
+  margin-right: 0;
 }
 .l-graph input:checked + details {
   max-height: 10rem;
@@ -975,12 +981,6 @@ label {
 .l-with-sidebar > aside > hr {
   --color: var(--text-inactive);
   margin: 0.5rem 0;
-}
-.l-with-sidebar > aside .w-filter {
-  margin-right: 3rem;
-}
-.l-with-sidebar > aside details .w-filter {
-  margin-right: 0;
 }
 .l-with-sidebar .o-title {
   display: flex;

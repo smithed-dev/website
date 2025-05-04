@@ -20,6 +20,12 @@
             padding: 0.5rem 1rem;
         }
 
+        &>header {
+            .--flex-row-center(1);
+            .--font-title();
+            padding: 0 1rem;
+        }
+
         &>hr {
             --color: var(--text-inactive);
             margin: 0.5rem 0;
@@ -47,10 +53,6 @@
             height: calc(100vh - 2rem);
             height: calc(100svh - 2rem);
             overflow-y: scroll;
-
-            &>div:first-child {
-                padding: 0 1rem;
-            }
         }
     }
 

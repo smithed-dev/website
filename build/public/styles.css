@@ -869,71 +869,6 @@ label {
 .l-col > .l-inherit.type-sections nav > span {
   cursor: default;
 }
-.l-with-sidebar {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-}
-.l-with-sidebar > section {
-  width: min(96vw, 50rem);
-}
-.l-with-sidebar > aside {
-  display: flex;
-  flex-direction: column;
-  gap: 0rem;
-  align-items: stretch;
-  flex: 1;
-  border: 1px solid var(--block-border);
-  background-color: var(--block-section);
-  padding: 0.5rem 0;
-  border-radius: 1rem;
-  height: fit-content;
-  min-width: 20rem;
-}
-.l-with-sidebar > aside > div {
-  display: flex;
-  flex-direction: row;
-  gap: 0rem;
-  align-items: center;
-  gap: 0;
-  padding: 0.5rem 1rem;
-}
-.l-with-sidebar > aside > hr {
-  --color: var(--text-inactive);
-  margin: 0.5rem 0;
-}
-.l-with-sidebar .o-title {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  align-items: center;
-  gap: 1;
-}
-@media only screen and (max-width: 64rem) {
-  .l-with-sidebar > section {
-    width: min(96vw, 70rem);
-  }
-  .l-with-sidebar > aside {
-    display: none;
-    position: absolute;
-    background-color: var(--block-background);
-    left: 0.5rem;
-    right: 0.5rem;
-    top: 0.5rem;
-    bottom: 0.5rem;
-    height: calc(100vh - 2rem);
-    height: calc(100svh - 2rem);
-    overflow-y: scroll;
-  }
-  .l-with-sidebar > aside > div:first-child {
-    padding: 0 1rem;
-  }
-}
-@media only screen and (max-width: 28rem) {
-  .l-with-sidebar > section {
-    min-width: calc(100vw - 3rem) !important;
-  }
-}
 .l-graph {
   display: flex;
   flex-direction: column;
@@ -1016,6 +951,77 @@ label {
 }
 .l-graph .o-graph-node .type-angle {
   padding: 0 1rem;
+}
+.l-with-sidebar {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+.l-with-sidebar > section {
+  width: min(96vw, 50rem);
+}
+.l-with-sidebar > aside {
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
+  align-items: stretch;
+  flex: 1;
+  border: 1px solid var(--block-border);
+  background-color: var(--block-section);
+  padding: 0.5rem 0;
+  border-radius: 1rem;
+  height: fit-content;
+  min-width: 20rem;
+}
+.l-with-sidebar > aside > div {
+  display: flex;
+  flex-direction: row;
+  gap: 0rem;
+  align-items: center;
+  gap: 0;
+  padding: 0.5rem 1rem;
+}
+.l-with-sidebar > aside > header {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  gap: 1;
+  font-family: 'Rubik', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  padding: 0 1rem;
+}
+.l-with-sidebar > aside > hr {
+  --color: var(--text-inactive);
+  margin: 0.5rem 0;
+}
+.l-with-sidebar .o-title {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  gap: 1;
+}
+@media only screen and (max-width: 64rem) {
+  .l-with-sidebar > section {
+    width: min(96vw, 70rem);
+  }
+  .l-with-sidebar > aside {
+    display: none;
+    position: absolute;
+    background-color: var(--block-background);
+    left: 0.5rem;
+    right: 0.5rem;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    height: calc(100vh - 2rem);
+    height: calc(100svh - 2rem);
+    overflow-y: scroll;
+  }
+}
+@media only screen and (max-width: 28rem) {
+  .l-with-sidebar > section {
+    min-width: calc(100vw - 3rem) !important;
+  }
 }
 .m-landing-card {
   border: 1px solid var(--block-border);
@@ -1842,7 +1848,7 @@ img.type-icon {
   -webkit-box-orient: vertical;
 }
 .adapt-default-hide {
-  display: none;
+  display: none !important;
 }
 @media only screen and (max-width: 74rem) {
   .adapt-hide-wide {

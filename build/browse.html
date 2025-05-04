@@ -15,7 +15,7 @@
     <link rel="apple-touch-icon" href="/favicon.png" sizes="180x180" />
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="all" />
-    <link rel="stylesheet" href="/static/styles.min.css?checksum=b993a81ba4587e003b806ab14a0e4af6" />
+    <link rel="stylesheet" href="/static/styles.min.css?checksum=a295bb9321e58487515d56542497a9c3" />
     <script src="/static/main.js?checksum=a57ae0945fb9f0a86a560ab5126e4f71">
     </script>
     <script src="/static/page_browse.js?version=a57ae0945fb9f0a86a560ab5126e4f71" defer>
@@ -241,18 +241,24 @@
                 </div>
             </section>
             <aside>
-                <div class="o-title">
-                    <svg class="w-icon" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
-                        <path d="m3 3c-0.554 0-1 0.446-1 1s0.446 1 1 1h10c0.554 0 1-0.446 1-1s-0.446-1-1-1h-10zm0 4c-0.554 0-1 0.446-1 1s0.446 1 1 1h7c0.554 0 1-0.446 1-1s-0.446-1-1-1h-7zm0 4c-0.554 0-1 0.446-1 1s0.446 1 1 1h4c0.554 0 1-0.446 1-1s-0.446-1-1-1h-4z" />
-                    </svg>
+                <header class="adapt-default-hide adapt-show-sidebar">
                     <b class="--flex">
-                        Categories
+                        Filters
                     </b>
-                    <button class="w-button adapt-default-hide adapt-show-sidebar" onclick="hideFilters(this)">
+                    <button class="w-button" onclick="hideFilters(this)">
                         <svg class="w-icon" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
                             <path d="m12.293 13.707c0.39174 0.39174 1.0223 0.39174 1.4141 0s0.39174-1.0223 0-1.4141l-4.293-4.293 4.293-4.293c0.39174-0.39174 0.39174-1.0223 0-1.4141-0.39174-0.39174-1.0223-0.39174-1.4141 0l-4.293 4.293-4.293-4.293c-0.39174-0.39174-1.0223-0.39174-1.4141 0s-0.39174 1.0223 0 1.4141l4.293 4.293-4.293 4.293c-0.39174 0.39174-0.39174 1.0223 0 1.4141 0.39174 0.39174 1.0223 0.39174 1.4141 0l4.293-4.293z" />
                         </svg>
                     </button>
+                </header>
+                <hr class="adapt-default-hide adapt-show-sidebar" />
+                <div class="o-title">
+                    <svg class="w-icon" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
+                        <path d="m3 3c-0.554 0-1 0.446-1 1s0.446 1 1 1h10c0.554 0 1-0.446 1-1s-0.446-1-1-1h-10zm0 4c-0.554 0-1 0.446-1 1s0.446 1 1 1h7c0.554 0 1-0.446 1-1s-0.446-1-1-1h-7zm0 4c-0.554 0-1 0.446-1 1s0.446 1 1 1h4c0.554 0 1-0.446 1-1s-0.446-1-1-1h-4z" />
+                    </svg>
+                    <b>
+                        Categories
+                    </b>
                 </div>
                 <section class="l-graph">
                     {{ $last := .CategoryLast }} {{ range $i, $a := .Categories }}
@@ -356,7 +362,7 @@
                                         <path d="m15 0v10.084a6 6 0 0 0-5 5.916 6 6 0 0 0 5 5.916v10.084h2v-10.084a6 6 0 0 0 5-5.916 6 6 0 0 0-5-5.916v-10.084h-2zm1 12a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z" />
                                     </svg>
                                     {{ end }}
-                                    <div id="js-id-filter-version-{{ $i }}" class="w-filter --flex" data-param="version" data-item="{{ $a.Version }}">
+                                    <div id="js-id-filter-version-{{ $i }}" class="w-filter --flex" data-item="{{ $a.Version }}" data-param="version">
                                         <button class="w-button type-filter type-include --flex" title="Toggle filter on" onclick="toggleFilter(this, 'toggleInclude', true)">
                                             <span class="--flex">
                                                 {{ $a.Version }}

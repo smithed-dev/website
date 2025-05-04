@@ -42,12 +42,16 @@
         </section>
 
         <aside>
-            <div class="o-title">
-                <pkg:icon :icon="eyecons/sort" />
-                <b class="--flex">Categories</b>
-                <button class="w-button adapt-default-hide adapt-show-sidebar" onclick="hideFilters(this)">
+            <header class="adapt-default-hide adapt-show-sidebar">
+                <b class="--flex">Filters</b>
+                <button class="w-button" onclick="hideFilters(this)">
                     <pkg:icon :icon="eyecons/cross" />
                 </button>
+            </header>
+            <hr class="adapt-default-hide adapt-show-sidebar" />
+            <div class="o-title">
+                <pkg:icon :icon="eyecons/sort" />
+                <b>Categories</b>
             </div>
             <pkg:graph>
                 {{ $last := .CategoryLast }}

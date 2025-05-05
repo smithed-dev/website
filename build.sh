@@ -15,7 +15,11 @@ cat \
     ./web/styles/themes.less \
     ./web/styles/global.less \
     > ./build/public/styles.css
-find ./web/pages/ -name "*.less" -exec cat {} >> ./build/public/styles.css \;
+
+echo "" > /tmp/smithed-dev.txt
+find ./web/pages/ -name "*.less" -exec echo {} >> /tmp/smithed-dev.txt \;
+cat /tmp/smithed-dev.txt | sort | xargs -I {} cat {} >> ./build/public/styles.css
+
 cat ./web/styles/_adaptive.less >> ./build/public/styles.css
 
 lessc ./build/public/styles.css > /tmp/styles.css

@@ -32,7 +32,10 @@ CSS_CHECKSUM=$(md5sum ./build/public/styles.min.css | cut -d ' ' -f1)
 echo "=== Compiling JS"
 
 cp ./web/main.js ./build/public/main.js
-find ./web/pages/ -name "*.js" -exec cat {} >> ./build/public/main.js \;
+
+echo "" > /tmp/smithed-dev.txt
+find ./web/pages/ -name "*.js" -exec echo {} >> /tmp/smithed-dev.txt \;
+cat /tmp/smithed-dev.txt | sort | xargs -I {} cat {} >> ./build/public/main.js
 
 JS_CHECKSUM=$(md5sum ./build/public/main.js | cut -d ' ' -f1)
 

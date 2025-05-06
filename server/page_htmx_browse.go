@@ -50,9 +50,12 @@ func queryPacks(handler *Handler, request *http.Request, data *BrowsePageData) {
 	query := uri.Query()
 	query.Set("sort", sort)
 	query.Set("limit", fmt.Sprint(browseLimitCount))
-	query.Set("page", fmt.Sprint(params.Page))
+	if params.Page > 1 {
+		query.Set("page", fmt.Sprint(params.Page))
+	}
 	if params.Search != "" {
-		query.Set("search", params.Search)
+		str, _ := url.PathUnescape(params.Search)
+		query.Set("search", str)
 	}
 	query.Set("scope", IndexScopes)
 	var suffix strings.Builder
@@ -100,8 +103,17 @@ func queryPacks(handler *Handler, request *http.Request, data *BrowsePageData) {
 	}
 	values := request.URL.Query()
 	for i, page := range data.Pages {
-		values.Set("page", page.Label)
-		page.Href = "/browse?" + values.Encode()
+		if i == 0 {
+			values.Del("page")
+		} else {
+			values.Set("page", page.Label)
+		}
+		encoded := values.Encode()
+		if len(encoded) == 0 {
+			page.Href = "/browse"
+		} else {
+			page.Href = "/browse?" + encoded
+		}
 		data.Pages[i] = page
 	}
 }

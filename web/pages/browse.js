@@ -51,3 +51,22 @@ function applyLayout(node) {
     }
   }
 }
+
+/** @param {HTMLButtonElement} node */
+function showFilters() {
+  document.body.classList.add("block-scroll");
+  document
+    .querySelector(".l-with-sidebar")
+    ?.querySelector("aside")
+    ?.style?.setProperty("display", "flex");
+  scrollTo(0, 0);
+}
+
+/** @param {HTMLButtonElement} node */
+function hideFilters() {
+  document.body.classList.remove("block-scroll");
+  document
+    .querySelector(".l-with-sidebar")
+    ?.querySelector("aside")
+    ?.style?.removeProperty("display");
+}

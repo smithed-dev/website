@@ -23,7 +23,7 @@
                         <pkg:icon :icon="eyecons/collapse" data-name="compact" />
                     </pkg:switch>
                     <button class="w-button type-symbol adapt-default-hide adapt-show-sidebar" title="Show filters"
-                        onclick="showFilters(this)">
+                        onclick="showFilters()">
                         <pkg:icon :icon="eyecons/properties" />
                     </button>
                 </section>
@@ -44,7 +44,7 @@
         <aside>
             <header class="adapt-default-hide adapt-show-sidebar">
                 <b class="--flex">Filters</b>
-                <button class="w-button" onclick="hideFilters(this)">
+                <button class="w-button" onclick="hideFilters()">
                     <pkg:icon :icon="eyecons/cross" />
                 </button>
             </header>

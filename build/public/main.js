@@ -65,6 +65,15 @@ class Cookies {
     document.cookie = str;
   }
 }
+// from: ./web/main_theme.js
+function applyGlobalTheme(value) {
+  for (const item of document.body.classList.values()) {
+    document.body.classList.remove(item);
+  }
+
+  document.body.classList.add(`theme-${value}`);
+  Cookies.set("prefered-theme", value, { path: "/", days: 30 });
+}
 // from: ./web/main_url.js
 class URLQuery {
   static instance = new URL(window.location.href);

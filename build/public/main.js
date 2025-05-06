@@ -194,6 +194,7 @@ class SelectWidget extends IClosableWidget {
     child.querySelector(".js-unchecked").style.setProperty("display", "none");
     child.querySelector(".js-checked").style.removeProperty("display");
     this.node.dataset.index = String(index);
+    this.node.dataset.value = child.dataset.value;
   }
 }
 class SwitchWidget {

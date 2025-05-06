@@ -40,7 +40,7 @@ func main() {
 	http.HandleFunc("/htmx/browse_packs", server.HTMXBrowsePacks)
 
 	server.SetupLogger(os.Getenv("DEBUG") == "1")
-	err := http.ListenAndServe("127.0.0.1:8080", nil)
+	err := http.ListenAndServe(":8080", nil)
 	if err != nil {
 		log.Fatal(err)
 	}

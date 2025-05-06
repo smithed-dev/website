@@ -1060,14 +1060,14 @@ label {
   border-radius: 1rem;
   background-color: var(--block-background);
 }
-.m-landing-carousell {
+.m-landing-carousel {
   position: relative;
   height: 24.5rem;
   overflow: hidden;
   padding: 1rem;
   margin: -1rem;
 }
-.m-landing-carousell > div {
+.m-landing-carousel > div {
   transition: transform 1s ease-in-out;
   display: grid;
   grid-template-columns: 1fr;
@@ -1076,7 +1076,7 @@ label {
   gap: 2rem;
 }
 @media only screen and (max-width: 54rem) {
-  .m-landing-carousell > div {
+  .m-landing-carousel > div {
     grid-template-columns: 100% 100% 100% 100% 100%;
     grid-template-rows: 1fr;
     transform: translateX(calc(var(--offset) * (-100% - 2rem)));

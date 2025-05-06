@@ -15,7 +15,7 @@
     <link rel="apple-touch-icon" href="/favicon.png" sizes="180x180" />
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="all" />
-    <link rel="stylesheet" href="/static/styles.min.css?checksum=88a1ffedabc31789eff68f858cf20615" />
+    <link rel="stylesheet" href="/static/styles.min.css?checksum=597fb34de256e3d6a9463f091042091d" />
     <script src="/static/main.js?checksum=ecd8a3a33ddc991da4d132cb30f9a635">
     </script>
     <script src="/static/page/index.js?version=ecd8a3a33ddc991da4d132cb30f9a635" defer>
@@ -188,14 +188,14 @@
                 and supercharging minecraft data & resource packs.
             </p>
         </section>
-        <section class="l-grid type-2 --width-content" data-layout="grid" onmouseenter="pauseCarousell(this)" onmouseleave="continueCarousell(this)">
-            <section class="m-landing-carousell">
-                <div id="js-carousell-1" data-i="1" data-offset="0">
+        <section class="l-grid type-2 --width-content" onmouseleave="CarouselContainer.play()" data-layout="grid" onmouseenter="CarouselContainer.pause()">
+            <section class="m-landing-carousel">
+                <div id="js-carousel-1" data-i="1" data-offset="0">
                     {{ range .Cards }} {{ template "pack_card" .Trending }} {{ end }}
                 </div>
             </section>
-            <section class="m-landing-carousell">
-                <div id="js-carousell-2" data-i="1" data-offset="0">
+            <section class="m-landing-carousel">
+                <div id="js-carousel-2" data-i="1" data-offset="0">
                     {{ range .Cards }} {{ template "pack_card" .Newest }} {{ end }}
                 </div>
             </section>

@@ -31,11 +31,21 @@ function build_css {
 }
 
 function build_js {
-    cp ./web/main.js ./build/public/main.js
+    echo "" > ./build/public/main.js
+    for file in ./web/main_*.js; do
+        echo "// from: $file" >> ./build/public/main.js
+        cat $file >> ./build/public/main.js
+    done
 
     echo "" > /tmp/smithed-dev.js
     find ./web/pages/components/ -name "*.js" -exec echo {} >> /tmp/smithed-dev.js \;
-    cat /tmp/smithed-dev.js | sort | xargs -I {} cat {} >> ./build/public/main.js
+    while IFS= read -r file; do
+        if [[ -f $file ]]; then
+            echo "--- Built js:$(basename $file)"
+            echo "// from: $file" >> ./build/public/main.js
+            cat "$file" >> ./build/public/main.js
+        fi
+    done < <(sort /tmp/smithed-dev.js)
 
     export JS_CHECKSUM=$(md5sum ./build/public/main.js | cut -d ' ' -f1)
 

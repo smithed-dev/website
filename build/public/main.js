@@ -1,3 +1,5 @@
+
+// from: ./web/main_closable.js
 class IClosableWidget {
   /** @type {HTMLElement} */
   node;
@@ -19,6 +21,7 @@ self.addEventListener(
     }
   },
 );
+// from: ./web/pages/components/widget/button/filter.js
 // deno-lint-ignore-file no-unused-vars
 
 const NOT_SUPPORTED_FILTERS = [
@@ -125,6 +128,7 @@ function toggleFilter(button, fn, fromUser) {
   }
   button.blur();
 }
+// from: ./web/pages/components/widget/select/select.js
 class SelectWidget extends IClosableWidget {
   /** @type {HTMLElement} */
   node;
@@ -197,6 +201,7 @@ class SelectWidget extends IClosableWidget {
     this.node.dataset.value = child.dataset.value;
   }
 }
+// from: ./web/pages/components/widget/switch.js
 class SwitchWidget {
   /** @type {HTMLDivElement} */
   node;

@@ -1,6 +1,6 @@
 {{ define "index" }}
 <!DOCTYPE html>
-<html style="background-color: black;" lang="en">
+<html style="background-color: black;" lang="en" has-script="true">
 
 <head>
     <meta charset="UTF-8" />
@@ -17,8 +17,6 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="all" />
     <link rel="stylesheet" href="/static/styles.min.css?checksum=597fb34de256e3d6a9463f091042091d" />
     <script src="/static/main.js?checksum=ecd8a3a33ddc991da4d132cb30f9a635">
-    </script>
-    <script src="/static/page/index.js?version=ecd8a3a33ddc991da4d132cb30f9a635" defer>
     </script>
     <!-- [!] "While the CDN approach is extremely simple, you may want to consider not using CDNs in production" -->
     <script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.js" integrity="sha384-oeUn82QNXPuVkGCkcrInrS1twIxKhkZiFfr2TdiuObZ3n3yIeMiqcRzkIcguaof1" crossorigin="anonymous">

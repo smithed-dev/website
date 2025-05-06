@@ -121,8 +121,6 @@ class URLQuery {
   }
 }
 // from: ./web/pages/components/widget/button/filter.js
-// deno-lint-ignore-file no-unused-vars
-
 const NOT_SUPPORTED_FILTERS = [
   // "category", supported now
   "no_category",

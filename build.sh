@@ -26,7 +26,6 @@ function build_css {
     mv /tmp/styles.css ./build/public/styles.css
     python -m csscompressor -o ./build/public/styles.min.css ./build/public/styles.css
 
-    export CSS_CHECKSUM=$(md5sum ./build/public/styles.min.css | cut -d ' ' -f1)
     echo "=== Built CSS"
 }
 
@@ -47,8 +46,6 @@ function build_js {
         fi
     done < <(sort /tmp/smithed-dev.js)
 
-    export JS_CHECKSUM=$(md5sum ./build/public/main.js | cut -d ' ' -f1)
-
     mkdir -p ./build/public/page/
     for file in ./web/pages/*.js; do
         if [[ -f $file ]]; then
@@ -60,8 +57,10 @@ function build_js {
 
 build_css &
 build_js
-
 wait
+
+CSS_CHECKSUM=$(md5sum ./build/public/styles.min.css | cut -d ' ' -f1)
+JS_CHECKSUM=$(md5sum ./build/public/main.js | cut -d ' ' -f1)
 
 # ============
 

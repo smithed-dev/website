@@ -47,6 +47,7 @@ class URLQuery {
    * @returns {void}
    */
   static overwrite(key, value) {
+    console.debug(`URL.overwrite(${key}, ${value})`);
     if (value == null) {
       this.instance.searchParams.delete(key);
     } else {
@@ -71,9 +72,15 @@ class URLQuery {
    * @param {string} value
    */
   static onsync(key, value) {
+    let encoded = encodeURIComponent(value);
+    if (encoded === "") {
+      encoded = null;
+    }
+
     switch (key) {
-      case ("sort", "search"):
-        this.overwrite(key, encodeURIComponent(value) || null);
+      case "sort":
+      case "search":
+        this.overwrite(key, encoded);
     }
   }
 
@@ -83,7 +90,8 @@ class URLQuery {
    */
   static syncTo(key, callback) {
     switch (key) {
-      case ("sort", "search"):
+      case "sort":
+      case "search":
         callback(this.get(key));
     }
   }

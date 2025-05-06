@@ -1,5 +1,5 @@
 class SelectWidget extends IClosableWidget {
-  syncWith = [URLQuery];
+  syncWith = URLQuery;
 
   /** @type {HTMLElement} */
   node;
@@ -33,17 +33,13 @@ class SelectWidget extends IClosableWidget {
         this.select(i);
         this.close();
 
-        for (const entity of this.syncWith) {
-          entity.onsync(this.node.dataset.id, this.node.dataset.value);
-        }
+        this.syncWith.onsync(this.node.dataset.id, this.node.dataset.value);
       });
     }
 
-    for (const entity of this.syncWith) {
-      entity.syncTo(this.node.dataset.id, (value) => {
-        this.select(this.find(value));
-      });
-    }
+    this.syncWith.syncTo(this.node.dataset.id, (value) => {
+      this.select(this.find(value));
+    });
     ClosableWidgets.push(this);
   }
 

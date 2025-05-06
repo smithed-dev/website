@@ -71,6 +71,7 @@ class URLQuery {
    * @returns {void}
    */
   static overwrite(key, value) {
+    console.debug(`URL.overwrite(${key}, ${value})`);
     if (value == null) {
       this.instance.searchParams.delete(key);
     } else {
@@ -95,9 +96,15 @@ class URLQuery {
    * @param {string} value
    */
   static onsync(key, value) {
+    let encoded = encodeURIComponent(value);
+    if (encoded === "") {
+      encoded = null;
+    }
+
     switch (key) {
-      case ("sort", "search"):
-        this.overwrite(key, encodeURIComponent(value) || null);
+      case "sort":
+      case "search":
+        this.overwrite(key, encoded);
     }
   }
 
@@ -107,7 +114,8 @@ class URLQuery {
    */
   static syncTo(key, callback) {
     switch (key) {
-      case ("sort", "search"):
+      case "sort":
+      case "search":
         callback(this.get(key));
     }
   }
@@ -221,7 +229,7 @@ function toggleFilter(button, fn, fromUser) {
 }
 // from: ./web/pages/components/widget/input/searchbar.js
 class SearchbarWidget {
-  syncWith = [URLQuery];
+  syncWith = URLQuery;
 
   /** @type {HTMLElement} */
   node;
@@ -236,23 +244,19 @@ class SearchbarWidget {
     };
 
     this.tree.input.addEventListener("change", () => {
-      for (const entity of this.syncWith) {
-        entity.onsync(this.node.dataset.id, this.tree.input.value);
-      }
+      this.syncWith.onsync(this.node.dataset.id, this.tree.input.value);
 
       this.node.dispatchEvent(new Event("change"));
     });
 
-    for (const entity of this.syncWith) {
-      entity.syncTo(this.node.dataset.id, (value) => {
-        this.tree.input.value = decodeURIComponent(value);
-      });
-    }
+    this.syncWith.syncTo(this.node.dataset.id, (value) => {
+      this.tree.input.value = decodeURIComponent(value || "");
+    });
   }
 }
 // from: ./web/pages/components/widget/select/select.js
 class SelectWidget extends IClosableWidget {
-  syncWith = [URLQuery];
+  syncWith = URLQuery;
 
   /** @type {HTMLElement} */
   node;
@@ -286,17 +290,13 @@ class SelectWidget extends IClosableWidget {
         this.select(i);
         this.close();
 
-        for (const entity of this.syncWith) {
-          entity.onsync(this.node.dataset.id, this.node.dataset.value);
-        }
+        this.syncWith.onsync(this.node.dataset.id, this.node.dataset.value);
       });
     }
 
-    for (const entity of this.syncWith) {
-      entity.syncTo(this.node.dataset.id, (value) => {
-        this.select(this.find(value));
-      });
-    }
+    this.syncWith.syncTo(this.node.dataset.id, (value) => {
+      this.select(this.find(value));
+    });
     ClosableWidgets.push(this);
   }
 

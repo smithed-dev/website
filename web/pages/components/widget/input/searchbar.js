@@ -1,5 +1,5 @@
 class SearchbarWidget {
-  syncWith = [URLQuery];
+  syncWith = URLQuery;
 
   /** @type {HTMLElement} */
   node;
@@ -14,17 +14,13 @@ class SearchbarWidget {
     };
 
     this.tree.input.addEventListener("change", () => {
-      for (const entity of this.syncWith) {
-        entity.onsync(this.node.dataset.id, this.tree.input.value);
-      }
+      this.syncWith.onsync(this.node.dataset.id, this.tree.input.value);
 
       this.node.dispatchEvent(new Event("change"));
     });
 
-    for (const entity of this.syncWith) {
-      entity.syncTo(this.node.dataset.id, (value) => {
-        this.tree.input.value = decodeURIComponent(value);
-      });
-    }
+    this.syncWith.syncTo(this.node.dataset.id, (value) => {
+      this.tree.input.value = decodeURIComponent(value || "");
+    });
   }
 }

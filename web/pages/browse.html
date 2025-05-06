@@ -12,10 +12,10 @@
                 <pkg:searchbar class="%s --flex" onchange="applySearch(this)" />
                 <section class="l-inherit">
                     <pkg:select :id="sort" :icon="eyecons/sort" class="%s --flex" onchange="applySorting(this)">
-                        <option value="trending">Trending</option>
-                        <option value="downloads">Downloads</option>
-                        <option value="alphabetically">Alphabetically</option>
-                        <option value="newest">Newest</option>
+                        <pkg:option :value="trending" />
+                        <pkg:option :value="downloads" />
+                        <pkg:option :value="alphabetically" />
+                        <pkg:option :value="newest" />
                     </pkg:select>
                     <pkg:switch :id="layout" onchange="applyLayout(this)">
                         <pkg:icon :icon="eyecons/apps" data-name="grid" />

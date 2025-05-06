@@ -16,9 +16,9 @@ function build_css {
         ./web/styles/global.less \
         > ./build/public/styles.css
 
-    echo "" > /tmp/smithed-dev.txt
-    find ./web/pages/ -name "*.less" -exec echo {} >> /tmp/smithed-dev.txt \;
-    cat /tmp/smithed-dev.txt | sort | xargs -I {} cat {} >> ./build/public/styles.css
+    echo "" > /tmp/smithed-dev.css
+    find ./web/pages/ -name "*.less" -exec echo {} >> /tmp/smithed-dev.css \;
+    cat /tmp/smithed-dev.css | sort | xargs -I {} cat {} >> ./build/public/styles.css
 
     cat ./web/styles/_adaptive.less >> ./build/public/styles.css
 
@@ -33,9 +33,9 @@ function build_css {
 function build_js {
     cp ./web/main.js ./build/public/main.js
 
-    echo "" > /tmp/smithed-dev.txt
-    find ./web/pages/components/ -name "*.js" -exec echo {} >> /tmp/smithed-dev.txt \;
-    cat /tmp/smithed-dev.txt | sort | xargs -I {} cat {} >> ./build/public/main.js
+    echo "" > /tmp/smithed-dev.js
+    find ./web/pages/components/ -name "*.js" -exec echo {} >> /tmp/smithed-dev.js \;
+    cat /tmp/smithed-dev.js | sort | xargs -I {} cat {} >> ./build/public/main.js
 
     export JS_CHECKSUM=$(md5sum ./build/public/main.js | cut -d ' ' -f1)
 

@@ -38,7 +38,7 @@ class SelectWidget extends IClosableWidget {
     }
 
     this.syncWith.syncTo(this.node.dataset.id, (value) => {
-      this.select(this.find(value));
+      this.select(this.find(value[0]));
     });
     ClosableWidgets.push(this);
   }

@@ -32,3 +32,22 @@ function applyLayout(node) {
     htmx.trigger(browser, "url-changed");
   }
 }
+
+{
+  for (const param of ["category", "version"]) {
+    const items = URLQuery.get(param);
+    for (const item of items) {
+      for (const container of document.querySelectorAll(
+        `[data-param="${param}"]`,
+      )) {
+        if (container.dataset.item === item) {
+          toggleFilter(
+            container.querySelector("button"),
+            "toggleInclude",
+            false,
+          );
+        }
+      }
+    }
+  }
+}

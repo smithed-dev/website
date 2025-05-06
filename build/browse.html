@@ -16,9 +16,9 @@
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="all" />
     <link rel="stylesheet" href="/static/styles.min.css?checksum=88a1ffedabc31789eff68f858cf20615" />
-    <script src="/static/main.js?checksum=0257568f7292dd0c5133fe22a480b8b1">
+    <script src="/static/main.js?checksum=5af3da866f745af364b6b3b08a25ed9a">
     </script>
-    <script src="/static/page/browse.js?version=0257568f7292dd0c5133fe22a480b8b1" defer>
+    <script src="/static/page/browse.js?version=5af3da866f745af364b6b3b08a25ed9a" defer>
     </script>
     <!-- [!] "While the CDN approach is extremely simple, you may want to consider not using CDNs in production" -->
     <script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.js" integrity="sha384-oeUn82QNXPuVkGCkcrInrS1twIxKhkZiFfr2TdiuObZ3n3yIeMiqcRzkIcguaof1" crossorigin="anonymous">
@@ -382,7 +382,7 @@
                                         <path d="m15 0v10.084a6 6 0 0 0-5 5.916 6 6 0 0 0 5 5.916v10.084h2v-10.084a6 6 0 0 0 5-5.916 6 6 0 0 0-5-5.916v-10.084h-2zm1 12a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z" />
                                     </svg>
                                     {{ end }}
-                                    <div id="js-id-filter-version-{{ $i }}" class="w-filter --flex" data-item="{{ $a.Version }}" data-param="version">
+                                    <div id="js-id-filter-version-{{ $i }}" class="w-filter --flex" data-param="version" data-item="{{ $a.Version }}">
                                         <button class="w-button type-filter type-include --flex" title="Toggle filter on" onclick="toggleFilter(this, 'toggleInclude', true)">
                                             <span class="--flex">
                                                 {{ $a.Version }}

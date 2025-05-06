@@ -1,5 +1,9 @@
 class URLQuery {
   static instance = new URL(window.location.href);
+  static defaults = {
+    sort: "trending",
+    page: "1",
+  };
 
   /**
    * Push the current URL to the history stack and update all
@@ -34,10 +38,10 @@ class URLQuery {
   /**
    * Get a single search parameter from the managed URL.
    * @param {string} key
-   * @returns {string|null}
+   * @returns {string[]}
    */
   static get(key) {
-    return this.instance.searchParams.get(key);
+    return this.instance.searchParams.getAll(key);
   }
 
   /**
@@ -48,7 +52,7 @@ class URLQuery {
    */
   static overwrite(key, value) {
     console.debug(`URL.overwrite(${key}, ${value})`);
-    if (value == null) {
+    if (value == null || value == this.defaults[key]) {
       this.instance.searchParams.delete(key);
     } else {
       this.instance.searchParams.set(key, value);
@@ -64,6 +68,17 @@ class URLQuery {
    */
   static append(key, value) {
     this.instance.searchParams.append(key, value);
+    this.update();
+  }
+
+  /**
+   * Removes the parameter, then push the change.
+   * @param {string} key
+   * @param {string|null} value
+   * @returns {void}
+   */
+  static remove(key, value) {
+    this.instance.searchParams.delete(key, value);
     this.update();
   }
 

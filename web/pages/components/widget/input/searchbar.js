@@ -20,7 +20,7 @@ class SearchbarWidget {
     });
 
     this.syncWith.syncTo(this.node.dataset.id, (value) => {
-      this.tree.input.value = decodeURIComponent(value || "");
+      this.tree.input.value = decodeURIComponent(value[0] || "");
     });
   }
 }

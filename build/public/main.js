@@ -68,6 +68,10 @@ class Cookies {
 // from: ./web/main_url.js
 class URLQuery {
   static instance = new URL(window.location.href);
+  static defaults = {
+    sort: "trending",
+    page: "1",
+  };
 
   /**
    * Push the current URL to the history stack and update all
@@ -102,10 +106,10 @@ class URLQuery {
   /**
    * Get a single search parameter from the managed URL.
    * @param {string} key
-   * @returns {string|null}
+   * @returns {string[]}
    */
   static get(key) {
-    return this.instance.searchParams.get(key);
+    return this.instance.searchParams.getAll(key);
   }
 
   /**
@@ -116,7 +120,7 @@ class URLQuery {
    */
   static overwrite(key, value) {
     console.debug(`URL.overwrite(${key}, ${value})`);
-    if (value == null) {
+    if (value == null || value == this.defaults[key]) {
       this.instance.searchParams.delete(key);
     } else {
       this.instance.searchParams.set(key, value);
@@ -132,6 +136,17 @@ class URLQuery {
    */
   static append(key, value) {
     this.instance.searchParams.append(key, value);
+    this.update();
+  }
+
+  /**
+   * Removes the parameter, then push the change.
+   * @param {string} key
+   * @param {string|null} value
+   * @returns {void}
+   */
+  static remove(key, value) {
+    this.instance.searchParams.delete(key, value);
     this.update();
   }
 
@@ -186,10 +201,8 @@ class FilterWidget {
     this.node = node;
     this.buttonInclude = node.querySelector(".type-include");
     this.buttonExclude = node.querySelector(".type-exclude");
-    self.WIDGETS = [...(self.WIDGETS || []), this];
+    FilterWidgets.push(this);
   }
-
-  close() {}
 
   /** @param {HTMLButtonElement} button  */
   /** @param {HTMLButtonElement} conflicting  */
@@ -199,6 +212,9 @@ class FilterWidget {
     const id = this.node.id.replace("filter", "tag");
 
     let param = this.node.dataset.param;
+    if (fromUser) {
+      URLQuery.remove(param, this.node.dataset.item);
+    }
     if (tag === "type-exclude") {
       param = "no_" + param;
     }
@@ -206,9 +222,6 @@ class FilterWidget {
     conflicting.classList.remove("on-selected");
     const element = container.querySelector(`#${id}`);
     if (element != null) {
-      if (fromUser) {
-        url.remove(param, this.node.dataset.item);
-      }
       element.remove();
     }
 
@@ -238,8 +251,8 @@ class FilterWidget {
         clone.title =
           "(IGNORED) This filter is currently NOT supported by the API";
       } else if (fromUser) {
-        url.overwrite("page", "1");
-        url.append(param, this.node.dataset.item);
+        URLQuery.overwrite("page", "1");
+        URLQuery.append(param, this.node.dataset.item);
       }
 
       container.append(clone);
@@ -260,9 +273,12 @@ class FilterWidget {
   }
 }
 
+/** @type {FilterWidget[]} */
+const FilterWidgets = [];
+
 /** @param {HTMLButtonElement} node  */
 function toggleFilter(button, fn, fromUser) {
-  for (const widget of self.WIDGETS) {
+  for (const widget of FilterWidgets) {
     if (widget.node.id === button.parentElement.id) {
       widget[fn](fromUser);
     }
@@ -292,7 +308,7 @@ class SearchbarWidget {
     });
 
     this.syncWith.syncTo(this.node.dataset.id, (value) => {
-      this.tree.input.value = decodeURIComponent(value || "");
+      this.tree.input.value = decodeURIComponent(value[0] || "");
     });
   }
 }
@@ -337,7 +353,7 @@ class SelectWidget extends IClosableWidget {
     }
 
     this.syncWith.syncTo(this.node.dataset.id, (value) => {
-      this.select(this.find(value));
+      this.select(this.find(value[0]));
     });
     ClosableWidgets.push(this);
   }

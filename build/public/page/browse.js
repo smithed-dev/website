@@ -8,3 +8,27 @@ onurlchanged = () => {
   htmx.process(browser);
   htmx.trigger(browser, "url-changed");
 };
+
+{
+  const select = document.getElementById("js-id-switch-layout");
+  SwitchWidgets.filter((item) => item.node.id === select.id).forEach((node) => {
+    const cookie = Cookies.get("prefered-layout");
+    if (cookie == null) return;
+
+    const index = node.findIndexOfValue(cookie);
+    if (index === -1) return;
+    node.set(index);
+  });
+}
+
+/** @param {HTMLElement} node  */
+function applyLayout(node) {
+  const selected = node.dataset.name;
+  Cookies.set("prefered-layout", selected, { path: "/" });
+  document.getElementById("js-apply-layout").dataset.layout = selected;
+
+  if (selected == "grid") {
+    const browser = document.getElementById("browser");
+    htmx.trigger(browser, "url-changed");
+  }
+}

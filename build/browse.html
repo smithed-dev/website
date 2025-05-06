@@ -16,9 +16,9 @@
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="all" />
     <link rel="stylesheet" href="/static/styles.min.css?checksum=" />
-    <script src="/static/main.js?checksum=0fdef2bbb4ba64f3cc3c1405544b4a3b">
+    <script src="/static/main.js?checksum=c3b862a272dc9d46841744ad804f0ce8">
     </script>
-    <script src="/static/page/browse.js?version=0fdef2bbb4ba64f3cc3c1405544b4a3b" defer>
+    <script src="/static/page/browse.js?version=c3b862a272dc9d46841744ad804f0ce8" defer>
     </script>
     <!-- [!] "While the CDN approach is extremely simple, you may want to consider not using CDNs in production" -->
     <script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.js" integrity="sha384-oeUn82QNXPuVkGCkcrInrS1twIxKhkZiFfr2TdiuObZ3n3yIeMiqcRzkIcguaof1" crossorigin="anonymous">
@@ -149,12 +149,15 @@
         <section class="l-with-sidebar --width-max">
             <section id="browser" class="l-col type-sections" hx-trigger="url-changed" hx-target="#htmx-packs" hx-swap="innerHTML" data-inherit-url="hx-get">
                 <header class="l-row type-adaptive">
-                    <div class="w-input --flex" onchange="applySearch(this)">
+                    <div id="js-id-searchbar-search" class="w-input --flex" onchange="applySearch(this)" data-id="search">
                         <svg class="w-icon" width="16" height="16" style="--size: 1rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
                             <path d="m10 7a3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3zm-3-5a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 2.7539-0.83203l2.5391 2.5391c0.39052 0.39052 1.0235 0.39052 1.4141 0 0.39052-0.39052 0.39052-1.0235 0-1.4141l-2.5391-2.5391a5 5 0 0 0 0.83203-2.7539 5 5 0 0 0-5-5z" fill-rule="evenodd" />
                         </svg>
                         <input id="search" type="text" placeholder="Search..." onchange="onSearchBarChanged(this)" />
                     </div>
+                    <script>
+                        new SearchbarWidget(document.getElementById("js-id-searchbar-search"))
+                    </script>
                     <section class="l-inherit">
                         <div id="js-id-select-sort" class="w-select --flex" onchange="applySorting(this)" data-id="sort" data-index="0">
                             <button class="w-button js-button">
@@ -340,7 +343,7 @@
                             <path d="m15 0v10.084a6 6 0 0 0-5 5.916 6 6 0 0 0 5 5.916v10.084h2v-10.084a6 6 0 0 0 5-5.916 6 6 0 0 0-5-5.916v-10.084h-2zm1 12a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z" />
                         </svg>
                         {{ end }}
-                        <div id="js-id-filter-version-{{ $i }}" class="w-filter --flex" data-param="version" data-item="{{ $a.Version }}">
+                        <div id="js-id-filter-version-{{ $i }}" class="w-filter --flex" data-item="{{ $a.Version }}" data-param="version">
                             <button class="w-button type-filter type-include --flex" title="Toggle filter on" onclick="toggleFilter(this, 'toggleInclude', true)">
                                 <span class="--flex">
                                     {{ $a.Version }}
@@ -503,7 +506,7 @@
                         <svg class="w-icon type-indicator" width="32" height="32" style="--size: 2rem;" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32" fill="currentColor">
                             <path d="m16 22a6 6 0 0 1-6-6 6 6 0 0 1 5-5.916v-10.084h2v10.084a6 6 0 0 1 5 5.916 6 6 0 0 1-6 6zm0-2a4 4 0 0 0 4-4 4 4 0 0 0-4-4 4 4 0 0 0-4 4 4 4 0 0 0 4 4z" />
                         </svg>
-                        <div id="js-id-filter-badge-resourcepack" class="w-filter --flex" data-param="badge" data-item="Resource pack">
+                        <div id="js-id-filter-badge-resourcepack" class="w-filter --flex" data-item="Resource pack" data-param="badge">
                             <button class="w-button type-filter type-include --flex" title="Toggle filter on" onclick="toggleFilter(this, 'toggleInclude', true)">
                                 <span class="--flex">
                                     Resource pack

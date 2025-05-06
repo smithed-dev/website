@@ -72,8 +72,8 @@ class URLQuery {
    */
   static onsync(key, value) {
     switch (key) {
-      case "sort":
-        this.overwrite("sort", value);
+      case ("sort", "search"):
+        this.overwrite(key, encodeURIComponent(value) || null);
     }
   }
 
@@ -83,8 +83,8 @@ class URLQuery {
    */
   static syncTo(key, callback) {
     switch (key) {
-      case "sort":
-        callback(this.get("sort"));
+      case ("sort", "search"):
+        callback(this.get(key));
     }
   }
 }

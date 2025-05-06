@@ -9,18 +9,18 @@
         </p>
     </pkg:heading>
 
-    <pkg:grid :cols="2" class="%s --width-content" data-layout="grid" onmouseenter="pauseCarousell(this)"
-        onmouseleave="continueCarousell(this)">
-        <pkg:landing-carousell :index="1">
+    <pkg:grid :cols="2" class="%s --width-content" data-layout="grid" onmouseenter="CarouselContainer.pause()"
+        onmouseleave="CarouselContainer.play()">
+        <pkg:landing-carousel :index="1">
             {{ range .Cards }}
             {{ template "pack_card" .Trending }}
             {{ end }}
-        </pkg:landing-carousell>
-        <pkg:landing-carousell :index="2">
+        </pkg:landing-carousel>
+        <pkg:landing-carousel :index="2">
             {{ range .Cards }}
             {{ template "pack_card" .Newest }}
             {{ end }}
-        </pkg:landing-carousell>
+        </pkg:landing-carousel>
     </pkg:grid>
 
     <pkg:separator :label="What is Smithed exactly?" class="%s --width-content" />

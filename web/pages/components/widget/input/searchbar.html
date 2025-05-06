@@ -1,0 +1,8 @@
+<div id="js-id-searchbar-[[ this.id ]]" class="w-input" data-id="[[ this.id]]">
+    <pkg:icon :icon="eyecons/search" />
+    <input id="search" type="text" placeholder="Search..." onchange="onSearchBarChanged(this)" />
+    <mend:slot />
+</div>
+<script>
+    new SearchbarWidget(document.getElementById("js-id-searchbar-[[ this.id ]]"))
+</script>

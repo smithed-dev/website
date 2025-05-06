@@ -4,7 +4,7 @@ class LoginWidget {
 
   constructor(node) {
     this.node = node;
-    self.WIDGETS = [...(self.WIDGETS || []), this];
+    ClosableWidgets.push(this);
   }
 
   close() {
@@ -25,7 +25,7 @@ function gotoSearchPage(node) {
 }
 
 /** @param {HTMLButtonElement} node */
-function toggleDropdown(node) {
+function toggleDropdown() {
   const dropdown = document.getElementById("profile-dropdown");
   dropdown.style.setProperty("visibility", "visible");
 }

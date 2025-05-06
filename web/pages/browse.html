@@ -9,13 +9,13 @@
         <section class="l-col type-sections" id="browser" hx-trigger="url-changed" hx-target="#htmx-packs"
             hx-swap="innerHTML" data-inherit-url="hx-get">
             <header class="l-row type-adaptive">
-                <pkg:searchbar class="%s --flex" onchange="applySearch(this)" />
+                <pkg:searchbar :id="search" class="%s --flex" onchange="applySearch(this)" />
                 <section class="l-inherit">
                     <pkg:select :id="sort" :icon="eyecons/sort" class="%s --flex" onchange="applySorting(this)">
-                        <option value="trending">Trending</option>
-                        <option value="downloads">Downloads</option>
-                        <option value="alphabetically">Alphabetically</option>
-                        <option value="newest">Newest</option>
+                        <pkg:option :value="trending" />
+                        <pkg:option :value="downloads" />
+                        <pkg:option :value="alphabetically" />
+                        <pkg:option :value="newest" />
                     </pkg:select>
                     <pkg:switch :id="layout" onchange="applyLayout(this)">
                         <pkg:icon :icon="eyecons/apps" data-name="grid" />
@@ -23,7 +23,7 @@
                         <pkg:icon :icon="eyecons/collapse" data-name="compact" />
                     </pkg:switch>
                     <button class="w-button type-symbol adapt-default-hide adapt-show-sidebar" title="Show filters"
-                        onclick="showFilters(this)">
+                        onclick="showFilters()">
                         <pkg:icon :icon="eyecons/properties" />
                     </button>
                 </section>
@@ -44,7 +44,7 @@
         <aside>
             <header class="adapt-default-hide adapt-show-sidebar">
                 <b class="--flex">Filters</b>
-                <button class="w-button" onclick="hideFilters(this)">
+                <button class="w-button" onclick="hideFilters()">
                     <pkg:icon :icon="eyecons/cross" />
                 </button>
             </header>

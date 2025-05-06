@@ -16,9 +16,9 @@ function build_css {
         ./web/styles/global.less \
         > ./build/public/styles.css
 
-    echo "" > /tmp/smithed-dev.txt
-    find ./web/pages/ -name "*.less" -exec echo {} >> /tmp/smithed-dev.txt \;
-    cat /tmp/smithed-dev.txt | sort | xargs -I {} cat {} >> ./build/public/styles.css
+    echo "" > /tmp/smithed-dev.css
+    find ./web/pages/ -name "*.less" -exec echo {} >> /tmp/smithed-dev.css \;
+    cat /tmp/smithed-dev.css | sort | xargs -I {} cat {} >> ./build/public/styles.css
 
     cat ./web/styles/_adaptive.less >> ./build/public/styles.css
 
@@ -26,18 +26,25 @@ function build_css {
     mv /tmp/styles.css ./build/public/styles.css
     python -m csscompressor -o ./build/public/styles.min.css ./build/public/styles.css
 
-    export CSS_CHECKSUM=$(md5sum ./build/public/styles.min.css | cut -d ' ' -f1)
     echo "=== Built CSS"
 }
 
 function build_js {
-    cp ./web/main.js ./build/public/main.js
+    echo "" > ./build/public/main.js
+    for file in ./web/main_*.js; do
+        echo "// from: $file" >> ./build/public/main.js
+        cat $file >> ./build/public/main.js
+    done
 
-    echo "" > /tmp/smithed-dev.txt
-    find ./web/pages/components/ -name "*.js" -exec echo {} >> /tmp/smithed-dev.txt \;
-    cat /tmp/smithed-dev.txt | sort | xargs -I {} cat {} >> ./build/public/main.js
-
-    export JS_CHECKSUM=$(md5sum ./build/public/main.js | cut -d ' ' -f1)
+    echo "" > /tmp/smithed-dev.js
+    find ./web/pages/components/ -name "*.js" -exec echo {} >> /tmp/smithed-dev.js \;
+    while IFS= read -r file; do
+        if [[ -f $file ]]; then
+            echo "--- Built js:$(basename $file)"
+            echo "// from: $file" >> ./build/public/main.js
+            cat "$file" >> ./build/public/main.js
+        fi
+    done < <(sort /tmp/smithed-dev.js)
 
     mkdir -p ./build/public/page/
     for file in ./web/pages/*.js; do
@@ -50,8 +57,10 @@ function build_js {
 
 build_css &
 build_js
-
 wait
+
+CSS_CHECKSUM=$(md5sum ./build/public/styles.min.css | cut -d ' ' -f1)
+JS_CHECKSUM=$(md5sum ./build/public/main.js | cut -d ' ' -f1)
 
 # ============
 

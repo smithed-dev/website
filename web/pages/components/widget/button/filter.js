@@ -1,5 +1,3 @@
-// deno-lint-ignore-file no-unused-vars
-
 const NOT_SUPPORTED_FILTERS = [
   // "category", supported now
   "no_category",
@@ -21,10 +19,8 @@ class FilterWidget {
     this.node = node;
     this.buttonInclude = node.querySelector(".type-include");
     this.buttonExclude = node.querySelector(".type-exclude");
-    self.WIDGETS = [...(self.WIDGETS || []), this];
+    FilterWidgets.push(this);
   }
-
-  close() {}
 
   /** @param {HTMLButtonElement} button  */
   /** @param {HTMLButtonElement} conflicting  */
@@ -34,6 +30,9 @@ class FilterWidget {
     const id = this.node.id.replace("filter", "tag");
 
     let param = this.node.dataset.param;
+    if (fromUser) {
+      URLQuery.remove(param, this.node.dataset.item);
+    }
     if (tag === "type-exclude") {
       param = "no_" + param;
     }
@@ -41,9 +40,6 @@ class FilterWidget {
     conflicting.classList.remove("on-selected");
     const element = container.querySelector(`#${id}`);
     if (element != null) {
-      if (fromUser) {
-        url.remove(param, this.node.dataset.item);
-      }
       element.remove();
     }
 
@@ -73,8 +69,8 @@ class FilterWidget {
         clone.title =
           "(IGNORED) This filter is currently NOT supported by the API";
       } else if (fromUser) {
-        url.overwrite("page", "1");
-        url.append(param, this.node.dataset.item);
+        URLQuery.overwrite("page", "1");
+        URLQuery.append(param, this.node.dataset.item);
       }
 
       container.append(clone);
@@ -95,9 +91,12 @@ class FilterWidget {
   }
 }
 
+/** @type {FilterWidget[]} */
+const FilterWidgets = [];
+
 /** @param {HTMLButtonElement} node  */
 function toggleFilter(button, fn, fromUser) {
-  for (const widget of self.WIDGETS) {
+  for (const widget of FilterWidgets) {
     if (widget.node.id === button.parentElement.id) {
       widget[fn](fromUser);
     }

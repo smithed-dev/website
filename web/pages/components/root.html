@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="/static/styles.min.css?checksum=[[ root.checksum.css ]]" />
 
     <script src="/static/main.js?checksum=[[ root.checksum.js ]]"></script>
-    <script src="/static/page_[[ root.@file.filename().trim_extension() ]].js?version=[[ root.checksum.js ]]"
+    <script src="/static/page/[[ root.@file.filename().trim_extension() ]].js?version=[[ root.checksum.js ]]"
         defer></script>
 
     <!-- [!] "While the CDN approach is extremely simple, you may want to consider not using CDNs in production" -->
@@ -54,7 +54,7 @@
         </pkg:unmarked-link>
 
         <mend:if :true="[[ this.searchbar ]]">
-            <pkg:searchbar class="%s --flex" style="grid-area: searchbar;" onchange="gotoSearchPage(this)">
+            <pkg:searchbar :id="search" class="%s --flex" style="grid-area: searchbar;" onchange="gotoSearchPage(this)">
                 <pkg:dropdown :type="list">
                     <div>
                         Searches for
@@ -86,7 +86,7 @@
 
         {{ if .LoggedIn }}
         <div class="o-login" style="grid-area: profile;">
-            <button class="w-button type-menu --flex" onclick="toggleDropdown(this)" title="Open profile">
+            <button class="w-button type-menu --flex" onclick="toggleDropdown()" title="Open profile">
                 <img src="/static/images/smithie.webp" />
                 <span class="--flex">Smithie</span>
                 <pkg:icon :icon="eyecons/angle_down" />

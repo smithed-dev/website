@@ -1,108 +1,27 @@
-self.onurlchanged = () => {};
-self.WIDGETS = [];
 
-let layout; // used in switch.html widget
+// from: ./web/main_closable.js
+class IClosableWidget {
+  /** @type {HTMLElement} */
+  node;
+
+  close() {}
+}
+
+/** @type {IClosableWidget[]} */
+const ClosableWidgets = [];
 
 self.addEventListener(
   "click",
   /** @param {MouseEvent} event */
   (event) => {
-    for (const widget of self.WIDGETS) {
+    for (const widget of ClosableWidgets) {
       if (!widget.node.contains(event.target)) {
         widget.close();
       }
     }
   },
 );
-
-/** @param {HTMLInputElement} node */
-function onSearchBarChanged(node) {
-  node.parentElement.dispatchEvent(new Event("change"));
-}
-
-/**
- * Simple URL manager for syncing history state and updating
- * elements that inherit the current search params.
- */
-const url = {
-  /** @type {URL} */
-  instance: new URL(self.location.href),
-
-  /**
-   * Push the current URL to the history stack and update all
-   * elements with `[data-inherit-url]` to include the current
-   * search params.
-   * @returns {void}
-   */
-  update() {
-    history.pushState(null, "", this.instance.toString());
-
-    document.querySelectorAll("[data-inherit-url]").forEach((node) => {
-      const targetAttr = node.dataset.inheritUrl;
-      if (!targetAttr) return;
-
-      const original = node.getAttribute(targetAttr) || self.location.href;
-      const base = original.split("?")[0];
-
-      node.setAttribute(
-        targetAttr,
-        `${base}?${this.instance.searchParams.toString()}`,
-      );
-    });
-
-    // hook for any listeners
-    if (typeof self.onurlchanged === "function") {
-      self.onurlchanged();
-    }
-  },
-
-  /**
-   * Get a single search parameter from the managed URL.
-   * @param {string} key
-   * @returns {string[]}
-   */
-  get(key) {
-    return this.instance.searchParams.getAll(key);
-  },
-
-  /**
-   * Set or remove a search parameter, then push the change.
-   * @param {string} key
-   * @param {string|null} value
-   * @returns {void}
-   */
-  overwrite(key, value) {
-    if (value == null) {
-      this.instance.searchParams.delete(key);
-    } else {
-      this.instance.searchParams.set(key, value);
-    }
-    this.update();
-  },
-
-  /**
-   * Add a new parameter into array, then push the change.
-   * @param {string} key
-   * @param {string|null} value
-   * @returns {void}
-   */
-  append(key, value) {
-    this.instance.searchParams.append(key, value);
-    this.update();
-  },
-
-  /**
-   * Removes the parameter, then push the change.
-   * @param {string} key
-   * @param {string|null} value
-   * @returns {void}
-   */
-  remove(key, value) {
-    this.instance.searchParams.delete(key, value);
-    this.update();
-  },
-};
-
+// from: ./web/main_cookies.js
 /**
  * Simple utility for getting and setting cookies.
  */
@@ -146,25 +65,7 @@ class Cookies {
     document.cookie = str;
   }
 }
-
-function propagadeEvent(node, event) {
-  node.parentElement.dispatchEvent(new Event(event));
-}
-
-/** @param {HTMLButtonElement} node */
-function toggleField(node) {
-  /** @type {HTMLElement} */
-  const hint = node.nextElementSibling;
-
-  if (hint.dataset.visible == "true") {
-    hint.style.setProperty("display", "none");
-    hint.dataset.visible = "false";
-  } else {
-    hint.style.removeProperty("display");
-    hint.dataset.visible = "true";
-  }
-}
-
+// from: ./web/main_theme.js
 function applyGlobalTheme(value) {
   for (const item of document.body.classList.values()) {
     document.body.classList.remove(item);
@@ -173,13 +74,128 @@ function applyGlobalTheme(value) {
   document.body.classList.add(`theme-${value}`);
   Cookies.set("prefered-theme", value, { path: "/", days: 30 });
 }
+// from: ./web/main_url.js
+class URLQuery {
+  static instance = new URL(window.location.href);
+  static defaults = {
+    sort: "trending",
+    page: "1",
+  };
+
+  /**
+   * Push the current URL to the history stack and update all
+   * elements with `[data-inherit-url]` to include the current
+   * search params.
+   * @returns {void}
+   */
+  static update() {
+    history.pushState(null, "", this.instance.toString());
+
+    document.querySelectorAll("[data-inherit-url]").forEach((node) => {
+      // `data-inherit-url="href"` means copy into the `href` attribute, etc.
+      const targetAttr = node.dataset.inheritUrl;
+      if (!targetAttr) return;
+
+      // original value (without params) or fallback to full current location
+      const original = node.getAttribute(targetAttr) || self.location.href;
+      const base = original.split("?")[0];
+
+      node.setAttribute(
+        targetAttr,
+        `${base}?${this.instance.searchParams.toString()}`,
+      );
+    });
+
+    // hook for any listeners
+    if (typeof onurlchanged === "function") {
+      onurlchanged();
+    }
+  }
+
+  /**
+   * Get a single search parameter from the managed URL.
+   * @param {string} key
+   * @returns {string[]}
+   */
+  static get(key) {
+    return this.instance.searchParams.getAll(key);
+  }
+
+  /**
+   * Set or remove a search parameter, then push the change.
+   * @param {string} key
+   * @param {string|null} value
+   * @returns {void}
+   */
+  static overwrite(key, value) {
+    console.debug(`URL.overwrite(${key}, ${value})`);
+    if (value == null || value == this.defaults[key]) {
+      this.instance.searchParams.delete(key);
+    } else {
+      this.instance.searchParams.set(key, value);
+    }
+    this.update();
+  }
+
+  /**
+   * Add a new parameter into array, then push the change.
+   * @param {string} key
+   * @param {string|null} value
+   * @returns {void}
+   */
+  static append(key, value) {
+    this.instance.searchParams.append(key, value);
+    this.update();
+  }
+
+  /**
+   * Removes the parameter, then push the change.
+   * @param {string} key
+   * @param {string|null} value
+   * @returns {void}
+   */
+  static remove(key, value) {
+    this.instance.searchParams.delete(key, value);
+    this.update();
+  }
+
+  /**
+   * @param {string} key
+   * @param {string} value
+   */
+  static onsync(key, value) {
+    let encoded = encodeURIComponent(value);
+    if (encoded === "") {
+      encoded = null;
+    }
+
+    switch (key) {
+      case "sort":
+      case "search":
+        this.overwrite(key, encoded);
+    }
+  }
+
+  /**
+   * @param {string} key
+   * @param {(string|null)=>{}} callback
+   */
+  static syncTo(key, callback) {
+    switch (key) {
+      case "sort":
+      case "search":
+        callback(this.get(key));
+    }
+  }
+}
+// from: ./web/pages/components/root.js
 class LoginWidget {
   /** @type {HTMLButtonElement} */
   node;
 
   constructor(node) {
     this.node = node;
-    self.WIDGETS = [...(self.WIDGETS || []), this];
+    ClosableWidgets.push(this);
   }
 
   close() {
@@ -200,12 +216,11 @@ function gotoSearchPage(node) {
 }
 
 /** @param {HTMLButtonElement} node */
-function toggleDropdown(node) {
+function toggleDropdown() {
   const dropdown = document.getElementById("profile-dropdown");
   dropdown.style.setProperty("visibility", "visible");
 }
-// deno-lint-ignore-file no-unused-vars
-
+// from: ./web/pages/components/widget/button/filter.js
 const NOT_SUPPORTED_FILTERS = [
   // "category", supported now
   "no_category",
@@ -227,10 +242,8 @@ class FilterWidget {
     this.node = node;
     this.buttonInclude = node.querySelector(".type-include");
     this.buttonExclude = node.querySelector(".type-exclude");
-    self.WIDGETS = [...(self.WIDGETS || []), this];
+    FilterWidgets.push(this);
   }
-
-  close() {}
 
   /** @param {HTMLButtonElement} button  */
   /** @param {HTMLButtonElement} conflicting  */
@@ -240,6 +253,9 @@ class FilterWidget {
     const id = this.node.id.replace("filter", "tag");
 
     let param = this.node.dataset.param;
+    if (fromUser) {
+      URLQuery.remove(param, this.node.dataset.item);
+    }
     if (tag === "type-exclude") {
       param = "no_" + param;
     }
@@ -247,9 +263,6 @@ class FilterWidget {
     conflicting.classList.remove("on-selected");
     const element = container.querySelector(`#${id}`);
     if (element != null) {
-      if (fromUser) {
-        url.remove(param, this.node.dataset.item);
-      }
       element.remove();
     }
 
@@ -279,8 +292,8 @@ class FilterWidget {
         clone.title =
           "(IGNORED) This filter is currently NOT supported by the API";
       } else if (fromUser) {
-        url.overwrite("page", "1");
-        url.append(param, this.node.dataset.item);
+        URLQuery.overwrite("page", "1");
+        URLQuery.append(param, this.node.dataset.item);
       }
 
       container.append(clone);
@@ -301,132 +314,99 @@ class FilterWidget {
   }
 }
 
+/** @type {FilterWidget[]} */
+const FilterWidgets = [];
+
 /** @param {HTMLButtonElement} node  */
 function toggleFilter(button, fn, fromUser) {
-  for (const widget of self.WIDGETS) {
+  for (const widget of FilterWidgets) {
     if (widget.node.id === button.parentElement.id) {
       widget[fn](fromUser);
     }
   }
   button.blur();
 }
-class SelectWidget {
-  /** @type {HTMLDivElement} */
+// from: ./web/pages/components/widget/input/searchbar.js
+class SearchbarWidget {
+  syncWith = URLQuery;
+
+  /** @type {HTMLElement} */
   node;
   /** @type {Object.<string, HTMLElement>} */
   tree;
-  /** @type {boolean} */
-  toggled = false;
 
+  /** @param {HTMLElement} node  */
   constructor(node) {
     this.node = node;
     this.tree = {
-      template: node.querySelector("template"),
-      select: node.querySelector("select"),
-      footer: node.querySelector("footer"),
-      button: node.querySelector(".js-button"),
-      selected: node.querySelector(".js-selected"),
+      input: node.querySelector("input"),
     };
 
-    // whenever the native <select> changes, mirror into our widget
-    this.tree.select.addEventListener("change", () => {
-      const idx = Array.prototype.indexOf.call(
-        this.tree.select.children,
-        this.tree.select.selectedOptions[0],
-      );
-      this.set(idx);
+    this.tree.input.addEventListener("change", () => {
+      this.syncWith.onsync(this.node.dataset.id, this.tree.input.value);
+
+      this.node.dispatchEvent(new Event("change"));
+    });
+
+    this.syncWith.syncTo(this.node.dataset.id, (value) => {
+      this.tree.input.value = decodeURIComponent(value[0] || "");
     });
   }
+}
+// from: ./web/pages/components/widget/select/select.js
+class SelectWidget extends IClosableWidget {
+  syncWith = URLQuery;
 
-  /**
-   * Build the list of buttons in the footer, attach click handlers
-   */
-  load() {
-    const btnTemplate = /** @type {HTMLButtonElement} */ (
-      this.tree.template.content.querySelector("button")
-    );
+  /** @type {HTMLElement} */
+  node;
+  /** @type {Object.<string, HTMLElement>} */
+  tree;
 
-    // clear any existing items
-    this.tree.footer.innerHTML = "";
+  /** @param {HTMLElement} node  */
+  constructor(node) {
+    super();
 
-    Array.from(this.tree.select.children).forEach((option, idx) => {
-      const item = /** @type {HTMLButtonElement} */ (
-        btnTemplate.cloneNode(true)
-      );
+    this.node = node;
+    this.tree = {
+      footer: node.querySelector("footer"),
+      button: node.querySelector(".js-button"),
+      selected: node.querySelector(".js-button")?.querySelector("span"),
+    };
+    this._load();
 
-      item.querySelector(".js-item").innerHTML = option.innerText;
-      item.dataset.index = String(idx);
-      item.dataset.value = option.value;
-
-      item.addEventListener("click", () => {
-        this.set(idx);
-        // propagate events
-        this.tree.select.dispatchEvent(new Event("change"));
-        this.node.dispatchEvent(new Event("change"));
-        this.close();
-      });
-
-      this.tree.footer.append(item);
-    });
-
-    // wire up the toggle button
     this.tree.button.addEventListener("click", () => {
-      this.toggled ? this.close() : this.open();
-    });
-
-    // pick initial (first) item
-    this.set(0);
-    // register globally if you still need it
-    self.WIDGETS = [...(self.WIDGETS || []), this];
-  }
-
-  /**
-   * Centralized selector: updates the <select>, the footer buttons,
-   * the visible label, and the data-index on the root node.
-   *
-   * @param {number} index
-   */
-  set(index) {
-    const options = this.tree.select.children;
-    if (index < 0 || index >= options.length) return;
-
-    // update the native select
-    this.tree.select.value = options[index].value;
-    this.node.dataset.index = String(index);
-
-    // update footer button indicators
-    this.tree.footer.querySelectorAll("button").forEach((btn, btnIdx) => {
-      const checked = btnIdx === index;
-      btn
-        .querySelector(".js-indicator-checked")
-        .style.setProperty("display", checked ? "" : "none");
-      btn
-        .querySelector(".js-indicator-unchecked")
-        .style.setProperty("display", checked ? "none" : "");
-    });
-
-    // update the label
-    this.tree.selected.innerHTML = options[index].innerText;
-  }
-
-  /**
-   * @param {string} name
-   * @returns {number}
-   * */
-  findIndexOfValue(value) {
-    for (let i = 0; i < this.tree.select.children.length; i++) {
-      if (this.tree.select.children[i].value == value) {
-        return i;
+      if (this.toggled) {
+        this.close();
+      } else {
+        this.open();
       }
+    });
+
+    for (let i = 0; i < this.tree.footer.children.length; i++) {
+      const child = this.tree.footer.children[i];
+      child.addEventListener("click", () => {
+        this.deselect(Number(this.node.dataset.index));
+        this.select(i);
+        this.close();
+
+        this.syncWith.onsync(this.node.dataset.id, this.node.dataset.value);
+      });
     }
-    return -1;
+
+    this.syncWith.syncTo(this.node.dataset.id, (value) => {
+      this.select(this.find(value[0]));
+    });
+    ClosableWidgets.push(this);
+  }
+
+  _load() {
+    this.select(0);
   }
 
   open() {
     this.node.classList.add("--open");
-    // focus the currently selected item
-    const idx = Number(this.node.dataset.index);
-    this.tree.footer.children[idx]?.focus();
+    this.node.blur();
+    this.tree.footer.children[Number(this.node.dataset.index)].focus();
     this.toggled = true;
   }
 
@@ -434,21 +414,54 @@ class SelectWidget {
     this.node.classList.remove("--open");
     this.toggled = false;
   }
+
+  /** @param {number} index  */
+  deselect(index) {
+    const child = this.tree.footer.children[index];
+    child.querySelector(".js-checked").style.setProperty("display", "none");
+    child.querySelector(".js-unchecked").style.removeProperty("display");
+  }
+
+  /** @param {number} index  */
+  select(index) {
+    const child = this.tree.footer.children[index];
+    this.tree.selected.innerHTML = child.querySelector("span").innerHTML.trim();
+
+    child.querySelector(".js-unchecked").style.setProperty("display", "none");
+    child.querySelector(".js-checked").style.removeProperty("display");
+    this.node.dataset.index = String(index);
+    this.node.dataset.value = child.dataset.value;
+  }
+
+  /**
+   * @param {string} value
+   * @returns {number}
+   */
+  find(value) {
+    for (let i = 0; i < this.tree.footer.children.length; i++) {
+      const child = this.tree.footer.children[i];
+      if (child.dataset.value === value) {
+        return i;
+      }
+    }
+
+    return 0;
+  }
 }
+// from: ./web/pages/components/widget/switch.js
 class SwitchWidget {
   /** @type {HTMLDivElement} */
   node;
   /** @type {number} */
   length;
 
+  /**
+   * @param {HTMLDivElement} node
+   */
   constructor(node) {
     this.node = node;
     this.length = node.firstElementChild.children.length;
 
-    self.WIDGETS = [...(self.WIDGETS || []), this];
-  }
-
-  load() {
     this.node.addEventListener("click", () => {
       let i = Number(this.node.dataset.selected) + 1;
       if (i >= this.length) {
@@ -456,8 +469,13 @@ class SwitchWidget {
       }
       this.set(i);
     });
+
+    SwitchWidgets.push(this);
   }
 
+  /**
+   * @param {string} value
+   */
   findIndexOfValue(value) {
     for (let i = 0; i < this.node.firstElementChild.children.length; i++) {
       if (this.node.firstElementChild.children[i].dataset.name == value) {
@@ -468,6 +486,9 @@ class SwitchWidget {
     return -1;
   }
 
+  /**
+   * @param {number} i
+   */
   set(i) {
     this.node.style.setProperty("--offset", `${i}`);
     this.node.dataset.selected = `${i}`;
@@ -476,6 +497,7 @@ class SwitchWidget {
 
     this.node.dispatchEvent(new Event("change"));
   }
-
-  close() {}
 }
+
+/** @type {SwitchWidget[]} */
+const SwitchWidgets = [];

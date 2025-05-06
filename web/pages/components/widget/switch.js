@@ -4,14 +4,13 @@ class SwitchWidget {
   /** @type {number} */
   length;
 
+  /**
+   * @param {HTMLDivElement} node
+   */
   constructor(node) {
     this.node = node;
     this.length = node.firstElementChild.children.length;
 
-    self.WIDGETS = [...(self.WIDGETS || []), this];
-  }
-
-  load() {
     this.node.addEventListener("click", () => {
       let i = Number(this.node.dataset.selected) + 1;
       if (i >= this.length) {
@@ -19,8 +18,13 @@ class SwitchWidget {
       }
       this.set(i);
     });
+
+    SwitchWidgets.push(this);
   }
 
+  /**
+   * @param {string} value
+   */
   findIndexOfValue(value) {
     for (let i = 0; i < this.node.firstElementChild.children.length; i++) {
       if (this.node.firstElementChild.children[i].dataset.name == value) {
@@ -31,6 +35,9 @@ class SwitchWidget {
     return -1;
   }
 
+  /**
+   * @param {number} i
+   */
   set(i) {
     this.node.style.setProperty("--offset", `${i}`);
     this.node.dataset.selected = `${i}`;
@@ -39,6 +46,7 @@ class SwitchWidget {
 
     this.node.dispatchEvent(new Event("change"));
   }
-
-  close() {}
 }
+
+/** @type {SwitchWidget[]} */
+const SwitchWidgets = [];

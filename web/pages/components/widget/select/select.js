@@ -1,4 +1,6 @@
 class SelectWidget extends IClosableWidget {
+  syncWith = [URLQuery];
+
   /** @type {HTMLElement} */
   node;
   /** @type {Object.<string, HTMLElement>} */
@@ -30,9 +32,18 @@ class SelectWidget extends IClosableWidget {
         this.deselect(Number(this.node.dataset.index));
         this.select(i);
         this.close();
+
+        for (const entity of this.syncWith) {
+          entity.onsync(this.node.dataset.id, this.node.dataset.value);
+        }
       });
     }
 
+    for (const entity of this.syncWith) {
+      entity.syncTo(this.node.dataset.id, (value) => {
+        this.select(this.find(value));
+      });
+    }
     ClosableWidgets.push(this);
   }
 
@@ -68,5 +79,20 @@ class SelectWidget extends IClosableWidget {
     child.querySelector(".js-checked").style.removeProperty("display");
     this.node.dataset.index = String(index);
     this.node.dataset.value = child.dataset.value;
+  }
+
+  /**
+   * @param {string} value
+   * @returns {number}
+   */
+  find(value) {
+    for (let i = 0; i < this.tree.footer.children.length; i++) {
+      const child = this.tree.footer.children[i];
+      if (child.dataset.value === value) {
+        return i;
+      }
+    }
+
+    return 0;
   }
 }

@@ -5,11 +5,11 @@
         —
     </span>
     {{ else if .IsCurrent }}
-    <a class="on-highlight --selected" href="{{ .Href }}">
+    <a class="on-highlight --selected" href="{{ .Href }}" title="Go to page {{ .Label }}">
         {{ .Label }}
     </a>
     {{ else }}
-    <a class="on-highlight" href="{{ .Href }}">
+    <a class="on-highlight" href="{{ .Href }}" title="Go to page {{ .Label }}">
         {{ .Label }}
     </a>
     {{ end }} {{ end }}
@@ -26,11 +26,11 @@
         —
     </span>
     {{ else if .IsCurrent }}
-    <a class="on-highlight --selected" href="{{ .Href }}">
+    <a class="on-highlight --selected" href="{{ .Href }}" title="Go to page {{ .Label }}">
         {{ .Label }}
     </a>
     {{ else }}
-    <a class="on-highlight" href="{{ .Href }}">
+    <a class="on-highlight" href="{{ .Href }}" title="Go to page {{ .Label }}">
         {{ .Label }}
     </a>
     {{ end }} {{ end }}

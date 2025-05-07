@@ -724,12 +724,6 @@ label {
 .htmx-request .on-loading {
   opacity: 0.2;
 }
-.w-icon {
-  min-width: var(--size);
-  min-height: var(--size);
-  width: var(--size);
-  height: var(--size);
-}
 .l-block > div {
   display: flex;
   flex-direction: column;
@@ -1022,6 +1016,12 @@ label {
   .l-with-sidebar > section {
     min-width: calc(100vw - 3rem) !important;
   }
+}
+.w-icon {
+  min-width: var(--size);
+  min-height: var(--size);
+  width: var(--size);
+  height: var(--size);
 }
 .m-landing-card {
   border: 1px solid var(--block-border);

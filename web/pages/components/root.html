@@ -95,31 +95,31 @@
             </button>
             <pkg:dropdown :type="buttons" id="profile-dropdown">
                 <pkg:button :icon="eyecons/user" :type="item" :reversed="true" class="%s --flex" href=""
-                    title="My profile">
+                    title="%sMy profile">
                     <span class="--flex">
                         My profile
                     </span>
                 </pkg:button>
                 <pkg:button :icon="eyecons/new_file" :type="item" :reversed="true" class="%s --flex" href=""
-                    title="New pack">
+                    title="%sNew pack">
                     <span class="--flex">
                         New pack
                     </span>
                 </pkg:button>
                 <pkg:button :icon="eyecons/new_folder" :type="item" :reversed="true" class="%s --flex" href=""
-                    title="New bundle">
+                    title="%sNew bundle">
                     <span class="--flex">
                         New bundle
                     </span>
                 </pkg:button>
                 <pkg:button :icon="eyecons/properties" :type="item" :reversed="true" class="%s --flex" href="/settings"
-                    title="Settings">
+                    title="%sSettings">
                     <span class="--flex">
                         Settings
                     </span>
                 </pkg:button>
                 <pkg:button :icon="eyecons/angle_right" :type="item type-disturbing" :reversed="true" class="%s --flex"
-                    href="/api/logout" title="Log out of the account">
+                    href="/api/logout" title="%sLog out of the account">
                     <span class="--flex">
                         Log out
                     </span>
@@ -127,7 +127,7 @@
             </pkg:dropdown>
         </div>
         <script>
-            new LoginWidget(document.querySelector(".o-login"));
+            new AccountWidget(document.querySelector(".o-login"));
         </script>
         {{ else }}
         <pkg:button :type="accent" :label="Log in" :icon="eyecons/user" href="/login" style="grid-area: profile;" />

@@ -189,7 +189,7 @@ class URLQuery {
   }
 }
 // from: ./web/pages/components/root.js
-class LoginWidget {
+class AccountWidget {
   /** @type {HTMLButtonElement} */
   node;
 

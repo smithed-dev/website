@@ -1,4 +1,4 @@
-class LoginWidget {
+class AccountWidget {
   /** @type {HTMLButtonElement} */
   node;
 

@@ -625,7 +625,8 @@ p {
 }
 html,
 body {
-  height: max(100%, max-content);
+  height: max-content;
+  min-height: 100vh;
 }
 h1,
 h2,

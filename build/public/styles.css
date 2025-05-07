@@ -1018,6 +1018,75 @@ label {
     min-width: calc(100vw - 3rem) !important;
   }
 }
+.m-article-card {
+  border: 1px solid var(--block-border);
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
+  align-items: stretch;
+  transition: background-color 0.2s;
+  cursor: pointer;
+  position: relative;
+  background-color: var(--block-section);
+  border-radius: 1rem;
+  text-decoration: none;
+}
+.m-article-card:hover,
+.m-article-card:focus {
+  background-color: var(--block-hover);
+}
+.m-article-card:focus {
+  outline: 2px solid var(--text-foreground);
+}
+.m-article-card > header {
+  position: relative;
+  width: calc(100% - 0.5rem);
+  padding-bottom: calc(56.25% - 0.5rem);
+  background-color: var(--block-background);
+  border: 0.25rem solid var(--block-shaded);
+  border-radius: 1rem 1rem 0 0;
+  overflow: hidden;
+}
+.m-article-card > header > svg,
+.m-article-card > header > div {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  color: var(--block-hover);
+}
+.m-article-card > header img {
+  object-fit: cover;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+.m-article-card > section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: stretch;
+  flex: 1;
+  padding: 0.5rem 1rem 1rem 1rem;
+}
+.m-article-card > section > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+}
+.m-article-card > section > div > div {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+  gap: 0.5;
+  flex-wrap: wrap;
+}
 .w-icon {
   min-width: var(--size);
   min-height: var(--size);

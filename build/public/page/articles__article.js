@@ -1,4 +1,4 @@
-import { marked } from "https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js";
+import { marked } from "/static/marked.esm.js";
 
 // https://stackoverflow.com/a/34064434
 // Vulnerable af but idc

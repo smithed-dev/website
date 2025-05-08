@@ -725,6 +725,45 @@ label {
 .htmx-request .on-loading {
   opacity: 0.2;
 }
+.page-article {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+.page-article > header {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: stretch;
+}
+.page-article > header img {
+  width: calc(100% - 0.5rem);
+  border-radius: 1rem;
+  border: 0.25rem solid var(--block-shaded);
+}
+.page-article > header > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: stretch;
+}
+.page-article > header > div > span {
+  font-size: 1rem;
+  color: var(--text-inactive);
+  font-weight: 400;
+}
+.page-article > section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: stretch;
+}
+.page-article > section > span {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--text-inactive);
+}
 .l-block > div {
   display: flex;
   flex-direction: column;
@@ -1151,6 +1190,69 @@ label {
     grid-template-rows: 1fr;
     transform: translateX(calc(var(--offset) * (-100% - 2rem)));
   }
+}
+.m-markdown-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: stretch;
+}
+.m-markdown-content.on-loading {
+  display: none;
+}
+.m-markdown-content p:has(img) {
+  width: fit-content;
+  margin: 0 auto;
+}
+.m-markdown-content img {
+  max-width: calc(100% - 0.5rem);
+  border: 0.25rem solid var(--block-shaded);
+  border-radius: 1rem;
+  margin: 0 auto;
+}
+.m-markdown-content em {
+  font-style: italic;
+  color: inherit;
+}
+.m-markdown-content p {
+  line-height: 1.5;
+}
+.m-markdown-content b,
+.m-markdown-content strong {
+  font-weight: 700;
+}
+.m-markdown-content h1:not(:first-child),
+.m-markdown-content h2:not(:first-child),
+.m-markdown-content h3:not(:first-child),
+.m-markdown-content h4:not(:first-child),
+.m-markdown-content h5:not(:first-child),
+.m-markdown-content h6:not(:first-child) {
+  margin-top: 1rem;
+}
+.m-markdown-content ol,
+.m-markdown-content ul {
+  line-height: 1.5;
+  margin: 0;
+}
+.m-markdown-content blockquote {
+  margin: 0;
+  padding: 0.5rem 1rem;
+  border-left: 0.25rem solid var(--block-accent);
+  background-color: var(--block-section);
+  border-radius: 0.5rem;
+}
+.m-markdown-content blockquote p::before {
+  content: "“";
+}
+.m-markdown-content blockquote p::after {
+  content: "”";
+}
+.m-markdown-content code {
+  font-family: "JetBrains Mono", monospace;
+  background-color: var(--block-section);
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
 }
 .o-theme-preview {
   display: flex;

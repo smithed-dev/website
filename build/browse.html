@@ -15,7 +15,7 @@
     <link rel="apple-touch-icon" href="/favicon.png" sizes="180x180" />
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="all" />
-    <link rel="stylesheet" href="/static/styles.min.css?checksum=335b8172438f41639522a21385f138df" />
+    <link rel="stylesheet" href="/static/styles.min.css?checksum=417c84c7629b4898254dc35bd9f88017" />
     <script src="/static/main.js?checksum=e155a661a60fd6c13ef37eb3f35f682e">
     </script>
     <script src="/static/page/browse.js?version=e155a661a60fd6c13ef37eb3f35f682e" defer>
@@ -140,7 +140,7 @@
         {{ end }}
     </header>
     <!-- ... -->
-    <main>
+    <main class="page-generic">
         <section class="l-heading --centered --width-content">
             <h1>
                 Browse packs
@@ -296,7 +296,7 @@
                             <path d="m15 0v10.084a6 6 0 0 0-5 5.916 6 6 0 0 0 5 5.916v10.084h2v-10.084a6 6 0 0 0 5-5.916 6 6 0 0 0-5-5.916v-10.084h-2zm1 12a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z" />
                         </svg>
                         {{ end }}
-                        <div id="js-id-filter-category-{{ $i }}" class="w-filter --flex" data-param="category" data-item="{{ $a }}">
+                        <div id="js-id-filter-category-{{ $i }}" class="w-filter --flex" data-item="{{ $a }}" data-param="category">
                             <button class="w-button type-filter type-include --flex" title="Toggle filter on" onclick="toggleFilter(this, 'toggleInclude', true)">
                                 <span class="--flex">
                                     {{ $a }}
@@ -382,7 +382,7 @@
                                         <path d="m15 0v10.084a6 6 0 0 0-5 5.916 6 6 0 0 0 5 5.916v10.084h2v-10.084a6 6 0 0 0 5-5.916 6 6 0 0 0-5-5.916v-10.084h-2zm1 12a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z" />
                                     </svg>
                                     {{ end }}
-                                    <div id="js-id-filter-version-{{ $i }}" class="w-filter --flex" data-item="{{ $a.Version }}" data-param="version">
+                                    <div id="js-id-filter-version-{{ $i }}" class="w-filter --flex" data-param="version" data-item="{{ $a.Version }}">
                                         <button class="w-button type-filter type-include --flex" title="Toggle filter on" onclick="toggleFilter(this, 'toggleInclude', true)">
                                             <span class="--flex">
                                                 {{ $a.Version }}
@@ -458,7 +458,7 @@
                         <svg class="w-icon type-indicator" width="32" height="32" style="--size: 2rem" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32" fill="currentColor">
                             <path d="m16 10a6 6 0 0 0-6 6 6 6 0 0 0 5 5.916v10.084h2v-10.084a6 6 0 0 0 5-5.916 6 6 0 0 0-6-6zm0 2a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z" />
                         </svg>
-                        <div id="js-id-filter-badge-smithed" class="w-filter --flex" data-param="badge" data-item="Smithed made">
+                        <div id="js-id-filter-badge-smithed" class="w-filter --flex" data-item="Smithed made" data-param="badge">
                             <button class="w-button type-filter type-include --flex" title="Toggle filter on" onclick="toggleFilter(this, 'toggleInclude', true)">
                                 <span class="--flex">
                                     Smithed made

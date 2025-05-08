@@ -1,0 +1,33 @@
+.page-article {
+	.--flex-col-center(2);
+
+	& > header {
+		.--flex-col-stretch(2);
+
+		img {
+			width: calc(100% - 0.5rem);
+			border-radius: 1rem;
+			border: 0.25rem solid var(--block-shaded);
+		}
+
+		& > div {
+			.--flex-col-stretch(0.5);
+
+			& > span {
+				font-size: 1rem;
+				color: var(--text-inactive);
+				font-weight: 400;
+			}
+		}
+	}
+
+	& > section {
+		.--flex-col-stretch(0.5);
+
+		& > span {
+			font-size: 0.75rem;
+			font-weight: 400;
+			color: var(--text-inactive);
+		}
+	}
+}

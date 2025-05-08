@@ -18,10 +18,19 @@
 
 		<script src="/static/main.js?checksum=[[ root.checksum.js ]]"></script>
 		<mend:if :true="[[ this.has-script || false ]]">
-			<script
-				src="/static/page/[[ root.@file.filename().trim_extension() ]].js?version=[[ root.checksum.js ]]"
-				defer
-			></script>
+			<mend:if :true="[[ this.use-module || false ]]">
+				<script
+					src="/static/page/[[ root.@file.filename().trim_extension() ]].js?version=[[ root.checksum.js ]]"
+					type="module"
+					defer
+				></script>
+			</mend:if>
+			<mend:if :false="[[ this.use-module || false ]]">
+				<script
+					src="/static/page/[[ root.@file.filename().trim_extension() ]].js?version=[[ root.checksum.js ]]"
+					defer
+				></script>
+			</mend:if>
 		</mend:if>
 
 		<!-- [!] "While the CDN approach is extremely simple, you may want to consider not using CDNs in production" -->
@@ -161,7 +170,7 @@
 			{{ end }}
 		</header>
 		<!-- ... -->
-		<main>
+		<main class="page-[[ this.id || generic ]]">
 			<mend:slot />
 		</main>
 		<!-- ... -->

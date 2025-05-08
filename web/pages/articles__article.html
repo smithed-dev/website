@@ -1,0 +1,26 @@
+{{ define "index" }}
+<pkg:root :id="article" :title="Article" :searchbar="true" :has-script="true" :use-module="true" :description="Article">
+	<header class="--width-max">
+		<img src="{{ .Banner }}" alt="Banner" onerror="this.remove()" />
+		<div class="--centered">
+			<h1>{{ .Title }}</h1>
+			<span>
+				Published
+				<span id="js-timestamp-{{ .Timestamp }}" data-timestamp="{{ .Timestamp }}">—</span>
+			</span>
+			<script>
+				processTimestamp(document.getElementById("js-timestamp-{{ .Timestamp }}"));
+			</script>
+		</div>
+	</header>
+	<section class="--width-content">
+		<span>
+			Written by
+			<pkg:unmarked-link :label="TheNuclearNexus:" href="https://smithed.net/TheNuclearNexus" />
+		</span>
+		<pkg:markdown-content id="markdown-content" class="%s on-loading --width-content">
+			{{ .Content }}
+		</pkg:markdown-content>
+	</section>
+</pkg:root>
+{{ end }}

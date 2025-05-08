@@ -2,7 +2,13 @@
 	.--flex-col-stretch(1);
 
 	&.on-loading {
-		display: none;
+		visibility: hidden;
+
+		&::before {
+			display: inline;
+			visibility: visible;
+			content: "Loading content, please wait...";
+		}
 	}
 
 	p:has(img) {

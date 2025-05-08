@@ -1198,7 +1198,12 @@ label {
   align-items: stretch;
 }
 .m-markdown-content.on-loading {
-  display: none;
+  visibility: hidden;
+}
+.m-markdown-content.on-loading::before {
+  display: inline;
+  visibility: visible;
+  content: "Loading content, please wait...";
 }
 .m-markdown-content p:has(img) {
   width: fit-content;

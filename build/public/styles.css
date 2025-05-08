@@ -484,6 +484,7 @@ p {
   margin: 0;
 }
 :root {
+  color-scheme: dark;
   --size: 1rem;
 }
 .theme-dark-default {

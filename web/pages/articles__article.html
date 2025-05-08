@@ -1,5 +1,11 @@
 {{ define "index" }}
-<pkg:root :id="article" :title="Article" :searchbar="true" :has-script="true" :use-module="true" :description="Article">
+<pkg:root
+	:id="article"
+	:title="Article"
+	:searchbar="true"
+	:use-module="true"
+	:description="Read '{{ .Title }}' by TheNuclearNexus"
+>
 	<header class="--width-max">
 		<img src="{{ .Banner }}" alt="Banner" onerror="this.remove()" />
 		<div class="--centered">

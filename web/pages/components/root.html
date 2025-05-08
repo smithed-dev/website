@@ -1,177 +1,197 @@
-<!DOCTYPE html>
-<html lang="en" style="background-color: black;">
+<!doctype html>
+<html lang="en" style="background-color: black">
+	<head>
+		<meta charset="UTF-8" />
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<meta name="viewport" content="user-scalable=yes, initial-scale=1.0, width=device-width" />
+		<meta name="description" content="[[ this.description ]]" />
+		<!-- 30 days -->
+		<meta http-equiv="Cache-Control" content="max-age=2592000, must-revalidate" />
 
-<head>
-    <meta charset="UTF-8" />
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, width=device-width" />
-    <meta name="description" content="[[ this.description ]]" />
-    <!-- 30 days -->
-    <meta http-equiv="Cache-Control" content="max-age=2592000, must-revalidate">
+		<title>[[ this.title ]] — Smithed™</title>
 
-    <title>[[ this.title ]] — Smithed™</title>
+		<link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
+		<link rel="icon" sizes="48x48" href="/favicon.ico" />
+		<link rel="icon" type="image/svg+xml" sizes="all" href="/favicon.svg" />
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
-    <link rel="icon" sizes="48x48" href="/favicon.ico" />
-    <link rel="icon" type="image/svg+xml" sizes="all" href="/favicon.svg" />
+		<link rel="stylesheet" href="/static/styles.min.css?checksum=[[ root.checksum.css ]]" />
 
-    <link rel="stylesheet" href="/static/styles.min.css?checksum=[[ root.checksum.css ]]" />
+		<script src="/static/main.js?checksum=[[ root.checksum.js ]]"></script>
+		<mend:if :true="[[ this.has-script || false ]]">
+			<script
+				src="/static/page/[[ root.@file.filename().trim_extension() ]].js?version=[[ root.checksum.js ]]"
+				defer
+			></script>
+		</mend:if>
 
-    <script src="/static/main.js?checksum=[[ root.checksum.js ]]"></script>
-    <mend:if :true="[[ this.has-script || false ]]">
-        <script src="/static/page/[[ root.@file.filename().trim_extension() ]].js?version=[[ root.checksum.js ]]" defer>
-        </script>
-    </mend:if>
+		<!-- [!] "While the CDN approach is extremely simple, you may want to consider not using CDNs in production" -->
+		<script
+			src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.js"
+			integrity="sha384-oeUn82QNXPuVkGCkcrInrS1twIxKhkZiFfr2TdiuObZ3n3yIeMiqcRzkIcguaof1"
+			crossorigin="anonymous"
+		></script>
+	</head>
 
-    <!-- [!] "While the CDN approach is extremely simple, you may want to consider not using CDNs in production" -->
-    <script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.js"
-        integrity="sha384-oeUn82QNXPuVkGCkcrInrS1twIxKhkZiFfr2TdiuObZ3n3yIeMiqcRzkIcguaof1" crossorigin="anonymous">
-        </script>
-</head>
+	<body class="theme-dark-default">
+		<script>
+			const value = Cookies.get("prefered-theme");
+			if (value) {
+				applyGlobalTheme(value);
+			}
+		</script>
+		<template id="js-unsupported-icon">
+			<pkg:icon :icon="eyecons/warning" :size="0.75" />
+		</template>
+		<header>
+			<pkg:unmarked-link href="/" style="grid-area: logotype" title="%sGo to the Home page">
+				<pkg:icon :icon="smithed" :size="2" />
+				<h2 class="adapt-hide-wide">Smithed</h2>
+			</pkg:unmarked-link>
 
+			<pkg:unmarked-link :label="Browse" href="/browse" style="grid-area: browse" />
 
-<body class="theme-dark-default">
-    <script>
-        const value = Cookies.get("prefered-theme");
-        if (value) {
-            applyGlobalTheme(value);
-        }
-    </script>
-    <template id="js-unsupported-icon">
-        <pkg:icon :icon="eyecons/warning" :size="0.75" />
-    </template>
-    <header>
-        <pkg:unmarked-link href="/" style="grid-area: logotype;" title="%sGo to the Home page">
-            <pkg:icon :icon="smithed" :size="2" />
-            <h2 class="adapt-hide-wide">Smithed</h2>
-        </pkg:unmarked-link>
+			<pkg:unmarked-link :label="Articles" href="/articles" style="grid-area: articles" />
 
-        <pkg:unmarked-link :label="Browse" href="/browse" style="grid-area: browse;" />
+			<pkg:unmarked-link href="" style="grid-area: weld" title="%sGo to Weld page">
+				Weld
+				<pkg:icon :icon="eyecons/popout" />
+			</pkg:unmarked-link>
 
-        <pkg:unmarked-link :label="Articles" href="/articles" style="grid-area: articles;" />
+			<mend:if :true="[[ this.searchbar ]]">
+				<pkg:searchbar
+					:id="search"
+					class="%s --flex"
+					style="grid-area: searchbar"
+					onchange="gotoSearchPage(this)"
+				>
+					<pkg:dropdown :type="list">
+						<div>
+							Searches for
+							<em>packs by default</em>
+						</div>
+						<div>
+							<b>@</b>
+							To search for
+							<em>users</em>
+							and
+							<em>teams</em>
+						</div>
+						<div>
+							<b>#</b>
+							To search for
+							<em>bundles</em>
+						</div>
+					</pkg:dropdown>
+				</pkg:searchbar>
+			</mend:if>
+			<mend:if :false="[[ this.searchbar ]]">
+				<div class="--flex" style="grid-area: searchbar"></div>
+			</mend:if>
 
-        <pkg:unmarked-link href="" style="grid-area: weld;" title="%sGo to Weld page">
-            Weld
-            <pkg:icon :icon="eyecons/popout" />
-        </pkg:unmarked-link>
+			<pkg:unmarked-link href="" style="grid-area: inbox" title="%sGo to Inbox page">
+				Inbox
+				<pkg:icon :icon="eyecons/notification-unread" class="%s adapt-hide-content adapt-show-tablet" />
+			</pkg:unmarked-link>
 
-        <mend:if :true="[[ this.searchbar ]]">
-            <pkg:searchbar :id="search" class="%s --flex" style="grid-area: searchbar;" onchange="gotoSearchPage(this)">
-                <pkg:dropdown :type="list">
-                    <div>
-                        Searches for
-                        <em>packs by default</em>
-                    </div>
-                    <div>
-                        <b>@</b>
-                        To search for
-                        <em>users</em>
-                        and
-                        <em>teams</em>
-                    </div>
-                    <div>
-                        <b>#</b>
-                        To search for
-                        <em>bundles</em>
-                    </div>
-                </pkg:dropdown>
-            </pkg:searchbar>
-        </mend:if>
-        <mend:if :false="[[ this.searchbar ]]">
-            <div class="--flex" style="grid-area: searchbar;"></div>
-        </mend:if>
-
-        <pkg:unmarked-link href="" style="grid-area: inbox;" title="%sGo to Inbox page">
-            Inbox
-            <pkg:icon :icon="eyecons/notification-unread" class="%s adapt-hide-content adapt-show-tablet" />
-        </pkg:unmarked-link>
-
-        {{ if .LoggedIn }}
-        <div class="o-login" style="grid-area: profile;">
-            <button class="w-button type-menu --flex" onclick="toggleDropdown()" title="Open profile">
-                <img src="/static/images/smithie.webp" />
-                <span class="--flex">Smithie</span>
-                <pkg:icon :icon="eyecons/angle_down" />
-            </button>
-            <pkg:dropdown :type="buttons" id="profile-dropdown">
-                <pkg:button :icon="eyecons/user" :type="item" :reversed="true" class="%s --flex" href=""
-                    title="%sMy profile">
-                    <span class="--flex">
-                        My profile
-                    </span>
-                </pkg:button>
-                <pkg:button :icon="eyecons/new_file" :type="item" :reversed="true" class="%s --flex" href=""
-                    title="%sNew pack">
-                    <span class="--flex">
-                        New pack
-                    </span>
-                </pkg:button>
-                <pkg:button :icon="eyecons/new_folder" :type="item" :reversed="true" class="%s --flex" href=""
-                    title="%sNew bundle">
-                    <span class="--flex">
-                        New bundle
-                    </span>
-                </pkg:button>
-                <pkg:button :icon="eyecons/properties" :type="item" :reversed="true" class="%s --flex" href="/settings"
-                    title="%sSettings">
-                    <span class="--flex">
-                        Settings
-                    </span>
-                </pkg:button>
-                <pkg:button :icon="eyecons/angle_right" :type="item type-disturbing" :reversed="true" class="%s --flex"
-                    href="/api/logout" title="%sLog out of the account">
-                    <span class="--flex">
-                        Log out
-                    </span>
-                </pkg:button>
-            </pkg:dropdown>
-        </div>
-        <script>
-            new AccountWidget(document.querySelector(".o-login"));
-        </script>
-        {{ else }}
-        <pkg:button :type="accent" :label="Log in" :icon="eyecons/user" href="/login" style="grid-area: profile;" />
-        {{ end }}
-    </header>
-    <!-- ... -->
-    <main>
-        <mend:slot />
-    </main>
-    <!-- ... -->
-    <footer class="--centered">
-        <div>
-            <section>
-                <h2>
-                    ABOUT
-                </h2>
-                <pkg:unmarked-link :label="About Smithed" href="" />
-                <pkg:unmarked-link :label="How to Contribute" href="" />
-                <pkg:unmarked-link :label="Donate" href="" />
-            </section>
-            <section>
-                <h2>
-                    COMMUNITY
-                </h2>
-                <pkg:unmarked-link :label="Discord" href="" />
-                <pkg:unmarked-link :label="Guidelines" href="" />
-                <pkg:unmarked-link :label="Wiki" href="" />
-            </section>
-            <section>
-                <h2>
-                    LEGAL
-                </h2>
-                <pkg:unmarked-link :label="Terms of Use" href="" />
-                <pkg:unmarked-link :label="Privacy Policy" href="" />
-                <pkg:unmarked-link :label="Cookies" href="" />
-            </section>
-        </div>
-        <section>
-            <b>Copyright © 2018-2025 Smithed</b>
-            <p>
-                <em>Not an official Minecraft product. Not approved by or associated with Mojang Studios</em>
-            </p>
-        </section>
-    </footer>
-</body>
-
+			{{ if .LoggedIn }}
+			<div class="o-login" style="grid-area: profile">
+				<button class="w-button type-menu --flex" onclick="toggleDropdown()" title="Open profile">
+					<img src="/static/images/smithie.webp" />
+					<span class="--flex">Smithie</span>
+					<pkg:icon :icon="eyecons/angle_down" />
+				</button>
+				<pkg:dropdown :type="buttons" id="profile-dropdown">
+					<pkg:button
+						:icon="eyecons/user"
+						:type="item"
+						:reversed="true"
+						class="%s --flex"
+						href=""
+						title="%sMy profile"
+					>
+						<span class="--flex"> My profile </span>
+					</pkg:button>
+					<pkg:button
+						:icon="eyecons/new_file"
+						:type="item"
+						:reversed="true"
+						class="%s --flex"
+						href=""
+						title="%sNew pack"
+					>
+						<span class="--flex"> New pack </span>
+					</pkg:button>
+					<pkg:button
+						:icon="eyecons/new_folder"
+						:type="item"
+						:reversed="true"
+						class="%s --flex"
+						href=""
+						title="%sNew bundle"
+					>
+						<span class="--flex"> New bundle </span>
+					</pkg:button>
+					<pkg:button
+						:icon="eyecons/properties"
+						:type="item"
+						:reversed="true"
+						class="%s --flex"
+						href="/settings"
+						title="%sSettings"
+					>
+						<span class="--flex"> Settings </span>
+					</pkg:button>
+					<pkg:button
+						:icon="eyecons/angle_right"
+						:type="item type-disturbing"
+						:reversed="true"
+						class="%s --flex"
+						href="/api/logout"
+						title="%sLog out of the account"
+					>
+						<span class="--flex"> Log out </span>
+					</pkg:button>
+				</pkg:dropdown>
+			</div>
+			<script>
+				new AccountWidget(document.querySelector(".o-login"));
+			</script>
+			{{ else }}
+			<pkg:button :type="accent" :label="Log in" :icon="eyecons/user" href="/login" style="grid-area: profile" />
+			{{ end }}
+		</header>
+		<!-- ... -->
+		<main>
+			<mend:slot />
+		</main>
+		<!-- ... -->
+		<footer class="--centered">
+			<div>
+				<section>
+					<h2>ABOUT</h2>
+					<pkg:unmarked-link :label="About Smithed" href="" />
+					<pkg:unmarked-link :label="How to Contribute" href="" />
+					<pkg:unmarked-link :label="Donate" href="" />
+				</section>
+				<section>
+					<h2>COMMUNITY</h2>
+					<pkg:unmarked-link :label="Discord" href="" />
+					<pkg:unmarked-link :label="Guidelines" href="" />
+					<pkg:unmarked-link :label="Wiki" href="" />
+				</section>
+				<section>
+					<h2>LEGAL</h2>
+					<pkg:unmarked-link :label="Terms of Use" href="" />
+					<pkg:unmarked-link :label="Privacy Policy" href="" />
+					<pkg:unmarked-link :label="Cookies" href="" />
+				</section>
+			</div>
+			<section>
+				<b>Copyright © 2018-2025 Smithed</b>
+				<p>
+					<em>Not an official Minecraft product. Not approved by or associated with Mojang Studios</em>
+				</p>
+			</section>
+		</footer>
+	</body>
 </html>

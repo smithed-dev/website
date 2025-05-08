@@ -1,21 +1,21 @@
 .l-row,
-.l-row>.l-inherit {
-    .--flex-row-center(1);
+.l-row > .l-inherit {
+	.--flex-row-center(1);
 
-    &.type-center {
-        justify-content: center;
-    }
+	&.type-center {
+		justify-content: center;
+	}
 
-    @media only screen and (max-width: (30rem + 4rem)) {
-        &.type-adaptive {
-            flex-direction: column;
-            justify-content: stretch;
-            align-items: stretch !important;
-        }
-    }
+	@media only screen and (max-width: (30rem + 4rem)) {
+		&.type-adaptive {
+			flex-direction: column;
+			justify-content: stretch;
+			align-items: stretch !important;
+		}
+	}
 
-    @media only screen and (max-width: (@screen-shrink + 4rem)) {
-        flex-direction: column !important;
-        align-items: stretch !important;
-    }
+	@media only screen and (max-width: (@screen-shrink + 4rem)) {
+		flex-direction: column !important;
+		align-items: stretch !important;
+	}
 }

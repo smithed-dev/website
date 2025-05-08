@@ -1,24 +1,29 @@
 <a class="m-article-card" href="/article/[[ this.id ]]">
-    <header>
-        <pkg:icon :icon="eyecons/picture-placeholder" :size="2" />
-        <!-- Basically, if there's a gallery image then we keep an icon in case user uses a list view. -->
-        <!-- If there's no gallery, then just use the icon -->
-        <mend:if :false="[[ this.banner.length() == 0 ]]">
-            <img src="[[ this.banner ]]" loading="lazy" alt="" onerror="this.remove()"
-                onload="this.previousElementSibling.remove()" />
-        </mend:if>
-    </header>
-    <section>
-        <h3 class="on-highlight">[[ this.title ]]</h3>
-        <section class="o-metadata">
-            <pkg:icon :icon="eyecons/user" :size="0.75" />
-            <span>by [[ this.author ]]</span>
-            <hr class="type-bullet" />
-            <pkg:icon :icon="eyecons/clock" :size="0.75" />
-            <span id="js-timestamp-[[ this.timestamp ]]" data-timestamp="[[ this.timestamp ]]">—</span>
-        </section>
-    </section>
+	<header>
+		<pkg:icon :icon="eyecons/picture-placeholder" :size="2" />
+		<!-- Basically, if there's a gallery image then we keep an icon in case user uses a list view. -->
+		<!-- If there's no gallery, then just use the icon -->
+		<mend:if :false="[[ this.banner.length() == 0 ]]">
+			<img
+				src="[[ this.banner ]]"
+				loading="lazy"
+				alt=""
+				onerror="this.remove()"
+				onload="this.previousElementSibling.remove()"
+			/>
+		</mend:if>
+	</header>
+	<section>
+		<h3 class="on-highlight">[[ this.title ]]</h3>
+		<section class="o-metadata">
+			<pkg:icon :icon="eyecons/user" :size="0.75" />
+			<span>by [[ this.author ]]</span>
+			<hr class="type-bullet" />
+			<pkg:icon :icon="eyecons/clock" :size="0.75" />
+			<span id="js-timestamp-[[ this.timestamp ]]" data-timestamp="[[ this.timestamp ]]">—</span>
+		</section>
+	</section>
 </a>
 <script>
-    processTimestamp(document.getElementById("js-timestamp-[[ this.timestamp ]]"));
+	processTimestamp(document.getElementById("js-timestamp-[[ this.timestamp ]]"));
 </script>

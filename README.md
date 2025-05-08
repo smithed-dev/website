@@ -21,9 +21,9 @@ This is an HTMX implementation of the smithed website.
 To build the project:
 
 - You'll need [Less CSS](https://lesscss.org/) for CSS compiling:
-    - `npm install -g less`
+  - `npm install -g less`
 - You will need my templating language [Mend v1.0.1-alpha.2](https://github.com/bbfh-dev/mend) to be installed:
-    - `go install github.com/bbfh-dev/mend@v1.0.1-alpha.2`
+  - `go install github.com/bbfh-dev/mend@v1.0.1-alpha.2`
 
 ### Running the server
 

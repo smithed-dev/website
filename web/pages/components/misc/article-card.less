@@ -1,56 +1,56 @@
 .m-article-card {
-    .--bordered();
-    .--flex-col-stretch(0);
-    .--interactive();
-    position: relative;
-    background-color: var(--block-section);
-    border-radius: 1rem;
-    text-decoration: none;
+	.--bordered();
+	.--flex-col-stretch(0);
+	.--interactive();
+	position: relative;
+	background-color: var(--block-section);
+	border-radius: 1rem;
+	text-decoration: none;
 
-    &>header {
-        position: relative;
-        width: calc(100% - 0.5rem);
-        // > https://stackoverflow.com/questions/1495407/maintain-the-aspect-ratio-of-a-div-with-css
-        padding-bottom: calc(56.25% - 0.5rem);
-        background-color: var(--block-background);
-        border: 0.25rem solid var(--block-shaded);
-        border-radius: 1rem 1rem 0 0;
-        overflow: hidden;
+	& > header {
+		position: relative;
+		width: calc(100% - 0.5rem);
+		// > https://stackoverflow.com/questions/1495407/maintain-the-aspect-ratio-of-a-div-with-css
+		padding-bottom: calc(56.25% - 0.5rem);
+		background-color: var(--block-background);
+		border: 0.25rem solid var(--block-shaded);
+		border-radius: 1rem 1rem 0 0;
+		overflow: hidden;
 
-        &>svg,
-        &>div {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translateX(-50%) translateY(-50%);
-            color: var(--block-hover);
-        }
+		& > svg,
+		& > div {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translateX(-50%) translateY(-50%);
+			color: var(--block-hover);
+		}
 
-        img {
-            object-fit: cover;
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            width: 100%;
-            height: 100%;
-        }
-    }
+		img {
+			object-fit: cover;
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			width: 100%;
+			height: 100%;
+		}
+	}
 
-    &>section {
-        .--flex-col-stretch(0.5);
-        .--flex();
-        padding: 0.5rem 1rem 1rem 1rem;
+	& > section {
+		.--flex-col-stretch(0.5);
+		.--flex();
+		padding: 0.5rem 1rem 1rem 1rem;
 
-        &>div {
-            .--flex-col(0.25);
-            .--flex();
+		& > div {
+			.--flex-col(0.25);
+			.--flex();
 
-            &>div {
-                .--flex-row-center(0.5);
-                .--wrap();
-            }
-        }
-    }
+			& > div {
+				.--flex-row-center(0.5);
+				.--wrap();
+			}
+		}
+	}
 }

@@ -1,20 +1,44 @@
 {{ define "index" }}
-<pkg:root :title="Articles" :searchbar="true" :has-script="false"
-    :description="Explore a collection of Smithed articles">
-    <pkg:heading class="%s --centered --width-content">
-        <h1>Articles</h1>
-        <p>Explore a collection of our articles</p>
-    </pkg:heading>
+<pkg:root
+	:title="Articles"
+	:searchbar="true"
+	:has-script="false"
+	:description="Explore a collection of Smithed articles"
+>
+	<pkg:heading class="%s --centered --width-content">
+		<h1>Articles</h1>
+		<p>Explore a collection of our articles</p>
+	</pkg:heading>
 
-    <pkg:grid :cols="2" class="%s --width-content">
-        <pkg:article-card :id="2025-goals" :title="Smithed in 2025" :author="TheNuclearNexus" :timestamp="1740341055880"
-            :banner="https://i.imgur.com/THTqdCM.png" />
-        <pkg:article-card :id="all-the-packs-smp" :title="All the Packs & the SMP" :author="TheNuclearNexus"
-            :timestamp="1740792755558" :banner="" />
-        <pkg:article-card :id="bundle-beta-preview" :title="Bundles Beta Preview" :author="TheNuclearNexus"
-            :timestamp="1711031724064" :banner="" />
-        <pkg:article-card :id="2024-goals" :title="The Project in 2024" :author="TheNuclearNexus"
-            :timestamp="1708111492725" :banner="" />
-    </pkg:grid>
+	<pkg:grid :cols="2" class="%s --width-content">
+		<pkg:article-card
+			:id="2025-goals"
+			:title="Smithed in 2025"
+			:author="TheNuclearNexus"
+			:timestamp="1740341055880"
+			:banner="https://i.imgur.com/THTqdCM.png"
+		/>
+		<pkg:article-card
+			:id="all-the-packs-smp"
+			:title="All the Packs & the SMP"
+			:author="TheNuclearNexus"
+			:timestamp="1740792755558"
+			:banner=""
+		/>
+		<pkg:article-card
+			:id="bundle-beta-preview"
+			:title="Bundles Beta Preview"
+			:author="TheNuclearNexus"
+			:timestamp="1711031724064"
+			:banner=""
+		/>
+		<pkg:article-card
+			:id="2024-goals"
+			:title="The Project in 2024"
+			:author="TheNuclearNexus"
+			:timestamp="1708111492725"
+			:banner=""
+		/>
+	</pkg:grid>
 </pkg:root>
 {{ end }}

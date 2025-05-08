@@ -1,97 +1,96 @@
 body {
-    .--font-text();
-    .--flex-col-center(4);
-    background-color: var(--block-background);
-    color: var(--text-foreground);
-    font-weight: 300;
+	.--font-text();
+	.--flex-col-center(4);
+	background-color: var(--block-background);
+	color: var(--text-foreground);
+	font-weight: 300;
 
-    &.block-scroll {
-        overflow: hidden;
-    }
+	&.block-scroll {
+		overflow: hidden;
+	}
 }
 
-body>header {
-    .--width-max();
-    .--flex-row-center(2);
-    padding: 0.5rem 0;
+body > header {
+	.--width-max();
+	.--flex-row-center(2);
+	padding: 0.5rem 0;
 
-    @media only screen and (max-width: (@screen-content + 4rem)) {
-        gap: 1rem;
-    }
+	@media only screen and (max-width: (@screen-content + 4rem)) {
+		gap: 1rem;
+	}
 
-    @media only screen and (max-width: (@screen-tablet + 4rem)) {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr;
-        gap: 1rem;
-        grid-template-areas:
-            "logotype logotype logotype logotype"
-            "browse articles weld inbox"
-            "searchbar searchbar profile profile";
-    }
+	@media only screen and (max-width: (@screen-tablet + 4rem)) {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+		grid-template-rows: 1fr 1fr 1fr;
+		gap: 1rem;
+		grid-template-areas:
+			"logotype logotype logotype logotype"
+			"browse articles weld inbox"
+			"searchbar searchbar profile profile";
+	}
 
-    @media only screen and (max-width: (@screen-min + 4rem)) {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr 1fr;
-        gap: 1rem;
-        grid-template-areas:
-            "logotype logotype"
-            "browse articles"
-            "weld inbox"
-            "profile profile"
-            "searchbar searchbar";
-    }
-
+	@media only screen and (max-width: (@screen-min + 4rem)) {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: 1fr 1fr 1fr 1fr;
+		gap: 1rem;
+		grid-template-areas:
+			"logotype logotype"
+			"browse articles"
+			"weld inbox"
+			"profile profile"
+			"searchbar searchbar";
+	}
 }
 
-body>main {
-    .--width-max();
-    .--flex-col-center(4);
-    margin: 0 auto auto auto;
+body > main {
+	.--width-max();
+	.--flex-col-center(4);
+	margin: 0 auto auto auto;
 }
 
-body>footer {
-    .--width-fill(4rem);
-    .--flex-col-center(4);
-    padding: 4rem 2rem;
-    background-color: var(--block-shaded);
+body > footer {
+	.--width-fill(4rem);
+	.--flex-col-center(4);
+	padding: 4rem 2rem;
+	background-color: var(--block-shaded);
 
-    section {
-        .--flex-col-center(0);
-    }
+	section {
+		.--flex-col-center(0);
+	}
 
-    &>section {
-        gap: 0.5rem;
-        font-weight: 500;
-    }
+	& > section {
+		gap: 0.5rem;
+		font-weight: 500;
+	}
 
-    &>div {
-        .--width-content();
-        display: grid;
-        grid-template-columns: auto 1fr auto;
-        grid-template-rows: 1fr;
-        gap: 4rem;
+	& > div {
+		.--width-content();
+		display: grid;
+		grid-template-columns: auto 1fr auto;
+		grid-template-rows: 1fr;
+		gap: 4rem;
 
-        section {
-            gap: 1rem;
-        }
+		section {
+			gap: 1rem;
+		}
 
-        @media only screen and (max-width: (@screen-tablet + 4rem)) {
-            grid-template-columns: 1fr;
-            grid-template-rows: 1fr 1fr 1fr;
-        }
-    }
+		@media only screen and (max-width: (@screen-tablet + 4rem)) {
+			grid-template-columns: 1fr;
+			grid-template-rows: 1fr 1fr 1fr;
+		}
+	}
 }
 
 .o-login {
-    .--flex-row-center(0);
-    justify-content: center;
-    position: relative;
+	.--flex-row-center(0);
+	justify-content: center;
+	position: relative;
 
-    .w-dropdown {
-        min-width: 11rem;
-        left: 50%;
-        transform: translateX(-50%);
-    }
+	.w-dropdown {
+		min-width: 11rem;
+		left: 50%;
+		transform: translateX(-50%);
+	}
 }

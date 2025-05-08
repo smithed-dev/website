@@ -1,32 +1,37 @@
 {{ define "index" }}
-<pkg:root :title="Settings" :searchbar="true" :has-script="true"
-    :description="Customize your Smithed experience & manage your account">
-    <pkg:heading class="%s --centered --width-content">
-        <h1>Settings</h1>
-        <p>
-            Customize your experience & manage your account
-        </p>
-    </pkg:heading>
+<pkg:root
+	:title="Settings"
+	:searchbar="true"
+	:has-script="true"
+	:description="Customize your Smithed experience & manage your account"
+>
+	<pkg:heading class="%s --centered --width-content">
+		<h1>Settings</h1>
+		<p>Customize your experience & manage your account</p>
+	</pkg:heading>
 
-    <pkg:tab-container class="%s --width-content">
-        <header>
-            <pkg:script-button :label="Site" :type="tab" :icon="eyecons/window" class="%s type-current --flex"
-                data-tab="site" />
-            <pkg:script-button :label="Account" :type="tab" :icon="eyecons/user" class="%s --flex" data-tab="account" />
-        </header>
-        <section id="tab-site">
-            <h2>Appearance</h2>
-            <section class="l-row --wrap">
-                <pkg:theme-preview :id="dark-default" :label="Dark (Default)" />
-                <pkg:theme-preview :id="dark-contrast" :label="Dark (High-contrast)" />
-                <pkg:theme-preview :id="dark-sand" :label="Dark (Gruvbox)" />
-                <pkg:theme-preview :id="light-flashbang" :label="Light (Flashbang)" />
-                <pkg:theme-preview :id="light-sand" :label="Light (Gruvbox)" />
-            </section>
-        </section>
-        <section id="tab-account" style="display: none;">
-            Hello
-        </section>
-    </pkg:tab-container>
+	<pkg:tab-container class="%s --width-content">
+		<header>
+			<pkg:script-button
+				:label="Site"
+				:type="tab"
+				:icon="eyecons/window"
+				class="%s type-current --flex"
+				data-tab="site"
+			/>
+			<pkg:script-button :label="Account" :type="tab" :icon="eyecons/user" class="%s --flex" data-tab="account" />
+		</header>
+		<section id="tab-site">
+			<h2>Appearance</h2>
+			<section class="l-row --wrap">
+				<pkg:theme-preview :id="dark-default" :label="Dark (Default)" />
+				<pkg:theme-preview :id="dark-contrast" :label="Dark (High-contrast)" />
+				<pkg:theme-preview :id="dark-sand" :label="Dark (Gruvbox)" />
+				<pkg:theme-preview :id="light-flashbang" :label="Light (Flashbang)" />
+				<pkg:theme-preview :id="light-sand" :label="Light (Gruvbox)" />
+			</section>
+		</section>
+		<section id="tab-account" style="display: none">Hello</section>
+	</pkg:tab-container>
 </pkg:root>
 {{ end }}

@@ -1,11 +1,11 @@
 /** @param {HTMLElement} node  */
 function applyTheme(node) {
-  applyGlobalTheme(node.value);
+	applyGlobalTheme(node.value);
 }
 
 {
-  const value = Cookies.get("prefered-theme");
-  if (value) {
-    document.getElementById(`theme-${value}`).checked = true;
-  }
+	const value = Cookies.get("prefered-theme");
+	if (value) {
+		document.getElementById(`theme-${value}`).checked = true;
+	}
 }

@@ -1,164 +1,181 @@
 {{ define "index" }}
-<pkg:root :title="Browse" :searchbar="false" :has-script="true"
-    :description="Browse Minecraft data & resource packs on Smithed. Filtered by categories, versions and more">
-    <pkg:heading class="%s --centered --width-content">
-        <h1>Browse packs</h1>
-    </pkg:heading>
+<pkg:root
+	:title="Browse"
+	:searchbar="false"
+	:has-script="true"
+	:description="Browse Minecraft data & resource packs on Smithed. Filtered by categories, versions and more"
+>
+	<pkg:heading class="%s --centered --width-content">
+		<h1>Browse packs</h1>
+	</pkg:heading>
 
-    <pkg:with-sidebar class="%s --width-max">
-        <section class="l-col type-sections" id="browser" hx-trigger="url-changed" hx-target="#htmx-packs"
-            hx-swap="innerHTML" data-inherit-url="hx-get">
-            <header class="l-row type-adaptive">
-                <pkg:searchbar :id="search" class="%s --flex" onchange="applySearch(this)" />
-                <section class="l-inherit">
-                    <pkg:select :id="sort" :icon="eyecons/sort" class="%s --flex" onchange="applySorting(this)">
-                        <pkg:option :value="trending" />
-                        <pkg:option :value="downloads" />
-                        <pkg:option :value="alphabetically" />
-                        <pkg:option :value="newest" />
-                    </pkg:select>
-                    <pkg:switch :id="layout" onchange="applyLayout(this)">
-                        <pkg:icon :icon="eyecons/apps" data-name="grid" />
-                        <pkg:icon :icon="eyecons/menu_hamburger" data-name="list" />
-                        <pkg:icon :icon="eyecons/collapse" data-name="compact" />
-                    </pkg:switch>
-                    <button class="w-button type-symbol adapt-default-hide adapt-show-sidebar" title="Show filters"
-                        onclick="showFilters()">
-                        <pkg:icon :icon="eyecons/properties" />
-                    </button>
-                </section>
-            </header>
-            <div id="js-filters" class="l-row --wrap">
-                <template>
-                    <button class="w-button type-tag">
-                        <span class="js-label"></span>
-                        <pkg:icon :icon="eyecons/cross" :size="0.75" />
-                    </button>
-                </template>
-            </div>
-            <div id="htmx-packs" class="l-inherit on-loading">
-                {{ template "browser" . }}
-            </div>
-        </section>
+	<pkg:with-sidebar class="%s --width-max">
+		<section
+			class="l-col type-sections"
+			id="browser"
+			hx-trigger="url-changed"
+			hx-target="#htmx-packs"
+			hx-swap="innerHTML"
+			data-inherit-url="hx-get"
+		>
+			<header class="l-row type-adaptive">
+				<pkg:searchbar :id="search" class="%s --flex" onchange="applySearch(this)" />
+				<section class="l-inherit">
+					<pkg:select :id="sort" :icon="eyecons/sort" class="%s --flex" onchange="applySorting(this)">
+						<pkg:option :value="trending" />
+						<pkg:option :value="downloads" />
+						<pkg:option :value="alphabetically" />
+						<pkg:option :value="newest" />
+					</pkg:select>
+					<pkg:switch :id="layout" onchange="applyLayout(this)">
+						<pkg:icon :icon="eyecons/apps" data-name="grid" />
+						<pkg:icon :icon="eyecons/menu_hamburger" data-name="list" />
+						<pkg:icon :icon="eyecons/collapse" data-name="compact" />
+					</pkg:switch>
+					<button
+						class="w-button type-symbol adapt-default-hide adapt-show-sidebar"
+						title="Show filters"
+						onclick="showFilters()"
+					>
+						<pkg:icon :icon="eyecons/properties" />
+					</button>
+				</section>
+			</header>
+			<div id="js-filters" class="l-row --wrap">
+				<template>
+					<button class="w-button type-tag">
+						<span class="js-label"></span>
+						<pkg:icon :icon="eyecons/cross" :size="0.75" />
+					</button>
+				</template>
+			</div>
+			<div id="htmx-packs" class="l-inherit on-loading">{{ template "browser" . }}</div>
+		</section>
 
-        <aside>
-            <header class="adapt-default-hide adapt-show-sidebar">
-                <b class="--flex">Filters</b>
-                <button class="w-button" onclick="hideFilters()">
-                    <pkg:icon :icon="eyecons/cross" />
-                </button>
-            </header>
-            <hr class="adapt-default-hide adapt-show-sidebar" />
-            <div class="o-title">
-                <pkg:icon :icon="eyecons/sort" />
-                <b>Categories</b>
-            </div>
-            <pkg:graph>
-                {{ $last := .CategoryLast }}
-                {{ range $i, $a := .Categories }}
-                <div class="o-graph-node">
-                    {{ if eq $i 0 }}
-                    <pkg:icon :icon="eyecons/node-down" :size="2" class="%s type-indicator" />
-                    {{ else if eq $i $last }}
-                    <pkg:icon :icon="eyecons/node-up" :size="2" class="%s type-indicator" />
-                    {{ else }}
-                    <pkg:icon :icon="eyecons/node-up-down" :size="2" class="%s type-indicator" />
-                    {{ end }}
-                    <pkg:filter :id="category-{{ $i }}" class="%s --flex" data-param="category" data-item="{{ $a }}">
-                        {{ $a }}
-                    </pkg:filter>
-                </div>
-                {{ end }}
-            </pkg:graph>
-            <hr />
-            <div class="o-title">
-                <pkg:icon :icon="eyecons/file" />
-                <b>Versions</b>
-            </div>
-            <pkg:graph class="%s type-limited">
-                {{ $last := .VersionLast }}
-                {{ range $i, $a := .Versions }}
-                {{ $len := len $a.Snapshots }}
-                {{ if eq $len 0 }}
-                <div class="o-graph-node">
-                    {{ if eq $i 0 }}
-                    <pkg:icon :icon="eyecons/node-down" :size="2" class="%s type-indicator" />
-                    {{ else if eq $i $last }}
-                    <pkg:icon :icon="eyecons/node-up" :size="2" class="%s type-indicator" />
-                    {{ else }}
-                    <pkg:icon :icon="eyecons/node-up-down" :size="2" class="%s type-indicator" />
-                    {{ end }}
-                    <pkg:filter :id="version-{{ $i }}" class="%s --flex" data-param="version"
-                        data-item="{{ $a.Version }}">
-                        {{ $a.Version }}
-                    </pkg:filter>
-                </div>
-                {{ else }}
-                <div>
-                    <input type="checkbox" id="details-{{ $a.Version }}" style="display: none;" />
-                    <details open>
-                        <summary class="o-graph-node">
-                            <label for="details-{{ $a.Version }}">
-                                {{ if eq $i 0 }}
-                                <pkg:icon :icon="eyecons/node-down" :size="2" class="%s type-indicator" />
-                                {{ else if eq $i $last }}
-                                <pkg:icon :icon="eyecons/node-up" :size="2" class="%s type-indicator" />
-                                {{ else }}
-                                <pkg:icon :icon="eyecons/node-up-down" :size="2" class="%s type-indicator" />
-                                {{ end }}
-                                <pkg:filter :id="version-{{ $i }}" class="%s --flex" data-param="version"
-                                    data-item="{{ $a.Version }}">
-                                    {{ $a.Version }}
-                                    <em>+{{ $len }}</em>
-                                </pkg:filter>
-                                <pkg:icon :icon="eyecons/angle_down" :size="1" class="%s type-angle" />
-                            </label>
-                        </summary>
-                        <pkg:graph class="%s type-branch">
-                            {{ $last := $a.SnapshotLast }}
-                            {{ $root := $i }}
-                            {{ range $i, $b := $a.Snapshots }}
-                            <div class="o-graph-node">
-                                <pkg:icon :icon="eyecons/node-branch" :size="2" class="%s type-indicator" />
-                                <pkg:icon :icon="eyecons/node-left" :size="2" class="%s type-indicator" />
-                                <pkg:filter :id="version-{{ $root }}-{{ $i }}" class="%s --flex" data-param="version"
-                                    data-item="{{ $b }}">
-                                    {{ $b }}
-                                </pkg:filter>
-                            </div>
-                            {{ end }}
-                        </pkg:graph>
-                    </details>
-                </div>
-                {{ end }}
-                {{ end }}
-            </pkg:graph>
-            <hr />
-            <div class="o-title">
-                <pkg:icon :icon="eyecons/star" />
-                <b>Badges</b>
-            </div>
-            <pkg:graph>
-                <div class="o-graph-node">
-                    <pkg:icon :icon="eyecons/node-down" :size="2" class="%s type-indicator" />
-                    <pkg:filter :id="badge-smithed" class="%s --flex" data-param="badge" data-item="Smithed made">
-                        Smithed made
-                    </pkg:filter>
-                </div>
-                <div class="o-graph-node">
-                    <pkg:icon :icon="eyecons/node-up-down" :size="2" class="%s type-indicator" />
-                    <pkg:filter :id="badge-lang" class="%s --flex" data-param="badge" data-item="Localization">
-                        Localization
-                    </pkg:filter>
-                </div>
-                <div class="o-graph-node">
-                    <pkg:icon :icon="eyecons/node-up" :size="2" class="%s type-indicator" />
-                    <pkg:filter :id="badge-resourcepack" class="%s --flex" data-param="badge" data-item="Resource pack">
-                        Resource pack
-                    </pkg:filter>
-                </div>
-            </pkg:graph>
-        </aside>
-    </pkg:with-sidebar>
+		<aside>
+			<header class="adapt-default-hide adapt-show-sidebar">
+				<b class="--flex">Filters</b>
+				<button class="w-button" onclick="hideFilters()">
+					<pkg:icon :icon="eyecons/cross" />
+				</button>
+			</header>
+			<hr class="adapt-default-hide adapt-show-sidebar" />
+			<div class="o-title">
+				<pkg:icon :icon="eyecons/sort" />
+				<b>Categories</b>
+			</div>
+			<pkg:graph>
+				{{ $last := .CategoryLast }} {{ range $i, $a := .Categories }}
+				<div class="o-graph-node">
+					{{ if eq $i 0 }}
+					<pkg:icon :icon="eyecons/node-down" :size="2" class="%s type-indicator" />
+					{{ else if eq $i $last }}
+					<pkg:icon :icon="eyecons/node-up" :size="2" class="%s type-indicator" />
+					{{ else }}
+					<pkg:icon :icon="eyecons/node-up-down" :size="2" class="%s type-indicator" />
+					{{ end }}
+					<pkg:filter :id="category-{{ $i }}" class="%s --flex" data-param="category" data-item="{{ $a }}">
+						{{ $a }}
+					</pkg:filter>
+				</div>
+				{{ end }}
+			</pkg:graph>
+			<hr />
+			<div class="o-title">
+				<pkg:icon :icon="eyecons/file" />
+				<b>Versions</b>
+			</div>
+			<pkg:graph class="%s type-limited">
+				{{ $last := .VersionLast }} {{ range $i, $a := .Versions }} {{ $len := len $a.Snapshots }} {{ if eq $len
+				0 }}
+				<div class="o-graph-node">
+					{{ if eq $i 0 }}
+					<pkg:icon :icon="eyecons/node-down" :size="2" class="%s type-indicator" />
+					{{ else if eq $i $last }}
+					<pkg:icon :icon="eyecons/node-up" :size="2" class="%s type-indicator" />
+					{{ else }}
+					<pkg:icon :icon="eyecons/node-up-down" :size="2" class="%s type-indicator" />
+					{{ end }}
+					<pkg:filter
+						:id="version-{{ $i }}"
+						class="%s --flex"
+						data-param="version"
+						data-item="{{ $a.Version }}"
+					>
+						{{ $a.Version }}
+					</pkg:filter>
+				</div>
+				{{ else }}
+				<div>
+					<input type="checkbox" id="details-{{ $a.Version }}" style="display: none" />
+					<details open>
+						<summary class="o-graph-node">
+							<label for="details-{{ $a.Version }}">
+								{{ if eq $i 0 }}
+								<pkg:icon :icon="eyecons/node-down" :size="2" class="%s type-indicator" />
+								{{ else if eq $i $last }}
+								<pkg:icon :icon="eyecons/node-up" :size="2" class="%s type-indicator" />
+								{{ else }}
+								<pkg:icon :icon="eyecons/node-up-down" :size="2" class="%s type-indicator" />
+								{{ end }}
+								<pkg:filter
+									:id="version-{{ $i }}"
+									class="%s --flex"
+									data-param="version"
+									data-item="{{ $a.Version }}"
+								>
+									{{ $a.Version }}
+									<em>+{{ $len }}</em>
+								</pkg:filter>
+								<pkg:icon :icon="eyecons/angle_down" :size="1" class="%s type-angle" />
+							</label>
+						</summary>
+						<pkg:graph class="%s type-branch">
+							{{ $last := $a.SnapshotLast }} {{ $root := $i }} {{ range $i, $b := $a.Snapshots }}
+							<div class="o-graph-node">
+								<pkg:icon :icon="eyecons/node-branch" :size="2" class="%s type-indicator" />
+								<pkg:icon :icon="eyecons/node-left" :size="2" class="%s type-indicator" />
+								<pkg:filter
+									:id="version-{{ $root }}-{{ $i }}"
+									class="%s --flex"
+									data-param="version"
+									data-item="{{ $b }}"
+								>
+									{{ $b }}
+								</pkg:filter>
+							</div>
+							{{ end }}
+						</pkg:graph>
+					</details>
+				</div>
+				{{ end }} {{ end }}
+			</pkg:graph>
+			<hr />
+			<div class="o-title">
+				<pkg:icon :icon="eyecons/star" />
+				<b>Badges</b>
+			</div>
+			<pkg:graph>
+				<div class="o-graph-node">
+					<pkg:icon :icon="eyecons/node-down" :size="2" class="%s type-indicator" />
+					<pkg:filter :id="badge-smithed" class="%s --flex" data-param="badge" data-item="Smithed made">
+						Smithed made
+					</pkg:filter>
+				</div>
+				<div class="o-graph-node">
+					<pkg:icon :icon="eyecons/node-up-down" :size="2" class="%s type-indicator" />
+					<pkg:filter :id="badge-lang" class="%s --flex" data-param="badge" data-item="Localization">
+						Localization
+					</pkg:filter>
+				</div>
+				<div class="o-graph-node">
+					<pkg:icon :icon="eyecons/node-up" :size="2" class="%s type-indicator" />
+					<pkg:filter :id="badge-resourcepack" class="%s --flex" data-param="badge" data-item="Resource pack">
+						Resource pack
+					</pkg:filter>
+				</div>
+			</pkg:graph>
+		</aside>
+	</pkg:with-sidebar>
 </pkg:root>
 {{ end }}

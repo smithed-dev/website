@@ -1,22 +1,22 @@
 *::-webkit-scrollbar {
-    width: 0.25rem;
-    height: 0.25rem;
-    background-color: transparent;
+	width: 0.25rem;
+	height: 0.25rem;
+	background-color: transparent;
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: var(--text-inactive);
+	background-color: var(--text-inactive);
 }
 
 * {
-    scrollbar-color: var(--text-inactive) transparent;
-    scrollbar-width: thin;
+	scrollbar-color: var(--text-inactive) transparent;
+	scrollbar-width: thin;
 }
 
 html,
 body {
-    height: max-content;
-    min-height: 100vh;
+	height: max-content;
+	min-height: 100vh;
 }
 
 h1,
@@ -25,124 +25,121 @@ h3,
 h4,
 h5,
 h6 {
-    .--font-title();
+	.--font-title();
 }
 
 h1 {
-    font-size: 2rem;
+	font-size: 2rem;
 }
 
 h2 {
-    font-size: 1.5rem;
+	font-size: 1.5rem;
 }
 
 h3 {
-    font-size: 1.25rem;
+	font-size: 1.25rem;
 }
 
 h4 {
-    font-size: 0.75rem;
+	font-size: 0.75rem;
 }
 
 b {
-    font-weight: 700;
+	font-weight: 700;
 }
 
 p {
-    // Make paragraphs more readable
-    line-height: 1.25;
-    overflow-wrap: break-word;
-    hyphens: auto;
+	// Make paragraphs more readable
+	line-height: 1.25;
+	overflow-wrap: break-word;
+	hyphens: auto;
 }
 
 em {
-    color: var(--text-inactive);
-    font-style: normal;
+	color: var(--text-inactive);
+	font-style: normal;
 }
 
 hr {
-    --height: 2px;
-    background-color: var(--color);
-    margin: 0;
-    min-height: var(--height);
-    max-height: var(--height);
-    opacity: 0.33;
-    border: none;
-    flex: 1;
+	--height: 2px;
+	background-color: var(--color);
+	margin: 0;
+	min-height: var(--height);
+	max-height: var(--height);
+	opacity: 0.33;
+	border: none;
+	flex: 1;
 
-    &.type-bar {
-        --height: 1rem;
-        min-width: 2px;
-        max-width: 2px;
-    }
+	&.type-bar {
+		--height: 1rem;
+		min-width: 2px;
+		max-width: 2px;
+	}
 
-    &.type-bullet {
-        --height: 0.25rem;
-        min-width: 0.25rem;
-        max-width: 0.25rem;
-        border-radius: 100%;
-        opacity: 1;
-    }
+	&.type-bullet {
+		--height: 0.25rem;
+		min-width: 0.25rem;
+		max-width: 0.25rem;
+		border-radius: 100%;
+		opacity: 1;
+	}
 
-    &.type-soft {
-        opacity: 0.15;
-    }
+	&.type-soft {
+		opacity: 0.15;
+	}
 }
 
 a {
-    color: inherit;
-    text-decoration: underline;
-    text-decoration-color: var(--text-foreground);
-    text-decoration-thickness: 2px;
-    cursor: pointer;
+	color: inherit;
+	text-decoration: underline;
+	text-decoration-color: var(--text-foreground);
+	text-decoration-thickness: 2px;
+	cursor: pointer;
 
-    &.type-faded {
-        color: var(--text-inactive);
-    }
+	&.type-faded {
+		color: var(--text-inactive);
+	}
 
-    &:hover,
-    &:focus {
+	&:hover,
+	&:focus {
+		&.on-highlight,
+		.on-highlight {
+			text-decoration: underline;
+			text-decoration-color: var(--text-accent);
+			text-decoration-thickness: 2px;
+		}
+	}
 
-        &.on-highlight,
-        .on-highlight {
-            text-decoration: underline;
-            text-decoration-color: var(--text-accent);
-            text-decoration-thickness: 2px;
-        }
-    }
+	&:focus {
+		color: var(--text-accent);
+		outline: none;
+	}
 
-    &:focus {
-        color: var(--text-accent);
-        outline: none;
-    }
+	&[href=""] {
+		&:hover,
+		&:focus {
+			&.on-highlight,
+			.on-highlight {
+				text-decoration-color: var(--text-disturbing);
+			}
+		}
 
-    &[href=""] {
-
-        &:hover,
-        &:focus {
-
-            &.on-highlight,
-            .on-highlight {
-                text-decoration-color: var(--text-disturbing);
-            }
-        }
-
-        &:focus {
-            color: var(--text-disturbing);
-        }
-    }
+		&:focus {
+			color: var(--text-disturbing);
+		}
+	}
 }
 
 label {
-    font-weight: 400;
+	font-weight: 400;
 }
 
 // HTMX:
 
 .on-loading {
-    transition: opacity 0.2s;
+	transition: opacity 0.2s;
 }
 
 .htmx-request .on-loading {
-    opacity: 0.2;
+	opacity: 0.2;
 }

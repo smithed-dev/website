@@ -1,43 +1,29 @@
 {{ define "browser" }}
 <nav class="l-row type-center --centered --wrap">
-    {{ range .Pages }}
-    {{ if .IsEllipsis }}
-    <span>—</span>
-    {{ else if .IsCurrent }}
-    <a class="on-highlight --selected" href="{{ .Href }}" title="Go to page {{ .Label }}">
-        {{ .Label }}
-    </a>
-    {{ else }}
-    <a class="on-highlight" href="{{ .Href }}" title="Go to page {{ .Label }}">
-        {{ .Label }}
-    </a>
-    {{ end }}
-    {{ end }}
+	{{ range .Pages }} {{ if .IsEllipsis }}
+	<span>—</span>
+	{{ else if .IsCurrent }}
+	<a class="on-highlight --selected" href="{{ .Href }}" title="Go to page {{ .Label }}"> {{ .Label }} </a>
+	{{ else }}
+	<a class="on-highlight" href="{{ .Href }}" title="Go to page {{ .Label }}"> {{ .Label }} </a>
+	{{ end }} {{ end }}
 </nav>
 <pkg:grid :cols="2" id="js-apply-layout" data-layout="grid">
-    <script>
-        layout = Cookies.get("prefered-layout");
-        if (layout != null) {
-            document.getElementById("js-apply-layout").dataset.layout = layout;
-        }
-    </script>
-    {{ range .Cards }}
-    {{ template "pack_card" . }}
-    {{ end }}
+	<script>
+		layout = Cookies.get("prefered-layout");
+		if (layout != null) {
+			document.getElementById("js-apply-layout").dataset.layout = layout;
+		}
+	</script>
+	{{ range .Cards }} {{ template "pack_card" . }} {{ end }}
 </pkg:grid>
 <nav class="l-row type-center --centered --wrap">
-    {{ range .Pages }}
-    {{ if .IsEllipsis }}
-    <span>—</span>
-    {{ else if .IsCurrent }}
-    <a class="on-highlight --selected" href="{{ .Href }}" title="Go to page {{ .Label }}">
-        {{ .Label }}
-    </a>
-    {{ else }}
-    <a class="on-highlight" href="{{ .Href }}" title="Go to page {{ .Label }}">
-        {{ .Label }}
-    </a>
-    {{ end }}
-    {{ end }}
+	{{ range .Pages }} {{ if .IsEllipsis }}
+	<span>—</span>
+	{{ else if .IsCurrent }}
+	<a class="on-highlight --selected" href="{{ .Href }}" title="Go to page {{ .Label }}"> {{ .Label }} </a>
+	{{ else }}
+	<a class="on-highlight" href="{{ .Href }}" title="Go to page {{ .Label }}"> {{ .Label }} </a>
+	{{ end }} {{ end }}
 </nav>
 {{ end }}

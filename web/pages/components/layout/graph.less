@@ -1,79 +1,82 @@
 .l-graph {
-    .--flex-col-stretch(0);
-    padding: 0 1rem;
+	.--flex-col-stretch(0);
+	padding: 0 1rem;
 
-    &.type-limited {
-        min-height: 10rem;
-        max-height: 20rem;
-        overflow-y: auto;
-    }
+	&.type-limited {
+		min-height: 10rem;
+		max-height: 20rem;
+		overflow-y: auto;
+	}
 
-    &:has(details) .w-filter {
-        margin-right: 3rem;
-    }
+	&:has(details) .w-filter {
+		margin-right: 3rem;
+	}
 
-    details {
-        transition: height 0.2s linear, max-height 0.4s linear, background-color 0.2s linear;
-        interpolate-size: allow-keywords;
-        border-radius: 0.5rem;
-        height: 2rem;
-        max-height: 2rem;
-        overflow: hidden;
+	details {
+		transition:
+			height 0.2s linear,
+			max-height 0.4s linear,
+			background-color 0.2s linear;
+		interpolate-size: allow-keywords;
+		border-radius: 0.5rem;
+		height: 2rem;
+		max-height: 2rem;
+		overflow: hidden;
 
-        summary {
-            .--interactive();
-            border-radius: 0.5rem;
+		summary {
+			.--interactive();
+			border-radius: 0.5rem;
 
-            label {
-                .--flex-row-center(0);
-                cursor: pointer;
-                flex: 1;
-            }
+			label {
+				.--flex-row-center(0);
+				cursor: pointer;
+				flex: 1;
+			}
 
-            &:hover,
-            &:focus {
-                --color: var(--text-foreground);
-            }
+			&:hover,
+			&:focus {
+				--color: var(--text-foreground);
+			}
 
-            &:focus {
-                outline: none;
-                color: var(--text-accent);
-                --color: var(--text-accent);
-            }
-        }
+			&:focus {
+				outline: none;
+				color: var(--text-accent);
+				--color: var(--text-accent);
+			}
+		}
 
-        .l-graph {
-            padding: 0;
-        }
+		.l-graph {
+			padding: 0;
+		}
 
-        .w-filter {
-            margin-right: 0;
-        }
-    }
+		.w-filter {
+			margin-right: 0;
+		}
+	}
 
-    input:checked+details {
-        height: auto;
-        max-height: 100rem;
-        background-color: var(--block-section);
-        --color: var(--text-foreground);
+	input:checked + details {
+		height: auto;
+		max-height: 100rem;
+		background-color: var(--block-section);
+		--color: var(--text-foreground);
 
-        .type-angle {
-            transform: scaleY(-1);
-        }
-    }
+		.type-angle {
+			transform: scaleY(-1);
+		}
+	}
 
-    .o-graph-node {
-        .--flex-row-center(0);
-        position: relative;
-        @height: 0.875rem;
-        --color: var(--block-border);
+	.o-graph-node {
+		.--flex-row-center(0);
+		position: relative;
+		@height: 0.875rem;
+		--color: var(--block-border);
 
-        .type-indicator {
-            color: var(--color);
-        }
+		.type-indicator {
+			color: var(--color);
+		}
 
-        .type-angle {
-            padding: 0 1rem;
-        }
-    }
+		.type-angle {
+			padding: 0 1rem;
+		}
+	}
 }

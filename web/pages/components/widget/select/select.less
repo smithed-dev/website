@@ -1,46 +1,46 @@
 .w-select {
-    .--flex-col-stretch(0);
-    position: relative;
-    font-weight: 400;
-    min-width: 12rem;
+	.--flex-col-stretch(0);
+	position: relative;
+	font-weight: 400;
+	min-width: 12rem;
 
-    &>button {
-        border-radius: 0.5rem;
-        border: 1px solid transparent;
-        height: 2rem;
-    }
+	& > button {
+		border-radius: 0.5rem;
+		border: 1px solid transparent;
+		height: 2rem;
+	}
 
-    &>footer {
-        .--flex-col-stretch(0);
-        .--bordered();
-        background-color: var(--block-shaded);
-        border-radius: 0 0 0.5rem 0.5rem;
-        display: flex;
-        visibility: hidden;
-        padding: 0.25rem 0;
-        z-index: 42069;
-        position: absolute;
-        top: 2rem;
-        left: 0;
-        right: 0;
+	& > footer {
+		.--flex-col-stretch(0);
+		.--bordered();
+		background-color: var(--block-shaded);
+		border-radius: 0 0 0.5rem 0.5rem;
+		display: flex;
+		visibility: hidden;
+		padding: 0.25rem 0;
+		z-index: 42069;
+		position: absolute;
+		top: 2rem;
+		left: 0;
+		right: 0;
 
-        button {
-            border-radius: 0;
-        }
-    }
+		button {
+			border-radius: 0;
+		}
+	}
 
-    &.--open {
-        .type-indicator {
-            transform: scaleY(-1);
-        }
+	&.--open {
+		.type-indicator {
+			transform: scaleY(-1);
+		}
 
-        &>button {
-            border-radius: 0.5rem 0.5rem 0 0;
-            .--bordered();
-        }
+		& > button {
+			border-radius: 0.5rem 0.5rem 0 0;
+			.--bordered();
+		}
 
-        footer {
-            visibility: visible;
-        }
-    }
+		footer {
+			visibility: visible;
+		}
+	}
 }

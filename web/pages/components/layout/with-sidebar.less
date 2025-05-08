@@ -1,64 +1,64 @@
 .l-with-sidebar {
-    .--flex-row(1);
+	.--flex-row(1);
 
-    &>section {
-        .--width-content();
-    }
+	& > section {
+		.--width-content();
+	}
 
-    &>aside {
-        .--flex-col-stretch(0);
-        .--flex();
-        .--bordered();
-        background-color: var(--block-section);
-        padding: 0.5rem 0;
-        border-radius: 1rem;
-        height: fit-content;
-        min-width: 20rem;
+	& > aside {
+		.--flex-col-stretch(0);
+		.--flex();
+		.--bordered();
+		background-color: var(--block-section);
+		padding: 0.5rem 0;
+		border-radius: 1rem;
+		height: fit-content;
+		min-width: 20rem;
 
-        &>div {
-            .--flex-row-center(0);
-            padding: 0.5rem 1rem;
-        }
+		& > div {
+			.--flex-row-center(0);
+			padding: 0.5rem 1rem;
+		}
 
-        &>header {
-            .--flex-row-center(1);
-            .--font-title();
-            padding: 0 1rem;
-        }
+		& > header {
+			.--flex-row-center(1);
+			.--font-title();
+			padding: 0 1rem;
+		}
 
-        &>hr {
-            --color: var(--text-inactive);
-            margin: 0.5rem 0;
-        }
-    }
+		& > hr {
+			--color: var(--text-inactive);
+			margin: 0.5rem 0;
+		}
+	}
 
-    .o-title {
-        .--flex-row-center(1);
-    }
+	.o-title {
+		.--flex-row-center(1);
+	}
 
-    @media only screen and (max-width: (60rem + 4rem)) {
-        &>section {
-            .--width-max();
-            // min-width: calc(100vw - 6rem) !important;
-        }
+	@media only screen and (max-width: (60rem + 4rem)) {
+		& > section {
+			.--width-max();
+			// min-width: calc(100vw - 6rem) !important;
+		}
 
-        &>aside {
-            display: none;
-            position: absolute;
-            background-color: var(--block-background);
-            left: 0.5rem;
-            right: 0.5rem;
-            top: 0.5rem;
-            bottom: 0.5rem;
-            height: calc(100vh - 2rem);
-            height: calc(100svh - 2rem);
-            overflow-y: scroll;
-        }
-    }
+		& > aside {
+			display: none;
+			position: absolute;
+			background-color: var(--block-background);
+			left: 0.5rem;
+			right: 0.5rem;
+			top: 0.5rem;
+			bottom: 0.5rem;
+			height: calc(100vh - 2rem);
+			height: calc(100svh - 2rem);
+			overflow-y: scroll;
+		}
+	}
 
-    @media only screen and (max-width: (@screen-min + 4rem)) {
-        &>section {
-            min-width: calc(100vw - 3rem) !important;
-        }
-    }
+	@media only screen and (max-width: (@screen-min + 4rem)) {
+		& > section {
+			min-width: calc(100vw - 3rem) !important;
+		}
+	}
 }

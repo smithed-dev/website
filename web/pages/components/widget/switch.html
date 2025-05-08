@@ -1,9 +1,15 @@
-<button id="js-id-switch-[[ this.id ]]" class="w-button w-switch" style="--offset: 0;" data-selected="0" data-name=""
-    title="switch [[ this.id ]]">
-    <div>
-        <mend:slot />
-    </div>
+<button
+	id="js-id-switch-[[ this.id ]]"
+	class="w-button w-switch"
+	style="--offset: 0"
+	data-selected="0"
+	data-name=""
+	title="switch [[ this.id ]]"
+>
+	<div>
+		<mend:slot />
+	</div>
 </button>
 <script>
-    new SwitchWidget(document.getElementById("js-id-switch-[[ this.id ]]"))
+	new SwitchWidget(document.getElementById("js-id-switch-[[ this.id ]]"));
 </script>

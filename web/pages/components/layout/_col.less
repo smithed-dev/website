@@ -1,38 +1,37 @@
 .l-col,
-.l-col>.l-inherit {
-    .--flex-col-stretch(1);
+.l-col > .l-inherit {
+	.--flex-col-stretch(1);
 
-    &.type-center {
-        justify-content: center;
-    }
+	&.type-center {
+		justify-content: center;
+	}
 
-    &.type-sections {
+	&.type-sections {
+		nav a,
+		nav > span {
+			background-color: var(--block-section);
+			padding: 0.5rem 1rem;
+			border-radius: 1rem;
+			text-decoration: none;
+			font-weight: 400;
+		}
 
-        nav a,
-        nav>span {
-            background-color: var(--block-section);
-            padding: 0.5rem 1rem;
-            border-radius: 1rem;
-            text-decoration: none;
-            font-weight: 400;
-        }
+		nav a {
+			&.--selected {
+				background-color: var(--text-foreground);
+				color: var(--block-shaded);
+			}
 
-        nav a {
-            &.--selected {
-                background-color: var(--text-foreground);
-                color: var(--block-shaded);
-            }
+			.--interactive();
 
-            .--interactive();
+			&:hover,
+			&:focus {
+				color: var(--text-foreground);
+			}
+		}
 
-            &:hover,
-            &:focus {
-                color: var(--text-foreground);
-            }
-        }
-
-        nav>span {
-            cursor: default;
-        }
-    }
+		nav > span {
+			cursor: default;
+		}
+	}
 }

@@ -1,63 +1,63 @@
 .w-filter {
-    .--flex-row-center(0);
-    border-radius: 1rem;
+	.--flex-row-center(0);
+	border-radius: 1rem;
 
-    &:has(button:hover),
-    &:has(button:focus) {
-        svg {
-            visibility: visible;
-            opacity: 1;
-        }
-    }
+	&:has(button:hover),
+	&:has(button:focus) {
+		svg {
+			visibility: visible;
+			opacity: 1;
+		}
+	}
 
-    &:has(.type-exclude:hover) {
-        background-color: var(--block-section);
-    }
+	&:has(.type-exclude:hover) {
+		background-color: var(--block-section);
+	}
 
-    &.on-selected {
-        background-color: var(--field-disturbing);
-        outline: 1px solid var(--text-disturbing);
-        color: var(--text-disturbing);
+	&.on-selected {
+		background-color: var(--field-disturbing);
+		outline: 1px solid var(--text-disturbing);
+		color: var(--text-disturbing);
 
-        .w-button:last-of-type svg {
-            visibility: visible;
-            opacity: 1;
-            color: var(--text-disturbing);
-        }
-    }
+		.w-button:last-of-type svg {
+			visibility: visible;
+			opacity: 1;
+			color: var(--text-disturbing);
+		}
+	}
 
-    .type-include {
-        &.on-selected {
-            background-color: var(--field-success);
-            outline: 1px solid var(--text-success);
-            color: var(--text-success);
+	.type-include {
+		&.on-selected {
+			background-color: var(--field-success);
+			outline: 1px solid var(--text-success);
+			color: var(--text-success);
 
-            svg {
-                visibility: visible;
-                opacity: 1;
-                color: var(--text-success);
-            }
+			svg {
+				visibility: visible;
+				opacity: 1;
+				color: var(--text-success);
+			}
 
-            &:hover {
-                background-color: var(--scheme-hover);
-            }
+			&:hover {
+				background-color: var(--scheme-hover);
+			}
 
-            &:focus {
-                .--focus();
-            }
-        }
-    }
+			&:focus {
+				.--focus();
+			}
+		}
+	}
 
-    .w-button {
-        height: calc(2rem - 2px);
-    }
+	.w-button {
+		height: calc(2rem - 2px);
+	}
 
-    @media only screen and (max-width: (60rem + 4rem)) {
-        gap: 0.5rem;
+	@media only screen and (max-width: (60rem + 4rem)) {
+		gap: 0.5rem;
 
-        svg {
-            visibility: visible !important;
-            opacity: 0.4;
-        }
-    }
+		svg {
+			visibility: visible !important;
+			opacity: 0.4;
+		}
+	}
 }

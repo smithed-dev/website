@@ -1,16 +1,22 @@
 <div id="js-id-filter-[[ this.id ]]" class="w-filter">
-    <button class="w-button type-filter type-include --flex" onclick="toggleFilter(this, 'toggleInclude', true)"
-        title="Toggle filter on">
-        <span class="--flex">
-            <mend:slot />
-        </span>
-        <pkg:icon :icon="eyecons/check" />
-    </button>
-    <button class="w-button type-filter type-exclude" onclick="toggleFilter(this, 'toggleExclude', true)"
-        title="Toggle filter off">
-        <pkg:icon :icon="eyecons/circle-crossed" />
-    </button>
+	<button
+		class="w-button type-filter type-include --flex"
+		onclick="toggleFilter(this, 'toggleInclude', true)"
+		title="Toggle filter on"
+	>
+		<span class="--flex">
+			<mend:slot />
+		</span>
+		<pkg:icon :icon="eyecons/check" />
+	</button>
+	<button
+		class="w-button type-filter type-exclude"
+		onclick="toggleFilter(this, 'toggleExclude', true)"
+		title="Toggle filter off"
+	>
+		<pkg:icon :icon="eyecons/circle-crossed" />
+	</button>
 </div>
 <script>
-    new FilterWidget(document.getElementById("js-id-filter-[[ this.id ]]"))
+	new FilterWidget(document.getElementById("js-id-filter-[[ this.id ]]"));
 </script>

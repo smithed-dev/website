@@ -78,10 +78,10 @@ function mend_wrapper {
     fi
 
     mend --work-dir ./web/pages/ \
-         --input checksum.css=$CSS_CHECKSUM,checksum.js=$JS_CHECKSUM,checksum.page_js=$PAGE_CHECKSUM \
-         --output $dir/. $file \
-         2> >(sed $'s/^/\e[31m/; s/$/\e[0m/' >&2) \
-         && echo "--- Built $dir/$base"
+        --input checksum.css=$CSS_CHECKSUM,checksum.js=$JS_CHECKSUM,checksum.page_js=$PAGE_CHECKSUM \
+        --output $dir/. $file \
+        2> >(sed $'s/^/\e[31m/; s/$/\e[0m/' >&2) \
+        && echo "--- Built $dir/$base"
 }
 
 for file in ./web/pages/*.html; do

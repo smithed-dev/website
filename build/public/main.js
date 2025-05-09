@@ -7,7 +7,9 @@ class IClosableWidget {
 	close() {}
 }
 
-/** @type {IClosableWidget[]} */
+/**
+ * @type {IClosableWidget[]}
+ */
 const ClosableWidgets = [];
 
 self.addEventListener(

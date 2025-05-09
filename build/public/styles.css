@@ -1204,19 +1204,22 @@ label {
     transform: translateX(calc(var(--offset) * (-100% - 2rem)));
   }
 }
+@keyframes placeholder {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 0.3;
+  }
+}
 .m-markdown-content {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   align-items: stretch;
 }
-.m-markdown-content.on-loading {
-  visibility: hidden;
-}
-.m-markdown-content.on-loading::before {
-  display: inline;
-  visibility: visible;
-  content: "Loading content, please wait...";
+.m-markdown-content.on-loading > section {
+  display: none;
 }
 .m-markdown-content p:has(img) {
   width: fit-content;
@@ -1271,6 +1274,51 @@ label {
   padding: 0.125rem 0.5rem;
   border-radius: 0.25rem;
   font-size: 0.875rem;
+}
+.o-placeholder {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  opacity: 0.2;
+  animation: 0.5s ease-in-out alternate infinite placeholder;
+}
+.o-placeholder span {
+  background-color: var(--text-foreground);
+  width: 1rem;
+  height: 1rem;
+  border-radius: 1rem;
+}
+.o-placeholder .o-title {
+  width: 40%;
+}
+.o-placeholder .o-heading {
+  width: 40%;
+  margin-top: 1rem;
+}
+.o-placeholder .o-paragraph {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  gap: 1;
+  background-color: transparent;
+  width: 100%;
+  height: max-content;
+}
+.o-placeholder .o-paragraph span {
+  height: 0.5rem;
+}
+.o-placeholder .o-paragraph .o-word-1 {
+  width: 10%;
+}
+.o-placeholder .o-paragraph .o-word-2 {
+  width: 20%;
+}
+.o-placeholder .o-paragraph .o-word-3 {
+  width: 30%;
+}
+.o-placeholder .o-paragraph .o-word-4 {
+  width: 40%;
 }
 .o-theme-preview {
   display: flex;

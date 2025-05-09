@@ -10,6 +10,6 @@ function htmlDecode(input) {
 const node = document.getElementById("markdown-content");
 const decoded = htmlDecode(node.innerHTML.trim());
 
-console.debug(decoded);
-node.innerHTML = marked.parse(decoded);
-node.classList.remove("on-loading");
+const container = node.parentElement;
+container.innerHTML = marked.parse(decoded);
+container.classList.remove("on-loading");

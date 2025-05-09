@@ -7,6 +7,9 @@
 .--font-mono {
   font-family: "JetBrains Mono", monospace;
 }
+.--width-slim {
+  width: min(96vw, 40rem);
+}
 .--width-content {
   width: min(96vw, 50rem);
 }
@@ -1081,7 +1084,7 @@ label {
 .m-article-card > header {
   position: relative;
   width: calc(100% - 0.5rem);
-  padding-bottom: calc(56.25% - 0.5rem);
+  height: 8rem;
   background-color: var(--block-background);
   border: 0.25rem solid var(--block-shaded);
   border-radius: 1rem 1rem 0 0;
@@ -1126,6 +1129,15 @@ label {
   align-items: center;
   gap: 0.5;
   flex-wrap: wrap;
+}
+.m-article-card > footer {
+  position: absolute;
+  right: -1rem;
+  top: -1rem;
+}
+.m-article-card > footer .o-label {
+  animation: 500ms ease-in-out 200ms infinite alternate pack-label;
+  border: 0.25rem solid var(--block-background);
 }
 .w-icon {
   min-width: var(--size);

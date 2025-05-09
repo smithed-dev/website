@@ -11,7 +11,7 @@
 		position: relative;
 		width: calc(100% - 0.5rem);
 		// > https://stackoverflow.com/questions/1495407/maintain-the-aspect-ratio-of-a-div-with-css
-		padding-bottom: calc(56.25% - 0.5rem);
+		height: 8rem;
 		background-color: var(--block-background);
 		border: 0.25rem solid var(--block-shaded);
 		border-radius: 1rem 1rem 0 0;
@@ -51,6 +51,17 @@
 				.--flex-row-center(0.5);
 				.--wrap();
 			}
+		}
+	}
+
+	& > footer {
+		position: absolute;
+		right: -1rem;
+		top: -1rem;
+
+		.o-label {
+			animation: 500ms ease-in-out 200ms infinite alternate pack-label;
+			border: 0.25rem solid var(--block-background);
 		}
 	}
 }

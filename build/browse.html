@@ -16,7 +16,7 @@
     <link rel="apple-touch-icon" href="/favicon.png" sizes="180x180" />
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="all" />
-    <link rel="stylesheet" href="/static/styles.min.css?checksum=65f628cf613905797c854efc4e04e709" />
+    <link rel="stylesheet" href="/static/styles.min.css?checksum=a66c5c29ef5849fd15d5175506dcadc2" />
     <script src="/static/main.js?checksum=e155a661a60fd6c13ef37eb3f35f682e">
     </script>
     <script src="/static/page/browse.js?version=e155a661a60fd6c13ef37eb3f35f682e" defer>
@@ -344,7 +344,7 @@
                             <path d="m15 0v10.084a6 6 0 0 0-5 5.916 6 6 0 0 0 5 5.916v10.084h2v-10.084a6 6 0 0 0 5-5.916 6 6 0 0 0-5-5.916v-10.084h-2zm1 12a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z" />
                         </svg>
                         {{ end }}
-                        <div id="js-id-filter-version-{{ $i }}" class="w-filter --flex" data-param="version" data-item="{{ $a.Version }}">
+                        <div id="js-id-filter-version-{{ $i }}" class="w-filter --flex" data-item="{{ $a.Version }}" data-param="version">
                             <button class="w-button type-filter type-include --flex" title="Toggle filter on" onclick="toggleFilter(this, 'toggleInclude', true)">
                                 <span class="--flex">
                                     {{ $a.Version }}
@@ -507,7 +507,7 @@
                         <svg class="w-icon type-indicator" width="32" height="32" style="--size: 2rem" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32" fill="currentColor">
                             <path d="m16 22a6 6 0 0 1-6-6 6 6 0 0 1 5-5.916v-10.084h2v10.084a6 6 0 0 1 5 5.916 6 6 0 0 1-6 6zm0-2a4 4 0 0 0 4-4 4 4 0 0 0-4-4 4 4 0 0 0-4 4 4 4 0 0 0 4 4z" />
                         </svg>
-                        <div id="js-id-filter-badge-resourcepack" class="w-filter --flex" data-item="Resource pack" data-param="badge">
+                        <div id="js-id-filter-badge-resourcepack" class="w-filter --flex" data-param="badge" data-item="Resource pack">
                             <button class="w-button type-filter type-include --flex" title="Toggle filter on" onclick="toggleFilter(this, 'toggleInclude', true)">
                                 <span class="--flex">
                                     Resource pack

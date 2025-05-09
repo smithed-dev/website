@@ -23,6 +23,14 @@
 			<span id="js-timestamp-[[ this.timestamp ]]" data-timestamp="[[ this.timestamp ]]">—</span>
 		</section>
 	</section>
+	<mend:if :true="[[ this.label || false ]]">
+		<footer>
+			<span class="o-label type-new">
+				<pkg:icon :icon="eyecons/globe" :size="0.75" />
+				<span>LATEST</span>
+			</span>
+		</footer>
+	</mend:if>
 </a>
 <script>
 	processTimestamp(document.getElementById("js-timestamp-[[ this.timestamp ]]"));

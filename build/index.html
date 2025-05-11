@@ -189,7 +189,7 @@
                 and supercharging minecraft data & resource packs.
             </p>
         </section>
-        <section class="l-grid type-2 --width-content" onmouseenter="CarouselContainer.pause()" onmouseleave="CarouselContainer.play()" data-layout="grid">
+        <section class="l-grid type-2 --width-content" data-layout="grid" onmouseenter="CarouselContainer.pause()" onmouseleave="CarouselContainer.play()">
             <section class="m-landing-carousel">
                 <div id="js-carousel-1" data-i="1" data-offset="0">
                     {{ range .Cards }} {{ template "pack_card" .Trending }} {{ end }}
@@ -306,7 +306,7 @@
                 <h2>
                     COMMUNITY
                 </h2>
-                <a class="w-unmarked-link on-highlight" href title="Go to Discord">
+                <a class="w-unmarked-link on-highlight" href="https://smithed.net/discord" title="Go to Discord">
                     Discord
                 </a>
                 <a class="w-unmarked-link on-highlight" href title="Go to Guidelines">

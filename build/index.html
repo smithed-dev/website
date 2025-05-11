@@ -189,7 +189,7 @@
                 and supercharging minecraft data & resource packs.
             </p>
         </section>
-        <section class="l-grid type-2 --width-content" onmouseleave="CarouselContainer.play()" data-layout="grid" onmouseenter="CarouselContainer.pause()">
+        <section class="l-grid type-2 --width-content" onmouseenter="CarouselContainer.pause()" onmouseleave="CarouselContainer.play()" data-layout="grid">
             <section class="m-landing-carousel">
                 <div id="js-carousel-1" data-i="1" data-offset="0">
                     {{ range .Cards }} {{ template "pack_card" .Trending }} {{ end }}
@@ -298,7 +298,7 @@
                 <a class="w-unmarked-link on-highlight" href title="Go to How to Contribute">
                     How to Contribute
                 </a>
-                <a class="w-unmarked-link on-highlight" href title="Go to Donate">
+                <a class="w-unmarked-link on-highlight" href="https://ko-fi.com/smithed" title="Go to Donate">
                     Donate
                 </a>
             </section>

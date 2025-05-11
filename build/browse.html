@@ -297,7 +297,7 @@
                             <path d="m15 0v10.084a6 6 0 0 0-5 5.916 6 6 0 0 0 5 5.916v10.084h2v-10.084a6 6 0 0 0 5-5.916 6 6 0 0 0-5-5.916v-10.084h-2zm1 12a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z" />
                         </svg>
                         {{ end }}
-                        <div id="js-id-filter-category-{{ $i }}" class="w-filter --flex" data-item="{{ $a }}" data-param="category">
+                        <div id="js-id-filter-category-{{ $i }}" class="w-filter --flex" data-param="category" data-item="{{ $a }}">
                             <button class="w-button type-filter type-include --flex" title="Toggle filter on" onclick="toggleFilter(this, 'toggleInclude', true)">
                                 <span class="--flex">
                                     {{ $a }}
@@ -344,7 +344,7 @@
                             <path d="m15 0v10.084a6 6 0 0 0-5 5.916 6 6 0 0 0 5 5.916v10.084h2v-10.084a6 6 0 0 0 5-5.916 6 6 0 0 0-5-5.916v-10.084h-2zm1 12a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z" />
                         </svg>
                         {{ end }}
-                        <div id="js-id-filter-version-{{ $i }}" class="w-filter --flex" data-param="version" data-item="{{ $a.Version }}">
+                        <div id="js-id-filter-version-{{ $i }}" class="w-filter --flex" data-item="{{ $a.Version }}" data-param="version">
                             <button class="w-button type-filter type-include --flex" title="Toggle filter on" onclick="toggleFilter(this, 'toggleInclude', true)">
                                 <span class="--flex">
                                     {{ $a.Version }}
@@ -483,7 +483,7 @@
                         <svg class="w-icon type-indicator" width="32" height="32" style="--size: 2rem" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32" fill="currentColor">
                             <path d="m15 0v10.084a6 6 0 0 0-5 5.916 6 6 0 0 0 5 5.916v10.084h2v-10.084a6 6 0 0 0 5-5.916 6 6 0 0 0-5-5.916v-10.084h-2zm1 12a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z" />
                         </svg>
-                        <div id="js-id-filter-badge-lang" class="w-filter --flex" data-param="badge" data-item="Localization">
+                        <div id="js-id-filter-badge-lang" class="w-filter --flex" data-item="Localization" data-param="badge">
                             <button class="w-button type-filter type-include --flex" title="Toggle filter on" onclick="toggleFilter(this, 'toggleInclude', true)">
                                 <span class="--flex">
                                     Localization
@@ -544,7 +544,7 @@
                 <a class="w-unmarked-link on-highlight" href title="Go to How to Contribute">
                     How to Contribute
                 </a>
-                <a class="w-unmarked-link on-highlight" href title="Go to Donate">
+                <a class="w-unmarked-link on-highlight" href="https://ko-fi.com/smithed" title="Go to Donate">
                     Donate
                 </a>
             </section>

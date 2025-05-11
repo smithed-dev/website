@@ -189,7 +189,7 @@
                 and supercharging minecraft data & resource packs.
             </p>
         </section>
-        <section class="l-grid type-2 --width-content" data-layout="grid" onmouseenter="CarouselContainer.pause()" onmouseleave="CarouselContainer.play()">
+        <section class="l-grid type-2 --width-content" onmouseleave="CarouselContainer.play()" data-layout="grid" onmouseenter="CarouselContainer.pause()">
             <section class="m-landing-carousel">
                 <div id="js-carousel-1" data-i="1" data-offset="0">
                     {{ range .Cards }} {{ template "pack_card" .Trending }} {{ end }}
@@ -312,7 +312,7 @@
                 <a class="w-unmarked-link on-highlight" href title="Go to Guidelines">
                     Guidelines
                 </a>
-                <a class="w-unmarked-link on-highlight" href title="Go to Wiki">
+                <a class="w-unmarked-link on-highlight" href="https://wiki.smithed.dev" title="Go to Wiki">
                     Wiki
                 </a>
             </section>

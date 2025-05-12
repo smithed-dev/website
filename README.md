@@ -22,8 +22,8 @@ To build the project:
 
 - You'll need [Less CSS](https://lesscss.org/) for CSS compiling:
   - `npm install -g less`
-- You will need my templating language [Mend v1.0.1-alpha.2](https://github.com/bbfh-dev/mend) to be installed:
-  - `go install github.com/bbfh-dev/mend@v1.0.1-alpha.2`
+- You will need my templating language [Mend v1.0.1-alpha.3](https://github.com/bbfh-dev/mend) to be installed:
+  - `go install github.com/bbfh-dev/mend@v1.0.1-alpha.3`
 
 ### Running the server
 

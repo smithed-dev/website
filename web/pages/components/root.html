@@ -53,7 +53,7 @@
 			<pkg:icon :icon="eyecons/warning" :size="0.75" />
 		</template>
 		<header>
-			<pkg:unmarked-link href="/" style="grid-area: logotype" title="%sGo to the Home page">
+			<pkg:unmarked-link href="/" style="grid-area: logotype" title="Go to the Home page">
 				<pkg:icon :icon="smithed" :size="2" />
 				<h2 class="adapt-hide-wide">Smithed</h2>
 			</pkg:unmarked-link>
@@ -62,7 +62,7 @@
 
 			<pkg:unmarked-link :label="Articles" href="/articles" style="grid-area: articles" />
 
-			<pkg:unmarked-link href="" style="grid-area: weld" title="%sGo to Weld page">
+			<pkg:unmarked-link href="" style="grid-area: weld" title="Go to Weld page">
 				Weld
 				<pkg:icon :icon="eyecons/popout" />
 			</pkg:unmarked-link>
@@ -98,7 +98,7 @@
 				<div class="--flex" style="grid-area: searchbar"></div>
 			</mend:if>
 
-			<pkg:unmarked-link href="" style="grid-area: inbox" title="%sGo to Inbox page">
+			<pkg:unmarked-link href="" style="grid-area: inbox" title="Go to Inbox page">
 				Inbox
 				<pkg:icon :icon="eyecons/notification-unread" class="%s adapt-hide-content adapt-show-tablet" />
 			</pkg:unmarked-link>
@@ -117,7 +117,7 @@
 						:reversed="true"
 						class="%s --flex"
 						href=""
-						title="%sMy profile"
+						title="My profile"
 					>
 						<span class="--flex"> My profile </span>
 					</pkg:button>
@@ -127,7 +127,7 @@
 						:reversed="true"
 						class="%s --flex"
 						href=""
-						title="%sNew pack"
+						title="New pack"
 					>
 						<span class="--flex"> New pack </span>
 					</pkg:button>
@@ -137,7 +137,7 @@
 						:reversed="true"
 						class="%s --flex"
 						href=""
-						title="%sNew bundle"
+						title="New bundle"
 					>
 						<span class="--flex"> New bundle </span>
 					</pkg:button>
@@ -147,7 +147,7 @@
 						:reversed="true"
 						class="%s --flex"
 						href="/settings"
-						title="%sSettings"
+						title="Settings"
 					>
 						<span class="--flex"> Settings </span>
 					</pkg:button>
@@ -157,7 +157,7 @@
 						:reversed="true"
 						class="%s --flex"
 						href="/api/logout"
-						title="%sLog out of the account"
+						title="Log out of the account"
 					>
 						<span class="--flex"> Log out </span>
 					</pkg:button>
@@ -191,8 +191,8 @@
 				</section>
 				<section>
 					<h2>LEGAL</h2>
-					<pkg:unmarked-link :label="Terms of Use" href="" />
-					<pkg:unmarked-link :label="Privacy Policy" href="" />
+					<pkg:unmarked-link :label="Terms of Use" href="" class="%s type-inactive" />
+					<pkg:unmarked-link :label="Privacy Policy" href="" class="%s type-inactive" />
 					<pkg:unmarked-link :label="Cookies" href="" />
 				</section>
 			</div>

@@ -1816,6 +1816,11 @@ body > footer > div section {
 .w-unmarked-link h2 {
   margin-left: 0.5rem;
 }
+.w-unmarked-link.type-inactive {
+  color: var(--text-inactive);
+  text-decoration-line: line-through;
+  text-decoration-thickness: 2px;
+}
 @keyframes pack-label {
   from {
     transform: rotate(-5deg);

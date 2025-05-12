@@ -17,9 +17,9 @@
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="all" />
     <link rel="stylesheet" href="/static/styles.min.css?checksum=b9a4184fde4ec8108e72fdb149b66db7" />
-    <script src="/static/main.js?checksum=3d44b997ec9f63f0d72e17837a10b37c">
+    <script src="/static/main.js?checksum=4443f020efc6fb121fd3728a873033ff">
     </script>
-    <script src="/static/page/index.js?version=3d44b997ec9f63f0d72e17837a10b37c" defer>
+    <script src="/static/page/index.js?version=4443f020efc6fb121fd3728a873033ff" defer>
     </script>
     <!-- [!] "While the CDN approach is extremely simple, you may want to consider not using CDNs in production" -->
     <script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.js" integrity="sha384-oeUn82QNXPuVkGCkcrInrS1twIxKhkZiFfr2TdiuObZ3n3yIeMiqcRzkIcguaof1" crossorigin="anonymous">
@@ -189,7 +189,7 @@
                 and supercharging minecraft data & resource packs.
             </p>
         </section>
-        <section class="l-grid type-2 --width-content" onmouseleave="CarouselContainer.play()" data-layout="grid" onmouseenter="CarouselContainer.pause()">
+        <section class="l-grid type-2 --width-content" data-layout="grid" onmouseenter="CarouselContainer.pause()" onmouseleave="CarouselContainer.play()">
             <section class="m-landing-carousel">
                 <div id="js-carousel-1" data-i="1" data-offset="0">
                     {{ range .Cards }} {{ template "pack_card" .Trending }} {{ end }}

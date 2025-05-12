@@ -38,6 +38,7 @@ class SelectWidget extends IClosableWidget {
 		}
 
 		this.syncWith.syncTo(this.node.dataset.id, (value) => {
+			this.deselect(Number(this.node.dataset.index));
 			this.select(this.find(value[0]));
 		});
 		ClosableWidgets.push(this);

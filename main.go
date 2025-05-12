@@ -35,6 +35,7 @@ func main() {
 	http.HandleFunc("/settings", server.Settings)
 	http.HandleFunc("/articles", server.Articles)
 	http.HandleFunc("/article/{id}", server.Article)
+	http.HandleFunc("/legal/cookies", server.LegalCookies)
 
 	http.HandleFunc("/api/login", server.ApiLogin)
 	http.HandleFunc("/api/logout", server.ApiLogout)

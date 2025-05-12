@@ -3,6 +3,8 @@
 # ============
 echo "========"
 
+mkdir -p ./build/
+
 cp -fr ./web/public/ ./build/
 
 # ============

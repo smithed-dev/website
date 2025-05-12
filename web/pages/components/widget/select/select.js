@@ -44,6 +44,9 @@ class SelectWidget extends IClosableWidget {
 	}
 
 	_load() {
+		for (let i = 0; i < this.tree.footer.children.length; i++) {
+			this.deselect(i);
+		}
 		this.select(0);
 	}
 

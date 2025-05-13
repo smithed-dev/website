@@ -8,7 +8,7 @@ class AccountWidget {
 	}
 
 	close() {
-		profile_dropdown.style.removeProperty("visibility");
+		document.getElementById("profile-dropdown").style.removeProperty("visibility");
 	}
 }
 
@@ -22,5 +22,6 @@ function gotoSearchPage(node) {
 
 /** @param {HTMLButtonElement} node */
 function toggleDropdown() {
-	profile_dropdown.style.setProperty("visibility", "visible");
+	const dropdown = document.getElementById("profile-dropdown");
+	dropdown.style.setProperty("visibility", "visible");
 }

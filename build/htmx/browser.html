@@ -14,9 +14,9 @@
     </a>
     {{ end }} {{ end }}
 </nav>
-<section id="js_apply_layout" class="l-grid type-2" data-layout="grid">
+<section id="js-apply-layout" class="l-grid type-2" data-layout="grid">
     <script>
-        layout = Cookies.get("prefered-layout"); if (layout != null) { js_apply_layout.dataset.layout = layout; }
+        layout = Cookies.get("prefered-layout"); if (layout != null) { document.getElementById("js-apply-layout").dataset.layout = layout; }
     </script>
     {{ range .Cards }} {{ template "pack_card" . }} {{ end }}
 </section>

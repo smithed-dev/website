@@ -4,8 +4,8 @@ const TIMER = 5 * 1000;
 const SCROLL_DELAY = 200;
 
 const CarouselContainer = {
-	left: js_carousel_1,
-	right: js_carousel_2,
+	left: document.getElementById("js-carousel-1"),
+	right: document.getElementById("js-carousel-2"),
 	interval: 0,
 
 	/** @param {HTMLElement} carousel  */

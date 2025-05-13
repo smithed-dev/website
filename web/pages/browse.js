@@ -1,17 +1,14 @@
 {
-	const browser = document.getElementById("browser");
 	browser.setAttribute("hx-get", "/htmx/browse_packs");
 }
 
 onurlchanged = () => {
-	const browser = document.getElementById("browser");
 	htmx.process(browser);
 	htmx.trigger(browser, "url-changed");
 };
 
 {
-	const select = document.getElementById("js-id-switch-layout");
-	SwitchWidgets.filter((item) => item.node.id === select.id).forEach((node) => {
+	SwitchWidgets.filter((item) => item.node.id === js_id_switch_layout.id).forEach((node) => {
 		const cookie = Cookies.get("prefered-layout");
 		if (cookie == null) return;
 
@@ -25,10 +22,9 @@ onurlchanged = () => {
 function applyLayout(node) {
 	const selected = node.dataset.name;
 	Cookies.set("prefered-layout", selected, { path: "/" });
-	document.getElementById("js-apply-layout").dataset.layout = selected;
+	js_apply_layout.dataset.layout = selected;
 
 	if (selected == "grid") {
-		const browser = document.getElementById("browser");
 		htmx.trigger(browser, "url-changed");
 	}
 }

@@ -7,9 +7,8 @@ function htmlDecode(input) {
 	return doc.documentElement.textContent;
 }
 
-const node = document.getElementById("markdown-content");
-const decoded = htmlDecode(node.innerHTML.trim());
+const decoded = htmlDecode(markdown_content.innerHTML.trim());
 
-const container = node.parentElement;
+const container = markdown_content.parentElement;
 container.innerHTML = marked.parse(decoded);
 container.classList.remove("on-loading");

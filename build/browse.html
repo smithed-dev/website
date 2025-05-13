@@ -17,9 +17,9 @@
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="all" />
     <link rel="stylesheet" href="/static/styles.min.css?checksum=d9cb1338751dfabd025f3dc48f3e9af8" />
-    <script src="/static/main.js?checksum=4443f020efc6fb121fd3728a873033ff">
+    <script src="/static/main.js?checksum=336e195f64ecf08efa39361c079f3525">
     </script>
-    <script src="/static/page/browse.js?version=4443f020efc6fb121fd3728a873033ff" defer>
+    <script src="/static/page/browse.js?version=336e195f64ecf08efa39361c079f3525" defer>
     </script>
     <!-- [!] "While the CDN approach is extremely simple, you may want to consider not using CDNs in production" -->
     <script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.js" integrity="sha384-oeUn82QNXPuVkGCkcrInrS1twIxKhkZiFfr2TdiuObZ3n3yIeMiqcRzkIcguaof1" crossorigin="anonymous">
@@ -30,7 +30,7 @@
     <script>
         const value = Cookies.get("prefered-theme"); if (value) { applyGlobalTheme(value); }
     </script>
-    <template id="js-unsupported-icon">
+    <template id="js_unsupported_icon">
         <svg class="w-icon" width="16" height="16" style="--size: 0.75rem" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
             <path d="m6.766 2.282-5.532 9.581a1.425 1.425 0 0 0 1.234 2.137h11.06a1.425 1.425 0 0 0 1.234-2.137l-5.532-9.581a1.425 1.425 0 0 0-2.468 0zm1.234 1.79c0.5523 0 1 0.4477 1 1v4c0 0.5523-0.4477 1-1 1-0.5523 0-1-0.4477-1-1v-4c0-0.5523 0.4477-1 1-1zm0 7c0.5523 0 1 0.4477 1 1 0 0.5523-0.4477 1-1 1-0.5523 0-1-0.4477-1-1s0.4477-1 1-1z" />
         </svg>
@@ -78,7 +78,7 @@
                     <path d="m3.7082 5.292c-0.39173-0.39174-1.0243-0.39174-1.416 0-0.39174 0.39174-0.39174 1.0243 0 1.416l5.707 5.7051 5.707-5.7051c0.39174-0.39174 0.39174-1.0243 0-1.416-0.39173-0.39174-1.0243-0.39174-1.416 0l-4.291 4.293z" />
                 </svg>
             </button>
-            <footer id="profile-dropdown" class="w-dropdown type-buttons">
+            <footer id="profile_dropdown" class="w-dropdown type-buttons">
                 <a class="w-button type-item on-reversed-true --flex" href title="My profile">
                     <svg class="w-icon" width="16" height="16" style="--size: 1rem" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
                         <path d="m14 15c0 0.55228-0.44772 1-1 1s-1-0.44772-1-1v-3c0-0.554-0.446-1-1-1h-6c-0.554 0-1 0.446-1 1v3c0 0.55228-0.44772 1-1 1s-1-0.44772-1-1v-3c0-1.662 1.338-3 3-3h6c1.662 0 3 1.338 3 3zm-4-11a2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2 2 2 0 0 1 2 2zm2 0a4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4 4 4 0 0 1 4 4z" fill-rule="evenodd" />
@@ -222,7 +222,7 @@
                         <script>
                             new SelectWidget(document.getElementById("js-id-select-sort"));
                         </script>
-                        <button id="js-id-switch-layout" class="w-button w-switch" style="--offset: 0" title="switch layout" onchange="applyLayout(this)" data-selected="0" data-name>
+                        <button id="js_id_switch_layout" class="w-button w-switch" style="--offset: 0" title="switch layout" onchange="applyLayout(this)" data-selected="0" data-name>
                             <div>
                                 <svg class="w-icon" width="16" height="16" style="--size: 1rem" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor" data-name="grid">
                                     <path d="m13 14h-2v-3h3v2c0 .554-.446 1-1 1zm0 2h-4v-7h7v4c0 1.662-1.338 3-3 3zm-10-2h2v-3h-3v2c0 .554.446 1 1 1zm0 2h4v-7h-7v4c0 1.662 1.338 3 3 3zm10-14h-2v3h3v-2c0-.554-.446-1-1-1zm0-2h-4v7h7v-4c0-1.662-1.338-3-3-3zm-10 2h2v3h-3v-2c0-.554.446-1 1-1zm0-2h4v7h-7v-4c0-1.662 1.338-3 3-3z" fill-rule="evenodd" />
@@ -236,7 +236,7 @@
                             </div>
                         </button>
                         <script>
-                            new SwitchWidget(document.getElementById("js-id-switch-layout"));
+                            new SwitchWidget(js_id_switch_layout);
                         </script>
                         <button class="w-button type-symbol adapt-default-hide adapt-show-sidebar" title="Show filters" onclick="showFilters()">
                             <svg class="w-icon" width="16" height="16" style="--size: 1rem" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 16 16" fill="currentColor">
@@ -246,7 +246,7 @@
                         </button>
                     </section>
                 </header>
-                <div id="js-filters" class="l-row --wrap">
+                <div id="js_filters" class="l-row --wrap">
                     <template>
                         <button class="w-button type-tag">
                             <span class="js-label">
@@ -459,7 +459,7 @@
                         <svg class="w-icon type-indicator" width="32" height="32" style="--size: 2rem" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32" fill="currentColor">
                             <path d="m16 10a6 6 0 0 0-6 6 6 6 0 0 0 5 5.916v10.084h2v-10.084a6 6 0 0 0 5-5.916 6 6 0 0 0-6-6zm0 2a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z" />
                         </svg>
-                        <div id="js-id-filter-badge-smithed" class="w-filter --flex" data-param="badge" data-item="Smithed made">
+                        <div id="js-id-filter-badge-smithed" class="w-filter --flex" data-item="Smithed made" data-param="badge">
                             <button class="w-button type-filter type-include --flex" title="Toggle filter on" onclick="toggleFilter(this, 'toggleInclude', true)">
                                 <span class="--flex">
                                     Smithed made

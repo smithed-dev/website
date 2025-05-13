@@ -8,11 +8,11 @@
 	<a class="on-highlight" href="{{ .Href }}" title="Go to page {{ .Label }}"> {{ .Label }} </a>
 	{{ end }} {{ end }}
 </nav>
-<pkg:grid :cols="2" id="js-apply-layout" data-layout="grid">
+<pkg:grid :cols="2" id="js_apply_layout" data-layout="grid">
 	<script>
 		layout = Cookies.get("prefered-layout");
 		if (layout != null) {
-			document.getElementById("js-apply-layout").dataset.layout = layout;
+			js_apply_layout.dataset.layout = layout;
 		}
 	</script>
 	{{ range .Cards }} {{ template "pack_card" . }} {{ end }}

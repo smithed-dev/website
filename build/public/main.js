@@ -230,7 +230,7 @@ class AccountWidget {
 	}
 
 	close() {
-		document.getElementById("profile-dropdown").style.removeProperty("visibility");
+		profile_dropdown.style.removeProperty("visibility");
 	}
 }
 
@@ -244,8 +244,7 @@ function gotoSearchPage(node) {
 
 /** @param {HTMLButtonElement} node */
 function toggleDropdown() {
-	const dropdown = document.getElementById("profile-dropdown");
-	dropdown.style.setProperty("visibility", "visible");
+	profile_dropdown.style.setProperty("visibility", "visible");
 }
 // from: ./web/pages/components/widget/button/filter.js
 const NOT_SUPPORTED_FILTERS = [
@@ -276,7 +275,6 @@ class FilterWidget {
 	/** @param {HTMLButtonElement} conflicting  */
 	/** @param {string} tag  */
 	toggle(button, conflicting, tag, fromUser) {
-		const container = document.getElementById("js-filters");
 		const id = this.node.id.replace("filter", "tag");
 
 		let param = this.node.dataset.param;
@@ -288,7 +286,7 @@ class FilterWidget {
 		}
 
 		conflicting.classList.remove("on-selected");
-		const element = container.querySelector(`#${id}`);
+		const element = js_filters.querySelector(`#${id}`);
 		if (element != null) {
 			element.remove();
 		}
@@ -299,7 +297,7 @@ class FilterWidget {
 			button.classList.add("on-selected");
 
 			/** @type {HTMLElement} */
-			const clone = container?.querySelector("template")?.content?.children[0].cloneNode(true);
+			const clone = js_filters.querySelector("template")?.content?.children[0].cloneNode(true);
 
 			clone.querySelector(".js-label").innerHTML = this.node.dataset.item;
 			clone.classList.add(tag);
@@ -310,7 +308,7 @@ class FilterWidget {
 
 			if (NOT_SUPPORTED_FILTERS.includes(param)) {
 				clone.classList.add("type-unsupported");
-				const icon = document.getElementById("js-unsupported-icon")?.content?.children[0]?.cloneNode(true);
+				const icon = js_unsupported_icon.content?.children[0]?.cloneNode(true);
 				clone.prepend(icon);
 				clone.title = "(IGNORED) This filter is currently NOT supported by the API";
 			} else if (fromUser) {
@@ -318,7 +316,7 @@ class FilterWidget {
 				URLQuery.append(param, this.node.dataset.item);
 			}
 
-			container.append(clone);
+			js_filters.append(clone);
 		}
 	}
 

@@ -15,5 +15,5 @@ func ApiLogin(writer http.ResponseWriter, request *http.Request) {
 	http.SetCookie(writer, &cookie)
 
 	handler := NewHandler(writer, request)
-	handler.ParseTemplate("./build_after_login.html").ServePage(nil)
+	handler.ParseTemplate("./build/after_login.html").ServePage(nil)
 }

@@ -1,0 +1,127 @@
+{{ define "index" }}
+<pkg:root :title="Pack" :searchbar="true" :description="...">
+	<pkg:title :image="&{{ .DisplayIcon }}" class="%s --width-max">
+		<pkg:title-label :title="&{{ .DisplayName }}">
+			by <pkg:link href="/users/{{ .Owner.CleanName }}">{{ .Owner.DisplayName }}</pkg:link>
+		</pkg:title-label>
+		<pkg:title-buttons>
+			<!-- <pkg:button :label="Rate" :icon="eyecons/heart-outline" :type="regular" :reversed="true" href="" /> -->
+			<pkg:button :label="Download" :icon="eyecons/angle_down" :type="accent" :reversed="true" href="" />
+		</pkg:title-buttons>
+	</pkg:title>
+
+	<pkg:with-sidebar>
+		<pkg:tab-container class="%s --width-content">
+			<header>
+				<pkg:script-button
+					:label="Description"
+					:type="tab"
+					:icon="eyecons/file"
+					class="%s type-current --flex"
+					data-tab="description"
+				/>
+				<pkg:script-button :label="Gallery" :type="tab" :icon="eyecons/picture" class="%s --flex" data-tab="gallery" />
+				<pkg:script-button :label="Versions" :type="tab" :icon="eyecons/download" class="%s --flex" data-tab="versions" />
+			</header>
+			<section id="tab-description">
+				...
+			</section>
+			<section id="tab-gallery" style="display: none">Hello</section>
+			<section id="tab-versions" style="display: none">Hello</section>
+		</pkg:tab-container>
+
+		<aside>
+			<section>
+				<pkg:icon :icon="eyecons/box" />
+				<b class="--flex">Minecraft</b>
+				<em>Unknown</em>
+			</section>
+			<section>
+				<pkg:icon :icon="eyecons/star-outline" />
+				<b class="--flex">Latest version</b>
+				<em>Unknown</em>
+			</section>
+			<section>
+				<pkg:icon :icon="eyecons/clock" />
+				<b class="--flex">Created</b>
+				<em id="js-timestamp-{{ .StatsAdded }}" data-timestamp="{{ .StatsAdded }}">Loading...</em>
+				<script>
+					processTimestamp(document.getElementById("js-timestamp-{{ .StatsAdded }}"));
+				</script>
+			</section>
+			<section>
+				<pkg:icon :icon="eyecons/clock" />
+				<b class="--flex">Updated</b>
+				<em id="js-timestamp-{{ .StatsUpdated }}" data-timestamp="{{ .StatsUpdated }}">Loading...</em>
+				<script>
+					processTimestamp(document.getElementById("js-timestamp-{{ .StatsUpdated }}"));
+				</script>
+			</section>
+			<section>
+				<pkg:icon :icon="eyecons/file" />
+				<b class="--flex">License</b>
+				<em>Unknown</em>
+			</section>
+			<section>
+				<pkg:icon :icon="eyecons/language" />
+				<b class="--flex">Localization</b>
+				<em>Unknown</em>
+			</section>
+
+			<hr />
+
+			{{ if not (eq .UrlDiscord.Href "") }}
+			<pkg:external-link href="{{ .UrlDiscord.Href }}">
+				<pkg:icon :icon="discord" :size="2" />
+				<div class="--flex">
+					<b class="on-highlight">Join Discord</b>
+					<em>{{ .UrlDiscord.Label }}</em>
+				</div>
+				<pkg:icon :icon="eyecons/angle_right" />
+			</pkg:external-link>
+			{{ end }}
+			{{ if not (eq .UrlSource.Href "") }}
+			<pkg:external-link href="{{ .UrlSource.Href }}">
+				<pkg:icon :icon="github" :size="2" />
+				<div class="--flex">
+					<b class="on-highlight">Source code</b>
+					<em>{{ .UrlSource.Label }}</em>
+				</div>
+				<pkg:icon :icon="eyecons/angle_right" />
+			</pkg:external-link>
+			{{ end }}
+			{{ if not (eq .UrlHomepage.Href "") }}
+			<pkg:external-link href="{{ .UrlHomepage.Href }}">
+				<pkg:icon :icon="eyecons/globe" :size="2" />
+				<div class="--flex">
+					<b class="on-highlight">Official website</b>
+					<em>{{ .UrlHomepage.Label }}</em>
+				</div>
+				<pkg:icon :icon="eyecons/angle_right" />
+			</pkg:external-link>
+			{{ end }}
+
+			<hr />
+
+			{{ $owner := .Owner.Uid }}
+			{{ range .Contributors }}
+			<pkg:external-link href="{{ .CleanName }}">
+				<header>
+					<pkg:icon :icon="eyecons/picture-placeholder" />
+					<img src="{{ .Pfp }}" alt="" onerror="this.remove()" onload="this.previousElementChild.remove()" />
+				</header>
+				<div class="--flex">
+					<b class="on-highlight">{{ .DisplayName }}</b>
+					{{ if eq .Uid $owner }}
+					<em>Owner</em>
+					{{ else }}
+					<em>Contributor</em>
+					{{ end }}
+				</div>
+				<pkg:icon :icon="eyecons/angle_right" />
+			</pkg:external-link>
+			{{ end }}
+		</aside>
+	</pkg:with-sidebar>
+</pkg:root>
+{{ end }}

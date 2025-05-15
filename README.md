@@ -33,7 +33,7 @@ All CSS, JS & HTML is pregenerated. If you do modifications of any of the above 
 ./build.sh
 ```
 
-It creates and fills the `build/` directory: ensures [Mend](https://github.com/bbfh-dev/mend) is installed and build all the templates.
+It creates and fills the `build/` directory: ensures [Mend](https://github.com/bbfh-dev/mend) is installed and builds all the templates.
 
 ## Running the server
 

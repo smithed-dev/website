@@ -1,0 +1,40 @@
+.w-external-link {
+	.--flex-row-center(1);
+	.--interactive();
+	padding: 0.5rem 1rem;
+	border-radius: 0.5rem;
+	text-decoration: none;
+
+	& > div {
+		.--flex-col(0);
+
+		em {
+			font-size: 0.75rem;
+			text-overflow: ellipsis;
+			width: 100%;
+			max-width: 13rem;
+			white-space: nowrap;
+			overflow: hidden;
+			line-height: 1.25;
+		}
+	}
+
+	header {
+		.--flex-row-center(0);
+		background-color: var(--block-section);
+		justify-content: center;
+		position: relative;
+		width: 2rem;
+		height: 2rem;
+		border-radius: 0.5rem;
+
+		img {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			border-radius: 0.5rem;
+			top: 0;
+			left: 0;
+		}
+	}
+}

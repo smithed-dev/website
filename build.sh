@@ -1,72 +1,30 @@
 #!/usr/bin/bash
 
-# ============
-echo "========"
+MEND_VERSION=v1.0.1-alpha.4
 
+function install_mend {
+    echo "==> Mend: Installing the required version" >&2
+    go install github.com/bbfh-dev/mend@$MEND_VERSION
+}
+
+if ! [ -x "$(command -v mend)" ]; then
+    install_mend
+fi
+
+if mend --version | grep -q $MEND_VERSION; then
+    echo "==> Mend: Installation is correct"
+else
+    install_mend
+fi
+
+echo "==> Mend: Started"
 mkdir -p ./build/
+mkdir -p ./build/htmx/
 
 cp -fr ./web/public/ ./build/
 
-# ============
-
-function build_css {
-    cat \
-        ./web/styles/_units.less \
-        ./web/styles/fonts.less \
-        ./web/styles/normalize.less \
-        ./web/styles/themes.less \
-        ./web/styles/global.less \
-        > ./build/public/styles.css
-
-    echo "" > /tmp/smithed-dev.css
-    find ./web/pages/ -name "*.less" -exec echo {} >> /tmp/smithed-dev.css \;
-    cat /tmp/smithed-dev.css | sort | xargs -I {} cat {} >> ./build/public/styles.css
-
-    cat ./web/styles/_adaptive.less >> ./build/public/styles.css
-
-    lessc ./build/public/styles.css > /tmp/styles.css
-    mv /tmp/styles.css ./build/public/styles.css
-    python -m csscompressor -o ./build/public/styles.min.css ./build/public/styles.css
-
-    echo "=== Built CSS"
-}
-
-function build_js {
-    echo "" > ./build/public/main.js
-    for file in ./web/main_*.js; do
-        echo "// from: $file" >> ./build/public/main.js
-        cat $file >> ./build/public/main.js
-    done
-
-    echo "" > /tmp/smithed-dev.js
-    find ./web/pages/components/ -name "*.js" -exec echo {} >> /tmp/smithed-dev.js \;
-    while IFS= read -r file; do
-        if [[ -f $file ]]; then
-            echo "--- Built js:$(basename $file)"
-            echo "// from: $file" >> ./build/public/main.js
-            cat "$file" >> ./build/public/main.js
-        fi
-    done < <(sort /tmp/smithed-dev.js)
-
-    mkdir -p ./build/public/page/
-    for file in ./web/pages/*.js; do
-        if [[ -f $file ]]; then
-            cp $file ./build/public/page/$(basename $file)
-        fi
-    done
-    echo "=== Built JS"
-}
-
-build_css &
-build_js
-wait
-
-CSS_CHECKSUM=$(md5sum ./build/public/styles.min.css | cut -d ' ' -f1)
-JS_CHECKSUM=$(md5sum ./build/public/main.js | cut -d ' ' -f1)
-
-# ============
-
-mkdir -p ./build/htmx/
+CSS_CHECKSUM=$(md5sum ./build/public/generated/styles.min.css | cut -d ' ' -f1)
+JS_CHECKSUM=$(md5sum ./build/public/generated/main.js | cut -d ' ' -f1)
 
 function mend_wrapper {
     file=$1
@@ -99,4 +57,4 @@ for file in ./web/pages/htmx/*.html; do
 done
 
 wait
-echo "=== Done"
+echo "==> Mend: Done"

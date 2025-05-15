@@ -1846,12 +1846,18 @@ body > footer > div section {
 .w-input:has(input:focus) .w-dropdown {
   visibility: visible;
 }
+.w-link {
+  text-decoration: none;
+  color: var(--text-accent);
+}
 .w-link:hover,
 .w-link:focus {
+  text-decoration: underline;
   text-decoration-color: var(--text-accent);
+  text-decoration-thickness: 2px;
 }
 .w-link:focus {
-  color: var(--text-accent);
+  color: var(--text-foreground);
 }
 .w-select {
   display: flex;

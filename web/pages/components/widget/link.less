@@ -1,10 +1,15 @@
 .w-link {
+	text-decoration: none;
+	color: var(--text-accent);
+
 	&:hover,
 	&:focus {
+		text-decoration: underline;
 		text-decoration-color: var(--text-accent);
+		text-decoration-thickness: 2px;
 	}
 
 	&:focus {
-		color: var(--text-accent);
+		color: var(--text-foreground);
 	}
 }

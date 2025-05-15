@@ -18,19 +18,19 @@ else
 fi
 
 echo "==> Mend: Started"
-mkdir -p ./build/
-mkdir -p ./build/htmx/
+mkdir -p build/
+mkdir -p build/htmx/
 
-cp -fr ./web/public/ ./build/
+cp -fr ./web/public/ build/
 
-CSS_CHECKSUM=$(md5sum ./build/public/generated/styles.min.css | cut -d ' ' -f1)
-JS_CHECKSUM=$(md5sum ./build/public/generated/main.js | cut -d ' ' -f1)
+CSS_CHECKSUM=$(md5sum build/public/generated/styles.min.css | cut -d ' ' -f1)
+JS_CHECKSUM=$(md5sum build/public/generated/main.js | cut -d ' ' -f1)
 
 function mend_wrapper {
     file=$1
     dir=$2
     base=$(basename $file)
-    js="./build/public/page/$(basename -s .html $file).js"
+    js="build/public/page/$(basename -s .html $file).js"
 
     PAGE_CHECKSUM=""
     if [[ -f $js ]]; then
@@ -52,7 +52,7 @@ done
 
 for file in ./web/pages/htmx/*.html; do
     if [[ -f $file ]]; then
-        mend_wrapper $file ./build/htmx &
+        mend_wrapper $file build/htmx &
     fi
 done
 

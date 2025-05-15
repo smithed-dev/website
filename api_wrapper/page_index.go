@@ -88,7 +88,7 @@ func Index(writer http.ResponseWriter, request *http.Request) {
 		isLoggedIn = cookie.Value == "true"
 	}
 
-	handler.ParseTemplate("./build/index.html", "./build/htmx/pack_card.html").
+	handler.ParseTemplate("build/index.html", "build/htmx/pack_card.html").
 		ServeIndexPage(IndexPageData{
 			LoggedIn: isLoggedIn,
 			Cards:    cards,

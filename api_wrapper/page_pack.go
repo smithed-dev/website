@@ -151,5 +151,5 @@ func Pack(writer http.ResponseWriter, request *http.Request) {
 	}
 	wg.Wait()
 
-	handler.ParseTemplate("./build/pack.html").ServePage(data)
+	handler.ParseTemplate("build/pack.html").ServePage(data)
 }

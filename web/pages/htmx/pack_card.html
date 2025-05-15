@@ -1,5 +1,5 @@
 {{ define "pack_card" }}
-<a class="w-card" href="https://smithed.net/packs/{{ .RawId }}" title="Open '{{ .Name }}' by '{{ .Author }}'">
+<a class="w-card" href="/packs/{{ .RawId }}" title="Open '{{ .Name }}' by '{{ .Author }}'">
 	<header>
 		<pkg:icon :icon="eyecons/picture-placeholder" :size="2" />
 		<!-- Basically, if there's a gallery image then we keep an icon in case user uses a list view. -->

@@ -5,10 +5,10 @@ import (
 	"os"
 
 	"github.com/charmbracelet/log"
-	"github.com/smithed-dev/website/server"
+	server "github.com/smithed-dev/website/api_wrapper"
 )
 
-const DIR_STATIC = "../build/public/"
+const DIR_STATIC = "./build/public/"
 
 func main() {
 	http.Handle(
@@ -17,13 +17,13 @@ func main() {
 	)
 
 	http.HandleFunc("/favicon.svg", func(writer http.ResponseWriter, request *http.Request) {
-		http.ServeFile(writer, request, "../build/public/favicon.svg")
+		http.ServeFile(writer, request, "./build/public/favicon.svg")
 	})
 	http.HandleFunc("/favicon.png", func(writer http.ResponseWriter, request *http.Request) {
-		http.ServeFile(writer, request, "../build/public/favicon.png")
+		http.ServeFile(writer, request, "./build/public/favicon.png")
 	})
 	http.HandleFunc("/favicon.ico", func(writer http.ResponseWriter, request *http.Request) {
-		http.ServeFile(writer, request, "../build/public/favicon.ico")
+		http.ServeFile(writer, request, "./build/public/favicon.ico")
 	})
 	http.HandleFunc("/kaithheathcheck", func(writer http.ResponseWriter, request *http.Request) {
 		writer.WriteHeader(http.StatusOK)

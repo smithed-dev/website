@@ -40,9 +40,6 @@ It creates and fills the `build/` directory: ensures [Mend](https://github.com/b
 Assuming the `build/` directory is intact:
 
 ```bash
-# Make sure you are inside of the API Wrapper directory
-cd ./api_wrapper/
-
 # Run the server at port :8080
 DEBUG=1 go run main.go
 ```

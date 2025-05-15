@@ -1,35 +1,47 @@
 # Website
 
-This is an HTMX implementation of the smithed website.
+This is an HTMX implementation of the smithed website completely redesigned from scratch.
 
-## Next to be implemented (TODO)
+<!-- vim-markdown-toc GFM -->
 
-- [x] Adaptive UI for landing page
-- [x] Browse page
-- [x] Search bar
-- [x] Login
+* [Building](#building)
+    * [Requirements](#requirements)
+    * [Generating assets](#generating-assets)
+    * [Building](#building-1)
+    * [Running the server](#running-the-server)
 
-## Building
+<!-- vim-markdown-toc -->
 
-### Requirements
+# Building
+
+## Requirements
 
 - I made this for UNIX-like systems (MacOS/Linux)
 - You'll need [Go](https://go.dev/) installed.
 
-#### If you are going to be doing modifications to ./src/
+## Generating assets
 
-To build the project:
+All CSS, JS & HTML is pregenerated. If you do modifications of any of the above you should consider regenerating them using one of the following:
 
-- You'll need [Less CSS](https://lesscss.org/) for CSS compiling:
-  - `npm install -g less`
-- You will need my templating language [Mend v1.0.1-alpha.4](https://github.com/bbfh-dev/mend) to be installed:
-  - `go install github.com/bbfh-dev/mend@v1.0.1-alpha.4`
+- `./generate.js.sh` — Combines all the javascript
+- `./generate.css.sh` — Compiles all the styles using [Less](https://lesscss.org/) (`npm install -g less`)
+- `./generate.all.sh` — Run the two scripts above (async)
 
-### Running the server
+## Building
 
 ```bash
-# If you made changes, assuming you have both mend and lessc installed
-sh ./build.sh
+./build.sh
+```
+
+It creates and fills the `build/` directory: ensures [Mend](https://github.com/bbfh-dev/mend) is installed and build all the templates.
+
+## Running the server
+
+Assuming the `build/` directory is intact:
+
+```bash
+# Make sure you are inside of the API Wrapper directory
+cd ./api_wrapper/
 
 # Run the server at port :8080
 DEBUG=1 go run main.go

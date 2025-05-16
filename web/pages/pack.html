@@ -1,5 +1,5 @@
 {{ define "index" }}
-<pkg:root :title="Pack" :searchbar="true" :description="...">
+<pkg:root :title="Pack" :searchbar="true" :use-module="true" :description="...">
 	<pkg:title :image="&{{ .DisplayIcon }}" class="%s --width-max">
 		<pkg:title-label :title="&{{ .DisplayName }}">
 			by <pkg:link href="/users/{{ .Owner.CleanName }}">{{ .Owner.DisplayName }}</pkg:link>
@@ -23,9 +23,9 @@
 				<pkg:script-button :label="Gallery" :type="tab" :icon="eyecons/picture" class="%s --flex" data-tab="gallery" />
 				<pkg:script-button :label="Versions" :type="tab" :icon="eyecons/download" class="%s --flex" data-tab="versions" />
 			</header>
-			<section id="tab-description">
-				...
-			</section>
+			<pkg:markdown-content :id="description" id="tab-description" class="%s on-loading">
+				{{ .Body }}
+			</pkg:markdown-content>
 			<section id="tab-gallery" style="display: none">Hello</section>
 			<section id="tab-versions" style="display: none">Hello</section>
 		</pkg:tab-container>
@@ -108,7 +108,7 @@
 			<pkg:external-link href="{{ .CleanName }}">
 				<header>
 					<pkg:icon :icon="eyecons/picture-placeholder" />
-					<img src="{{ .Pfp }}" alt="" onerror="this.remove()" onload="this.previousElementChild.remove()" />
+					<img src="{{ .Pfp }}" alt="" onerror="this.remove()" onload="this.previousElementSibling.remove()" />
 				</header>
 				<div class="--flex">
 					<b class="on-highlight">{{ .DisplayName }}</b>

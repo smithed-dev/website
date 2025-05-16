@@ -1281,7 +1281,6 @@ label {
 }
 .m-markdown-content img {
   max-width: calc(100% - 0.5rem);
-  border: 0.25rem solid var(--block-shaded);
   border-radius: 1rem;
   margin: 0 auto;
 }

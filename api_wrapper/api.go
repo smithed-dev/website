@@ -18,8 +18,12 @@ func NewAPI(handler *Handler) *API {
 	}
 }
 
-func (api *API) Get(endpoint string, args ...any) []byte {
-	endpoint = fmt.Sprintf(address+endpoint, args...)
+func (api *API) GetGeneric(addr, endpoint string, args ...any) []byte {
+	if len(args) == 0 {
+		endpoint = addr + endpoint
+	} else {
+		endpoint = fmt.Sprintf(addr+endpoint, args...)
+	}
 	logger.Debugf("API ==> GET %s", endpoint)
 
 	request, err := http.NewRequest("GET", endpoint, nil)
@@ -41,4 +45,8 @@ func (api *API) Get(endpoint string, args ...any) []byte {
 	}
 
 	return body
+}
+
+func (api *API) Get(endpoint string, args ...any) []byte {
+	return api.GetGeneric(address, endpoint, args...)
 }

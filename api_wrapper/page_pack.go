@@ -73,6 +73,7 @@ type PackPageData struct {
 	UrlHomepage    Url
 	Owner          User
 	Contributors   []User
+	Body           string
 }
 
 func Pack(writer http.ResponseWriter, request *http.Request) {
@@ -121,6 +122,7 @@ func Pack(writer http.ResponseWriter, request *http.Request) {
 		UrlHomepage:    NewUrl(gjson.GetBytes(packData, "display.urls.homepage").String()),
 		Owner:          User{},
 		Contributors:   []User{},
+		Body:           "",
 	}
 
 	for _, item := range gjson.GetBytes(packData, "categories").Array() {
@@ -149,6 +151,19 @@ func Pack(writer http.ResponseWriter, request *http.Request) {
 			data.Contributors[i] = user
 		}()
 	}
+
+	if data.DisplayWebPage == "" {
+		data.Body = data.DisplayDesc
+	} else {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			endpoint := strings.Split(data.DisplayWebPage, "?")[0]
+			result := api.GetGeneric(endpoint+"?raw=1", "")
+			data.Body = string(result)
+		}()
+	}
+
 	wg.Wait()
 
 	handler.ParseTemplate("build/pack.html").ServePage(data)

@@ -7,5 +7,5 @@ import (
 func Login(writer http.ResponseWriter, request *http.Request) {
 	handler := NewHandler(writer, request)
 
-	handler.ParseTemplate("build/login.html").ServePage(nil)
+	handler.ParseTemplate("build/pages/login.html").ServePage(nil)
 }

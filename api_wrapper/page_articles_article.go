@@ -18,7 +18,7 @@ type ArticlePageData struct {
 
 func Article(writer http.ResponseWriter, request *http.Request) {
 	articleId := request.PathValue("id")
-	handler := NewHandler(writer, request).ParseTemplate("build/articles__article.html")
+	handler := NewHandler(writer, request).ParseTemplate("build/pages/articles/article.html")
 	api := NewAPI(handler)
 
 	result := api.Get("/articles/%s", articleId)

@@ -59,7 +59,7 @@ loop:
 		Desc:        data.Get("data.display.description").String(),
 		Icon:        data.Get("data.display.icon").String(),
 		Author:      data.Get("owner.displayName").String(),
-		VersionFrom: data.Get("data.versions|@reverse|0.supports.0").String(),
+		VersionFrom: data.Get("data.versions.0.supports.0").String(),
 		VersionTo:   data.Get("data.versions|@reverse|0.supports|@reverse|0").String(),
 		Categories:  categories,
 		Downloads:   FormatAmount(data.Get("meta.stats.downloads.total").Int()),

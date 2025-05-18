@@ -18,8 +18,7 @@ else
 fi
 
 echo "==> Mend: Started"
-mkdir -p build/
-mkdir -p build/htmx/
+mkdir -p build/pages/
 
 cp -fr ./web/public/ build/
 
@@ -44,17 +43,34 @@ function mend_wrapper {
         && echo "--- Built $dir/$base"
 }
 
-for file in ./web/pages/*.html; do
-    if [[ -f $file ]]; then
-        mend_wrapper $file ./build &
+shopt -s globstar
+
+for file in ./web/pages/**/*.html; do
+    # skip anything in a "_*" directory
+    [[ $file == */_*/* ]] && continue
+
+    relpath=${file#./web/pages/}
+    dir=$(dirname $relpath)
+    reldir=${dir#./web/pages/}
+
+    if [[ "$reldir" == "." ]]; then
+        mend_wrapper $file ./build/pages &
+    else
+        mend_wrapper $file ./build/pages/$reldir &
     fi
 done
 
-for file in ./web/pages/htmx/*.html; do
-    if [[ -f $file ]]; then
-        mend_wrapper $file build/htmx &
-    fi
-done
+# for file in ./web/pages/*.html; do
+#     if [[ -f $file ]]; then
+#         mend_wrapper $file ./build &
+#     fi
+# done
+#
+# for file in ./web/pages/htmx/*.html; do
+#     if [[ -f $file ]]; then
+#         mend_wrapper $file build/htmx &
+#     fi
+# done
 
 wait
 echo "==> Mend: Done"

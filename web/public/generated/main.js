@@ -218,7 +218,7 @@ class URLQuery {
 		}
 	}
 }
-// from: ./web/pages/components/root.js
+// from: ./web/pages/_components/root.js
 class AccountWidget {
 	/** @type {HTMLButtonElement} */
 	node;
@@ -246,7 +246,7 @@ function toggleDropdown() {
 	const dropdown = document.getElementById("profile-dropdown");
 	dropdown.style.setProperty("visibility", "visible");
 }
-// from: ./web/pages/components/widget/button/filter.js
+// from: ./web/pages/_components/widget/button/filter.js
 const NOT_SUPPORTED_FILTERS = [
 	// "category", supported now
 	"no_category",
@@ -347,7 +347,7 @@ function toggleFilter(button, fn, fromUser) {
 	}
 	button.blur();
 }
-// from: ./web/pages/components/widget/input/searchbar.js
+// from: ./web/pages/_components/widget/input/searchbar.js
 class SearchbarWidget {
 	syncWith = URLQuery;
 
@@ -374,7 +374,7 @@ class SearchbarWidget {
 		});
 	}
 }
-// from: ./web/pages/components/widget/select/select.js
+// from: ./web/pages/_components/widget/select/select.js
 class SelectWidget extends IClosableWidget {
 	syncWith = URLQuery;
 
@@ -473,7 +473,7 @@ class SelectWidget extends IClosableWidget {
 		return 0;
 	}
 }
-// from: ./web/pages/components/widget/switch.js
+// from: ./web/pages/_components/widget/switch.js
 class SwitchWidget {
 	/** @type {HTMLDivElement} */
 	node;

@@ -41,9 +41,9 @@ type BrowsePageParams struct {
 
 func Browse(writer http.ResponseWriter, request *http.Request) {
 	handler := NewHandler(writer, request).ParseTemplate(
-		"build/browse.html",
-		"build/htmx/pack_card.html",
-		"build/htmx/browser.html",
+		"build/pages/browse.html",
+		"build/pages/htmx/pack_card.html",
+		"build/pages/htmx/browser.html",
 	)
 	var isLoggedIn bool
 	cookie, err := request.Cookie("logged_in")

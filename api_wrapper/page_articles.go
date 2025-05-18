@@ -7,5 +7,5 @@ import (
 func Articles(writer http.ResponseWriter, request *http.Request) {
 	handler := NewHandler(writer, request)
 
-	handler.ParseTemplate("build/articles.html").ServePage(nil)
+	handler.ParseTemplate("build/pages/articles.html").ServePage(nil)
 }

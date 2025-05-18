@@ -1328,6 +1328,10 @@ label {
   border-radius: 0.25rem;
   font-size: 0.875rem;
 }
+.m-markdown-content a:hover,
+.m-markdown-content a:focus {
+  text-decoration-color: var(--text-accent);
+}
 .o-placeholder {
   display: flex;
   flex-direction: column;
@@ -1590,6 +1594,10 @@ body > footer > div section {
 }
 .w-button.type-current:first-child {
   border-right: 1px solid var(--block-border);
+}
+.w-button.type-current:hover {
+  background-color: var(--block-section);
+  cursor: default;
 }
 .w-button.type-symbol {
   border-radius: 0.5rem;

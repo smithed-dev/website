@@ -1,5 +1,5 @@
 {{ define "index" }}
-<pkg:root :title="Pack" :searchbar="true" :use-module="true" :description="...">
+<pkg:root :title="Pack" :searchbar="true" :use-module="pack.js" :description="...">
 	<pkg:title :image="&{{ .DisplayIcon }}" class="%s --width-max">
 		<pkg:title-label :title="&{{ .DisplayName }}">
 			by <pkg:link href="/users/{{ .Owner.CleanName }}">{{ .Owner.DisplayName }}</pkg:link>
@@ -19,6 +19,7 @@
 					:icon="eyecons/file"
 					class="%s type-current --flex"
 					data-tab="description"
+					disabled
 				/>
 				<pkg:script-button :label="Gallery" :type="tab" :icon="eyecons/picture" class="%s --flex" data-tab="gallery" />
 				<pkg:script-button :label="Versions" :type="tab" :icon="eyecons/download" class="%s --flex" data-tab="versions" />
@@ -34,13 +35,22 @@
 			<section>
 				<pkg:icon :icon="eyecons/box" />
 				<b class="--flex">Minecraft</b>
-				<em>Unknown</em>
+				<em>
+					{{ if eq .MinecraftMin .MinecraftMax }}
+					{{ .MinecraftMin }}
+					{{ else }}
+					{{ .MinecraftMin }} — {{ .MinecraftMax }}
+					{{ end }}
+				</em>
 			</section>
 			<section>
 				<pkg:icon :icon="eyecons/star-outline" />
 				<b class="--flex">Latest version</b>
-				<em>Unknown</em>
+				<em>{{ .LatestVersion }}</em>
 			</section>
+
+			<hr />
+
 			<section>
 				<pkg:icon :icon="eyecons/clock" />
 				<b class="--flex">Created</b>

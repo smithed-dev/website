@@ -35,8 +35,10 @@ var IndexScopes = strings.Join([]string{
 	"owner.displayName",
 }, ",")
 
-var dataTrendingPacks []byte = nil
-var dataNewestPacks []byte = nil
+var (
+	dataTrendingPacks []byte = nil
+	dataNewestPacks   []byte = nil
+)
 
 func Index(writer http.ResponseWriter, request *http.Request) {
 	handler := NewHandler(writer, request)
@@ -88,7 +90,7 @@ func Index(writer http.ResponseWriter, request *http.Request) {
 		isLoggedIn = cookie.Value == "true"
 	}
 
-	handler.ParseTemplate("build/index.html", "build/htmx/pack_card.html").
+	handler.ParseTemplate("build/pages/index.html", "build/pages/htmx/pack_card.html").
 		ServeIndexPage(IndexPageData{
 			LoggedIn: isLoggedIn,
 			Cards:    cards,

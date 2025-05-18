@@ -74,6 +74,9 @@ type PackPageData struct {
 	Owner          User
 	Contributors   []User
 	Body           string
+	MinecraftMin   string
+	MinecraftMax   string
+	LatestVersion  string
 }
 
 func Pack(writer http.ResponseWriter, request *http.Request) {
@@ -123,6 +126,9 @@ func Pack(writer http.ResponseWriter, request *http.Request) {
 		Owner:          User{},
 		Contributors:   []User{},
 		Body:           "",
+		MinecraftMin:   gjson.GetBytes(packData, "versions.0.supports.0").String(),
+		MinecraftMax:   gjson.GetBytes(packData, "versions|@reverse|0.supports|@reverse|0").String(),
+		LatestVersion:  gjson.GetBytes(packData, "versions|@reverse|0.name").String(),
 	}
 
 	for _, item := range gjson.GetBytes(packData, "categories").Array() {
@@ -166,5 +172,5 @@ func Pack(writer http.ResponseWriter, request *http.Request) {
 
 	wg.Wait()
 
-	handler.ParseTemplate("build/pack.html").ServePage(data)
+	handler.ParseTemplate("build/pages/pack.html").ServePage(data)
 }
